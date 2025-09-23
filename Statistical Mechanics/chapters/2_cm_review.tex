@@ -1,0 +1,115 @@
+\chapter{Classical Mechanics Review}
+\section{Introduction to Classical Systems}
+
+In classical mechanics, a system is described by a set of particles, each characterized by its position and momentum. For \( N \) identical particles in \( d \) dimensions, the state of each particle is given by a pair of canonical conjugate variables:
+\[
+(q_i, p_i) \in M,
+\]
+where \( M \) is the phase space, a \( 2d \)-dimensional manifold. The total state of the system is then represented by the set:
+\[
+\{(q_i, p_i)_{i=1}^{N}\} \in M^N.
+\]
+
+An observable is a smooth real function defined on the phase space:
+\[
+f : M^N \to \mathbb{R}.
+\]
+A measurement of an observable in a given state is simply the value of the function at that point:
+\[
+f(\overline{q}_i, \overline{p}_i).
+\]
+
+\subsection*{Dynamics and Hamilton's Equations}
+
+The evolution of the system is determined by a special observable known as the Hamiltonian \( H(q_i, p_i; t) \), which governs the motion via Hamilton's equations:
+\[
+\dot{q}_i = \frac{\partial H}{\partial p_i}, \quad \dot{p}_i = -\frac{\partial H}{\partial q_i}.
+\]
+
+If the Hamiltonian does not depend explicitly on time, the energy is conserved:
+\[
+E \equiv H(q_i(t), p_i(t)) = H(q_i(0), p_i(0)).
+\]
+
+Moreover, the flow in phase space preserves volume—a result known as Liouville's theorem.
+
+\section{The Concept of State and Microstates}
+
+Hamilton's equations are deterministic: given initial conditions \( (q_i(0), p_i(0)) \), the trajectory in phase space is uniquely determined for all times. This defines a \textbf{microstate} of the system.
+
+However, in many practical situations, we are interested in systems where initial conditions are not precisely known, or where many microstates correspond to the same macroscopic description. This leads to the idea of a \textbf{macrostate}, characterized by thermodynamic variables like energy, volume, and particle number.
+
+To study such systems, we introduce the concept of an \textbf{ensemble}: a large collection of copies of the system, all with the same macrostate but different microstates.
+
+\subsection*{Probability Distributions in Phase Space}
+
+For a large ensemble, we can define a probability density function \( p(q_i, p_i; t) \) on the phase space \( M \), such that:
+\[
+p(q_i, p_i; t) \geq 0, \quad \int_M p(q_i, p_i; t) \prod_i dq_i dp_i = 1.
+\]
+
+The probability of finding the system in a region \( \mathcal{U} \subset M^N \) is given by:
+\[
+\int_{\mathcal{U}} p(q_i, p_i; t) \prod_i dq_i dp_i.
+\]
+
+To make the measure dimensionless, we often use:
+\[
+d\Omega = \prod_i \frac{dq_i dp_i}{h},
+\]
+where \( h \) is a constant with units of action (e.g., Planck's constant).
+
+\subsection*{Time Evolution and Stationarity}
+
+The probability density evolves according to:
+\[
+\frac{dp}{dt} = \frac{\partial p}{\partial t} + \{p, H\} = 0.
+\]
+
+A system is \textbf{stationary} if \( \frac{\partial p}{\partial t} = 0 \), which is a necessary condition for thermodynamic equilibrium. In that case, \( \{p, H\} = 0 \), which holds if:
+\begin{itemize}
+    \item \( p = \text{constant} \) (microcanonical ensemble),
+    \item \( p = p(H) \) (canonical or grand canonical ensemble).
+\end{itemize}
+
+The ensemble average of an observable \( f \) is defined as:
+\[
+\langle f \rangle = \int_M p(q_i, p_i) f(q_i, p_i) \prod_i dq_i dp_i,
+\]
+and its standard deviation is:
+\[
+(\Delta f)^2 = \langle f^2 \rangle - \langle f \rangle^2.
+\]
+
+\subsection*{Time-Independent Hamiltonians and Density of States}
+
+When the Hamiltonian is time-independent, energy is conserved, and the system evolves on a constant-energy hypersurface in phase space.
+
+The volume of phase space with energy between 0 and \( E \) is:
+\[
+\Sigma(E) = \int_{0 \leq H \leq E} \prod_i dq_i dp_i.
+\]
+
+The density of states is defined as:
+\[
+\omega(E) = \int_M \prod_i dq_i dp_i \, \delta(H(q_i, p_i) - E) = \frac{\partial \Sigma}{\partial E}.
+\]
+
+\section{Ergodicity}
+
+The microcanonical average of an observable \( f \) on the energy surface \( S_E \) is:
+\[
+\langle f \rangle_E = \frac{1}{\omega(E)} \int_{S_E} f \, dS_E.
+\]
+
+The time average is:
+\[
+\langle f \rangle_\infty = \lim_{T \to \infty} \frac{1}{T} \int_{t_0}^{t_0+T} f(q_i(t), p_i(t)) \, dt.
+\]
+
+A system is \textbf{ergodic} if, for almost all initial conditions, the time average equals the microcanonical average:
+\[
+\langle f \rangle_\infty = \langle f \rangle_E.
+\]
+
+In what follows, we will assume ergodicity, which justifies the use of ensemble averages to describe thermodynamic equilibrium.

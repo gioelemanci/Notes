@@ -1,0 +1,104 @@
+\section{Classical Statistical Mechanics}
+
+\subsection*{Phase Space}
+
+We work on a phase space $\mathcal{M}_{N}$ of $N$ particles in $d$ dimensions with coordinates$(q_{i},p_{i})$, $i=1,\cdots,N$. We will denote the volume element with:
+
+\[
+d\Omega = \frac{\prod_{i}dq_{i}dp_{i}}{h^{dN}\,\xi_{N}} = \frac{d\mathcal{H}\,dS_{\mathcal{H}}}{h^{dN}\,\xi_{N}}
+\]
+where $\xi_{N}=N!$ if the particles are indistinguishable while $\xi_{N}=1$ if they are distinguishable.
+
+We recall that the density of states $\omega(E)$ is given by
+\[
+\omega(E) \equiv \int_{\mathcal{M}_{N}} \frac{\prod_{i}dq_{i}dp_{i}}{h^{dN}\,\xi_{N}} \delta(\mathcal{H}(q_{i},p_{i})-E) = \int_{S_{E}}\frac{dS_{\mathcal{H}}}{h^{dN}\,\xi_{N}} = \frac{\partial\Sigma(E)}{\partial E}
+\]
+where $\Sigma(E)$ is the volume of the region of states having energies between 0 and $E$:
+\[
+\Sigma(E) = \frac{1}{h^{dN}\,\xi_{N}}\int_{0}^{E}d\mathcal{H}\int_{S_{\mathcal{H}}}dS_{\mathcal{H}}
+\]
+
+\subsection*{Exercise 1 - Density of States of a Single Particle}
+
+\begin{enumerate}
+    \item Describe the phase space $\mathcal{M}_{1}$, specify the Hamiltonian $\mathcal{H}$ for the following systems:
+    \begin{enumerate}
+        \item[(a)] A single non-relativistic particle in dimensions $d=1,2,3$, confined in an interval $L$, an area $A$ or a volume $V$ respectively;
+        \item[(b)] A single harmonic oscillator in 1 dimension;
+        \item[(c)] A single ultra-relativistic particle in 3 dimensions.
+    \end{enumerate}
+    
+    \item Show that the density of states $\omega(E)$ is given by:
+    
+    Case (a)
+    \[
+    \omega(E) = \frac{L\sqrt{2m}}{h}E^{-1/2},\quad d=1
+    \]
+    \[
+    \omega(E) = \frac{A\pi 2m}{h^{2}},\quad d=2
+    \]
+    \[
+    \omega(E) = \frac{V2\pi(2m)^{3/2}}{h^{3}}E^{1/2},\quad d=3
+    \]
+    
+    Case (b)
+    \[
+    \omega(E) = \frac{2\pi}{h\omega}
+    \]
+    
+    Case (c)
+    \[
+    \omega(E) = \frac{4\pi V}{3c^{3}h^{3}}E^{3}
+    \]
+\end{enumerate}
+
+\vspace{2cm}
+\textbf{Solution:}
+
+
+
+\newpage
+
+\subsection*{Some Integrals}
+
+In the following we will often use the Gamma function (or Euler function) which can be defined through an integral representation:
+\[
+\Gamma(x) \equiv \int_{0}^{\infty} dt\, e^{-t} t^{x-1}
+\]
+It satisfies the following useful relations:
+\[
+\Gamma(n+1) = n!, \quad \Gamma(x+1) = x\Gamma(x), \quad \Gamma(1/2) = \sqrt{\pi}
+\]
+In particular, this function is useful to calculate the volume of a sphere of radius $r$ in $\mathbb{R}^{m}$, i.e. of the region $0\leq\sum_{j=1}^{m}x_{j}^{2}\leq r^{2}$, which is given by:
+\[
+V_{m} = \frac{\pi^{m/2}}{\Gamma\left(\frac{m}{2}+1\right)} r^{m}
+\]
+
+\subsection*{Exercise 2 - Density of States of N Particles}
+
+\begin{enumerate}
+    \item Describe the phase space $\mathcal{M}_{N}$, specify the Hamiltonian $\mathcal{H}$ for:
+    \begin{enumerate}
+        \item[(a)] A non-relativistic ideal gas in $d$ dimensions: i.e. a gas of non-interacting particles whose kinetic energy is non-relativistic;
+        \item[(b)] A gas of harmonic oscillators in 1 dimension: i.e. a gas of non-interacting particles whose kinetic energy is non-relativistic and is subject to a harmonic potential with frequency $\omega$.
+    \end{enumerate}
+    
+    \item Show that the density of states $\omega(E)$ is given by:
+    
+    Case (a)
+    \[
+    \omega(E) = \frac{V^{N}}{\xi_{N}\,\Gamma\left(dN/2\right)}\left(\frac{2\pi m}{h^{2}}\right)^{dN/2}E^{dN/2-1}
+    \]
+    
+    Case (b)
+    \[
+    \omega(E) = \frac{1}{\xi_{N}\Gamma(dN)}\left(\frac{1}{\hbar\omega}\right)^{dN}E^{dN-1}
+    \]
+\end{enumerate}
+
+\vspace{2cm}
+\textbf{Solution:}
+
+
+
+\newpage

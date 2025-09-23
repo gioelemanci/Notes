@@ -16,7 +16,7 @@
 \usepackage{titlesec}
 \usepackage{lipsum}
 \usepackage{tikz}
-\usetikzlibrary{decorations.markings}
+\usetikzlibrary{patterns,decorations.pathmorphing,decorations.markings,calc}
 \usepackage[toc]{appendix}
 
 % === Font and style ===
@@ -50,7 +50,9 @@
 \mainmatter
 
 \input{chapters/0_intro.tex}
-\input{chapters/1_new_framework.tex}
+
+\input{chapters/1_0_new_framework.tex}
+\input{chapters/1_1_towards_qft.tex}
 
 \newpage
 
