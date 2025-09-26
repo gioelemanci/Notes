@@ -5,7 +5,7 @@ In classical mechanics, the fundamental task is to describe the state and the ev
 \[
 (q_i, p_i) \in M,
 \]
-where \(M\) denotes the \textbf{phase space}, a \(2d\)-dimensional manifold that encompasses all possible positions and momenta. The total state of the system, often called the \textbf{microscopic state}, is then given by the collection of all the particle states:
+where \(M\) denotes the \textbf{phase space}, a \(2d\)-dimensional manifold that encompasses all possible positions and momenta. The total state of the system, or its \textit{microscopic state}, is then given by the collection of all the particle states:
 \[
 \{(q_i, p_i)_{i=1}^{N}\} \in M^N.
 \]
@@ -66,83 +66,189 @@ E \equiv H(q_i(t), p_i(t)) = H(q_i(0), p_i(0)).
 \end{minipage}
 \end{figure}
 
-\section{The Concept of State and Microstates}
+\section{Statistical Description}
 
 Hamilton's equations are deterministic: once the initial conditions \(q_i(t_0), p_i(t_0)\) are specified, the system of first-order differential equations admits a unique solution \( (q_i(t), p_i(t)) \) for all times, provided the Hamiltonian is sufficiently smooth. Thus, the evolution in phase space is uniquely determined and reversible, as the flow defines a one-to-one mapping between initial and final states. Each such trajectory corresponds to a \textbf{microstate} of the system, fully characterizing its dynamical evolution.
 
-However, in many practical situations, we are interested in systems where initial conditions are not precisely known, or where many microstates correspond to the same macroscopic description. This leads to the idea of a \textbf{macrostate}, characterized by thermodynamic variables like energy, volume, and particle number.
+However, in many practical situations the exact specification of the initial conditions is either impossible or irrelevant. What we can measure in experiments are not the detailed positions and momenta of all particles, but rather macroscopic quantities such as energy, volume, pressure, or particle number. Different microscopic configurations \((q_i(t),p_i(t))\) may correspond to the same values of these thermodynamic variables, and are therefore indistinguishable from a physical point of view. This motivates the introduction of a \textbf{macrostate}, which is defined not by a single trajectory in phase space, but by a whole set of microstates compatible with the observed macroscopic conditions.
 
-To study such systems, we introduce the concept of an \textbf{ensemble}: a large collection of copies of the system, all with the same macrostate but different microstates.
+To analyze such systems, statistical mechanics introduces the concept of an \textbf{ensemble}: a large collection of virtual copies of the system, each representing a possible microstate consistent with the given macrostate. The ensemble provides a probabilistic description of the system, allowing us to replace detailed knowledge of microscopic trajectories with statistical averages over all accessible states. In this framework, thermodynamic quantities emerge naturally as expectation values of the corresponding observables.
 
 \subsection*{Probability Distributions in Phase Space}
 
-For a large ensemble, we can define a probability density function \( p(q_i, p_i; t) \) on the phase space \( M \), such that:
+For a large ensemble, the microscopic uncertainty about the state of the system is encoded in a probability density function 
 \[
-p(q_i, p_i; t) \geq 0, \quad \int_M p(q_i, p_i; t) \prod_i dq_i dp_i = 1.
+\rho(q_i, p_i; t)
+\]
+defined on the phase space \(\mathcal{M}\). This function satisfies the standard properties of a probability distribution, i.e. \textit{positivity} and \textit{normalization}:
+\[
+\rho(q_i, p_i; t) \geq 0, 
+\qquad 
+\int_{\mathcal{M}} \rho(q_i, p_i; t) \prod_i dq_i \, dp_i = 1,
+\]
+so that the total probability of finding the system somewhere in phase space is normalized to unity.  
+
+The probability of finding the system in a particular subset 
+\(\mathcal{U} \subset \mathcal{M}^N\) is then obtained by integrating the density over that region:
+\[
+\mathbb{P}[(q_i, p_i) \in \mathcal{U}] 
+= \int_{\mathcal{U}} \rho(q_i, p_i; t) \prod_i dq_i \, dp_i.
 \]
 
-The probability of finding the system in a region \( \mathcal{U} \subset M^N \) is given by:
+Since the phase-space measure \(\prod_i dq_i \, dp_i\) carries physical dimensions, it is often convenient to render it dimensionless. This is achieved by introducing the elementary phase-space volume element
 \[
-\int_{\mathcal{U}} p(q_i, p_i; t) \prod_i dq_i dp_i.
+d\Omega = \prod_i \frac{dq_i \, dp_i}{h},
 \]
-
-To make the measure dimensionless, we often use:
-\[
-d\Omega = \prod_i \frac{dq_i dp_i}{h},
-\]
-where \( h \) is a constant with units of action (e.g., Planck's constant).
+where \(h\) is a constant with dimensions of action (commonly chosen as Planck’s constant). With this convention, probability distributions and state counting become properly normalized and dimensionless, a step that is essential when passing to statistical mechanics and thermodynamic limits.
 
 \subsection*{Time Evolution and Stationarity}
 
-The probability density evolves according to:
+\begin{theorem}[Liouville's theorem]
+Let \(\rho(q_i,p_i;t)\) be a probability density on the phase space \(\mathcal{M}\) and let \(H(q_i,p_i;t)\) be a (sufficiently smooth) Hamiltonian generating the flow
 \[
-\frac{dp}{dt} = \frac{\partial p}{\partial t} + \{p, H\} = 0.
+\dot q_i=\frac{\partial H}{\partial p_i},\qquad
+\dot p_i=-\frac{\partial H}{\partial q_i}.
 \]
+Then \(\rho\) is constant along the Hamiltonian trajectories, i.e.
+\begin{equation}\label{eq:liouville}
+\frac{d \rho}{d t}=\frac{\partial \rho}{\partial t}+\{\rho,H\}=0,
+\end{equation}
+where \(\{\cdot,\cdot\}\) denotes the canonical Poisson bracket.
+\end{theorem}
 
-A system is \textbf{stationary} if \( \frac{\partial p}{\partial t} = 0 \), which is a necessary condition for thermodynamic equilibrium. In that case, \( \{p, H\} = 0 \), which holds if:
+\begin{proof}
+We give two equivalent derivations.
+
+\textit{(I) Direct computation using the total (material) derivative.}
+The total derivative of \(\rho\) along a trajectory is
+\[
+\frac{d \rho}{d t}
+= \frac{\partial \rho}{\partial t}+\sum_i\left(\dot q_i\frac{\partial \rho}{\partial q_i}+\dot p_i\frac{\partial \rho}{\partial p_i}\right).
+\]
+Substituting Hamilton's equations yields
+\[
+\frac{d \rho}{d t}
+= \frac{\partial \rho}{\partial t}+\sum_i\left(\frac{\partial H}{\partial p_i}\frac{\partial \rho}{\partial q_i}
+- \frac{\partial H}{\partial q_i}\frac{\partial \rho}{\partial p_i}\right)
+= \frac{\partial \rho}{\partial t} + \{\rho,H\},
+\]
+which is exactly \eqref{eq:liouville}. Hence \(d\rho/dt=0\) if \(\partial_t \rho +\{\rho,H\}=0\).
+
+\textit{(II) Continuity equation and divergence-free flow.}
+Consider the phase-space flow vector field \(V=(\dot q_1,\dots,\dot q_N,\dot p_1,\dots,\dot p_N)\).
+The probability density satisfies the continuity equation
+\[
+\frac{\partial \rho}{\partial t} + \nabla_{(q,p)}\cdot(\rho\,V)=0.
+\]
+For Hamiltonian vector fields one checks
+\[
+\nabla_{(q,p)}\cdot V = \sum_i\left(\frac{\partial \dot q_i}{\partial q_i}+\frac{\partial \dot p_i}{\partial p_i}\right)
+= \sum_i\left(\frac{\partial^2 H}{\partial p_i\partial q_i}-\frac{\partial^2 H}{\partial q_i\partial p_i}\right)=0,
+\]
+so the flow is divergence-free. Using \(\nabla\cdot(\rho V)=V\cdot\nabla \rho + \rho\,\nabla\cdot V\) we obtain
+\[
+\frac{\partial \rho}{\partial t} + V\cdot\nabla_{(q,p)} \rho = 0,
+\]
+which is again the same as \(\partial_t \rho + \{\rho,H\}=0\). This shows that the density is conserved along trajectories.
+
+Combining the two viewpoints yields the stated result.
+\end{proof}
+
+\begin{definition}[Stationary system]
+A system is said to be \textbf{stationary} if its probability density function does not depend explicitly on time, i.e.
+\[
+\frac{\partial \rho}{\partial t} = 0.
+\]
+This condition is necessary for thermodynamic equilibrium, since it ensures that the statistical state of the system remains invariant under time evolution. In this case, Liouville's equation reduces to
+\[
+\{\rho, H\} = 0,
+\]
+meaning that the stationary distribution must be a constant of motion.
+\end{definition}
+
+The requirement \(\{\rho,H\}=0\) is satisfied in the following physically relevant situations:
 \begin{itemize}
-    \item \( p = \text{constant} \) (microcanonical ensemble),
-    \item \( p = p(H) \) (canonical or grand canonical ensemble).
+    \item \textit{Microcanonical ensemble:} the distribution is uniform within the constant-energy hypersurface,
+    \[
+    \rho = \text{constant},
+    \]
+    corresponding to an isolated system with fixed energy, volume, and particle number.
+    \item \textit{Canonical and grand canonical ensembles:} the distribution depends only on the Hamiltonian,
+    \[
+    \rho = \rho(H),
+    \]
+    for instance \(\rho \propto e^{-\beta H}\) in the canonical ensemble, where \(\beta = (k_B T)^{-1}\). These ensembles describe systems in contact with a reservoir fixing temperature (canonical) or both temperature and chemical potential (grand canonical).
 \end{itemize}
 
-The ensemble average of an observable \( f \) is defined as:
+\begin{definition}[Ensemble average]
+Given an observable \( f: \mathcal{M} \to \mathbb{R} \), its \textbf{ensemble average} is defined as
 \[
-\langle f \rangle = \int_M p(q_i, p_i) f(q_i, p_i) \prod_i dq_i dp_i,
+\langle f \rangle = \int_{\mathcal{M}} \rho(q_i, p_i)\, f(q_i, p_i)\, \prod_i dq_i\, dp_i.
 \]
-and its standard deviation is:
+This represents the expected value of \(f\) when the system is sampled according to the probability distribution \(\rho\).
+\end{definition}
+
+\begin{definition}[Standard deviation]
+The fluctuations of an observable \(f\) around its mean value are quantified by the \textbf{standard deviation}, given by
 \[
 (\Delta f)^2 = \langle f^2 \rangle - \langle f \rangle^2.
 \]
+In the thermodynamic limit, fluctuations of macroscopic observables become negligible compared to their averages, ensuring the reproducibility of thermodynamic quantities.
+\end{definition}
 
 \subsection*{Time-Independent Hamiltonians and Density of States}
 
-When the Hamiltonian is time-independent, energy is conserved, and the system evolves on a constant-energy hypersurface in phase space.
-
-The volume of phase space with energy between 0 and \( E \) is:
+When the Hamiltonian is independent of time, \(H = H(q_i, p_i)\), the total energy of the system is conserved. Consequently, the system's trajectory is confined to a \textit{constant-energy hypersurface} in phase space, 
 \[
-\Sigma(E) = \int_{0 \leq H \leq E} \prod_i dq_i dp_i.
+S_E = \{ (q_i, p_i) \in \mathcal{M} \, | \, H(q_i, p_i) = E \}.
 \]
-
-The density of states is defined as:
+This geometric structure is central in statistical mechanics, since many physical properties depend only on the energy of the system. A useful quantity is the phase-space volume corresponding to all states with energy less than or equal to \(E\):
 \[
-\omega(E) = \int_M \prod_i dq_i dp_i \, \delta(H(q_i, p_i) - E) = \frac{\partial \Sigma}{\partial E}.
+\Sigma(E) = \int_{0 \leq H(q_i, p_i) \leq E} \prod_i dq_i \, dp_i.
 \]
+Conceptually, this integral can be computed in two steps: first, by integrating over the hypersurface of fixed energy \(S_\mathcal{H}\), and then by integrating over all energies from \(0\) to \(E\):
+\[
+\Sigma(E) = \int_{0}^{E} d\mathcal{H} \int_{S_\mathcal{H}} dS_\mathcal{H} = \int_{0}^{E} d\mathcal{H} \, \omega(\mathcal{H}),
+\]
+where \(dS_\mathcal{H}\) denotes the natural measure on the energy surface.
+
+\begin{definition}[Density of states]
+The \textbf{density of states} at energy \(E\) is defined as
+\[
+\omega(E) = \int_{\mathcal{M}} \prod_i dq_i \, dp_i \, \delta(H(q_i, p_i) - E),
+\]
+where \(\delta\) is the Dirac delta function, which selects points in phase space with energy exactly equal to \(E\). Equivalently, it can be expressed as the derivative of the cumulative phase-space volume:
+\[
+\frac{\partial \Sigma(E)}{\partial E} = \lim_{\Delta E \to 0} \frac{\Sigma(E + \Delta E) - \Sigma(E)}{\Delta E} = \lim_{\Delta E \to 0} \frac{1}{\Delta E} \int_{E}^{E + \Delta E} d\mathcal{H}\, \omega(\mathcal{H}) \sim \frac{\omega(E)\Delta E}{\Delta E} = \omega(E),
+\]
+\[
+    \omega(E) = \frac{\partial \Sigma(E)}{\partial E}.
+\]
+From the fundamental theorem of calculus, \(F = \int dx\, f(x) \implies F' = f(x)\).
+
+The density of states counts the number of accessible microstates at a given energy and provides a key link between microscopic Hamiltonian dynamics and macroscopic thermodynamic quantities such as entropy and temperature.
+\end{definition}
 
 \section{Ergodicity}
 
-The microcanonical average of an observable \( f \) on the energy surface \( S_E \) is:
+The \textbf{microcanonical average} of an observable \(f\) over the energy surface \(S_E\) is defined as
 \[
-\langle f \rangle_E = \frac{1}{\omega(E)} \int_{S_E} f \, dS_E.
+\langle f \rangle_E = \frac{1}{\omega(E)} \int_{S_E} f(q_i, p_i) \, dS_E,
 \]
+where \(dS_E\) is the natural measure on the constant-energy hypersurface and \(\omega(E)\) is the density of states. This represents the average of \(f\) when all accessible microstates at fixed energy are equally probable, as in the microcanonical ensemble.
 
-The time average is:
+The \textbf{time average} of \(f\) along a trajectory starting from initial condition \((q_i(t_0), p_i(t_0))\) is given by
 \[
 \langle f \rangle_\infty = \lim_{T \to \infty} \frac{1}{T} \int_{t_0}^{t_0+T} f(q_i(t), p_i(t)) \, dt.
 \]
+This describes the long-term average value of the observable along the dynamical evolution of a single system.
 
-A system is \textbf{ergodic} if, for almost all initial conditions, the time average equals the microcanonical average:
+\begin{definition}[Ergodic system]
+A system is said to be \textbf{ergodic} if, for almost all initial conditions, the time average of any observable equals its microcanonical average:
 \[
 \langle f \rangle_\infty = \langle f \rangle_E.
 \]
+Ergodicity provides the fundamental justification for using ensemble averages to describe macroscopic properties at thermodynamic equilibrium, as it ensures that the long-time behaviour of a single system is representative of the statistical behaviour of the entire ensemble.
+\end{definition}
 
-In what follows, we will assume ergodicity, which justifies the use of ensemble averages to describe thermodynamic equilibrium.
+In what follows, we will assume ergodicity, which allows us to replace time averages with ensemble averages when computing thermodynamic quantities.
