@@ -1,0 +1,143 @@
+\subsection*{Microcanonical Ensemble}
+
+A totally isolated system, at temperature T and volume V, is described by the \textit{microcanonical ensemble}: both the energy $E$ and the number of particles $N$ are conserved.
+
+We assume that all points on the hypersurface $S_{\mathcal{H}=E} \subset \mathcal{M}_{N}$, corresponding to the energy $E$, are equiprobable. Thus the (microcanonical) probability density reads:
+
+\[\rho_{mc}(q_i,p_i) = \frac{\delta(\mathcal{H}-E)}{\omega(E)} \tag{1}\]
+
+where $\omega(E) = \int_{S_E} dS_{\mathcal{H}}$ is the density of states, i.e. the area of the hypersurface $S_{\mathcal{H}=E}$.
+
+Thermodynamics is recovered from the universal Boltzmann function for entropy:
+
+\[S_{mc} \equiv k_B \log \omega(E)\]
+
+which coincides with the thermodynamic entropy $S_{th}$, in the thermodynamic limit.
+
+In the same limit, the entropy can be equivalently calculated as:
+
+\[S_{mc} \equiv k_B \log \omega(E) = k_B \log \Gamma(E) = k_B \log \Sigma(E)\]
+
+with $\omega(E) = \partial \Sigma / \partial E$ and $\Gamma(E) = \omega(E) \Delta E$.
+
+\subsection*{Exercise 3 - Ideal gas in 3d, microcanonical ensemble}
+
+In this exercise we will derive the thermodynamics of an ideal gas from its microcanonical description.
+
+\begin{enumerate}
+    \item Prove that:
+    \[
+    \log \Gamma(E) = \log \omega(E) + \log \Delta E = \log \Sigma(E) + \log(3N/(2E)) + \log \Delta E
+    \]
+    Divide the obtained expressions by the total number of particles $N$, to obtain the entropy per particle $s_{mc}$, showing that they all coincide, in the thermodynamic limit.   
+    
+    \item Starting from the result obtained in Ex. 2 of Set 1:
+    \[
+    \Sigma(E) = \frac{V 4\pi (2m)^{3/2}}{3h^3} E^{3/2}
+    \]
+    show that the entropy $S = k_B \log \Sigma(E)$, in the thermodynamic limit (i.e. neglecting terms that increase slower than $N$), is given by:
+    \[
+    S = k_B \left\{
+    \begin{array}{ll}
+    \frac{3}{2}N + N\log\left[V\left(\frac{4\pi mE}{3Nh^2}\right)^{3/2}\right] & \textit{distinguishable particles} \\
+    \\
+    \frac{5}{2}N + N\log\left[\frac{V}{N}\left(\frac{4\pi mE}{3Nh^2}\right)^{3/2}\right] & \textit{indistinguishable particles}
+    \end{array}
+    \right.
+    \]
+    \textit{Remark. You need to use Stirling formulas: $\log N! = N\log N - N$ for $N$ large and similarly $\log \Gamma(x) \simeq x\log x - x$ for $x$ large.}
+    
+    Are the obtained expressions of $S$ extensive? Discuss the result.
+    
+    \item Recalling that $TdS = dE + pdV$, calculate:
+    \begin{itemize}
+        \item $\left.\frac{\partial S}{\partial E}\right|_V$ and derive the expression for the internal energy:
+        \[E = \frac{3}{2} N k_B T\]
+        
+        \item $\left.\frac{\partial S}{\partial V}\right|_E$ and derive the expression for the equation of state:
+        \[pV = N k_B T\]
+    \end{itemize}
+    
+\end{enumerate}
+
+\vspace{2cm}
+\textbf{Solution:}
+
+\newpage
+
+\subsection*{Canonical Ensemble}
+
+The canonical ensemble describes a system, with a given volume V and a number of particles N, in thermodynamical equilibrium with an environment at a given temperature $T$, with which it can exchange energy.
+
+The canonical probability density reads:
+
+\[\rho_C = \frac{1}{Z_N} e^{-\beta \mathcal{H}(q_i,p_i)} \tag{2}\]
+
+where $Z_N = Z_N[V,T]$ is the canonical partition function:
+
+\[Z_N = \int_{\mathcal{M}_N} d\Omega\; e^{-\beta \mathcal{H}(q_i,p_i)} \tag{3}\]
+
+Thermodynamic potentials can be derived through the formulas:
+
+\[E = \langle \mathcal{H}(q_i,p_i) \rangle_c = -\frac{\partial \ln Z_N}{\partial \beta} \tag{4}\]
+
+\[F = -\frac{1}{\beta} \ln Z_N \tag{5}\]
+
+\[S = \frac{E - F}{T} \tag{6}\]
+
+One can then obtain other thermodynamical quantities, such as:
+
+\[p = -\left. \frac{\partial F}{\partial V} \right|_{T,N} \tag{7}\]
+
+\[\mu = \left. \frac{\partial F}{\partial N} \right|_{T,V} \tag{8}\]
+
+and
+
+\[C_V = T \left. \frac{\partial S}{\partial T} \right|_{V,N} = \left. \frac{\partial E}{\partial T} \right|_{V,N} \tag{9}\]
+
+\[C_p = T \left. \frac{\partial S}{\partial T} \right|_{p,N} = \left. \frac{\partial E}{\partial T} \right|_{p,N} + p \left. \frac{\partial V}{\partial T} \right|_{p,N} \tag{10}\]
+
+\subsection*{Exercise 4 - Ideal gas in 3d, canonical ensemble}
+
+In this exercise we will derive the thermodynamics of an ideal gas from its canonical description, supposing particles indistinguishable.
+
+\begin{enumerate}
+    \item Recalling that, for a gas of free non-relativistic particles, we have:
+    \[
+    \mathcal{M}_N = V^N \times \mathbb{R}^{3N}, \quad \mathcal{H} = \sum_i \frac{p_i^2}{2m}
+    \]
+    show that the canonical partition function $Z$ is given by:
+    \[
+    Z = \frac{V^N}{N! \lambda_T^{3N}}
+    \]
+    having defined the thermal wavelength
+    \[
+    \lambda_T \equiv \sqrt{\frac{h^2}{2\pi m k_B T}}
+    \]
+    Derive an expression for $\ln Z$ in the large $N$ limit.
+    
+    \textit{Remark. Recall Stirling formula and the formula for Gaussian integral:}
+    \[
+    \int_{-\infty}^{\infty} dx\, e^{-\alpha x^2} = \sqrt{\frac{\pi}{\alpha}}
+    \]
+    
+    \item Derive the internal energy $E$ and the free energy $F$. 
+    
+    \item Derive the entropy $S$, for both the case of distinguishable and indistinguishable particles.
+    
+    Calculate the value $T_*$ of the temperature at which $S$ becomes negative. How can you interpret this result?
+        
+    \item Calculate the pressure $p$, and derive the equation of state.
+    
+    How does an isothermal curve look like in the $p-V$ plane?
+     
+    \item Calculate the chemical potential $\mu$ and draw a graph of it as function of temperature T, at a fixed density of particles $n$.
+        
+    \item Calculate the specific heats per particle: $c_v = C_v/N$ and $c_p = C_p/N$.
+
+\end{enumerate}
+
+\vspace{2cm}
+\textbf{Solution:}
+
+\newpage
