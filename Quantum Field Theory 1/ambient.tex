@@ -1,17 +1,18 @@
 % ===== Page Layout and Style =====
-% Configure fancy headers and footers
 \pagestyle{fancy}
 \fancyhf{} % Clear all header and footer fields
 \fancyhead[LE,RO]{\thepage} % Page numbers on outer side (Left Even, Right Odd)
 \fancyhead[RE]{\leftmark}   % Chapter name on right side of even pages
 \fancyhead[LO]{\rightmark}  % Section name on left side of odd pages
 
-% --- Chapter title formattation ---
+% ===== Chapter title formattation =====
 \titleformat{\chapter}[hang]
   {\normalfont\bfseries\Huge} % text format
   {\thechapter\hspace{1em}\rule{1pt}{30pt}\hspace{1em}} % number + line + space
   {0pt}
   {} % title next to number
+% Sections always in cleared page
+\newcommand{\sectionbreak}{\clearpage}
 
 % Document geometry settings
 \geometry{

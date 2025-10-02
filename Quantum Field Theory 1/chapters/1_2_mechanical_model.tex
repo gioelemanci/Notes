@@ -311,17 +311,48 @@ Now we are in a position to compute the total number of independent vibrational 
   \[
     m = \frac{2l - 2}{2} = l - 1 .
   \]  
-  In this case we have to exclude the modes \(\sigma = N\) and \(\sigma = \tfrac{N}{2}\). The reason is that, when \(N\) is even, the mode with index \(\sigma = \tfrac{N}{2}\) is self-conjugate, since it coincides with its complementary mode \(\sigma = N - \tfrac{N}{2} = \tfrac{N}{2}\).  
+  In this case we have to exclude the modes \(\sigma = N\) and \(\sigma = \frac{N}{2}\). The reason is that, when \(N\) is even, the mode with index \(\sigma = \frac{N}{2}\) is self-conjugate, since it coincides with its complementary mode \(\sigma = N - \frac{N}{2} = \frac{N}{2}\).  
 
   \item \textbf{If \(N\) is odd (\(N = 2l+1\))}, the total number of such oscillator pairs is  
   \[
     m = \frac{(2l+1) - 1}{2} = l .
   \]  
-  Here the only index that must be removed is \(\sigma = N\), since \(\tfrac{N}{2}\) is not an integer and therefore does not correspond to any mode index.  
+  Here the only index that must be removed is \(\sigma = N\), since \(\frac{N}{2}\) is not an integer and therefore does not correspond to any mode index.  
 \end{itemize}  
 The two oscillators associated with the same frequency can be regarded as components of a single complex degree of freedom. In this representation, the physical displacement corresponds to the real part of the complex variable, while the imaginary part encodes the redundant conjugate mode.
 
-We could now exploit the solutions obtained in the new basis to diagonalize the Hamiltonian, since the transformation allows us to rewrite the Hamiltonian in terms of independent normal modes, each of which behaves as an uncoupled harmonic oscillator. In practice, the diagonalization procedure eliminates the cross-terms that mix different coordinates, leaving a sum of quadratic contributions that can be interpreted as the energies of the individual modes. As a result, the system is reduced to a collection of independent harmonic oscillators, each characterized by its own frequency.
+We can now exploit the solutions obtained in the new basis to diagonalize the Hamiltonian, since the transformation allows us to rewrite it in terms of independent normal modes, each of which behaves as an uncoupled harmonic oscillator. Let us temporarily neglect the contributions from the modes $\sigma = \frac{N}{2}, N$. Then the kinetic energy can be rewritten as
+\[
+\begin{aligned}
+    T &= \frac{1}{2}m \sum_{j=1}^N \dot{y}_j^2 \\
+    &= \frac{1}{2}m \sum_{j=1}^N \frac{1}{N} \sum_{\sigma=1}^{\frac{N}{2}-1} \left( e^{i \frac{2\pi}{N}\sigma j} \dot{\tilde{y}}_{\sigma} + e^{-i \frac{2\pi}{N}\sigma j} \dot{\tilde{y}}_{N-\sigma} \right) \sum_{\xi=1}^{\frac{N}{2}-1} \left( e^{i \frac{2\pi}{N}\xi j} \dot{\tilde{y}}_{\xi} + e^{-i \frac{2\pi}{N}\xi j} \dot{\tilde{y}}_{N-\xi} \right)\\
+    &= \frac{1}{2}m \sum_{\sigma,\xi=1}^{\frac{N}{2}-1} \left[ \dot{\tilde{y}}_{\sigma} \dot{\tilde{y}}_{\xi} \left( \frac{1}{N} \sum_{j=1}^N e^{i \frac{2\pi}{N}(\sigma+\xi) j} \right) + \dot{\tilde{y}}_{N-\sigma} \dot{\tilde{y}}_{\xi} \left( \frac{1}{N} \sum_{j=1}^N e^{i \frac{2\pi}{N}(\xi-\sigma) j} \right) \right.\\
+    & \qquad\qquad\qquad+ \left. \dot{\tilde{y}}_{\sigma} \dot{\tilde{y}}_{N-\xi} \left( \frac{1}{N} \sum_{j=1}^N e^{i \frac{2\pi}{N}(\sigma-\xi) j} \right) + \dot{\tilde{y}}_{N-\sigma} \dot{\tilde{y}}_{N-\xi} \left( \frac{1}{N} \sum_{j=1}^N e^{-i \frac{2\pi}{N}(\sigma+\xi) j} \right) \right] \\
+    &= \frac{1}{2}m \sum_{\sigma,\xi=1}^{\frac{N}{2}-1} \left( \dot{\tilde{y}}_{\sigma} \dot{\tilde{y}}_{\xi} \, \delta_{\sigma+\xi, 0} + \dot{\tilde{y}}_{N-\sigma} \dot{\tilde{y}}_{\xi} \, \delta_{\sigma,\xi} + \dot{\tilde{y}}_{\sigma} \dot{\tilde{y}}_{N-\xi} \, \delta_{\sigma,\xi} + \dot{\tilde{y}}_{N-\sigma} \dot{\tilde{y}}_{N-\xi} \, \delta_{\sigma+\xi, 0} \right) \\
+    &= \frac{1}{2}m \sum_{\sigma=1}^{\frac{N}{2}-1} \left( 2 \dot{\tilde{y}}_{\sigma} \dot{\tilde{y}}_{N-\sigma} \right) = m \sum_{\sigma=1}^{\frac{N}{2}-1} \dot{\tilde{y}}_{\sigma} \dot{\tilde{y}}_{\sigma}^* = m \sum_{\sigma=1}^{\frac{N}{2}-1} \vert \dot{\tilde{y}}_{\sigma} \vert ^2. 
+\end{aligned}
+\]
+The sum over $j$ enforce orthogonality, which manifests as Kronecker deltas. These deltas select only the diagonal terms, pairing each mode $\sigma$ with its complex conjugate $N-\sigma$. The final expression is a sum over independent Fourier modes, where the kinetic energy is simply the mass times the squared modulus of the time derivative of each mode amplitude. Now for the potential energy:
+\[
+\begin{aligned}
+  V &= \frac{1}{2} m \left( \frac{v}{\Delta} \right)^2 \sum_{j=1}^N \left( y_j - y_{j+1} \right)^2 = \\
+  &= \frac{1}{2} m \left( \frac{v}{\Delta} \right)^2 \sum_{j=1}^N \left[\sum_{\sigma=1}^{\frac{N}{2}-1} \left[ \left( e^{i \frac{2\pi}{N}\sigma j} \tilde{y}_{\sigma} + e^{-i \frac{2\pi}{N}\sigma j} \tilde{y}_{N-\sigma} \right) \right.\right. \\
+  & \qquad\qquad\qquad\qquad \left.\left.- \left( e^{i \frac{2\pi}{N}\sigma (j+1)} \tilde{y}_{\sigma} + e^{-i \frac{2\pi}{N}\sigma (j+1)} \tilde{y}_{N-\sigma} \right) \right] \right]^2 \\
+  &= \frac{1}{2} m \left( \frac{v}{\Delta} \right)^2 \sum_{j=1}^N \left[\sum_{\sigma=1}^{\frac{N}{2}-1} \left[ \tilde{y}_{\sigma} e^{i \alpha_{\sigma}  j} \left( 1 - e^{i \alpha_{\sigma}} \right) + \tilde{y}_{N-\sigma} e^{-i \alpha_{\sigma}  j} \left( 1 - e^{-i \alpha_{\sigma}} \right) \right] \right]^2 \\
+  &= \frac{1}{2} m \left( \frac{v}{\Delta} \right)^2 \sum_{j=1}^N \left[\sum_{\sigma=1}^{\frac{N}{2}-1} 2i \sin(\frac{\alpha_{\sigma}}{2}) \left( - \tilde{y}_{\sigma} e^{i \alpha_{\sigma} (j+\tfrac12)} + \tilde{y}_{N-\sigma} e^{-i \alpha_{\sigma} (j+\tfrac12)} \right) \right]^2,
+\end{aligned}
+\]
+where \(\alpha_{\sigma} = \frac{2\pi}{N}\sigma\). Now, using again the sum over \(j\) to enforce orthogonality (noting that the term \(j+\tfrac12\) on the exponential does not influence the result since it is canceled in cross-terms, while diagonal terms are zeroed by \(\delta_{\sigma+\xi,0}\)) and recalling the expression for \(\omega_{\sigma}\), we arrive to the diagonal form of the potential:
+\[
+  V = \frac{1}{2} m \left( \frac{v}{\Delta} \right)^2 \sum_{\sigma=1}^{\frac{N}{2}-1} 8 \sin(\frac{\alpha_{\sigma}}{2})^2 \tilde{y}_{\sigma}\tilde{y}_{N-\sigma} = m \sum_{\sigma=1}^{\frac{N}{2}-1} \omega_{\sigma}^2 \vert \tilde{y}_{\sigma} \vert^2.
+\]
+Finally, by adding the contributions from the modes $\sigma = \frac{N}{2}, N$, we arrive to the diagonal form of our Lagrangian:
+\[
+  L = m \sum_{\sigma=1}^{\frac{N}{2}-1} \left( \vert \dot{\tilde{y}}_{\sigma} \vert ^2 + \omega_{\sigma}^2 \vert \tilde{y}_{\sigma} \vert^2 \right) + \frac{m}{2} \left( \dot{\tilde{y}}_{\frac{N}{2}}^2 + \dot{\tilde{y}}_{N}^2 + \omega_{\frac{N}{2}}^2 \tilde{y}_{\frac{N}{2}}^2 \right),
+\]
+since \(\omega_N = 0\).\footnote{Let us remember that the \(\frac{N}{2}\)-th mode is absent when \(N\) is odd.} Thus, in the end, we have \(\tfrac{N-2}{2}\) complex degrees of freedom from the first term, which become \(N-2\) real degrees of freedom with \(\tfrac{N-2}{2}\) different frequencies, while the second term contributes with 2 real degrees of freedom.
+
+In practice, the diagonalization procedure eliminates the cross-terms that mix different coordinates, leaving a sum of quadratic contributions that can be interpreted as the energies of the individual modes. As a result, the system is reduced to a collection of independent harmonic oscillators, each characterized by its own frequency.
 
 \subsection*{Quantization}
 
@@ -329,73 +360,186 @@ In order to proceed with the quantization of the system, it is useful to briefly
 
 We start from the Hamiltonian operator expressed in terms of the position and momentum operators \(\hat y\) and \(\hat p\):  
 \[
-\hat{H} = \frac{\hat{p}^2}{2m} + \frac{1}{2} m \omega^2 \hat{y}^2 .
+  \hat{H} = \frac{\hat{p}^2}{2m} + \frac{1}{2} m \omega^2 \hat{y}^2 .
 \] 
 
 The canonical quantization rule imposes the commutation relation between \(\hat y\) and \(\hat p\):  
 \[
-[\hat{y}, \hat{p}] = i \hbar .
+  [\hat{y}, \hat{p}] = i \hbar .
 \]  
 It is then convenient to introduce the so--called ladder (or creation/annihilation) operators:  
 \[
-\hat{a} = \sqrt{\frac{m\omega}{2\hbar}} \, \hat{y} + \frac{i}{\sqrt{2m\hbar\omega}} \, \hat{p}, 
-\qquad
-\hat{a}^\dagger = \sqrt{\frac{m\omega}{2\hbar}} \, \hat{y} - \frac{i}{\sqrt{2m\hbar\omega}} \, \hat{p}.
+  \hat{a} = \sqrt{\frac{m\omega}{2\hbar}} \, \hat{y} + \frac{i}{\sqrt{2m\hbar\omega}} \, \hat{p}, 
+  \qquad
+  \hat{a}^\dagger = \sqrt{\frac{m\omega}{2\hbar}} \, \hat{y} - \frac{i}{\sqrt{2m\hbar\omega}} \, \hat{p}.
 \]  
 These operators satisfy the commutation relation \( [\hat{a}, \hat{a}^\dagger] = 1 \). In terms of \(\hat{a}\) and \(\hat{a}^\dagger\), the Hamiltonian takes the following simple form:
 \[
-\hat{H} = \hbar \omega \left(\hat{a}^\dagger \hat{a} + \tfrac{1}{2}\right).
+  \hat{H} = \hbar \omega \left(\hat{a}^\dagger \hat{a} + \tfrac{1}{2}\right).
 \]  
 Finally, the position and momentum operators can be expressed back in terms of the ladder operators as  
 \[
-\hat{y} = \sqrt{\frac{\hbar}{2m\omega}} \, \big(\hat{a} + \hat{a}^\dagger \big), 
-\qquad
-\hat{p} = i \sqrt{\frac{m\hbar\omega}{2}} \, \big(\hat{a}^\dagger - \hat{a}\big).
+  \hat{y} = \sqrt{\frac{\hbar}{2m\omega}} \, \big(\hat{a} + \hat{a}^\dagger \big), 
+  \qquad
+  \hat{p} = i \sqrt{\frac{m\hbar\omega}{2}} \, \big(\hat{a}^\dagger - \hat{a}\big).
 \]  
 We now examine the action of the ladder operators by considering their commutators with the Hamiltonian. To understand how the operators affect the energy states, let us compute the commutator with the annihilation operator $\hat a$:
 \[
-[\hat H, \hat a] = \hbar \omega \, [\hat a^\dagger \hat a, \hat a].
+  [\hat H, \hat a] = \hbar \omega \, [\hat a^\dagger \hat a, \hat a].
 \]
 Using the general identity $[AB,C] = A[B,C] + [A,C]B$, we obtain
 \[
-[\hat a^\dagger \hat a, \hat a] = \hat a^\dagger [\hat a,\hat a] + [\hat a^\dagger, \hat a] \hat a = -\hat a,
+  [\hat a^\dagger \hat a, \hat a] = \hat a^\dagger [\hat a,\hat a] + [\hat a^\dagger, \hat a] \hat a = -\hat a,
 \]
 so that
 \[
-[\hat H, \hat a] = - \hbar \omega \, \hat a.
+  [\hat H, \hat a] = - \hbar \omega \, \hat a.
 \]
 Similarly, for the creation operator $\hat a^\dagger$, we have
 \[
-[\hat H, \hat a^\dagger] = \hbar \omega \, [\hat a^\dagger \hat a, \hat a^\dagger] = \hbar \omega \, \hat a^\dagger.
+  [\hat H, \hat a^\dagger] = \hbar \omega \, [\hat a^\dagger \hat a, \hat a^\dagger] = \hbar \omega \, \hat a^\dagger.
 \]
 
 From these commutators, one can immediately deduce the action of the Hamiltonian on the states $\hat a |n\rangle$ and $\hat a^\dagger |n\rangle$. Using $\hat H |n\rangle = \hbar \omega \left(n + \tfrac12\right) |n\rangle$, we find
 \[
-\hat H (\hat a |n\rangle) = (\hat a \hat H + [\hat H, \hat a]) |n\rangle = \hbar \omega \left(n - \tfrac12\right) (\hat a |n\rangle),
+  \hat H (\hat a |n\rangle) = (\hat a \hat H + [\hat H, \hat a]) |n\rangle = \hbar \omega \left(n - \tfrac12\right) (\hat a |n\rangle),
 \]
 \[
-\hat H (\hat a^\dagger |n\rangle) = (\hat a^\dagger \hat H + [\hat H, \hat a^\dagger]) |n\rangle = \hbar \omega \left(n + \tfrac32\right) (\hat a^\dagger |n\rangle).
+  \hat H (\hat a^\dagger |n\rangle) = (\hat a^\dagger \hat H + [\hat H, \hat a^\dagger]) |n\rangle = \hbar \omega \left(n + \tfrac32\right) (\hat a^\dagger |n\rangle).
 \]
 These results show explicitly that $\hat a$ lowers the energy of a state by one quantum $\hbar \omega$, while $\hat a^\dagger$ raises the energy by the same amount.
 
 It is convenient to introduce the number operator, defined as
 \[
-\hat N = \hat a^\dagger \hat a.
+  \hat N = \hat a^\dagger \hat a.
 \]
 This operator counts the number of quanta in a given state, since its action on the energy eigenstates is
 \[
-\hat N |n\rangle = n |n\rangle.
+  \hat N |n\rangle = n |n\rangle.
 \]
 The ladder operators then have a simple interpretation in terms of the number operator: the annihilation operator $\hat a$ lowers the quantum number by one,
 \[
-\hat a |n\rangle = \sqrt{n}\, |n-1\rangle,
+  \hat a |n\rangle = \sqrt{n}\, |n-1\rangle,
 \]
 while the creation operator $\hat a^\dagger$ raises it by one,
 \[
-\hat a^\dagger |n\rangle = \sqrt{n+1}\, |n+1\rangle.
+  \hat a^\dagger |n\rangle = \sqrt{n+1}\, |n+1\rangle.
 \]
 In this way, the states $|n\rangle$ can be constructed by successive application of $\hat a^\dagger$ starting from the vacuum state $|0\rangle$, and the number operator provides a direct measure of the excitation level of each state. These operators are the cornerstone for describing the spectrum and dynamics of the quantum harmonic oscillator.
 
+We are now ready to quantize our \textit{mechanical string} with Lagrangian:
+\[
+  L = m \sum_{\sigma=1}^{\frac{N}{2}-1} \left( \vert \dot{\tilde{y}}_{\sigma} \vert ^2 + \omega_{\sigma}^2 \vert \tilde{y}_{\sigma} \vert^2 \right) + \frac{m}{2} \left( \dot{\tilde{y}}_{\frac{N}{2}}^2 + \dot{\tilde{y}}_{N}^2 + \omega_{\frac{N}{2}}^2 \tilde{y}_{\frac{N}{2}}^2 \right),
+\]
+It is useful to stress that each complex mode can be decomposed into its real and imaginary parts. In particular,
+\[
+  \tilde{y}_{\sigma} = \frac{1}{\sqrt{2}}(\Re \tilde{y}_{\sigma} + \Im \tilde{y}_{\sigma}) = \frac{\tilde{y}_{\sigma}^{(\mathrm{R})}+\tilde{y}_{\sigma}^{(\mathrm{I})}}{\sqrt{2}},
+\]
+so that the kinetic term can be written as
+\[
+  \vert \dot{\tilde{y}}_{\sigma} \vert ^2 = \frac{1}{2}\left[ (\dot{\tilde{y}}_{\sigma}^{(\mathrm{R})})^2 + (\dot{\tilde{y}}_{\sigma}^{(\mathrm{I})})^2 \right].
+\]
+For the real normal modes (e.g. the special indices \(\sigma=\frac{N}{2},N\)) we introduce the usual ladder operators \(\hat a_r,\hat a_r^\dagger\) and have
+\[
+  \hat{\tilde{y}}_{\sigma}^{(\mathrm{R})} = \sqrt{\frac{\hbar}{2 m \omega_{\sigma}}}\;(\hat a_{\sigma}^{(\mathrm{R})} + \hat a_{\sigma}^{\dagger(\mathrm{R})}), 
+  \qquad
+  \hat{p}_{\sigma}^{(\mathrm{R})} = i\sqrt{\frac{m\hbar\omega_{\sigma}}{2}}\;(\hat a_{\sigma}^{(\mathrm{R})} - \hat a_{\sigma}^{\dagger(\mathrm{R})}),
+\]
+\[
+  \hat{\tilde{y}}_{\sigma}^{(\mathrm{I})} = \sqrt{\frac{\hbar}{2 m \omega_{\sigma}}}\;(\hat a_{\sigma}^{(\mathrm{I})} + \hat a_{\sigma}^{\dagger(\mathrm{I})}), 
+  \qquad
+  \hat{p}_{\sigma}^{(\mathrm{I})} = i\sqrt{\frac{m\hbar\omega_{\sigma}}{2}}\;(\hat a_{\sigma}^{(\mathrm{I})} - \hat a_{\sigma}^{\dagger(\mathrm{I})}),
+\]
+\[
+  \hat{\tilde{y}}_{\frac{N}{2}} = \sqrt{\frac{\hbar}{2 m \omega_{\frac{N}{2}}}}\;(\hat a_{\frac{N}{2}} + \hat a_{\frac{N}{2}}^{\dagger}), 
+  \qquad
+  \hat{p}_{\frac{N}{2}} = i\sqrt{\frac{m\hbar\omega_{\frac{N}{2}}}{2}}\;(\hat a_{\frac{N}{2}} - \hat a_{\frac{N}{2}}^{\dagger}),
+\]
+
+The natural framework to describe our quantized mechanical string is the \textbf{Fock space}, which allows us to account for an arbitrary number of excitations in each mode. 
+
+Formally, the Fock space is constructed as the direct sum of $n$-particle Hilbert spaces:
+\[
+  \mathcal{F} = \bigoplus_{n=0}^{\infty} \mathcal{H}^{(n)}
+  = \mathcal{H}^{(0)} \oplus \mathcal{H}^{(1)} \oplus \mathcal{H}^{(2)} \oplus \dots,
+\]
+where $\mathcal{H}^{(0)} \cong \mathbb{C}$ represents the vacuum (the state with no phonons), while for $n \ge 1$ we define
+\[
+  \mathcal{H}^{(n)} = \underbrace{\mathcal{H}^{(1)} \otimes \mathcal{H}^{(1)} \otimes \dots \otimes \mathcal{H}^{(1)}}_{n \text{ times}}.
+\]
+
+Here, $\mathcal{H}^{(1)}$ is the Hilbert space of a single phonon, $\mathcal{H}^{(2)}$ is the space of two phonons, and in general $\mathcal{H}^{(n)}$ describes $n$ phonons. Each $\mathcal{H}^{(n)}$ is a subspace where the total number of excitations is fixed, and the tensor product structure reflects the fact that each phonon can occupy its own independent state within the mode basis.
+
+The Fock space $\mathcal{F}$ as a whole thus contains all possible states with any number of phonons. This construction is crucial because in a quantum harmonic system the number of excitations is not fixed: the system can fluctuate between states with zero, one, or arbitrarily many phonons. Using the Fock space, we can systematically describe the action of creation and annihilation operators, build eigenstates of the total Hamiltonian, and keep track of the occupation numbers of all modes simultaneously.
+\begin{itemize}
+  \item \(\mathcal{H}^{(1)}\) is spanned by:
+  \[
+    \hat a_{\sigma}^{\dagger(\mathrm{R})} \ket{0}, \quad \hat a_{\sigma}^{\dagger(\mathrm{I})} \ket{0}, \quad \hat a_{\frac{N}{2}}^{\dagger} \ket{0}, \quad \sigma = 1, \dots, \frac{N}{2}-1,
+  \]
+  which we can denote more compactly as \(\hat a_{i}^{\dagger} \ket{0}\).
+  \item \(\mathcal{H}^{(2)}\) is spanned by all two-phonon states, obtained by applying any two creation operators to the vacuum:
+  \[
+    \hat a_i^\dagger \hat a_j^\dagger \ket{0}, \qquad i,j = 1,2,\dots, N-1,
+  \]
+  including the possibility \(i=j\) (two phonons in the same mode).\footnote{One should properly symmetrize the two-phonon states, for instance:  \(\frac{1}{\sqrt{2}} \big( \hat a_i^\dagger \hat a_j^\dagger \ket{0} \pm \hat a_j^\dagger \hat a_i^\dagger \ket{0} \big)\), to ensure the correct bosonic/fermionic symmetry.}
+
+  \item In general, \(\mathcal{H}^{(n)}\) is spanned by all $n$-phonon states:
+  \[
+    (\hat a_{i_1}^\dagger)^{n_1} (\hat a_{i_2}^\dagger)^{n_2} \dots (\hat a_{i_l}^\dagger)^{n_l} \ket{0}, \qquad \text{with } n_1 + n_2 + \dots + n_l = n,
+  \]
+  which include all possible distributions of $n$ phonons among the modes. Each \(\mathcal{H}^{(n)}\) is thus the subspace of the Fock space with exactly $n$ excitations.
+\end{itemize}
+Thus, we can define the vacuum more rigorously as
+\[
+  \ket{0} = \ket{0}_{\omega_1}^{(\mathrm{R})} \otimes \ket{0}_{\omega_1}^{(\mathrm{I})} \otimes \dots \otimes \ket{0}_{\omega_{N/2-1}}^{(\mathrm{R})} \otimes \ket{0}_{\omega_{N/2-1}}^{(\mathrm{I})} \otimes \ket{0}_{\omega_{N/2}} = \ket{0,0,\dots,0},
+\]
+so that the action of the creation operators gives
+\[
+  \hat a_{1}^{\dagger(\mathrm{R})} \ket{0} = \ket{1,0,\dots,0}, 
+  \qquad 
+  \hat a_{1}^{\dagger(\mathrm{I})} \ket{0} = \ket{0,1,\dots,0},
+\]
+meaning that we now have a single phonon with frequency \(\omega_1\) in either the real or imaginary part of the mode.  
+
+We can now express an arbitrary \textbf{base element} of our Fock space as
+\[
+  \ket{n_1^{(\mathrm{R})}, \, n_1^{(\mathrm{I})}, \dots, n_{N/2-1}^{(\mathrm{R})}, \, n_{N/2-1}^{(\mathrm{I})}, \, n_{N/2}},
+\]
+that is, by explicitly specifying the number of phonons in each independent mode of the system. Equivalently, such a state can be written in terms of creation operators as
+\[
+  C \, \left(\hat a_{1}^{\dagger(\mathrm{R})}\right)^{n_1^{(\mathrm{R})}}
+     \left(\hat a_{1}^{\dagger(\mathrm{I})}\right)^{n_1^{(\mathrm{I})}}
+     \dots
+     \left(\hat a_{N/2}^{\dagger}\right)^{n_{N/2}} \ket{0},
+\]
+where the constant \(C\) ensures the correct normalization of the state. The integers \(n_i^{(\mathrm{R})}\) and \(n_i^{(\mathrm{I})}\) represent the occupation numbers of the real and imaginary components of the mode with frequency \(\omega_i\), their sum gives the total number of phonons in the mode \(\omega_i\).  
+
+Therefore, a \textbf{generic Fock state} encodes the excitation content of the string: although the total number of phonons in the system is finite for each specific state, every mode can host an arbitrarily large number of excitations, which makes the Fock space infinite-dimensional. It can be expressed as:
+\[
+  \ket{\Psi} = \sum_{n_1^{(\mathrm{R})}}^{\infty}\sum_{n_1^{(\mathrm{I})}}^{\infty} \cdots \sum_{n_{N/2}}^{\infty} C_{n_1^{(\mathrm{R})} n_1^{(\mathrm{I})} \dots n_{N/2}} \ket{n_1^{(\mathrm{R})}, \, n_1^{(\mathrm{I})}, \dots, \, n_{N/2}},
+\]
+where \(\vert C_{n_1^{(\mathrm{R})} n_1^{(\mathrm{I})} \dots n_{N/2}} \vert^2 \) gives the probability of finding the system in the specific configuration with \(n_1^{(\mathrm{R})} + n_1^{(\mathrm{I})}\) phonons in the first mode and so on, up to \(n_{N/2}\) phonons in the last mode. Clearly, this probabilistic description is valid only if
+\[
+  \lVert \Psi \rVert^2 = \langle \Psi | \Psi \rangle = \sum_{n_1^{(\mathrm{R})}}^{\infty}\sum_{n_1^{(\mathrm{I})}}^{\infty} \cdots \sum_{n_{N/2}}^{\infty} \vert C_{n_1^{(\mathrm{R})} n_1^{(\mathrm{I})} \dots n_{N/2}} \vert^2 = 1.
+\]
+
+Now that we have obtained the explicit form of the energy eigenstates, the last step is to express the Hamiltonian in terms of the ladder operators. In this way, the full quantum description of the system becomes transparent: each mode of the string behaves as an independent quantum harmonic oscillator, whose excitations correspond to phonons.  
+\[
+  \hat{H} = \sum_{\sigma=1}^{\frac{N}{2}-1} \left[ \omega_{\sigma} \left( \hat a_{\sigma}^{\dagger(\mathrm{R})} \hat a_{\sigma}^{(\mathrm{R})} + \hat a_{\sigma}^{\dagger(\mathrm{I})} \hat a_{\sigma}^{(\mathrm{I})} + 1 \right) \right] + \omega_{\frac{N}{2}}\left( \hat a_{\frac{N}{2}}^{\dagger} \hat a_{\frac{N}{2}} + \frac{1}{2} \right),
+\]
+The Hamiltonian can be rewritten in terms of the number operators, making it clear that the total energy is simply the sum of the contributions of all the phonons. This parallels the case of free particles, where the energy is the sum of the individual excitations:
+\[
+  \hat{H} = \sum_{\sigma=1}^{\frac{N}{2}-1} \left[ \omega_{\sigma} \left( \hat N_{\sigma}  + 1 \right) \right] + \omega_{\frac{N}{2}}\left( \hat N_{\frac{N}{2}} + \frac{1}{2} \right).
+\]
+An important feature that emerges is the presence of a non-vanishing vacuum energy: even in the absence of phonons, the ground state carries a finite amount of energy due to the zero-point motion of each mode:
+\[
+  E_0 = \sum_{\sigma=1}^{\frac{N}{2}-1} \omega_{\sigma} + \frac{\omega_{\frac{N}{2}}}{2}.
+\]
+This vacuum energy can become very large when summing over all modes, but in a theory without gravity it can be consistently shifted to zero, since only energy differences are physically relevant.
+
 \subsection*{Continuum Limit}
+
+
+
 
 \subsection*{Particle Interpretation}
