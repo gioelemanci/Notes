@@ -299,11 +299,12 @@ Thus, by requiring that the two expressions coincide, we can compute:
     \sum_{\sigma=1}^{N} e^{i\frac{2\pi}{N}\sigma j} \tilde{y}_{\sigma}(t) &= \sum_{\sigma=1}^{N} e^{-i\frac{2\pi}{N}\sigma j} \tilde{y}_{\sigma}^*(t),\\
     \sum_{\sigma=N-1}^{0} e^{i\frac{2\pi}{N}(N-\sigma) j} \tilde{y}_{N-\sigma}(t) &= \sum_{\sigma=1}^{N} e^{-i\frac{2\pi}{N}\sigma j} \tilde{y}_{\sigma}^*(t),\\
     \sum_{\sigma=N-1}^{0} e^{i2\pi j} e^{-i\frac{2\pi}{N}\sigma j} \tilde{y}_{N-\sigma}(t) &= \sum_{\sigma=1}^{N} e^{-i\frac{2\pi}{N}\sigma j} \tilde{y}_{\sigma}^*(t),\\
-    \sum_{\sigma=N-1}^{0} \tilde{y}_{N-\sigma}(t) &= \sum_{\sigma=1}^{N} \tilde{y}_{\sigma}^*(t),\\
-    \sum_{\sigma=1}^{N} \tilde{y}_{N-\sigma}(t) &= \sum_{\sigma=1}^{N} \tilde{y}_{\sigma}^*(t),
+    \sum_{\sigma=N-1}^{0} e^{-i\frac{2\pi}{N}\sigma j} \tilde{y}_{N-\sigma}(t) &= \sum_{\sigma=1}^{N} e^{-i\frac{2\pi}{N}\sigma j} \tilde{y}_{\sigma}^*(t),\\
+    \sum_{\sigma=1}^{N} e^{-i\frac{2\pi}{N}\sigma j} \tilde{y}_{N-\sigma}(t) &= \sum_{\sigma=1}^{N} e^{-i\frac{2\pi}{N}\sigma j} \tilde{y}_{\sigma}^*(t),\\
+    \sum_{\sigma=1}^{N} \left[ \tilde{y}_{N-\sigma}(t) - \tilde{y}_{\sigma}^*(t) \right] &= 0,
 \end{aligned}
 \]
-which lead us to conclude that \(\tilde{y}_{N-\sigma}(t) = \tilde{y}_{\sigma}^*(t)\).
+which lead us to conclude that \(\tilde{y}_{N-\sigma}(t) = \tilde{y}_{\sigma}^*(t)\).\footnote{In the first step, we rename the summation index on the right-hand side of the equation, replacing each \(\sigma\) with \(N - \sigma\). We then use the periodicity condition \(e^{i 2\pi j} = 1\) to simplify the exponential factor. Next, we reverse the order of summation and, since the terms corresponding to \(\sigma = 0\) and \(\sigma = N\) are identical, we can safely rewrite the sum over the range \(1 \leq \sigma \leq N\).}
 
 Now we are in a position to compute the total number of independent vibrational degrees of freedom. To do so, we must distinguish two cases:  
 \begin{itemize}  
@@ -539,7 +540,37 @@ This vacuum energy can become very large when summing over all modes, but in a t
 
 \subsection*{Continuum Limit}
 
+We now consider the continuum limit of our discrete system. This is achieved by letting the natural spacing between points on the string, denoted by $\Delta$, tend to zero, while keeping the total length $L$ of the string fixed. To enforce this constraint, we impose the relation $L = N \Delta$ and take the limits $N \to \infty$ and $\Delta \to 0$ simultaneously.
 
+In this limit, the discrete indices $j$ and $\sigma$ transition into continuous variables. As a result, quantities that were previously discrete—such as the wavelength $\lambda_{\sigma}$ and the wave number $\kappa_{\sigma}$—become continuous:
+\[
+\begin{aligned}
+  \kappa_{\sigma} &= \frac{2\pi \sigma}{N \Delta} = \frac{2\pi \sigma}{L}, \quad \kappa_{\sigma} \in \left[\frac{2\pi}{L},\, \infty \right),\\
+  \lambda_{\sigma} &= \frac{N \Delta}{\sigma} = \frac{L}{\sigma}, \quad \lambda_{\sigma} \in (0,\, L].
+\end{aligned}
+\]
+As $N \to \infty$ and $\Delta \to 0$, both $\kappa_{\sigma}$ and $\lambda_{\sigma}$ sweep out continuous ranges: $\kappa_{\sigma},\,\lambda_{\sigma} \in [0,\,\infty)$.
+
+Simultaneously, the discrete spatial coordinate becomes a continuous variable. By defining $x = j \Delta$, the displacement variable $y_j$ becomes a smooth field $\psi(x,t)$. Thus, the original system of $N$ coupled harmonic oscillators is reformulated as an infinite set of decoupled harmonic oscillators, each labeled by a continuous wave number $\kappa$:
+\[
+  \omega_{\sigma} = 2 \frac{v}{\Delta} \sin\left(\frac{\pi \sigma}{N}\right) \xrightarrow[N \to \infty]{} \frac{v}{\Delta} \cdot \frac{2\pi \sigma}{N} = v \kappa_{\sigma}
+\]
+
+In this limit, all wave modes propagate with the same velocity:
+\[
+  v_{\sigma} = \frac{\omega_{\sigma}}{\kappa_{\sigma}} = 2 \frac{v}{\Delta} \sin\left(\frac{\pi \sigma}{N}\right) \cdot \frac{N \Delta}{2\pi \sigma} \xrightarrow[N \to \infty]{} v
+\]
+This result reflects a key feature of the continuum limit: the dispersion relation becomes linear, and all modes—regardless of their wavelength—travel at the same speed \(v\). This uniform propagation speed is characteristic of non-dispersive media and simplifies the dynamics considerably.
+
+We are thus left with an infinite continuum of independent harmonic oscillators, each labeled by a continuous wave number \(\kappa\) and oscillating with frequency \(\omega_{\kappa} = v \kappa\). Physically, each oscillator corresponds to a traveling wave mode on the string, and the entire system can be viewed as a superposition of such modes, each propagating at speed \(v\).
+
+Upon quantization, these classical vibrational modes become \textit{phonons}—the quantized excitations of the elastic medium. Each phonon carries energy and momentum, and the linear dispersion relation implies that their energy is directly proportional to their momentum.
+
+If we now identify the propagation speed \(v\) with the speed of light \(c\), the dispersion relation takes the form:
+\[
+  \omega_{\kappa}=c \kappa \iff \hbar \omega_{\kappa}=c \hbar \kappa \implies E = p c,
+\]
+which is precisely the relativistic energy-momentum relation for a massless particle. This correspondence highlights a deep connection between the quantized excitations of a one-dimensional elastic medium and the behavior of relativistic particles in field theory. In this sense, the phonon becomes a prototype for more general quantum field excitations, including photons and other massless bosons.
 
 
 \subsection*{Particle Interpretation}
