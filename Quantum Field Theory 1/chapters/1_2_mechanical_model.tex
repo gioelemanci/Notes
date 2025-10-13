@@ -95,7 +95,7 @@ The displacement of the \(i\)-th atom from its equilibrium position will be deno
 
 In the limit \(N\to\infty\) and \(\Delta \to 0\) with \(L\) fixed, the discrete index \(i\) becomes a continuous spatial coordinate and the displacements \(y_i(t)\) become a continuous field \(\phi(x,t)\). This \textbf{continuum limit} transforms the system of coupled oscillators into a continuous field, allowing us to understand the dynamics of fields in terms of familiar mechanical concepts.
 
-\subsection*{Dynamical Analysis}
+\subsection*{Discrete case}
 
 To study the dynamics of the chain we employ the Euler--Lagrange equations.
 The Lagrangian of the system is constructed as the difference between the kinetic and potential energy contributions of each atom:
@@ -355,7 +355,7 @@ since \(\omega_N = 0\).\footnote{Let us remember that the \(\frac{N}{2}\)-th mod
 
 In practice, the diagonalization procedure eliminates the cross-terms that mix different coordinates, leaving a sum of quadratic contributions that can be interpreted as the energies of the individual modes. As a result, the system is reduced to a collection of independent harmonic oscillators, each characterized by its own frequency.
 
-\subsection*{Quantization}
+\subsubsection*{Quantization}
 
 In order to proceed with the quantization of the system, it is useful to briefly recall the main ingredients of the quantum harmonic oscillator.
 
@@ -572,5 +572,358 @@ If we now identify the propagation speed \(v\) with the speed of light \(c\), th
 \]
 which is precisely the relativistic energy-momentum relation for a massless particle. This correspondence highlights a deep connection between the quantized excitations of a one-dimensional elastic medium and the behavior of relativistic particles in field theory. In this sense, the phonon becomes a prototype for more general quantum field excitations, including photons and other massless bosons.
 
+\subsubsection*{Particle Interpretation}
 
-\subsection*{Particle Interpretation}
+The field \(\psi(x,t)\) can be interpreted as describing a massless particle in the discrete chain. Upon quantization, excitations at frequency \(\omega_{\kappa}\) of this field — the \textit{phonons} — behave as particles of definite momentum \(\hbar \kappa\) and energy \(\hbar \omega_\kappa\). In this picture, particles of definite momentum emerge as quanta of excitation of the underlying field, created or annihilated by the corresponding creation and annihilation operators. These operators allow us to add or remove a particle of definite momentum from the system state.
+
+\paragraph{Adding a mass term.}
+In order to describe a massive particle, we need to introduce a term that tends to restore the system to its equilibrium position. Physically, this can be imagined as an additional spring attached to each atom in the chain, pulling it towards its rest position. This inertial interaction gives rise to a mass term in the continuum limit. Indeed, for a relativistic particle, the energy-momentum relation reads
+\[
+  E^2 = p^2 c^2 + m^2 c^4,
+\]
+and the additional spring introduces the \(\kappa_\mu\) term responsible for the \(m^2\) contribution.
+
+\begin{figure}[H]
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=1.1,>=stealth]
+
+      % Horizontal spacing between masses
+      \def\Deltax{1.4}
+
+      % Random vertical positions (displacements)
+      \def\yA{0.5}
+      \def\yB{-0.2}
+      \def\yC{1.0}
+      \def\yD{-0.4}
+      \def\yE{0.3}
+
+      % Reference axes
+      \draw[->] (-0.5,-1.2) -- (-0.5,1.5) node[anchor=south]{$y$};
+      \draw[->] (-0.8,-1.0) -- (5*\Deltax-1.1,-1.0) node[anchor=west]{$x$};
+
+      % Mass vertical positions
+      \coordinate (m1) at (0,\yA);
+      \coordinate (m2) at (\Deltax,\yB);
+      \coordinate (m3) at (2*\Deltax,\yC);
+      \coordinate (m4) at (3*\Deltax,\yD);
+      \coordinate (m5) at (4*\Deltax,\yE);
+
+      % Springs (zigzag lines connecting masses)
+      \draw[decorate,decoration={zigzag,segment length=4pt,amplitude=2pt}, draw=purple] (m1) -- (m2) node[midway,above right,purple] {$\kappa$};
+      \draw[decorate,decoration={zigzag,segment length=4pt,amplitude=2pt}, draw=purple] (m2) -- (m3);
+      \draw[decorate,decoration={zigzag,segment length=4pt,amplitude=2pt}, draw=purple] (m3) -- (m4);
+      \draw[decorate,decoration={zigzag,segment length=4pt,amplitude=2pt}, draw=purple] (m4) -- (m5);
+
+      % Additional springs for mass term
+      \foreach \i/\y in {1/\yA, 2/\yB, 3/\yC, 4/\yD, 5/\yE} {
+          \draw[decorate,decoration={zigzag,segment length=4pt,amplitude=2pt}, draw=orange] (\i*\Deltax-\Deltax,-1) -- (\i*\Deltax-\Deltax,\y) node[midway,right,orange] {$\kappa_{\mu}$};
+        }
+
+      % Distance between masses
+      \draw[<->] (0,-1.1) -- (\Deltax,-1.1) node[midway,below] {$\Delta$};
+
+      % Masses (blue circles)
+      \foreach \m in {m1,m2,m3,m4,m5}{
+          \fill[blue!70] (\m) circle (3pt);
+          \node[above,yshift=3pt] at (\m) {$m$};
+        }
+
+    \end{tikzpicture}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\textwidth}
+    The additional elastic constant \(\kappa_\mu\) that tends to restore each particle to its equilibrium position is directly related to the inertial mass of the corresponding particle field.
+
+    For the discrete chain, the Lagrangian can be written as:
+  \end{minipage}
+\end{figure}
+\[
+  L = \sum_{j=1}^N \left[ \frac{1}{2} m \dot{y}_j^2  - \frac{1}{2} m v^2 \left( \frac{y_j - y_{j+1}}{\Delta} \right)^2 - \frac{1}{2} \kappa_\mu y_j^2 \right].
+\]
+
+Passing to the continuum limit, the discrete sums and differences are replaced by integrals and derivatives:
+\[
+  \begin{aligned}
+    \sum_{j=1}^N                                  & \longrightarrow \int \dd x,                                             \\
+    y_j^2                                         & \longrightarrow \psi(x,t)^2,                                            \\
+    \dot{y}_j^2                                   & \longrightarrow \left( \frac{\partial \psi(x,t)}{\partial t} \right)^2, \\
+    \left( \frac{y_j - y_{j+1}}{\Delta} \right)^2 & \longrightarrow \left( \frac{\partial \psi(x,t)}{\partial x} \right)^2.
+  \end{aligned}
+\]
+
+Thus, the continuum Lagrangian (with \(v=c=1\)) reads:
+\[
+  L = \frac{1}{2}m \int \dd x \left[ \left( \frac{\partial \psi(x,t)}{\partial t} \right)^2 - \left( \frac{\partial \psi(x,t)}{\partial x} \right)^2 - \frac{\kappa_\mu}{m} \psi(x,t)^2 \right],
+\]
+where the last term plays the role of a mass term, proportional to \(m^2\) in natural units. This formulation makes clear how a restoring interaction at the discrete level leads, in the continuum limit, to a massive field with excitations corresponding to massive particles.
+
+Let us now introduce the \textbf{Lagrangian density} \(\mathcal{L}\), which allows us to describe the system in the continuum and relativistic framework. The total Lagrangian is obtained by integrating the Lagrangian density over all space:
+\[
+  L = \int_{-\infty}^{\infty} \d{x} \mathcal{L}, \quad \text{so that the action reads} \quad S = \int \d{t} L = \int \d{t} \d{x} \mathcal{L}.
+\]
+Here we integrate along the entire real axis, reflecting the fact that we consider the chain to be infinitely long in the continuum limit.
+
+For the discrete Lagrangian derived previously, the corresponding density is:
+\[
+  \mathcal{L} = \frac{m}{2} \left[ (\partial_t \psi)^2 - (\partial_x \psi)^2 \right] - \frac{\kappa_\mu}{2} \psi^2.
+\]
+
+\paragraph{Minkowski metric and derivatives}
+To make contact with special relativity, we need to account for the Minkowski metric, using the \textit{mostly-minus} convention to ensure the correct sign of the kinetic term:
+\[
+  \eta_{\mu \nu} = \begin{pmatrix}
+    1 & 0  & 0  & 0  \\
+    0 & -1 & 0  & 0  \\
+    0 & 0  & -1 & 0  \\
+    0 & 0  & 0  & -1
+  \end{pmatrix} = \eta^{\mu \nu}, \quad \mu,\nu = 0,1,2,3.
+\]
+In our 1-dimensional spatial model, the derivatives transform as:
+\[
+  \partial_\mu = \frac{\partial}{\partial x^\mu} = \eta_{\mu \nu} \partial^\nu = \eta_{\mu \nu} \frac{\partial}{\partial x_\nu},
+  \quad \text{so that} \quad
+  \partial_0 = \frac{\partial}{\partial t} = \partial^0,
+  \quad
+  \partial_1 = \frac{\partial}{\partial x} = - \partial^1.
+\]
+
+With this convention, the Minkowski contraction of derivatives reads:
+\[
+  \partial_\mu \psi \, \partial^\mu \psi = \eta^{\mu \nu} \partial_\mu \psi \, \partial_\nu \psi = (\partial_0 \psi)^2 - (\partial_1 \psi)^2 = (\partial_t \psi)^2 - (\partial_x \psi)^2.
+\]
+
+\paragraph{Relativistic form of the Lagrangian density}
+
+Finally, we can express the Lagrangian density in a manifestly Lorentz-covariant form:
+\[
+  \mathcal{L} = \frac{m}{2} \, \partial_\mu \psi \, \partial^\mu \psi - \frac{\kappa_\mu}{2} \psi^2,
+\]
+where the second term plays the role of a mass term, endowing the field \(\psi\) with an effective rest energy proportional to \(m^2\). This compact form makes the relativistic structure of the theory explicit and allows for a straightforward generalization to higher-dimensional field theories. Moreover, it provides a natural route to the corresponding equations of motion through the Euler–Lagrange formalism in relativistic notation.
+
+Let us now derive the field equations explicitly. The Euler–Lagrange equations for a continuous field \(\psi(x,t)\) read:
+\[
+  \frac{\partial}{\partial t} \frac{\partial \mathcal{L}}{\partial (\partial_t \psi)}
+  = \frac{\partial \mathcal{L}}{\partial \psi}
+  - \frac{\partial}{\partial x} \frac{\partial \mathcal{L}}{\partial (\partial_x \psi)}.
+\]
+Here, the spatial derivative term arises from the elastic contribution associated with the stiffness constant \(\kappa_\mu\). Computing these derivatives gives:
+\[
+  m \, \frac{\partial^2 \psi(x,t)}{\partial t^2}
+  = m \, \frac{\partial^2 \psi(x,t)}{\partial x^2} - \kappa_\mu \psi(x,t),
+\]
+which can be rearranged as
+\[
+  \partial_t^2 \psi - \partial_x^2 \psi = -\frac{\kappa_\mu}{m} \, \psi.
+\]
+Introducing the \textit{D’Alembert operator} (or box operator)
+\[
+  \Box = \eta^{\mu\nu}\partial_\mu \partial_\nu = \partial_t^2 - \partial_x^2,
+\]
+the field equation takes the compact relativistic form
+\[
+  \left( \Box + \frac{\kappa_\mu}{m} \right) \psi(x,t) = 0.
+\]
+
+To analyze the dynamics more conveniently, we perform a Fourier transform that diagonalizes the spatial dependence:
+\[
+  \psi(x,t) = \frac{1}{2\pi} \int_{-\infty}^{+\infty} \! d\kappa \, e^{i\kappa x} \, \tilde{\psi}(\kappa,t),
+\]
+which represents the continuum limit of the discrete Fourier series
+\[
+  y_j(t) = \frac{1}{\sqrt{N}} \sum_{\sigma=1}^{N} e^{i\kappa_\sigma (\Delta j)} \tilde{y}_\sigma(t),
+  \qquad
+  \kappa_\sigma = \frac{2\pi}{\Delta N}\sigma,
+  \qquad
+  (\Delta j) = x.
+\]
+As in the discrete case, we require the field \(\psi(x,t)\) to be real, implying that
+\[
+  \tilde{\psi}(\kappa,t) = \tilde{\psi}^*(\kappa,t) = \tilde{\psi}(-\kappa,t).
+\]
+Differentiating under the integral sign, we obtain
+\[
+  \begin{aligned}
+    \partial_t^2 \psi(x,t) & = \frac{1}{2\pi} \int_{-\infty}^{+\infty} d\kappa \, e^{i \kappa x} \, \ddot{\tilde{\psi}}(\kappa,t),         \\
+    \partial_x^2 \psi(x,t) & = \frac{1}{2\pi} \int_{-\infty}^{+\infty} d\kappa \, (-\kappa^2) \, e^{i \kappa x} \, \tilde{\psi}(\kappa,t),
+  \end{aligned}
+\]
+which leads to the following evolution equation for each Fourier mode:
+\[
+  \ddot{\tilde{\psi}}(\kappa,t) = -\left( \kappa^2 + \frac{\kappa_\mu}{m} \right) \tilde{\psi}(\kappa,t).
+\]
+This is the equation of motion of a harmonic oscillator with frequency
+\[
+  \omega_\kappa = \sqrt{\kappa^2 + \frac{\kappa_\mu}{m}},
+\]
+so that in momentum space we have
+\[
+  \ddot{\tilde{\psi}}(\kappa,t) + \omega_\kappa^2 \tilde{\psi}(\kappa,t) = 0.
+\]
+
+\begin{figure}[H]
+  \begin{minipage}{0.6\textwidth}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+          axis lines=middle,
+          xlabel={$\kappa$},
+          ylabel={$\omega_{\kappa}$},
+          grid=none,
+          domain=-3:3,
+          samples=200,
+          ymin=-0.2, ymax=4,
+          xtick=\empty,
+          ytick=\empty,
+          width=8cm,
+          height=5cm,
+          title={$\omega_{\kappa} = \sqrt{\kappa^2 + \mu^2}$ with $\mu=\sqrt{\tfrac{\kappa_\mu}{m}}$},
+        ]
+        \addplot[thick, blue!70] {sqrt(x^2 + 1^2)};
+        \addplot[dashed, gray] coordinates {(1,0) (1,1.4)};
+        \addplot[dashed, gray] coordinates {(-1,0) (-1,1.4)};
+        \node[anchor=west,orange] at (axis cs:0,1.2) {$\mu$};
+        \fill[orange] (0,1) circle (2pt);
+        \node[anchor=south west,purple] at (axis cs:1,0) {$\overline{\kappa} $};
+        \node[anchor=south west,purple] at (axis cs:-1,0) {$-\overline{\kappa} $};
+        \fill[purple] (1,0) circle (2pt);
+        \fill[purple] (-1,0) circle (2pt);
+      \end{axis}
+    \end{tikzpicture}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.35\textwidth}
+    The field $\psi(x,t)$ is real because its Fourier transform satisfies
+    $\tilde{\psi}(\kappa,t)=\tilde{\psi}^*(\kappa,t)=\tilde{\psi}(-\kappa,t)$,
+    a direct consequence of the symmetry of $\omega_\kappa$ under $\kappa\to-\kappa$.
+
+    The parameter $\kappa_\mu$ sets the particle mass $\mu$, while $m$ may be absorbed in a redefinition of the field or set to unity in natural units.
+  \end{minipage}
+\end{figure}
+
+We have thus described a system equivalent to an infinite collection of \emph{decoupled harmonic oscillators}, each characterized by its own wavenumber \(\kappa\) and frequency \(\omega_\kappa\):
+\[
+  \begin{aligned}
+    \omega_\kappa^2         & = \kappa^2 + \frac{\kappa_\mu}{m},                 \\
+    \hbar^2 \omega_\kappa^2 & = \hbar^2 \kappa^2 + \hbar^2 \frac{\kappa_\mu}{m}, \\
+    E^2                     & = p^2 + \mu^2.
+  \end{aligned}
+\]
+Hence, the quanta of excitation of the field obey the relativistic \textit{energy–momentum relation}, identifying \(\mu\) as the particle’s rest mass, determined by
+\[
+  \kappa_\mu = \frac{\mu^2 m}{\hbar^2}.
+\]
+
+Returning to position space, we recover the celebrated \textbf{Klein–Gordon equation} in natural units:
+\[
+  \left( \Box + \mu^2 \right) \psi(x,t) = 0,
+\]
+which describes the classical dynamics of a scalar (spin-0) field of mass \(\mu\). Upon quantization, each mode \(\tilde{\psi}(\kappa,t)\) corresponds to a relativistic particle satisfying the previously derived dispersion relation.
+
+The associated Lagrangian densities can now be written both in configuration and in momentum space:
+\[
+  \mathcal{L}(x,t) = \frac{1}{2} \partial_\mu \psi(x,t) \, \partial^{\mu} \psi(x,t) - \frac{1}{2} \mu^2 \psi^2,
+  \qquad
+  L = \int dx \, \mathcal{L},
+\]
+and
+\[
+  \mathcal{L}(\kappa,t) = \frac{1}{2}\left( \dot{\tilde{\psi}}^2(\kappa,t) - \omega_\kappa^2 \tilde{\psi}^2(\kappa,t) \right),
+  \qquad
+  L = \int d\kappa \, \mathcal{L}.
+\]
+
+\begin{remark}
+  This correspondence between a relativistic scalar field and a continuous set of harmonic oscillators is the cornerstone of quantum field theory: quantizing each mode \(\tilde{\psi}(\kappa,t)\) gives rise to particle excitations, while Lorentz invariance ensures that all inertial observers describe the same energy–momentum relation.
+\end{remark}
+
+\subsubsection*{Quantization}
+
+In order to quantize the field, we promote each of the infinitely many decoupled harmonic oscillators to operators acting on a \textit{Fock space}. This space can be written as the direct sum of Hilbert spaces corresponding to states with a definite number of particles:
+\[
+  \mathcal{F} = \mathcal{H}_1 \oplus \mathcal{H}_2 \oplus \dots,
+\]
+where $\mathcal{H}_n$ denotes the Hilbert space of $n$-particle states.
+
+In this framework, the mode amplitudes become operators satisfying canonical commutation relations, and can be expressed as
+\[
+  \tilde{\psi}_\kappa = \frac{1}{\sqrt{2 \omega_{\kappa}}}
+  \left( \hat{a}_{\kappa} + \hat{a}^\dagger_{\kappa} \right),
+  \qquad
+  \tilde{\pi}_\kappa = -i \sqrt{\frac{\omega_{\kappa}}{2}}
+  \left( \hat{a}_{\kappa} - \hat{a}^\dagger_{\kappa} \right),
+\]
+where $\hat{a}_{\kappa}$ and $\hat{a}^\dagger_{\kappa}$ are, respectively, the annihilation and creation operators for the mode labeled by $\kappa$.
+
+A generic state of the Fock space can then be written as
+\[
+  (\hat a_{\kappa_1}^\dagger)^{n_1}
+  (\hat a_{\kappa_2}^\dagger)^{n_2}
+  \dots
+  (\hat a_{\kappa_l}^\dagger)^{n_l} \ket{0},
+  \qquad
+  \text{with } n_1 + n_2 + \dots + n_l = n,
+\]
+which represents a state with $n_1$ particles of momentum $\kappa_1$, $n_2$ particles of momentum $\kappa_2$, and so on. Each state has a definite energy given by
+\[
+  E = \sum_{i=1}^l n_i \, \omega_{\kappa_i}
+  + \frac{1}{2} \int \! \d{\kappa}\, \omega_{\kappa}.
+\]
+The first term represents the sum of the energies of all excitations, while the second term is the \textbf{vacuum energy}, i.e.\ the sum of the zero-point energies $\tfrac{1}{2}\omega_{\kappa}$ of all the modes.
+
+To compute the probability of finding the system in a particular Fock state with occupation numbers $(n_1,\dots,n_l)$, one takes the modulus squared of the projection of the wave function onto that state:
+\[
+  \left|
+  \bra{\Psi}
+  (\hat a_{\kappa_1}^\dagger)^{n_1}
+  (\hat a_{\kappa_2}^\dagger)^{n_2}
+  \dots
+  (\hat a_{\kappa_l}^\dagger)^{n_l}
+  \ket{0}
+  \right|^2.
+\]
+The number operator $\hat{N}_{\kappa} = \hat a_{\kappa}^\dagger \hat a_{\kappa}$ acts on these states as
+\[
+  \hat{N}_{\kappa_i}
+  \Big[
+    (\hat a_{\kappa_1}^\dagger)^{n_1}
+    (\hat a_{\kappa_2}^\dagger)^{n_2}
+    \dots
+    (\hat a_{\kappa_l}^\dagger)^{n_l}
+    \ket{0}
+    \Big]
+  = n_i
+  \Big[
+    (\hat a_{\kappa_1}^\dagger)^{n_1}
+    (\hat a_{\kappa_2}^\dagger)^{n_2}
+    \dots
+    (\hat a_{\kappa_l}^\dagger)^{n_l}
+    \ket{0}
+    \Big],
+\]
+thus counting the number of excitations in the mode of frequency $\omega_{\kappa_i}$.
+
+The Hamiltonian of the quantized field can then be written as
+\[
+  \hat{\mathcal{H}}
+  = \int \! \d{\kappa}\, \omega_{\kappa}
+  \left( \hat a_{\kappa}^\dagger \hat a_{\kappa} + \frac{1}{2} \right)
+  = \int \! \d{\kappa}\, \omega_{\kappa}
+  \left( \hat N_{\kappa} + \frac{1}{2} \right),
+\]
+showing that the total energy is the sum of the energies of $N$ independent, non-interacting excitations.
+
+However, the vacuum energy term diverges:
+\[
+  E_0 = \frac{1}{2} \int \! \d{\kappa}\, \omega_{\kappa}
+  = \frac{1}{2} \int \! \d{\kappa}\, \sqrt{\kappa^2 + \mu^2}.
+\]
+This divergence is of ultraviolet nature, since it originates from the contribution of arbitrarily high-frequency modes (the continuum limit $\Delta \to 0$). In practice, this means that the theory cannot be valid at all length scales, and that our idealization breaks down beyond a certain energy cutoff.
+
+In the absence of gravity — which would couple directly to the absolute energy density of the vacuum — this infinite constant can be safely neglected, as only energy \emph{differences} have physical meaning in non-gravitational systems. We can therefore redefine the energy scale by setting $E_0 = 0$.
+
+If we introduce a finite cutoff, e.g.\ imposing $\kappa \Delta \leq 1$ for a small but finite $\Delta$, the vacuum energy becomes finite, representing the physically meaningful contribution of modes below that cutoff.
+
+\begin{remark}
+  Different Fock states can correspond to the same total energy, since what matters is the combination of occupation numbers and mode frequencies. In this free-field framework, interactions are absent, so transitions between different states cannot occur. Nevertheless, the formalism provides a powerful description of systems with variable particle number: it allows us to represent, for instance, both the initial and final states of a decay or scattering process, even though their microscopic interaction dynamics lie beyond the scope of the free theory. Including interactions would require additional, non-linear terms in the Lagrangian density — corresponding to higher-order terms in its Taylor expansion around the equilibrium (vacuum) configuration.
+\end{remark}
