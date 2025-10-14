@@ -1,0 +1,78 @@
+\subsection*{Exercise 5 - Thermodynamics of a solid}
+
+We would like to study, in a first and classical approximation, a model suited to describe a solid:
+the latter is thought of as composed of individual atoms/molecules arranged in a periodic lattice, each of them oscillating harmonically about its equilibrium position, all with the same frequency $\omega$.
+
+In this model, each particle is described by a coordinate $q_i$ and a conjugate momentum $p_i$, so that
+\[
+    \mathcal{M}_N = \mathbb{R}^{2N},
+\]
+where $q_i = x_i - x_i^{(0)}$ is the displacement of the $i$-th particle with respect to its oscillation center $x_i^{(0)}$.
+Thus we have:
+\[
+    \mathcal{H} = \sum_i \left( \frac{p_i^2}{2m} + \frac{m \omega^2}{2} q_i^2 \right).
+\]
+Notice that, even if the frequency is the same for all particles, the particles are distinguishable since each of them oscillates about a different and known equilibrium position.
+
+\begin{enumerate}
+    \item Calculate the canonical partition function $Z$ and derive an expression for $\ln Z$ in the large $N$ limit.
+
+    \item Derive the internal energy $E$ and the free energy $F$.
+          Discuss the found expression for $E$ in connection with the equipartition principle.
+
+    \item Derive the entropy $S$ and find the value $T_*$ at which it becomes negative.
+          Try to give an interpretation of this result.
+
+    \item Calculate the pressure $p$, showing it is exactly zero.
+          By recalling the microscopic interpretation of pressure, find a physical explanation for this result.
+
+    \item Calculate the chemical potential $\mu$ and study its limit for $T \to 0$ and $T \to \infty$.
+
+    \item Calculate the specific heats per particle: $c_v = C_V / N$ and $c_p = C_P / N$.
+\end{enumerate}
+
+\vspace{2cm}
+\textbf{Solution:}
+
+\newpage
+
+\subsection*{Exercise 6 - Ideal ultra-relativistic gas in 3d}
+
+As for the non-relativistic case, each particle is described by 3 coordinates $q_i$, which are restricted to a finite volume $V$, and 3 conjugate momenta $p_i$, so that
+\[
+    \mathcal{M}_N = V^N \times \mathbb{R}^{3N}.
+\]
+
+Now, the energy carried by each particle has to satisfy the relativistic expression:
+\[
+    E = \sqrt{c^2 p^2 + m^2 c^4}.
+\]
+
+The ultra-relativistic limit is obtained by sending $m \to 0$, so that, when the particles are non-interacting, we have:
+\[
+    \mathcal{H} = \sum_i c |p_i|.
+\]
+In the following we will suppose the particles to be indistinguishable.
+
+\begin{enumerate}
+    \item Calculate the canonical partition function $Z$ and derive an expression for $\ln Z$ in the large $N$ limit.
+
+    \item Derive the internal energy $E$ and the free energy $F$.
+          Show that the internal energy $E$ can also be derived via the generalized equipartition theorem.
+          In order to do so, first apply it to each component of the momenta $p_x, p_y, p_z$, and then use the result to calculate $\langle \mathcal{H} \rangle_c$.
+
+    \item Derive the entropy $S$.
+          Can it become negative?
+
+    \item Calculate the pressure $p$ and derive the equation of state.
+          Compare it with that of a non-relativistic ideal gas.
+
+    \item Calculate the chemical potential $\mu$ and study its limit for $T \to 0$ and $T \to \infty$.
+
+    \item Calculate the specific heats per particle: $c_v = C_V / N$ and $c_p = C_P / N$.
+\end{enumerate}
+
+\vspace{2cm}
+\textbf{Solution:}
+
+\newpage
