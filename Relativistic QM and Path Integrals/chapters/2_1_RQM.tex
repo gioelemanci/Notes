@@ -1,0 +1,275 @@
+\chapter{Relativistic Quantum Mechanics}
+
+The Schr\"odinger equation is a wave equation for the quantum mechanics of non-relativistic particles. The attempts to generalize it to the relativistic case led historically to the discovery of many different relativistic wave equations (Klein--Gordon, Dirac, Proca--Maxwell, etc.). It soon became clear that all of these wave equations for relativistic particles had some interpretative problems: i) some did not admit a probabilistic interpretation, and ii) all of them included states with negative energy. These equations are often called ``first quantized'' equations, as they are obtained by quantizing the mechanics of a single relativistic particle.
+
+To solve those problems, eventually, one had to reinterpret them as equations for classical fields (just like Maxwell's equations) that should be quantized anew (hence the name of ``second quantization'' given to the quantum theory of fields). All of the interpretative problems can be solved consistently within the framework of quantum field theory: the quantum fields are seen to describe an arbitrary number of indistinguishable particles (the quanta of the field, like the photons for the electromagnetic field). The relativistic equations mentioned above remain valid, but reinterpreted as equations satisfied by quantum field operators.
+
+The main reason for the interpretative problems of the first quantized equations lies in the fact that relativity allows particles to be created and destroyed by physical processes. It would not be consistent to fix the number of particles and require that number to be conserved. Indeed, let us recall that relativity assigns the energy \(E = mc^2\) to a particle of mass \(m\) at rest. In the limit \(c \to \infty\), which formally describes the nonrelativistic limit, it would take infinite energy to create a particle. Non-relativistic quantum mechanics can be developed consistently to conserve the number of particles, which is linked to the conservation of probability for those particles to exist somewhere in space. In relativistic quantum mechanics it is impossible to do so: certain processes that carry enough energy may allow the creation of new particles, as observed in nature. This explains the failure to have a probabilistic interpretation of the quantum mechanics of a single particle.
+
+The other problem, the presence of negative energy states, was eventually turned into a prediction: the existence of antiparticles!
+
+Given that the methods of second quantization (alias quantum field theory or QFT) is the natural mathematical framework to study the above properties, why review the historical development? There are many justifications to do so. One reason is that the historical development clarifies the physical ideas leading to more formal constructions, such as QFT. A second motivation is that one finds many situations that can be dealt with -- often more simply -- in the context of relativistic quantum mechanics without the need to turn to more elaborate methods. This happens, for example, if one considers those cases where pair creation is suppressed and the single-particle approximation is applicable. More generally, first-quantized methods, which nowadays go under the name of the worldline formalism, are often used as efficient tools to study the scattering of relativistic particles. As a final motivation, one may recall that first-quantized methods for relativistic particles are pedagogically useful for approaching string theory, a model for quantum gravity where particles are generalized to strings. The reason is that string theory has been mostly developed in first-quantization.
+
+The different relativistic wave equations mentioned above correspond to the quantum mechanics of particles with different spin \(s\). There is also a difference if the particle is massive (\(m\neq 0\)) or massless (\(m=0\)) if the spin is \(s>0\). The simplest relativistic equation is the Klein--Gordon equation, that describes scalar particles, i.e., particles of spin \(s=0\). It takes into account the correct relativistic relation between energy and momentum, and thus it contains the essence of all relativistic wave equations (like negative energy solutions that signal the need for antiparticles). The correct wave equation for a relativistic particle depends crucially on the value of the spin \(s\), some standard names are as follows:
+\begin{itemize}
+    \item spin 0 $\to$ Klein--Gordon equation
+    \item spin $\tfrac{1}{2}$ $\to$ Dirac equation
+    \item spin 1 (m $\neq$ 0) $\to$ Proca equation
+    \item spin 1 (m = 0) $\to$ (free) Maxwell equations
+    \item spin $\tfrac{3}{2}$ $\to$ Rarita--Schwinger equation
+    \item spin 2 $\to$ Fierz--Pauli equations (or linearized Einstein eq. for m = 0).
+    \item spin $s>2$ $\to$ Fierz--Pauli eqs. (for m $\neq$ 0) and Fronsdal eqs. (for m = 0).
+\end{itemize}
+
+We have anticipated that relativistic particles are classified by their mass \(m\) and spin \(s\), where the value of the spin indicates that there are only \(2s+1\) independent physical components of the wave function, describing the possible polarizations of the spin vector along a chosen axis. That is true unless \(m=0\), in which case the wave function describes only two physical components, those with maximum and minimum helicity (helicity is the projection of the spin along the direction of motion). The reduction of the number of degrees of freedom is mathematically achieved by the emergence of gauge symmetries satisfied by the corresponding wave equations, as we shall see in the examples of spin 1 and 2.
+
+The classification just described is due to Wigner, who in 1939 studied the unitary irreducible representations of the Poincar\'e group. The Poincar\'e group is, by definition, the group of symmetries of relativistic theories, symmetries that must be realized by unitary operators in the Hilbert space of the particle. Different particles have different realizations (i.e., representations) of the symmetry group and Wigner's theorem describes the possible different unitary representations that are allowed by group theory. As anticipated above, a physical way of understanding Wigner's classification is to recall that for a massive particle of spin \(s\), one may always find a reference frame where the particle is at rest. Then, its spin is observed to have the \(2s + 1\) physical projections along the \(z\)-axis, as familiar from quantum mechanics. Thus, we understand that massive particles of spin \(s\) must have \(2s+1\) physical polarizations. On the other hand, a rest frame does not exist if the particle is massless: the particle must travel with the speed of light in any frame. Choosing the direction of motion as the axis where to measure the spin, one finds that only two values of the helicity \(h = \pm s\) are possible. Other helicities are not needed, as they would never mix with the previous ones under Poincar\'e transformations (they could be considered as belonging to different particles, which may or may not exist in a given model. On the contrary, the discrete CPT symmetry requires both helicities \(\pm s\) to be present).
+
+In these notes, after a brief review of the Schr\"odinger equation, we discuss the main properties of the Klein--Gordon and Dirac equations, treated as first quantized wave equations for particles of spin \(0\) and \(\tfrac{1}{2}\), and then briefly comment on other relativistic free wave equations.
+
+Our main conventions for special relativity are as follows:
+\[
+    \begin{aligned}
+         & x^\mu         = (ct, x, y, z) = (x^0, x^1, x^2, x^3)    &  & \text{(spacetime coordinates)},   \\
+         & x'^\mu        = \Lambda^\mu_{\ \nu} x^\nu               &  & \text{(Lorentz transformations)}, \\
+         & \eta_{\mu\nu} = \mathrm{diag}(-1, 1, 1, 1)              &  & \text{(Minkowski metric)},        \\
+         & s^2           = \eta_{\mu\nu} x^\mu x^\nu = x^\mu x_\mu &  & \text{(invariant length)},        \\
+         & \partial_\mu  = \frac{\partial}{\partial x^\mu}         &  & \text{(spacetime derivative)},
+    \end{aligned}
+\]
+and we use the standard definitions for Lorentz and Poincar\'e groups as in the lecture notes.
+
+\section{Schrödinger equation}
+
+Crucial moments in the discovery of quantum mechanics are:
+
+\begin{itemize}
+    \item (1900) the introduction of the Planck's constant $h$ in describing the black body radiation,
+    \item (1905) the use of $h$ made by Einstein in explaining the photoelectric effect, with photons of energy $E = h\nu$ interpreted as quanta of the electromagnetic waves,
+    \item (1913) the introduction of Bohr's atomic model with quantized energy levels $E_n \sim \frac{1}{n^2}$.
+\end{itemize}
+
+At this point, it was still unclear which fundamental laws could organize the quantum phenomena emerging from the subatomic world. An important contribution came from de Broglie, who suggested in 1923 an extension of Einstein's idea by conjecturing a wave behavior for particles of matter. He assigned a wavelength $\lambda = \frac{h}{p}$ to material particles with momentum $p$. This assumption could explain Bohr's quantized energy levels: one could interpret them as the ones for which an integer number of electron wavelengths would fit in the electron's periodic trajectory around the nucleus. de Broglie was inspired by relativity in making his proposal: a periodic wave function with frequency $\nu = \frac{1}{T}$, where $T$ is the period (periodicity in time), and with wave number $k$, where $|k| = \frac{1}{\lambda}$ with $\lambda$ the wavelength (periodicity in space), has the mathematical form of a plane wave
+\begin{equation}
+    \psi(x,t) \sim e^{2\pi i(k \cdot x - \nu t)}.
+\end{equation}
+
+Assuming the phase $2\pi(k \cdot x - \nu t)$ to be Lorentz invariant, and knowing that the spacetime coordinates $(ct, x) = x^\mu$ form a four-vector, de Broglie deduced that also $(\nu, k) = k^\mu$ would form a four-vector, and thus be subject to the same Lorentz transformations of the four-vector $(ct, x) = x^\mu$ or four-momentum $(E,p) = p^\mu$. Since in the case of photons $E = h\nu$, it was natural to extend the relation to the complete four-vectors $(E,p)$ and $(\nu, k)$ with the same proportionality constant $h$, i.e. $p^\mu = h k^\mu$, to obtain
+\begin{equation}
+    E = h\nu, \quad p = h k.
+\end{equation}
+
+The second relation implies that $\lambda = \frac{h}{p}$ and assigns a wavelength to a material particle with momentum $p$. Hence, a plane wave associated with a free particle with fixed energy and momentum should take the mathematical form
+\begin{equation}
+    \psi(x,t) \sim e^{2\pi i(k \cdot x - \nu t)} = e^{i(p \cdot x - Et)/\hbar}.
+\end{equation}
+
+At this point, Schrödinger asked: what kind of equation does this function satisfy? He began directly with the relativistic case, but as he could not reproduce experimental results for the hydrogen atom, he used the non-relativistic limit that seemed to work better (today, we know that relativistic corrections are compensated by effects due to the spin of the electron, which were not taken into account). For a free non-relativistic particle $E = \frac{p^2}{2m}$, the wave function (3) postulated by de Broglie satisfies
+\begin{equation}
+    i\hbar \frac{\partial}{\partial t} \psi(x,t) = E \psi(x,t) = -\frac{\hbar^2}{2m} \nabla^2 \psi(x,t).
+\end{equation}
+
+Thus, it solves the differential equation
+\begin{equation}
+    i\hbar \frac{\partial}{\partial t} \psi(x,t) = -\frac{\hbar^2}{2m} \nabla^2 \psi(x,t),
+\end{equation}
+which is the free Schrödinger equation. Turning things around, Schrödinger's equation produces plane wave solutions for the quantum mechanics of a nonrelativistic particle of mass $m$.
+
+This construction suggests a prescription for obtaining a wave equation from a classical model of a particle:
+\begin{itemize}
+    \item consider the classical relation between energy and momentum, e.g. $E = \frac{p^2}{2m}$,
+    \item replace $E \rightarrow i\hbar \frac{\partial}{\partial t}$, and $p \rightarrow -i\hbar \nabla$,
+    \item interpret these differential operators as acting on a wave function $\psi$.
+\end{itemize}
+
+These are the quantization prescriptions that produce the Schrödinger equation from the classical theory of a point particle. Schrödinger extended those considerations to a charged particle in the Coulomb field of a nucleus to explore the consequences of quantum mechanics, achieving considerable success in reproducing the results of Bohr's atomic model.
+
+Although originally inferred from the non-relativistic limit of a point particle, when written in the form
+\begin{equation}
+    i\hbar \frac{\partial}{\partial t} \psi(x,t) = H \psi(x,t),
+\end{equation}
+with $H$ the Hamiltonian operator, the Schrödinger equation acquires a universal validity for the quantum mechanics of any physical system.
+
+\subsection{Conservation of probability}
+
+When a non-relativistic particle is described by a normalizable wave function $\psi(x,t)$ (the plane wave in the infinite space considered above is not normalizable, and thus, one should consider wave packets), one can interpret the quantity $p(x,t) = |\psi(x,t)|^2$ as the density of probability to find the particle in point $x$ at time $t$. In particular, one can prove that $p$ satisfies a continuity equation
+\begin{equation}
+    \frac{\partial p}{\partial t} + \nabla \cdot \mathbf{J} = 0,
+\end{equation}
+with a suitable current $\mathbf{J}$, namely $\mathbf{J} = \frac{\hbar}{2mi} (\psi^* \nabla \psi - \psi \nabla \psi^*)$. This is equivalent to the conservation of probability: at each instant of time, the particle is somewhere in space. It is consistent to assume that a non-relativistic particle cannot be created or destroyed. This is physically understandable by looking at the non-relativistic limit of a relativistic particle, obtained by sending $c \rightarrow \infty$: from the energy formula, one finds
+\begin{equation}
+    E = \sqrt{p^2 c^2 + m^2 c^4} = mc^2 \sqrt{1 + \frac{p^2}{m^2 c^2}} \approx mc^2 + \frac{p^2}{2m} + \dots
+\end{equation}
+so that for $c \rightarrow \infty$, it would take an infinite amount of energy to create a particle of mass $m$.
+
+\section{Spin 0: Klein-Gordon equation}
+
+As we have seen, the Schrödinger equation can be obtained by the quantization of a nonrelativistic particle. Similarly, the Klein-Gordon equation can be obtained from the quantization of a relativistic particle (first quantization). However, we shall see that this equation does not admit a probabilistic interpretation. The full consistency with quantum mechanics will eventually be recovered by treating the Klein-Gordon wave function as a classical field and then quantizing it anew as a system with an infinite number of degrees of freedom (just like the electromagnetic field that historically was the first example to be treated as a quantum field). Often, one refers to the quantization of the field as ``second quantization''. In the second quantization, the Klein-Gordon field describes an arbitrary number of identical particles of zero spin together with their antiparticles. Nevertheless, remaining within the scope of first quantization, the Klein-Gordon equation gives much information on the quantum mechanics of relativistic particles of spin 0.
+
+\subsection{Derivation of the Klein-Gordon equation}
+
+How do you get a relativistic wave equation? A simple idea is to proceed as described previously, by using the correct relativistic relation between energy and momentum. We know that a free relativistic particle of mass $m$ has a four-momentum $p^\mu = (p^0, p^1, p^2, p^3) = (E, \mathbf{p})$ that satisfies the mass-shell condition
+\begin{equation}
+    p^\mu p_\mu = -m^2 c^2 \Rightarrow E^2 = \mathbf{p}^2 c^2 + m^2 c^4.
+\end{equation}
+
+Thus, one could try to use $E = \sqrt{\mathbf{p}^2 c^2 + m^2 c^4}$, but the equation emerging from the substitution $E \rightarrow i\hbar \partial_t$ and $\mathbf{p} \rightarrow -i\hbar \nabla$ looks very complicated:
+\begin{equation}
+    i\hbar \frac{\partial}{\partial t} \psi(x,t) = \sqrt{-\hbar^2 c^2 \nabla^2 + m^2 c^4} \, \psi(x,t).
+\end{equation}
+
+It contains the square root of a differential operator, whose meaning is rather obscure. It seems to describe non-local phenomena, in which points far apart strongly influence each other. This approach was soon abandoned. Then, Klein and Gordon proposed a simpler equation, considering the quadratic relationship between energy and momentum. Starting from $E^2 = \mathbf{p}^2 c^2 + m^2 c^4$, and using $E \rightarrow i\hbar \partial_t$, $\mathbf{p} \rightarrow -i\hbar \nabla$, they obtained the Klein-Gordon equation:
+\begin{equation}
+    \left( -\frac{1}{c^2} \frac{\partial^2}{\partial t^2} + \nabla^2 - \frac{m^2 c^2}{\hbar^2} \right) \psi(x,t) = 0.
+\end{equation}
+
+Written in relativistic notation:
+\begin{equation}
+    (\Box + m^2) \phi(x) = 0,
+\end{equation}
+where $\Box = \partial^\mu \partial_\mu = -\partial_0^2 + \nabla^2$ is the d'Alembertian operator.
+
+From now on we shall use natural units with $\hbar = c = 1$, so that $m$ is dimensionless unless specified differently.
+
+\subsection{Plane wave solutions}
+
+The Klein-Gordon equation has been constructed by requiring that it should have plane wave solutions with the correct dispersion relation between energy and momentum:
+\begin{equation}
+    (\Box + m^2) \phi(x) = 0.
+\end{equation}
+
+Let us look for solutions with a plane wave ansatz of the form
+\begin{equation}
+    \phi_p(x) \sim e^{i p_\mu x^\mu},
+\end{equation}
+which inserted into the equation produces
+\begin{equation}
+    (-p^\mu p_\mu + m^2) e^{i p_\mu x^\mu} = 0.
+\end{equation}
+
+Thus, the plane wave is a solution if $p^\mu$ satisfies the mass-shell condition:
+\begin{equation}
+    p^\mu p_\mu = -m^2 \Rightarrow (p^0)^2 = \mathbf{p}^2 + m^2 \Rightarrow p^0 = \pm E_p, \quad E_p = \sqrt{\mathbf{p}^2 + m^2}.
+\end{equation}
+
+Apart from the desired solutions with positive energy, one sees immediately that there are solutions with negative energies. They cannot be neglected, as interactions could lead to transitions to negative energy levels. The model does not have an energy bounded from below and does not seem stable. Eventually, solutions with negative energy $p^0 = -E_p$ will be reinterpreted in the quantum theory of fields as describing antiparticles with positive energy.
+
+All plane wave solutions are indexed by the value of the spatial momentum $\mathbf{p} \in \mathbb{R}^3$, and by the sign of $p^0 = \pm E_p$. The positive energy solutions are given by
+\begin{equation}
+    \phi(x) = e^{-i E_p t + i \mathbf{p} \cdot \mathbf{x}},
+\end{equation}
+and the negative energy solutions by
+\begin{equation}
+    \phi(x) = e^{i E_p t - i \mathbf{p} \cdot \mathbf{x}}.
+\end{equation}
+
+A general solution can be written as a linear combination of these plane waves:
+\begin{equation}
+    \phi(x) = \int \frac{d^3 p}{(2\pi)^3 2E_p} \left[ a(\mathbf{p}) e^{-i E_p t + i \mathbf{p} \cdot \mathbf{x}} + b^*(\mathbf{p}) e^{i E_p t - i \mathbf{p} \cdot \mathbf{x}} \right],
+\end{equation}
+and
+\begin{equation}
+    \phi^*(x) = \int \frac{d^3 p}{(2\pi)^3 2E_p} \left[ a^*(\mathbf{p}) e^{i E_p t - i \mathbf{p} \cdot \mathbf{x}} + b(\mathbf{p}) e^{-i E_p t + i \mathbf{p} \cdot \mathbf{x}} \right],
+\end{equation}
+where $a(\mathbf{p})$ and $b(\mathbf{p})$ are Fourier coefficients and the factor $2E_p$ is conventional and makes the coefficients Lorentz scalars. For real fields ($\phi^* = \phi$), the different Fourier coefficients coincide: $a(\mathbf{p}) = b(\mathbf{p})$.
+
+\subsection{Continuity equation}
+
+From the Klein-Gordon equation, one can derive a continuity equation, which however cannot be interpreted as due to the conservation of probability. Let us look at the details.
+
+One way of getting the continuity equation is to take the KG equation multiplied by the complex conjugate field $\phi^*$, and subtract the complex conjugate equation multiplied by $\phi$. One finds:
+\begin{equation}
+    0 = \phi^* (\Box - m^2) \phi - \phi (\Box - m^2) \phi^* = \partial_\mu (\phi^* \partial^\mu \phi - \phi \partial^\mu \phi^*).
+\end{equation}
+
+Thus, the current $J^\mu$ defined by
+\begin{equation}
+    J^\mu = \frac{1}{2i m} (\phi^* \partial^\mu \phi - \phi \partial^\mu \phi^*)
+\end{equation}
+satisfies the continuity equation $\partial_\mu J^\mu = 0$. The normalization is chosen to make it real and to match $J^\mu$ with the probability current associated to the Schrödinger equation. The temporal component
+\begin{equation}
+    J^0 = \frac{1}{2i m} (\phi^* \partial^0 \phi - \phi \partial^0 \phi^*)
+\end{equation}
+although real, is not positive definite. This is seen from the fact that both the field $\phi$ and its time derivative $\partial_0 \phi$ can be arbitrarily fixed as initial conditions (the KG equation is a second-order differential equation in time). $J^0$ is fixed by these initial data and can be made either positive or negative. One can explicitly verify this statement by evaluating $J^0$ on plane waves:
+\begin{equation}
+    J^0 = \pm \frac{E_p}{m}.
+\end{equation}
+
+We conclude that the Klein-Gordon equation does not admit a probabilistic interpretation. This fact stimulated Dirac to look for a different relativistic wave equation that could admit a probabilistic interpretation. He succeeded, but eventually, it became clear that one had to reinterpret all wave equations of relativistic quantum mechanics as classical systems that must be quantized again to find them describing identical particles of mass m (the quanta of the field), in a way similar to the interpretation of electromagnetic waves suggested by Einstein in explaining the photoelectric effect. This interpretation was successfully considered in 1935 by Yukawa, who used the Klein-Gordon equation to propose a theory of nuclear interactions with short-range forces. Thus, before describing the Dirac equation, we continue to discuss the Klein-Gordon field as a classical field, keeping in mind its particle interpretation.
+
+\subsection{Yukawa potential}
+
+Let us consider the KG equation in the presence of a static pointlike source
+\begin{equation}
+    (\Box - m^2)\phi(x) = g \delta^3(\mathbf{x}),
+\end{equation}
+where the point source is located at the origin of the cartesian axes, and the constant $g$ measures the strength of the charge (the intensity with which the particle is coupled to the KG field). Since the source is static, one may look for a time-independent solution, and the equation simplifies to
+\begin{equation}
+    (\nabla^2 - m^2)\phi(\mathbf{x}) = g \delta^3(\mathbf{x}).
+\end{equation}
+
+It can be solved by Fourier transform. The result is the so-called Yukawa potential
+\begin{equation}
+    \phi(r) = \frac{g}{4\pi} \frac{e^{-mr}}{r}.
+\end{equation}
+
+To derive it, we use the Fourier transform
+\begin{equation}
+    \phi(\mathbf{x}) = \int \frac{d^3 k}{(2\pi)^3} e^{i \mathbf{k} \cdot \mathbf{x}} \tilde{\phi}(\mathbf{k}),
+\end{equation}
+considering that the Fourier transform of the Dirac delta function (a ``generalized function'' or distribution) is given by
+\begin{equation}
+    \delta^3(\mathbf{x}) = \int \frac{d^3 k}{(2\pi)^3} e^{i \mathbf{k} \cdot \mathbf{x}},
+\end{equation}
+one finds
+\begin{equation}
+    \tilde{\phi}(\mathbf{k}) = \frac{g}{\mathbf{k}^2 + m^2}.
+\end{equation}
+
+A direct calculation in spherical coordinates, using Cauchy's residue theorem, gives
+\begin{equation}
+    \phi(\mathbf{x}) = -\frac{g}{(2\pi)^2 r} \int_0^\infty dk \frac{k \sin(kr)}{k^2 + m^2} = \frac{g}{4\pi} \frac{e^{-mr}}{r},
+\end{equation}
+where $r = |\mathbf{x}|$. It can be shown that it gives rise to an attractive potential for charges of the same sign. It has a range $\lambda \sim \frac{1}{m}$ corresponding to the Compton wavelength of a particle of mass $m$. Thus, it is used to model short-range forces, such as the nuclear forces.
+
+A graphical way that describes the interaction between two charges $g_1$ and $g_2$ mediated by the KG field (giving rise to the Yukawa potential) is given by the following ``Feynman diagram''
+
+\begin{center}
+    \begin{tikzpicture}
+        \draw[thick] (-2,0) -- (0,0);
+        \draw[thick] (0,0) -- (2,0);
+        \draw[dashed, thick] (0,0) -- (0,-2);
+        \node at (-2.2,0) {$g_1$};
+        \node at (2.2,0) {$g_2$};
+        \node at (0,-2.2) {$\phi$};
+    \end{tikzpicture}
+\end{center}
+
+interpreted as an exchange of a virtual KG quantum between the worldlines of two scalar particles of charge $g_1$ and $g_2$. It can be shown that this diagram produces the following interaction potential between the particles
+\begin{equation}
+    V(r) = -\frac{g_1 g_2}{4\pi} \frac{e^{-mr}}{r},
+\end{equation}
+which is attractive for charges of the same sign. It is a potential for short-range forces, with a characteristic radius $R \sim \frac{1}{m}$. In 1935, Yukawa introduced a similar KG scalar particle, called meson, to describe the nuclear forces. Estimating a radius $R \sim 1$ fm, i.e., about the radius of the proton, one finds a mass $m \sim 197$ MeV. The meson $\pi^0$ (the pion, later discovered by studying cosmic ray interactions) has indeed a mass of this order of magnitude, $m_{\pi^0} \sim 135$ MeV.
+
+\subsection{Green functions and the propagator}
+
+The Green functions of the KG equation are relevant for a quantum interpretation of the KG field (we refrain from calling it the KG wave function, as the probabilistic interpretation is untenable). A particular Green function $G(x - y)$ is associated with the so-called propagator, which is interpreted as the amplitude for propagating a quantum of the field from a spacetime point $y$ to another point $x$. The Green function $G(x)$ is defined as the solution of the KG equation in the presence of a pointlike and instantaneous source of unit charge, which, for simplicity, is located at the origin of the coordinate system ($y = 0$). Mathematically, it is defined to satisfy the equation
+\begin{equation}
+    (-\Box + m^2) G(x) = \delta^4(x).
+\end{equation}
+
+Knowing the Green function $G(x)$, one can represent a solution of the non-homogeneous KG equation
+\begin{equation}
+    (-\Box + m^2) \phi(x) = J(x),
+\end{equation}
+where $J(x)$ is an arbitrary function (a source), by
+\begin{equation}
+    \phi(x) = \phi_0(x) + \int d^4 y \, G(x - y) J(y),
+\end{equation}
+with $\phi_0(x)$ a solution of the associated homogeneous equation. This statement is verified inserting (38) in (37), and using the property (36).
+
+In general, the Green function is not unique for hyperbolic differential equations, but it depends on the boundary conditions chosen at infinity. In the correct quantum interpretation, the causal conditions devised by Feynman and Stueckelberg are used. They allow us to interpret the negative energy solutions as related to antiparticles. These boundary conditions require to propagate forward in time the positive frequencies generated by the source $J(x)$, and back in time the remaining negative frequencies. In a Fourier transform, the solution is written as
+\begin{equation}
+    G(x) = \int \frac{d^4 p}{(2\pi)^4} \frac{e^{i p \cdot x}}{p^2 + m^2 - i\epsilon},
+\end{equation}
+where $\epsilon \rightarrow 0^+$ is a positive infinitesimal parameter that implements the boundary conditions stated above (the Feynman-Stueckelberg causal prescriptions). In a particle interpretation, the Green function describes the propagation of ``real particles'' as well as the effects of ``virtual particles'', all identified with the quanta of the scalar field.
