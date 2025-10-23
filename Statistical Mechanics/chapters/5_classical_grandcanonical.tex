@@ -53,7 +53,7 @@ Hence, the grandcanonical probability distribution for the subsystem takes the f
 \]
 where \(\mathcal{Z}\) is the \textbf{grand partition function}, defined by the normalization condition:
 \[
-    \mathcal{Z} = \sum_{N=0}^{\infty} \frac{1}{\xi_N} \int_{\mathcal{M}_{\mathcal{S}}} \prod_{i=1}^{N} \frac{\mathrm{d}^d q_i \, \mathrm{d}^d p_i}{h^d} \, e^{-\beta(\mathcal{H}(q_i, p_i) - \mu N)}.
+    \mathcal{Z} = \sum_{N=0}^{\infty} \frac{1}{\mathcal{Z}_N} \int_{\mathcal{M}_{\mathcal{S}}} \prod_{i=1}^{N} \frac{\mathrm{d}^d q_i \, \mathrm{d}^d p_i}{h^d} \, e^{-\beta(\mathcal{H}(q_i, p_i) - \mu N)}.
 \]
 
 ---
@@ -66,7 +66,7 @@ We can obtain the same results for the grandcanonical ensemble by integrating th
     = \frac{e^{-\beta \mathcal{H}_1}}{Z(T,\,V,\,N)}
     \int_{\mathcal{M}_2} \d{\Omega_2}\, e^{-\beta \mathcal{H}_2},
 \]
-where \(\d{\Omega_2} = \frac{1}{h^{dN_2}\,\xi_{N_2}} \prod_{j=1}^{N_2} \mathrm{d}^d q_j^{(2)}\, \mathrm{d}^d p_j^{(2)}\) is the measure on the phase space of the environment.
+where \(\d{\Omega_2} = \frac{1}{h^{dN_2}\,\mathcal{Z}_{N_2}} \prod_{j=1}^{N_2} \mathrm{d}^d q_j^{(2)}\, \mathrm{d}^d p_j^{(2)}\) is the measure on the phase space of the environment.
 
 Because the subsystem can exchange both energy and particles with the environment, the normalization condition for the total probability requires integrating over all subsystem variables and summing over all possible particle numbers \(N_1\):
 \[
@@ -93,7 +93,7 @@ Let us check that this normalization indeed holds. Substituting the explicit for
 Introducing the explicit expressions for the phase-space measures, we can rewrite this ratio as:
 \[
     \sum_{N_1=0}^{\infty}
-    \frac{\xi_N}{\xi_{N_1}\xi_{N_2}}
+    \frac{\mathcal{Z}_N}{\mathcal{Z}_{N_1}\mathcal{Z}_{N_2}}
     \frac{\int_{V_1}\!\!\prod_{i=1}^{N_1}\!\mathrm{d}^d q_i^{(1)}
         \int_{V_2}\!\!\prod_{j=1}^{N_2}\!\mathrm{d}^d q_j^{(2)}\,\Phi_1 \Phi_2}
     {\int_{V}\!\!\prod_{i=1}^{N_1}\!\mathrm{d}^d q_i^{(1)}
@@ -124,7 +124,7 @@ Hence,
     \int_{\mathcal{M}_1} \d{\Omega_1}\,
     \rho_{gc}^{(1)}(q_i^{(1)},\,p_i^{(1)},\,N_1)
     = \sum_{N_1=0}^{\infty}
-    \frac{\xi_N}{\xi_{N_1}\xi_{N_2}}
+    \frac{\mathcal{Z}_N}{\mathcal{Z}_{N_1}\mathcal{Z}_{N_2}}
     \frac{\langle \Phi_1 \rangle_{V_1}\langle \Phi_2 \rangle_{V_2}}
     {\langle \Phi \rangle_{V}}
     \frac{V_1^{N_1}V_2^{N_2}}{V^N}.
@@ -202,7 +202,7 @@ Finally, we define the ensemble average of an observable in the grandcanonical e
     Let \(f(q_i, p_i, N)\) be an observable defined on the extended phase space of the system. Its average over the grandcanonical ensemble is given by
     \[
         \begin{aligned}
-            \langle f(q_i, p_i, N) \rangle_{gc} & = \frac{1}{\mathcal{Z}} \sum_{N=0}^{\infty} \frac{1}{\xi_N} \int \prod_{i=1}^{N} \frac{\mathrm{d}^d q_i \, \mathrm{d}^d p_i}{h^d} \, e^{-\beta(\mathcal{H}(q_i, p_i) - \mu N)} f(q_i, p_i, N) \\
+            \langle f(q_i, p_i, N) \rangle_{gc} & = \frac{1}{\mathcal{Z}} \sum_{N=0}^{\infty} \frac{1}{\mathcal{Z}_N} \int \prod_{i=1}^{N} \frac{\mathrm{d}^d q_i \, \mathrm{d}^d p_i}{h^d} \, e^{-\beta(\mathcal{H}(q_i, p_i) - \mu N)} f(q_i, p_i, N) \\
                                                 & = \frac{1}{\mathcal{Z}} \sum_{N=0}^{\infty} z^N Z_N \langle f(q_i, p_i, N) \rangle_{c}.
         \end{aligned}
     \]
@@ -279,7 +279,7 @@ Recognizing that differentiation with respect to $z$ brings down a factor of $N$
     \sum_{N=0}^{\infty} z^N Z_N \right)_{\beta}
     = z \left( \frac{\partial \ln \mathcal{Z}}{\partial z} \right)_{\beta}.
 \]
-This formula explicitly relates the average number of particles to the dependence of the partition function on the fugacity, emphasizing that $\mu$ controls the probability distribution over different particle numbers.
+This formula explicitly relates the average number of particles to the dependence of the partition function on the fugacity, textitasizing that $\mu$ controls the probability distribution over different particle numbers.
 
 \paragraph{Entropy.} Finally, we show that the statistical entropy in the grandcanonical ensemble coincides with the thermodynamic entropy, as it did for the microcanonical and canonical ensembles in the thermodynamic limit.
 
@@ -332,3 +332,260 @@ that is, in the thermodynamic limit, the entropy computed from the grandcanonica
     \]
     It confirms that all three statistical ensembles yield the same thermodynamics when extensive variables are large and fluctuations are negligible.
 \end{remark}
+
+\section{Virial Expansion}
+
+The virial expansion provides a systematic framework to describe the thermodynamic properties of real gases in terms of either their density or fugacity.
+It allows us to express quantities such as the pressure or the average particle number as power series that account for the effects of interparticle interactions.
+
+In the dilute limit, the gas behaves as an ideal gas, while higher-order terms in the virial expansion capture corrections due to correlations among pairs, triplets, and larger groups of particles.
+The basic idea is to expand thermodynamic quantities in powers of the density \( n = \mathcal{N}/V \) or the fugacity \( z = e^{\beta \mu} \), obtaining a series representation that systematically describes deviations from ideal gas behavior.
+
+In what follows, we will use this expansion to derive an equation of state for weakly interacting classical gases.
+We begin with the expansion in fugacity \(z\), and later we will recover the equivalent expansion in the density \(n\):
+\[
+    \begin{aligned}
+        - \Omega = pV = \frac{1}{\beta} \log \mathcal{Z}
+         & \implies \frac{p}{k_B T}  = \frac{1}{V} \log \mathcal{Z},                        \\
+        n = \frac{\mathcal{N}}{V}
+         & = \frac{z}{V} \left(\frac{\partial \log \mathcal{Z}}{\partial z}\right)_{\beta}.
+    \end{aligned}
+\]
+
+\subsection{Fugacity Expansion of the Grand Partition Function}
+
+We start from the grand canonical partition function:
+\[
+    \mathcal{Z}(T, V, \mu) = \sum_{N=0}^{\infty} z^N Z_N(T, V),
+\]
+where \( Z_N(T, V) \) is the canonical partition function for \( N \) particles, and \( z = e^{\beta \mu} \) is the \textit{fugacity}.
+
+We consider a classical gas of interacting particles described by the Hamiltonian
+\[
+    \mathcal{H}(q_i, p_i) = \sum_{i}^{N} \frac{p_i^2}{2m} + \sum_{i < j}^N U_{ij},
+    \qquad U_{ij} = U(|q_i - q_j|),
+\]
+where the second term accounts for pairwise interactions through the potential \( U_{ij} \).
+We assume that the interaction depends only on the distance between particles, i.e., it is isotropic, and that the gas is dilute and weakly interacting.
+In this regime, interactions can be treated perturbatively, allowing us to expand the grand canonical partition function in powers of the fugacity \( z \).
+
+We can then compute the first few canonical partition functions:
+\[
+    \begin{aligned}
+        Z_0 & = 1,                                                                                 \\[3pt]
+        Z_1 & = \int_V \! \mathrm{d}\Omega_1 \, e^{-\beta \mathcal{H}_1}
+        = \frac{V}{\lambda^3},
+        \qquad \lambda = \frac{h}{\sqrt{2 \pi m k_B T}},                                           \\[3pt]
+        Z_2 & = \int_V \! \mathrm{d}\Omega_2 \, e^{-\beta \mathcal{H}_2}
+        = \frac{1}{2! \lambda^6} \int_V \! \mathrm{d}^3 r_1 \, \mathrm{d}^3 r_2 \, e^{-\beta U(r)} \\[3pt]
+            & = \frac{1}{2 \lambda^6} \int_V \! \mathrm{d}^3 r_{\mathrm{cm}}
+        \int_V \! \mathrm{d}^3 r \, e^{-\beta U(r)}
+        = \frac{V}{2 \lambda^6} \int_V \! \mathrm{d}^3 r \, e^{-\beta U(r)}.
+    \end{aligned}
+\]
+Here, \(\mathcal{H}_1 = \frac{p_1^2}{2m}\) contains no interaction term, while \(\mathcal{H}_2 = \frac{p_1^2}{2m} + \frac{p_2^2}{2m} + U_{12}\).
+The phase space measure for \( N \) particles is
+\[
+    \mathrm{d}\Omega_N = \frac{1}{h^{3N} N!} \prod_{i=1}^{N} \mathrm{d}^3 q_i \, \mathrm{d}^3 p_i.
+\]
+In the last step of the \(Z_2\) calculation, we switched to center-of-mass and relative coordinates,
+\( r_{\mathrm{cm}} = \frac{r_1 + r_2}{2} \) and \( r = r_1 - r_2 \),
+so that the integral over \( r_{\mathrm{cm}} \) simply gives a factor \(V\).
+
+Thus, the grand partition function up to second order in \( z \) becomes:
+\[
+    \mathcal{Z} = 1
+    + z \frac{V}{\lambda^3}
+    + z^2 \frac{V}{2 \lambda^6} \int_V \! \mathrm{d}^3 r \, e^{-\beta U(r)}
+    + O(z^3).
+\]
+
+It is often convenient to express the logarithm of the grand partition function as a power series in \( z \), since all thermodynamic quantities can be derived from it.
+Recalling that for a small parameter \(x\),
+\[
+    \log(1 + x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots,
+\]
+we apply this expansion to \(\mathcal{Z}\) and neglect terms beyond second order in \(z\):
+\[
+    \begin{aligned}
+        \log \mathcal{Z}
+         & = \frac{zV}{\lambda^3}
+        + \frac{z^2 V}{2 \lambda^6} \int_V \! \mathrm{d}^3 r \, e^{-\beta U(r)}
+        - \frac{1}{2} \frac{z^2 V^2}{\lambda^6}
+        + O(z^3)                  \\[3pt]
+         & = \frac{zV}{\lambda^3}
+        + \frac{z^2 V}{2 \lambda^6}
+        \left( \int_V \! \mathrm{d}^3 r \, e^{-\beta U(r)} - V \right)
+        + O(z^3)                  \\[3pt]
+         & = \frac{zV}{\lambda^3}
+        + \frac{z^2 V}{2 \lambda^6}
+        \left( \int_V \! \mathrm{d}^3 r \, e^{-\beta U(r)} - \int_V \! \mathrm{d}^3 r \right)
+        + O(z^3)                  \\[3pt]
+         & = \frac{zV}{\lambda^3}
+        + \frac{z^2 V}{2 \lambda^6} J_2(\beta)
+        + O(z^3),
+    \end{aligned}
+\]
+where we have defined
+\[
+    J_2 = \int \! \mathrm{d}^3 r \, \big(e^{-\beta U(r)} - 1\big)
+    = 4\pi \int_0^{\infty} \! \mathrm{d}r \, r^2 \, \big(e^{-\beta U(r)} - 1\big).
+\]
+
+In general, the logarithm of the grand partition function can be written as a power series in \( z \):
+\[
+    \log \mathcal{Z} = V \sum_{\ell=1}^{\infty} b_\ell(T) z^\ell,
+\]
+where the coefficients \( b_\ell(T) \) are known as the \textbf{cluster integrals} or \textbf{virial coefficients in the fugacity expansion}.
+They depend only on the temperature and on the interparticle potential.
+
+\subsection{Thermodynamic Quantities in the Dilute Limit}
+
+From the grand potential \(\Omega = -k_B T \log \mathcal{Z}\), the pressure is given by
+\[
+    p = -\frac{\Omega}{V}
+    = k_B T \sum_{\ell=1}^{\infty} b_\ell(T) z^\ell
+    = k_B T \left[\frac{zV}{\lambda^3}
+        + \frac{z^2 V}{2 \lambda^6} J_2(\beta)
+        + O(z^3)\right].
+\]
+
+The average number of particles follows from
+\[
+    \mathcal{N} = z \frac{\partial \log \mathcal{Z}}{\partial z}
+    = V \sum_{\ell=1}^{\infty} \ell\, b_\ell(T)\, z^\ell
+    = V \left[\frac{zV}{\lambda^3}
+        + z^2 \frac{V}{\lambda^6} J_2(\beta)
+        + O(z^3)\right].
+\]
+
+\paragraph{Density expansion.}
+We define the number density as
+\[
+    n = \frac{\langle N \rangle}{V}
+    = \sum_{\ell=1}^{\infty} \ell\, b_\ell(T)\, z^\ell.
+\]
+Both pressure and density are therefore expressed as power series in the fugacity \( z \).
+Working in the limit of small \( z \) corresponds to a dilute gas regime, characterized by low density and low pressure.
+Let us recover the expression for \( n \) in the non-interacting case:
+\[
+    J_2(\beta) \Big|_{U=0}
+    = \int \mathrm{d}^3r\, (1 - 1) = 0
+    \implies n = \frac{z}{\lambda^3} + O(z^3),
+\]
+which is the expected result for an ideal classical gas.
+
+\paragraph{Pressure expansion.}
+By inverting the series to express \( z \) as a function of \( n \) and substituting it into the expression for the pressure, we obtain an expansion of \( p \) in powers of the density:
+\[
+    \frac{p}{k_B T} = n + B_2(T)\, n^2 + B_3(T)\, n^3 + \cdots,
+\]
+where the coefficients \( B_n(T) \) are the \textit{virial coefficients}.
+
+\begin{itemize}
+    \item \( B_2(T) \) accounts for pairwise interactions and is directly related to the intermolecular potential \( u(r) \) through
+          \[
+              B_2(T) = -\frac{1}{2} \int \!
+              \left( e^{-\beta u(r)} - 1 \right)
+              \, \mathrm{d}^3r
+              = -\frac{1}{2} J_2(\beta).
+          \]
+          For repulsive interactions, \( B_2 > 0 \); for attractive interactions, \( B_2 < 0 \).
+    \item \( B_3(T) \) describes the effect of three-body correlations and is generally more involved to compute.
+\end{itemize}
+
+Higher-order virial coefficients describe increasingly subtle correlation effects and become significant at higher densities or for stronger interactions.
+In summary, the virial expansion establishes a direct connection between the microscopic interaction potential and the macroscopic equation of state:
+\[
+    \frac{p}{k_B T n} = 1 + B_2(T)n + B_3(T)n^2 + \cdots.
+\]
+In the case of non-interacting particles, all virial coefficients beyond the first vanish, and we recover the ideal gas law:
+\[
+    \begin{aligned}
+        \frac{p}{k_B T}
+                                 & = \left[\frac{zV}{\lambda^3}
+            + \frac{z^2 V}{2 \lambda^6} J_2(\beta)
+        + O(z^3)\right],                                               \\[3pt]
+        J_2(\beta) \Big|_{U=0}   & = \int \mathrm{d}^3r\, (1 - 1) = 0, \\[3pt]
+        \implies \frac{p}{k_B T} & = \frac{zV}{\lambda^3} = n,
+    \end{aligned}
+\]
+thus recovering the ideal gas equation of state.
+
+\begin{remark}
+    The virial expansion is particularly useful for gases at low to moderate densities, where truncating the series after a few terms yields an accurate equation of state.
+    At high densities or near phase transitions, however, the series may fail to converge, and more sophisticated approaches are required.
+\end{remark}
+
+\paragraph{Fugacity expansion in the density.}
+To express the fugacity \( z \) as a function of the density \( n \), we can invert the series:
+\[
+    \begin{aligned}
+        z & = A n + B n^2 + O(n^3),                                           \\[3pt]
+        n & = \frac{z}{\lambda^3} + \frac{z^2}{\lambda^6} J_2(\beta) + O(z^3) \\[3pt]
+          & = \frac{A n + B n^2}{\lambda^3}
+        + \frac{(A n + B n^2)^2}{\lambda^6} J_2 + O(n^3)                      \\[3pt]
+          & = \frac{A n + B n^2}{\lambda^3}
+        + \frac{A^2 n^2}{\lambda^6} J_2 + O(n^3),
+    \end{aligned}
+\]
+whose only consistent solution is \(A = \lambda^3\) and \(B = -J_2 \lambda^3\).
+Hence,
+\[
+    z = \lambda^3 n - J_2 \lambda^6 n^2 + O(n^3).
+\]
+Substituting this into the pressure expansion, we recover the virial equation of state for a weakly interacting classical gas:
+\[
+    \frac{p}{k_B T}
+    = \frac{z}{\lambda^3}
+    + \frac{z^2}{2 \lambda^6} J_2(\beta)
+    + O(z^3)
+    = n - \frac{J_2}{2} n^2 + O(n^3),
+\]
+which again reduces to the ideal gas law when \(U = 0\).
+
+\subsection{Van der Waals Equation of State}
+
+To connect the virial expansion with a more familiar and physically intuitive equation of state, we now consider a simple yet effective model for the intermolecular potential \( U(r) \).
+A convenient choice is the *hard-sphere potential* with an additional attractive tail. In this model, molecules are treated as rigid spheres of diameter \( d \), meaning they cannot overlap; this represents short-range repulsion due to the finite size of particles. At larger separations, an attractive potential \( f(r) < 0 \) is introduced to mimic cohesive forces such as van der Waals or dispersion interactions:
+\[
+    U(r) =
+    \begin{cases}
+        \infty & \text{if } r < d,                                 \\
+        f(r)   & \text{if } r \geq d, \quad \text{with } f(r) < 0.
+    \end{cases}
+\]
+
+This potential effectively separates the microscopic interaction into two competing contributions:
+\begin{itemize}
+    \item a \textbf{repulsive core}, enforcing an excluded volume around each particle;
+    \item an \textbf{attractive tail}, lowering the energy when particles are moderately close.
+\end{itemize}
+
+Using this potential, we can compute the second cluster integral, \( J_2(\beta) \), which directly encodes the two-body correlations induced by the interaction:
+\[
+    \begin{aligned}
+        J_2(\beta) & = 4\pi \int_0^{\infty} \! \mathrm{d}r\, r^2 \left(e^{-\beta U(r)} - 1\right)                                                            \\
+                   & = 4\pi \left[ \int_0^{d} \! \mathrm{d}r\, r^2 (0 - 1) + \int_{d}^{\infty} \! \mathrm{d}r\, r^2 \left(e^{-\beta f(r)} - 1\right) \right] \\
+                   & = -\frac{4\pi d^3}{3} + 4\pi \int_{d}^{\infty} \! \mathrm{d}r\, r^2 \left(e^{-\beta f(r)} - 1\right)                                    \\
+                   & \doteq -2b + 2\beta a,
+    \end{aligned}
+\]
+where \( a,\, b > 0 \) are constants that characterize the potential.
+The first term represents the \emph{excluded volume} due to hard-sphere repulsion, while the second captures the \emph{attractive tail}.
+At high temperatures, thermal motion dominates and the attractive contribution becomes negligible; at low temperatures, attractive interactions prevail.
+This competition explains why, at intermediate temperatures, the effective interaction can change sign.
+
+Substituting this result into the virial expansion of the pressure yields:
+\[
+    \begin{aligned}
+        \frac{p}{k_B T} & = n + \left(-b + \beta a\right) n^2 + O(n^3)                                                     \\
+                        & = \frac{1}{v} + \left(-b + \frac{a}{k_B T}\right) \frac{1}{v^2} + O\!\left(\frac{1}{v^3}\right),
+    \end{aligned}
+\]
+from which we can rearrange to obtain the celebrated \textbf{Van der Waals equation of state}:
+\[
+    \boxed{\left(p + \frac{a}{v^2}\right)(v - b) = k_B T.}
+\]
+
+This equation provides a phenomenological correction to the ideal gas law, capturing finite particle size and intermolecular attractions within a simple yet remarkably accurate model for real gases.
