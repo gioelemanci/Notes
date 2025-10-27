@@ -1,0 +1,171 @@
+\section{Spin 0: Klein-Gordon equation}
+
+As we have seen, the Schrödinger equation can be obtained by the quantization of a nonrelativistic particle. Similarly, the Klein-Gordon equation can be obtained from the quantization of a relativistic particle (first quantization). However, we shall see that this equation does not admit a probabilistic interpretation. The full consistency with quantum mechanics will eventually be recovered by treating the Klein-Gordon wave function as a classical field and then quantizing it anew as a system with an infinite number of degrees of freedom (just like the electromagnetic field that historically was the first example to be treated as a quantum field). Often, one refers to the quantization of the field as ``second quantization''. In the second quantization, the Klein-Gordon field describes an arbitrary number of identical particles of zero spin together with their antiparticles. Nevertheless, remaining within the scope of first quantization, the Klein-Gordon equation gives much information on the quantum mechanics of relativistic particles of spin 0.
+
+\subsection{Derivation of the Klein-Gordon equation}
+
+How do you get a relativistic wave equation? A simple idea is to proceed as described previously, by using the correct relativistic relation between energy and momentum. We know that a free relativistic particle of mass $m$ has a four-momentum $p^\mu = (p^0, p^1, p^2, p^3) = (E, \mathbf{p})$ that satisfies the mass-shell condition
+\begin{equation}
+    p^\mu p_\mu = -m^2 c^2 \Rightarrow E^2 = \mathbf{p}^2 c^2 + m^2 c^4.
+\end{equation}
+
+Thus, one could try to use $E = \sqrt{\mathbf{p}^2 c^2 + m^2 c^4}$, but the equation emerging from the substitution $E \rightarrow i\hbar \partial_t$ and $\mathbf{p} \rightarrow -i\hbar \nabla$ looks very complicated:
+\begin{equation}
+    i\hbar \frac{\partial}{\partial t} \psi(x,t) = \sqrt{-\hbar^2 c^2 \nabla^2 + m^2 c^4} \, \psi(x,t).
+\end{equation}
+
+It contains the square root of a differential operator, whose meaning is rather obscure. It seems to describe non-local phenomena, in which points far apart strongly influence each other. This approach was soon abandoned. Then, Klein and Gordon proposed a simpler equation, considering the quadratic relationship between energy and momentum. Starting from $E^2 = \mathbf{p}^2 c^2 + m^2 c^4$, and using $E \rightarrow i\hbar \partial_t$, $\mathbf{p} \rightarrow -i\hbar \nabla$, they obtained the Klein-Gordon equation:
+\begin{equation}
+    \left( -\frac{1}{c^2} \frac{\partial^2}{\partial t^2} + \nabla^2 - \frac{m^2 c^2}{\hbar^2} \right) \psi(x,t) = 0.
+\end{equation}
+
+Written in relativistic notation:
+\begin{equation}
+    (\Box + m^2) \phi(x) = 0,
+\end{equation}
+where $\Box = \partial^\mu \partial_\mu = -\partial_0^2 + \nabla^2$ is the d'Alembertian operator.
+
+From now on we shall use natural units with $\hbar = c = 1$, so that $m$ is dimensionless unless specified differently.
+
+\subsection{Plane wave solutions}
+
+The Klein-Gordon equation has been constructed by requiring that it should have plane wave solutions with the correct dispersion relation between energy and momentum:
+\begin{equation}
+    (\Box + m^2) \phi(x) = 0.
+\end{equation}
+
+Let us look for solutions with a plane wave ansatz of the form
+\begin{equation}
+    \phi_p(x) \sim e^{i p_\mu x^\mu},
+\end{equation}
+which inserted into the equation produces
+\begin{equation}
+    (-p^\mu p_\mu + m^2) e^{i p_\mu x^\mu} = 0.
+\end{equation}
+
+Thus, the plane wave is a solution if $p^\mu$ satisfies the mass-shell condition:
+\begin{equation}
+    p^\mu p_\mu = -m^2 \Rightarrow (p^0)^2 = \mathbf{p}^2 + m^2 \Rightarrow p^0 = \pm E_p, \quad E_p = \sqrt{\mathbf{p}^2 + m^2}.
+\end{equation}
+
+Apart from the desired solutions with positive energy, one sees immediately that there are solutions with negative energies. They cannot be neglected, as interactions could lead to transitions to negative energy levels. The model does not have an energy bounded from below and does not seem stable. Eventually, solutions with negative energy $p^0 = -E_p$ will be reinterpreted in the quantum theory of fields as describing antiparticles with positive energy.
+
+All plane wave solutions are indexed by the value of the spatial momentum $\mathbf{p} \in \mathbb{R}^3$, and by the sign of $p^0 = \pm E_p$. The positive energy solutions are given by
+\begin{equation}
+    \phi(x) = e^{-i E_p t + i \mathbf{p} \cdot \mathbf{x}},
+\end{equation}
+and the negative energy solutions by
+\begin{equation}
+    \phi(x) = e^{i E_p t - i \mathbf{p} \cdot \mathbf{x}}.
+\end{equation}
+
+A general solution can be written as a linear combination of these plane waves:
+\begin{equation}
+    \phi(x) = \int \frac{d^3 p}{(2\pi)^3 2E_p} \left[ a(\mathbf{p}) e^{-i E_p t + i \mathbf{p} \cdot \mathbf{x}} + b^*(\mathbf{p}) e^{i E_p t - i \mathbf{p} \cdot \mathbf{x}} \right],
+\end{equation}
+and
+\begin{equation}
+    \phi^*(x) = \int \frac{d^3 p}{(2\pi)^3 2E_p} \left[ a^*(\mathbf{p}) e^{i E_p t - i \mathbf{p} \cdot \mathbf{x}} + b(\mathbf{p}) e^{-i E_p t + i \mathbf{p} \cdot \mathbf{x}} \right],
+\end{equation}
+where $a(\mathbf{p})$ and $b(\mathbf{p})$ are Fourier coefficients and the factor $2E_p$ is conventional and makes the coefficients Lorentz scalars. For real fields ($\phi^* = \phi$), the different Fourier coefficients coincide: $a(\mathbf{p}) = b(\mathbf{p})$.
+
+\subsection{Continuity equation}
+
+From the Klein-Gordon equation, one can derive a continuity equation, which however cannot be interpreted as due to the conservation of probability. Let us look at the details.
+
+One way of getting the continuity equation is to take the KG equation multiplied by the complex conjugate field $\phi^*$, and subtract the complex conjugate equation multiplied by $\phi$. One finds:
+\begin{equation}
+    0 = \phi^* (\Box - m^2) \phi - \phi (\Box - m^2) \phi^* = \partial_\mu (\phi^* \partial^\mu \phi - \phi \partial^\mu \phi^*).
+\end{equation}
+
+Thus, the current $J^\mu$ defined by
+\begin{equation}
+    J^\mu = \frac{1}{2i m} (\phi^* \partial^\mu \phi - \phi \partial^\mu \phi^*)
+\end{equation}
+satisfies the continuity equation $\partial_\mu J^\mu = 0$. The normalization is chosen to make it real and to match $J^\mu$ with the probability current associated to the Schrödinger equation. The temporal component
+\begin{equation}
+    J^0 = \frac{1}{2i m} (\phi^* \partial^0 \phi - \phi \partial^0 \phi^*)
+\end{equation}
+although real, is not positive definite. This is seen from the fact that both the field $\phi$ and its time derivative $\partial_0 \phi$ can be arbitrarily fixed as initial conditions (the KG equation is a second-order differential equation in time). $J^0$ is fixed by these initial data and can be made either positive or negative. One can explicitly verify this statement by evaluating $J^0$ on plane waves:
+\begin{equation}
+    J^0 = \pm \frac{E_p}{m}.
+\end{equation}
+
+We conclude that the Klein-Gordon equation does not admit a probabilistic interpretation. This fact stimulated Dirac to look for a different relativistic wave equation that could admit a probabilistic interpretation. He succeeded, but eventually, it became clear that one had to reinterpret all wave equations of relativistic quantum mechanics as classical systems that must be quantized again to find them describing identical particles of mass m (the quanta of the field), in a way similar to the interpretation of electromagnetic waves suggested by Einstein in explaining the photoelectric effect. This interpretation was successfully considered in 1935 by Yukawa, who used the Klein-Gordon equation to propose a theory of nuclear interactions with short-range forces. Thus, before describing the Dirac equation, we continue to discuss the Klein-Gordon field as a classical field, keeping in mind its particle interpretation.
+
+\subsection{Yukawa potential}
+
+Let us consider the KG equation in the presence of a static pointlike source
+\begin{equation}
+    (\Box - m^2)\phi(x) = g \delta^3(\mathbf{x}),
+\end{equation}
+where the point source is located at the origin of the cartesian axes, and the constant $g$ measures the strength of the charge (the intensity with which the particle is coupled to the KG field). Since the source is static, one may look for a time-independent solution, and the equation simplifies to
+\begin{equation}
+    (\nabla^2 - m^2)\phi(\mathbf{x}) = g \delta^3(\mathbf{x}).
+\end{equation}
+
+It can be solved by Fourier transform. The result is the so-called Yukawa potential
+\begin{equation}
+    \phi(r) = \frac{g}{4\pi} \frac{e^{-mr}}{r}.
+\end{equation}
+
+To derive it, we use the Fourier transform
+\begin{equation}
+    \phi(\mathbf{x}) = \int \frac{d^3 k}{(2\pi)^3} e^{i \mathbf{k} \cdot \mathbf{x}} \tilde{\phi}(\mathbf{k}),
+\end{equation}
+considering that the Fourier transform of the Dirac delta function (a ``generalized function'' or distribution) is given by
+\begin{equation}
+    \delta^3(\mathbf{x}) = \int \frac{d^3 k}{(2\pi)^3} e^{i \mathbf{k} \cdot \mathbf{x}},
+\end{equation}
+one finds
+\begin{equation}
+    \tilde{\phi}(\mathbf{k}) = \frac{g}{\mathbf{k}^2 + m^2}.
+\end{equation}
+
+A direct calculation in spherical coordinates, using Cauchy's residue theorem, gives
+\begin{equation}
+    \phi(\mathbf{x}) = -\frac{g}{(2\pi)^2 r} \int_0^\infty dk \frac{k \sin(kr)}{k^2 + m^2} = \frac{g}{4\pi} \frac{e^{-mr}}{r},
+\end{equation}
+where $r = |\mathbf{x}|$. It can be shown that it gives rise to an attractive potential for charges of the same sign. It has a range $\lambda \sim \frac{1}{m}$ corresponding to the Compton wavelength of a particle of mass $m$. Thus, it is used to model short-range forces, such as the nuclear forces.
+
+A graphical way that describes the interaction between two charges $g_1$ and $g_2$ mediated by the KG field (giving rise to the Yukawa potential) is given by the following ``Feynman diagram''
+
+\begin{center}
+    \begin{tikzpicture}
+        \draw[thick] (-2,0) -- (0,0);
+        \draw[thick] (0,0) -- (2,0);
+        \draw[dashed, thick] (0,0) -- (0,-2);
+        \node at (-2.2,0) {$g_1$};
+        \node at (2.2,0) {$g_2$};
+        \node at (0,-2.2) {$\phi$};
+    \end{tikzpicture}
+\end{center}
+
+interpreted as an exchange of a virtual KG quantum between the worldlines of two scalar particles of charge $g_1$ and $g_2$. It can be shown that this diagram produces the following interaction potential between the particles
+\begin{equation}
+    V(r) = -\frac{g_1 g_2}{4\pi} \frac{e^{-mr}}{r},
+\end{equation}
+which is attractive for charges of the same sign. It is a potential for short-range forces, with a characteristic radius $R \sim \frac{1}{m}$. In 1935, Yukawa introduced a similar KG scalar particle, called meson, to describe the nuclear forces. Estimating a radius $R \sim 1$ fm, i.e., about the radius of the proton, one finds a mass $m \sim 197$ MeV. The meson $\pi^0$ (the pion, later discovered by studying cosmic ray interactions) has indeed a mass of this order of magnitude, $m_{\pi^0} \sim 135$ MeV.
+
+\subsection{Green functions and the propagator}
+
+The Green functions of the KG equation are relevant for a quantum interpretation of the KG field (we refrain from calling it the KG wave function, as the probabilistic interpretation is untenable). A particular Green function $G(x - y)$ is associated with the so-called propagator, which is interpreted as the amplitude for propagating a quantum of the field from a spacetime point $y$ to another point $x$. The Green function $G(x)$ is defined as the solution of the KG equation in the presence of a pointlike and instantaneous source of unit charge, which, for simplicity, is located at the origin of the coordinate system ($y = 0$). Mathematically, it is defined to satisfy the equation
+\begin{equation}
+    (-\Box + m^2) G(x) = \delta^4(x).
+\end{equation}
+
+Knowing the Green function $G(x)$, one can represent a solution of the non-homogeneous KG equation
+\begin{equation}
+    (-\Box + m^2) \phi(x) = J(x),
+\end{equation}
+where $J(x)$ is an arbitrary function (a source), by
+\begin{equation}
+    \phi(x) = \phi_0(x) + \int d^4 y \, G(x - y) J(y),
+\end{equation}
+with $\phi_0(x)$ a solution of the associated homogeneous equation. This statement is verified inserting (38) in (37), and using the property (36).
+
+In general, the Green function is not unique for hyperbolic differential equations, but it depends on the boundary conditions chosen at infinity. In the correct quantum interpretation, the causal conditions devised by Feynman and Stueckelberg are used. They allow us to interpret the negative energy solutions as related to antiparticles. These boundary conditions require to propagate forward in time the positive frequencies generated by the source $J(x)$, and back in time the remaining negative frequencies. In a Fourier transform, the solution is written as
+\begin{equation}
+    G(x) = \int \frac{d^4 p}{(2\pi)^4} \frac{e^{i p \cdot x}}{p^2 + m^2 - i\epsilon},
+\end{equation}
+where $\epsilon \rightarrow 0^+$ is a positive infinitesimal parameter that implements the boundary conditions stated above (the Feynman-Stueckelberg causal prescriptions). In a particle interpretation, the Green function describes the propagation of ``real particles'' as well as the effects of ``virtual particles'', all identified with the quanta of the scalar field.

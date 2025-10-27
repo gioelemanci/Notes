@@ -508,14 +508,14 @@ From this, we can compute the thermodynamic quantities:
 \paragraph{Zero temperature limit ($T \to 0$, $\beta \to \infty$):}
 At very low temperatures, $\beta \mu H \gg 1$, we have $\coth(\beta \mu H) \to 1$, so
 \[
-    E(T \to 0) \simeq -\mu H + 0 = -\mu H, \quad E(T\to 0) \simeq - N \mu H.
+    E(T \to 0) \simeq -N\mu H + 0 = -N \mu H.
 \]
 This corresponds to all spins perfectly aligned with the external field, i.e., the system is in its \textbf{ground state} with minimal energy.
 
 \paragraph{High temperature limit ($T \to \infty$, $\beta \to 0$):}
 For $\beta \mu H \ll 1$, we expand $\coth(\beta \mu H) \simeq \frac{1}{\beta \mu H} + \frac{\beta \mu H}{3} + \dots$\footnote{The Taylor expansion of the hyperbolic cotangent around $x=0$ is \(\coth(x) = \frac{1}{x} \left(1 + \frac{x^2}{3} \right) + \mathcal{O}(x^2)\).}, giving
 \[
-    E(T \to \infty) \simeq - \mu H \left( \frac{1}{\beta \mu H} \right) + \frac{1}{\beta} = 0, \quad E(T \to \infty) \simeq 0.
+    E(T \to \infty) \simeq - N \mu H \left( \frac{1}{\beta \mu H} + \frac{\beta \mu H}{3} - \frac{1}{\beta \mu H} \right) = 0.
 \]
 In this limit, thermal fluctuations dominate and the spins are \textbf{randomly oriented}, leading to a vanishing average magnetic energy.
 
@@ -585,68 +585,54 @@ The number of nearest neighbours of each lattice site defines the \textbf{coordi
 
 \begin{figure}[H]
     \centering
-    % === Prima riga ===
-    \begin{minipage}[t]{0.55\textwidth}
-        \centering
-        % 1D lattice
-        \begin{tikzpicture}[scale=0.5]
-            \foreach \x in {0,...,6} {
-                    \fill[gray] (\x,0) circle (2pt);
+    \begin{tikzpicture}[scale=0.5, every node/.style={inner sep=1pt}]
+        % === 1D lattice ===
+        \begin{scope}[xshift=0cm]
+            \foreach \x in {1,...,5} {
+                    \fill[gray!70] (\x,2) circle (2pt);
                 }
-            \fill[red] (3,0) circle (2pt);
-            \fill[blue] (2,0) circle (2pt);
-            \fill[blue] (4,0) circle (2pt);
+            \fill[red] (3,2) circle (2.2pt);
+            \fill[blue] (2,2) circle (2.2pt);
+            \fill[blue] (4,2) circle (2.2pt);
+        \end{scope}
 
-        \end{tikzpicture}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.4\textwidth}
-        In a \(1D\)-lattice the considered atom has only two nearest neighbour, giving a coordination number of \(z=2\).
-    \end{minipage}
-    \vfill
-    \begin{minipage}[t]{0.55\textwidth}
-        \centering
-        % 2D square lattice
-        \begin{tikzpicture}[scale=0.5]
+        % === 2D square lattice ===
+        \begin{scope}[xshift=7.5cm]
             \foreach \x in {0,...,4} {
                     \foreach \y in {0,...,4} {
-                            \fill[gray] (\x,\y) circle (2pt);
+                            \fill[gray!70] (\x,\y) circle (2pt);
                         }
                 }
-            \fill[red] (2,2) circle (2pt);
-            \fill[blue] (2,1) circle (2pt);
-            \fill[blue] (2,3) circle (2pt);
-            \fill[blue] (1,2) circle (2pt);
-            \fill[blue] (3,2) circle (2pt);
-        \end{tikzpicture}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.4\textwidth}
-        In a \(2D\) square lattice the considered atom has four nearest neighbour, giving a coordination number of \(z=4\).
-    \end{minipage}
-    \vfill
-    \begin{minipage}[t]{0.55\textwidth}
-        \centering
-        % 2D triangular lattice  
-        \begin{tikzpicture}[scale=0.5]
+            \fill[red] (2,2) circle (2.2pt);
+            \fill[blue] (2,1) circle (2.2pt);
+            \fill[blue] (2,3) circle (2.2pt);
+            \fill[blue] (1,2) circle (2.2pt);
+            \fill[blue] (3,2) circle (2.2pt);
+        \end{scope}
+
+        % === 2D triangular lattice ===
+        \begin{scope}[xshift=15cm]
             \foreach \y in {0,...,4} {
                     \foreach \x in {0,...,4} {
-                            \fill[gray] (\x + 0.5*\y, \y*0.866) circle (2pt);
+                            \fill[gray!70] (\x + 0.5*\y, \y*0.866) circle (2pt);
                         }
                 }
-            \fill[red] (2 + 0.5*2, 2*0.866) circle (2pt);
-            \fill[blue] (2 + 0.5*1, 1*0.866) circle (2pt);  % bottom-left
-            \fill[blue] (3 + 0.5*1, 1*0.866) circle (2pt);  % bottom-right
-            \fill[blue] (1 + 0.5*2, 2*0.866) circle (2pt);  % left
-            \fill[blue] (3 + 0.5*2, 2*0.866) circle (2pt);  % right
-            \fill[blue] (2 + 0.5*3, 3*0.866) circle (2pt);  % top-left  
-            \fill[blue] (1 + 0.5*3, 3*0.866) circle (2pt);  % top-right
-        \end{tikzpicture}
+            \fill[red] (2 + 0.5*2, 2*0.866) circle (2.2pt);
+            \fill[blue] (2 + 0.5*1, 1*0.866) circle (2.2pt);
+            \fill[blue] (3 + 0.5*1, 1*0.866) circle (2.2pt);
+            \fill[blue] (1 + 0.5*2, 2*0.866) circle (2.2pt);
+            \fill[blue] (3 + 0.5*2, 2*0.866) circle (2.2pt);
+            \fill[blue] (2 + 0.5*3, 3*0.866) circle (2.2pt);
+            \fill[blue] (1 + 0.5*3, 3*0.866) circle (2.2pt);
+        \end{scope}
+    \end{tikzpicture}
+    \begin{minipage}[t]{0.8\textwidth}
+        \caption{Comparison of coordination numbers \(z\) for lattices of increasing dimensionality:
+            (a) one-dimensional chain (\(z=2\)),
+            (b) two-dimensional square lattice (\(z=4\)),
+            (c) two-dimensional triangular lattice (\(z=6\)), which has the same coordination number as a simple cubic lattice in \(3D\).}
     \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.4\textwidth}
-        In a \(2D\) triangular lattice the considered atom has six nearest neighbour, giving a coordination number of \(z=6\) (the same as a cubic lattice in \(3D\)).
-    \end{minipage}
+    \label{fig:lattice_comparison}
 \end{figure}
 
 \paragraph{Ferromagnetic and Paramagnetic Couplings.}
