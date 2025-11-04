@@ -1,9 +1,356 @@
 \chapter{Classical Field Theory}
 
+In classical field theory there is a fundamental shift of perspective:
+we move from describing a physical system through a \textit{finite} set of discrete trajectories evolving in time to describing it through a \textit{continuous} entity that takes different values at each point in space and evolves in time — the \textbf{field}.
+This transition reflects the passage from a mechanics of point-like objects to a mechanics of distributed quantities, where energy, momentum, or charge may be continuously spread over space.
+
+\begin{itemize}
+    \item \textbf{Classical particle mechanics}
+
+          In classical mechanics, the state of a system with \(N\) particles is determined by its \textit{generalized coordinates}
+          \[
+              q_i(t),
+          \]
+          together with their time derivatives \(\dot{q}_i(t)\).
+          Each coordinate \(q_i\) specifies the position (or a suitable generalized coordinate) of the \(i\)-th degree of freedom at a given time \(t\).
+          The system therefore possesses a \textit{finite} number of degrees of freedom, labelled by
+          \[
+              i = 1, \dots, N.
+          \]
+          The evolution of the system is then described by a set of ordinary differential equations in time — typically the Euler–Lagrange equations derived from a Lagrangian \(L(q_i, \dot{q}_i, t)\).
+
+    \item \textbf{Classical field theory}
+
+          In classical field theory, the basic object is a \textit{field}
+          \[
+              \psi_i(t, \mathbf{x}),
+          \]
+          which assigns a value (scalar, vector, or tensor) to each point in space and time.
+          The field contains an \textit{infinite} number of degrees of freedom: the discrete index \(i = 1, \dots, N\) labels internal components (for example, the components of the electromagnetic or spinor field), while the continuous variable \(\mathbf{x}\) plays the role of a label identifying each point in space.
+          The dynamics are now governed by \textit{partial differential equations} derived from a Lagrangian density \(\mathcal{L}(\psi_i, \partial_\mu \psi_i, x^\mu)\), which generalizes the Lagrangian of particle mechanics.
+\end{itemize}
+
+In this framework, the notion of a particle \textit{trajectory} loses its meaning.
+There is no single path to follow: the field as a whole evolves, deforming continuously in space and time.
+What acquires physical significance is therefore not the position of an individual object, but the \textit{configuration of the field} — the collective state of the system at each instant.
+Classical field theory thus provides the natural language for describing systems where locality, continuity, and symmetry play a fundamental role, setting the conceptual foundation upon which modern relativistic and quantum field theories are built.
+
 \section{Action and Lagrangian Density}
+
+In classical field theory, the dynamics of a field \(\psi_i(t, \mathbf{x}) = \psi(x)\)\footnote{We will use the compact 4-vector notation \(x^\mu = (t, \mathbf{x})\).} are encoded in the \textbf{Lagrangian density} \(\mathcal{L}\), which is a functional of the fields, their first derivatives, and possibly the spacetime coordinates:
+\[
+    \mathcal{L} = \mathcal{L}(\psi_i, \partial_\mu \psi_i,  x^\mu),
+\]
+where \(\partial_\mu \psi_i = \frac{\partial \psi_i}{\partial x^\mu}\) denotes the spacetime derivative of the field.
+In this formulation, the Lagrangian density depends only on \textit{first derivatives} of the fields — analogously to classical particle mechanics, where the Lagrangian depends on positions and velocities but not on accelerations.
+Allowing higher-order derivatives would, in general, lead to fourth-order equations of motion and to instabilities (known as Ostrogradsky instabilities), hence such terms are typically excluded from physically meaningful theories.
+
+The \textbf{action} \(S\) is then defined as the spacetime integral of the Lagrangian density:
+\[
+    S[\psi_i] = \int \mathrm{d}^4 x \, \mathcal{L}(\psi_i, \partial_\mu \psi_i, x^\mu),
+\]
+where \( \mathrm{d}^4 x = \mathrm{d}t \, \mathrm{d}^3\mathbf{x} \) in Minkowski spacetime.
+The action is a scalar quantity under Lorentz transformations and encapsulates the full dynamics of the system.
+The physical evolution of the fields will be determined by the principle of stationary action, discussed later on.
+
+\subsection{Units and Dimensional Analysis}
+
+It is often useful to analyze the Lagrangian density in terms of \textbf{mass dimensions}, especially when comparing different interaction terms.
+Working in natural units, where \(\hbar = c = 1\), the action is dimensionless:
+\[
+    [S] = 0.
+\]
+Since the differential measure in \(3+1\) dimensions has dimension
+\[
+    [\mathrm{d}^4 x] = [L^4] = [M^{-4}] \coloneqq -4,
+\]
+the Lagrangian density must have mass dimension
+\[
+    [\mathcal{L}] = [M^4] = 4.
+\]
+This fact constrains the allowed forms of the Lagrangian and determines the mass dimensions of fields and coupling constants.
+
+\paragraph{Example: Klein--Gordon Field.}
+Consider the free scalar field described by the Klein–Gordon Lagrangian:
+\[
+    \mathcal{L} = \frac{1}{2}\, \partial_\mu \psi \, \partial^{\mu} \psi - \frac{1}{2} m^2 \psi^2.
+\]
+Each term in \(\mathcal{L}\) must have the same mass dimension, \( [\mathcal{L}] = 4 \).
+Since derivatives have dimension \([\partial_\mu] = 1\), we can deduce the dimension of the scalar field:
+\[
+    4 = [\mathcal{L}] = 2[\partial_\mu] + 2[\psi] = 2 + 2[\psi] \quad \Rightarrow \quad [\psi] = 1.
+\]
+\paragraph{Interaction Terms and Couplings.}
+If we extend the Lagrangian by including interaction terms,
+\[
+    \mathcal{L}' = \mathcal{L} + g\, \psi^3 - \lambda\, \psi^4,
+\]
+then the requirement \([\mathcal{L}'] = 4\) implies:
+\[
+    [g] = 4 - 3[\psi] = 1, \qquad [\lambda] = 4 - 4[\psi] = 0.
+\]
+Couplings with positive or zero mass dimension (\( [g] \ge 0 \)) correspond to \textbf{renormalizable} interactions, whereas those with negative mass dimension would lead to non-renormalizable theories, whose predictive power breaks down at high energies.
+
+In summary, dimensional analysis plays a crucial role in identifying which interaction terms yield consistent and physically meaningful field theories.
+Renormalizable theories — those with interaction terms up to fourth order in the fields in \(3+1\) dimensions — are the backbone of modern particle physics, while higher-order terms typically appear as effective corrections suppressed by powers of a large mass scale.
+
+\subsection{The Variational Principle}
+
+The evolution of a classical field is determined by the \textbf{principle of stationary action} (or \textbf{principle of least action}).
+According to this principle, the physical configuration of the field \(\psi_i(x)\) is the one that makes the action \(S[\psi_i]\) stationary under small variations \(\delta \psi_i(x)\) that vanish at the boundaries:
+\[
+    \delta S = 0.
+\]
+In other words, among all possible field configurations that interpolate between two fixed states at times \(t_1\) and \(t_2\), the physical field follows the path in configuration space that extremizes the action functional. This generalizes the least-action principle of classical mechanics to systems with infinitely many degrees of freedom.
+
+Starting from the definition of the action,
+\[
+    S[\psi_i] = \int \mathrm{d}^4x \, \mathcal{L}(\psi_i, \partial_\mu \psi_i, x^\mu),
+\]
+we consider an infinitesimal variation of the fields:
+\[
+    \psi_i(x) \longrightarrow \psi_i(x) + \delta \psi_i(x),
+\]
+with \(\delta \psi_i(x)\) assumed to vanish at the spacetime boundaries:
+\[
+    \delta \psi_i(t_1, \mathbf{x}) = \delta \psi_i(t_2, \mathbf{x}) = 0, \qquad \delta \psi_i(x) \to 0 \ \text{as} \ |x| \to \infty.
+\]
+These boundary conditions express the physical idea that there is no relevant dynamics infinitely far away in space or time — equivalently, that the field configuration is fixed at the initial and final times.
+
+The variation of the action then reads:
+\[
+    \delta S = \int \mathrm{d}^4x \,
+    \left[
+        \frac{\partial \mathcal{L}}{\partial \psi_i} \, \delta \psi_i
+        + \frac{\partial \mathcal{L}}{\partial (\partial_\mu \psi_i)} \, \delta(\partial_\mu \psi_i)
+        \right].
+\]
+Since the variation and the derivative commute, we can rewrite:
+\[
+    \delta(\partial_\mu \psi_i) = \partial_\mu (\delta \psi_i),
+\]
+so that
+\[
+    \delta S = \int \mathrm{d}^4x \,
+    \left[
+        \frac{\partial \mathcal{L}}{\partial \psi_i} \, \delta \psi_i
+        + \frac{\partial \mathcal{L}}{\partial (\partial_\mu \psi_i)} \, \partial_\mu (\delta \psi_i)
+        \right].
+\]
+
+To isolate the variation \(\delta \psi_i\), we integrate the second term by parts using the product rule:
+\[
+    \frac{\partial \mathcal{L}}{\partial (\partial_\mu \psi_i)} \, \partial_\mu (\delta \psi_i)
+    = \partial_\mu \!\left( \frac{\partial \mathcal{L}}{\partial (\partial_\mu \psi_i)} \, \delta \psi_i \right)
+    - \partial_\mu \!\left( \frac{\partial \mathcal{L}}{\partial (\partial_\mu \psi_i)} \right) \delta \psi_i.
+\]
+The first term is a total divergence and can be converted, via Gauss's theorem, into a surface integral over the boundary \(\partial \mathcal{R}\) of the integration region \(\mathcal{R}\) (the region where \(\mathbf{x} \in ]-\infty,\,\infty[,\, t \in [t_1,\,t_2]\)):
+\[
+    \int_{\mathcal{R}} \mathrm{d}^4x \, \partial_\mu A^\mu
+    = \oint_{\partial \mathcal{R}} \mathrm{d}\sigma_\mu \, A^\mu,
+    \qquad
+    A^\mu = \frac{\partial \mathcal{L}}{\partial (\partial_\mu \psi_i)} \, \delta \psi_i.
+\]
+Because the variations \(\delta \psi_i\) vanish at the boundary, this surface term gives no contribution.
+Therefore, the variation of the action reduces to:
+\[
+    \delta S = \int \mathrm{d}^4x \,
+    \left[
+        \frac{\partial \mathcal{L}}{\partial \psi_i}
+        - \partial_\mu \!\left( \frac{\partial \mathcal{L}}{\partial (\partial_\mu \psi_i)} \right)
+        \right]
+    \delta \psi_i.
+\]
+
+Since the variations \(\delta \psi_i\) are arbitrary within the integration region, the only way for \(\delta S\) to vanish is for the quantity in brackets to be zero everywhere.
+This yields the \textbf{Euler--Lagrange equations for fields}:
+\begin{equation}
+    \boxed{
+        \partial_\mu \left( \frac{\partial \mathcal{L}}{\partial (\partial_\mu \psi_i)} \right)
+        - \frac{\partial \mathcal{L}}{\partial \psi_i} = 0.
+    }
+    \label{eq:euler_lagrange_fields}
+\end{equation}
+
+These are the fundamental \textbf{equations of motion} of classical field theory.
+They generalize the Euler--Lagrange equations of particle mechanics to continuous systems with infinitely many degrees of freedom, describing the local evolution of the field at every point in spacetime. The beauty of this formulation lies in its compactness: all of the dynamics — from wave equations to Maxwell’s equations and beyond — can be derived from a single scalar quantity, the action.
+
+\paragraph{Hamiltonian formalism.}
+While the Lagrangian framework is sufficient to formulate the \textit{Path Integral quantization scheme}, the \textit{Hamiltonian formalism} is required in order to impose \textbf{canonical commutation relations} among fields and their conjugate momenta.
+
+We begin by defining the \textbf{momentum density} \(\pi^i(x)\) conjugate to the field \(\psi^i(x)\):
+\[
+    \pi^i(x) = \frac{\partial \mathcal{L}}{\partial \dot{\psi}_i(x)}.
+\]
+\QUESTION{What does dot psi represent here? Temporal partial derivative or total?}The Hamiltonian is then obtained through a \textit{Legendre transformation} of the Lagrangian density:
+\[
+    H = \int \mathrm{d}^3 x\, \mathcal{H},
+    \qquad
+    \mathcal{H} = \pi^i\dot{\psi}_i - \mathcal{L},
+\]
+where the time derivatives \(\dot{\psi}_i(x)\) are expressed in terms of the conjugate momenta \(\pi^i(x)\).
+
+The goal of this construction is to recast the dynamics in terms of canonical variables \((\psi^i, \pi^i)\), so that the classical Poisson brackets can later be promoted to \textbf{quantum commutation relations}. In this framework, fields become operators acting on the Fock space that defines the quantum states of the theory.
 
 \section{Noether's Theorem}
 
-\section{Example: Energy Momentum Tensor}
+Symmetries play a central role in the formulation of physical theories: they represent the transformations that leave the form of the equations of motion—or equivalently, the action—unchanged.
+In both Lagrangian mechanics and field theory, the existence of a continuous symmetry implies the conservation of a physical quantity, a deep correspondence established by \textbf{Noether's theorem}.
 
-\section{Example: Electrodynamics}
+To clarify the different kinds of symmetries that may appear in a physical system, it is useful to distinguish between those acting on the \textit{spacetime coordinates} and those acting on the \textit{dynamical variables} of the field.
+
+\begin{table}[H]
+    \centering
+    \footnotesize
+    \begin{tabular}{lllll}
+        \toprule
+        \textbf{Category} & \textbf{Type}        & \textbf{Nature} & \textbf{Character} & \textbf{Examples}                                                              \\
+        \midrule
+        \multirow{5}{*}{\textbf{Spacetime}}
+                          & Translational        & Global          & Continuous         & \(x^\mu \to x^\mu + a^\mu\)                                                    \\[2pt]
+                          & Lorentz              & Global          & Continuous         & Rotations and boosts, \(\Lambda^\mu{}_\nu\)                                    \\[2pt]
+                          & Poincaré             & Global          & Continuous         & Translations + Lorentz transformations                                         \\[2pt]
+                          & General coordinate   & Local           & Continuous         & \(x^\mu \to x^{\prime\mu}(x)\) (curved spacetime invariance)                   \\[2pt]
+                          & Discrete (C, P, T)   & Global          & Discrete           & \(P: \mathbf{x}\!\to\!-\mathbf{x}, \; T: t\!\to\!-t, \; C: \psi\!\to\!\psi^c\) \\[2pt]
+                          & Discrete \(P(x)\)    & Local           & Discrete           & \(P(x): \mathbf{x}\!\to\!-\mathbf{x}\)                                         \\[2pt]
+                          & Supersymmetry (SUSY) & Global          & Continuous         & \(Q_\alpha, \bar{Q}_{\dot{\alpha}}\): mix bosons and fermions                  \\[2pt]
+        \midrule
+        \multirow{6}{*}{\textbf{Internal}}
+                          & Phase symmetry       & Global          & Continuous         & \(U(1)_F: \psi \to e^{i\alpha}\psi\) (fermion number)                          \\[2pt]
+                          & Flavor symmetry      & Global          & Continuous         & \(U(1)_F,\; SU(3)_F\): fermion flavor rotations                                \\[2pt]
+                          & Gauge symmetry       & Local           & Continuous         & \(U(1),\, SU(2),\, SU(3)\) (QED, weak, strong)                                 \\[2pt]
+                          & Standard Model       & Local           & Continuous         & \(SU(3)_c \times SU(2)_L \times U(1)_Y\)                                       \\[2pt]
+                          & Discrete internal    & Global          & Discrete           & \(\mathbb{Z}_2,\, \mathbb{Z}_N\) (Ising, parity sectors)                       \\[2pt]
+                          & Local discrete       & Local           & Discrete           & \(\mathbb{Z}_2(x)\): position-dependent sign flip                              \\[2pt]
+        \bottomrule
+    \end{tabular}
+    \caption{Classification of spacetime and internal symmetries in classical and quantum field theory.}
+    \label{tab:symmetries}
+\end{table}
+\begin{remark}
+    Spacetime symmetries act on the coordinates \(x^\mu\) and define the kinematical structure of the theory, while internal symmetries act on field components at fixed spacetime points, relating distinct internal degrees of freedom. Continuous global symmetries give rise to conserved currents via Noether’s theorem, while local symmetries require the introduction of gauge fields to preserve invariance.
+\end{remark}
+
+Such symmetries can be \textbf{continuous}, like rotations or translations, or \textbf{discrete}, such as parity or charge conjugation.
+In the case of continuous transformations, infinitesimal variations of the action lead naturally to conserved quantities, whose explicit form depends on the invariance properties of the Lagrangian density.
+The precise relation between symmetry and conservation law is established by Noether’s theorem.
+
+\paragraph{Symmetries and constraints on the Lagrangian.}
+Requiring that the Lagrangian be invariant under a given symmetry transformation imposes nontrivial constraints on its structure. Invariance means that
+\[
+    \mathcal{L}(\phi, \partial_\mu \phi) = \mathcal{L}(\phi', \partial_\mu \phi'),
+\]
+so only specific combinations of fields and their derivatives are allowed. In other words, symmetries restrict the admissible terms that can appear in the Lagrangian. For instance, a global \(U(1)\) phase invariance forbids terms like \(\phi^2\) but allows \(|\phi|^2\). When the symmetry is promoted from global to local, i.e.\ the transformation parameter becomes space–time dependent, \(\alpha = \alpha(x)\), the original Lagrangian typically loses its invariance. To restore it, one must introduce new compensating fields—gauge fields—whose dynamics and couplings are dictated by the symmetry itself. This mechanism naturally induces interaction terms between matter and gauge fields, such as the electromagnetic coupling \(e \bar{\psi} \gamma^\mu A_\mu \psi\) in Quantum Electrodynamics. Thus, symmetries not only constrain the form of the Lagrangian but also determine the possible interactions among fields.
+
+Let us now formulate Noether's theorem in the context of quantum field theory.
+
+\begin{theorem}[Noether's theorem]
+    Every continuous symmetry of the Lagrangian density \(\mathcal{L}\) gives rise to a \textbf{conserved current} \(J^{\mu}(x)\). The Euler--Lagrange equations of motion imply the local continuity equation:
+    \begin{equation}
+        \partial_\mu J^{\mu} (x) = 0,
+        \label{eq:continuity}
+    \end{equation}
+    or equivalently
+    \[
+        \ddt{J^0} + \nabla \cdot \mathbf{J} = 0,
+    \]
+    which expresses the conservation of a physical quantity associated with the symmetry.
+\end{theorem}
+
+\begin{corollary}[Conserved charge]
+    Given a conserved current \(J^\mu(x)\) satisfying eq.~\eqref{eq:continuity}, one can define the corresponding \textbf{conserved charge}:
+    \begin{equation}
+        Q = \int_{\mathbb{R}^3} \mathrm{d}^3 \mathbf{x}\, J^0(x),
+        \label{eq:Noether_charge}
+    \end{equation}
+    which is constant in time provided the current vanishes sufficiently fast at spatial infinity.
+\end{corollary}
+
+\begin{proof}
+    Taking the time derivative of \(Q\), we have:
+    \[
+        \frac{\mathrm{d}Q}{\mathrm{d}t} = \int_{\mathbb{R}^3} \mathrm{d}^3\mathbf{x}\, \ddt{J^0}
+        = - \int_{\mathbb{R}^3}\mathrm{d}^3\mathbf{x}\, \nabla \cdot \mathbf{J}
+        = - \oint_{\partial \mathbb{R}^3} \mathrm{d}\mathbf{s} \cdot \mathbf{J}.
+    \]
+    If the spatial current \(\mathbf{J}\) vanishes at infinity, the surface term disappears and \(\dot{Q}=0\). Therefore, \(Q\) is conserved in time.
+\end{proof}
+
+This conservation law can also be interpreted as a \textbf{local conservation}: within a finite volume \(V\),
+\[
+    \frac{\mathrm{d}Q_V}{\mathrm{d}t} = \int_{V} \mathrm{d}^3\mathbf{x}\, \ddt{J^0} = - \oint_{\partial V} \mathrm{d}\mathbf{s} \cdot \mathbf{J},
+\]
+meaning that any variation of the charge inside \(V\) is exactly compensated by the flux of \(\mathbf{J}\) across its boundary.
+
+\subsection{Proof of Noether's theorem}
+
+To prove Noether’s theorem, we start by considering a \textit{continuous infinitesimal transformation} of the field variables:
+\begin{equation}
+    \psi_i \to \psi_i' = \psi_i + \delta \psi_i,
+    \label{eq:infinitesimal_transformation}
+\end{equation}
+where \(\delta \psi_i\) is assumed to be infinitesimally small.
+Under this transformation, the Lagrangian density changes as
+\[
+    \mathcal{L} \to \mathcal{L}' = \mathcal{L} + \delta \mathcal{L}.
+\]
+If the theory is invariant under the transformation, the variation of the Lagrangian must be expressible as the \textit{total derivative} of a four-vector function \(K^{\mu}(\psi_i)\):
+\[
+    \delta \mathcal{L} = \partial_{\mu} K^{\mu}(\psi_i),
+\]
+so that the corresponding action
+\[
+    S = \int \mathrm{d}^4 x\, \mathcal{L}
+\]
+remains unchanged:
+\[
+    S' = S + \int \mathrm{d}^4x\, \delta \mathcal{L} = S + \int \mathrm{d}^4x\, \partial_\mu K^\mu(\psi_i) = S,
+\]
+since the surface term vanishes at infinity.
+This expresses the physical requirement that \(\mathcal{L}\) and \(\mathcal{L}'\) describe the same dynamics.
+
+Now, let us compute the variation of the Lagrangian explicitly. Using the chain rule, we have
+\[
+    \begin{aligned}
+        \delta \mathcal{L}
+         & = \frac{\partial \mathcal{L}}{\partial \psi_i} \, \delta \psi_i
+        + \frac{\partial \mathcal{L}}{\partial (\partial_\mu \psi_i)} \, \delta (\partial_\mu \psi_i)             \\
+         & = \frac{\partial \mathcal{L}}{\partial \psi_i} \, \delta \psi_i
+        + \partial_\mu \!\left( \frac{\partial \mathcal{L}}{\partial (\partial_\mu \psi_i)} \, \delta \psi_i \right)
+        - \partial_\mu \!\left( \frac{\partial \mathcal{L}}{\partial (\partial_\mu \psi_i)} \right) \delta \psi_i \\
+         & = \delta \psi_i \left[ \frac{\partial \mathcal{L}}{\partial \psi_i}
+            - \partial_\mu \!\left( \frac{\partial \mathcal{L}}{\partial (\partial_\mu \psi_i)} \right) \right]
+        + \partial_\mu \!\left( \frac{\partial \mathcal{L}}{\partial (\partial_\mu \psi_i)} \, \delta \psi_i \right).
+    \end{aligned}
+\]
+In the second line we used the product rule for derivatives, and in the third we isolated a total divergence term.
+By the Euler–Lagrange equations for fields,
+\[
+    \frac{\partial \mathcal{L}}{\partial \psi_i}
+    - \partial_\mu \!\left( \frac{\partial \mathcal{L}}{\partial (\partial_\mu \psi_i)} \right) = 0,
+\]
+the first term in brackets vanishes, leaving
+\[
+    \delta \mathcal{L} = \partial_\mu \!\left( \frac{\partial \mathcal{L}}{\partial (\partial_\mu \psi_i)} \, \delta \psi_i \right)
+    = \partial_\mu K^\mu(\psi_i).
+\]
+
+Since both expressions for \(\delta \mathcal{L}\) represent total divergences, we can equate them and obtain
+\[
+    \partial_\mu \!\left( \frac{\partial \mathcal{L}}{\partial (\partial_\mu \psi_i)} \, \delta \psi_i - K^\mu(\psi_i) \right) = 0.
+\]
+Thus, the quantity inside the parentheses defines a \textbf{conserved current}:
+\[
+    J^{\mu} = \frac{\partial \mathcal{L}}{\partial (\partial_\mu \psi_i)} \, \delta \psi_i - K^{\mu}(\psi_i),
+\]
+which satisfies \(\partial_\mu J^{\mu} = 0\).
+
+Finally, for strictly invariant Lagrangians (\(\delta \mathcal{L} = 0\)), the term \(K^{\mu}\) vanishes identically, yielding the general expression for the conserved current:
+\begin{equation}
+    J^{\mu} = \frac{\partial \mathcal{L}}{\partial (\partial_\mu \psi_i)} \, \delta \psi_i.
+    \label{eq:Noether_current}
+\end{equation}
+
+\begin{remark}
+    The essential mathematical step of Noether’s theorem is recognizing that a continuous symmetry corresponds to an infinitesimal field transformation under which the Lagrangian changes by a total derivative. This guarantees the existence of a four-vector \(J^\mu\) whose divergence vanishes identically, establishing a one-to-one correspondence between continuous symmetries and conserved quantities.
+\end{remark}
