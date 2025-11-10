@@ -9,3 +9,116 @@
 \subsubsection{Electromagnetic Coupling}
 
 \paragraph{Gyromagnetic factor.}
+
+\subsection{Angular Momentum and Spin}
+
+\subsection{Idrogen Atom and Dirac Equation}
+
+\subsection{Properties of Gamma Matrices}
+
+\subsection{Covariance Formulation}
+
+[...]
+
+Let's take the exponential form of \(\Lambda\) and \(S(\Lambda)\) matrices and compute an infinitesimal transformation and verify that such matrices exist\dots
+This is a representation of Lorentz' transformations
+
+
+
+\begin{example}[Rotation around axis]\TODO{put title}
+    Transformations with \(\omega_{12} = -\omega_{21} = \psi\) \dots
+    \[
+        pdf,
+    \]
+    the result pf exponentiating the matrix of lee parameters is the rotation matrix (even and odd powers if the central diagonal block of \(\omega^{\mu}_\nu\)). So we are looking at rotations around \(\hat{z}\). Let's find an expression for \(S(\Lambda)\): looking at the exponential definition with gamma matrices
+    \[
+        S(\Lambda)=\exp{\frac{1}{4}\omega_{12}\gamma^1 \gamma^2 + \frac{1}{4}\omega_{21}\gamma^2 \gamma^1} = \dots
+    \]
+    where we used the Dirac representation of the gamma matrices.
+
+    The transformation is immediately recognized to be unitary, \(S^{\dagger} (\Lambda) = S^{-1}(\Lambda)\). It is also clear that it is a spinorial transformation\footnote{The \(\omega\) matrices were a four vector representation, here we are acting on a spinor.}, which is \textbf{double valued}: the rotation with \(\psi=2\pi\) (that coincides with the identity on vectors) is represented by  on the spinors. It is necessary to make a rotation of \(4\pi\) to get back the identity. We should have a double cover of our \(\mathrm{SO}(3)\) representation.
+
+    The rotation of an angle \(\phi\) around a generic axis \(\hat{\mathbf{n}}\) is represented by
+    \[
+        S = \exp{i \frac{\phi}{2} \hat{\mathbf{n}} \cdot \bs{\sigma}}\dots
+    \]
+\end{example}
+
+\begin{example}[Boost along axis]
+    \(\omega_{0i} = - \omega_{i0} = \eta\), so
+    \[
+        pdf
+    \]
+    Almost as before but now space and time are mixing, it's like a rotation of an imaginary angle (rotating in the first diagonal block of \( \omega\)). There is not anymore the alternating signs in the expansion, but we recognize the expansion of the hyperbolic functions \(\cosh\) and \(\sinh\):
+    \[
+        pdf
+    \]
+    If we call \(\eta\) the \textit{rapidity}, it is additive for boosts along the same direction, while velocities are added in a more complicated way. For a spinor rpresentation we have to find \(S(\Lambda)\):
+    \[
+        pdf
+    \]
+    in the expansion even powers give the identity, while odd ones gives \(\alpha^1\). Note that this transformation is not unitary, but satisfies \(S^{\dagger} (\Lambda) = S(\Lambda)\): \(\alpha^1\) is hermitian and computing we find the whole representation to be hermitian.
+\end{example}
+
+\paragraph{Plane Waves.}
+We want to construct the plane wave solution wiuth the spinorial representation. The previous boost transformation can be written and generalized as follows to find the general plane wave solutions of the Dirac equation.
+\[
+    paper1
+\]
+Using hyperbolic trigonometric identities, and considering \((E, \mathbf{p})= (m\gamma, m \bs{\beta} \gamma)\), obtained from the rest frame value \((m, \bs{0})\), one finds
+\[
+    pdf
+\]
+and if we plug them in the previous expression for the Lorentz boost transf repr we find:
+\[
+    pdf
+\]
+then generalize to a boost in an arbitrary direction \(\frac{\mathbf{v}}{\vert \mathbf{v} \vert }\)  by substituting \(\alpha^1\) with \(\frac{\bs{\alpha}^1\cdot \mathbf{v}}{\vert \mathbf{v} \vert } = \frac{\bs{\alpha}\cdot\bs{\beta}}{\vert \bs{\beta}\vert}\), and finally change the direction of the boost \(\eta \to -\eta\)  so that by acting on a spinor at rest we get the spinor moving with velocity \(\mathbf{v}\) (and momentum \(\mathbf{p}\)). The final transformation takes the form
+\[
+    pdf
+\]
+and applied to the spinors (85) and (86) produce the general plane wave solutions of the Dirac equation. We obtain the positive energy solutions (the columns of the matrix \(S(\Lambda)\) times the plane wave). [pdf...]
+
+\paragraph{Pseudo-Unitarity.}
+The spinorial representation in (151) is not unitary, \(S^{\dagger}(\Lambda) \neq S^{-1}(\Lambda)\), as seen on the Lorentz boost. This is understandable in the light of a theorem according to which unitary irreducible representations of compact groups are finite-dimensional, while those of non-compact groups are infinite-dimensional. Lorentz’s group is non-compact because of the boosts. However, the spinorial representations are pseudo-unitary in the sense that
+\[
+    S^{\dagger}(\Lambda) = \beta S^{-1}(\Lambda)\beta
+\]
+Computations.... (pdf and sofi)
+
+\paragraph{Fermionic Bilinears.}
+We start from the Dirac spinor and we want to find the \textbf{Dirac conjugate} of the spinor:
+\[
+    \bar{\psi} (x) = \psi^{\dagger}(x) \beta,
+\]
+which transforms as
+\[
+    \bar{\psi}(x) \to \bar{\psi^{\prime}}(x^{\prime}) = S^{-1}(\Lambda)\bar{\psi}(x).
+\]
+Let's show this result:
+\[
+    pdf
+\]
+By looking at the transformation rules, one can notice that the bilinear \( \bar{\psi}(x) \psi(x)\) form a scalar:
+\[
+    \bar{\psi}(x) \psi(x) \to \bar{\psi^{\prime} }(x^{\prime} ) \psi^{\prime} (x^{\prime} ) = \bar{\psi}(x) S(\Lambda) S^{-1}(\Lambda) \psi(x) = \bar{\psi}(x) \psi(x).
+\]
+If we take \(\psi^{\dagger}\psi\) it's not a scalar, but it's the time component of the four vector which appeared in the continuity equation
+The quantity \(\psi^{\dagger}\psi\) instead is not a scalar but identifies the time component of the four-vector \(J^{\mu} = ...\)  which is the current that appears in the continuity equation (79). It is written in a manifestly covariant form as
+\[
+    J^{\mu} = i \bar{\psi} \gamma^{\mu} \psi
+\]
+transformation law [pdf]
+The quantities \(\bar{\psi}\psi\) and \(\bar{\psi} \gamma^{\mu} \psi\) are examples of fermionic bilinears, quantities that furnish useful expressions for describing the physical properties of the spin 1/2 relativistic particle. Quite generally, using the basis of the spinor space \(\Gamma^A = (\mathbb{I},\,\gamma^{\mu},\, \Sigma^{\mu \nu},\, \gamma^{\mu} \gamma^5,\, \gamma^5)\), one may define fermionic bilinears of the form
+\[
+    \bar{\psi} \Gamma^A \psi
+\]
+which transform as scalar, vector, antisymmetric tensor of rank 2, pseudovector, and pseu-doscalar, respectively. We have already discussed the first two cases. For the pseudoscalar (neglecting for notational simplicity the dependence on the spacetime point), we find
+\[
+    pdf
+\]
+that indeed we recognize to be a scalar under proper and orthochronous Lorentz transformations (the adjective “pseudo” refers to a different behavior under spatial reflection, i.e., under a parity transformation). As the last example, we consider the antisymmetric tensor
+\[
+    pdf
+\]
+where we have used...
