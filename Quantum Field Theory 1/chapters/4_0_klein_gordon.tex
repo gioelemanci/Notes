@@ -1,8 +1,164 @@
 \chapter{Klein Gordon Theory}
 
-\section{KG Field as Harmonic Oscillators}
+We have now developed the Hamiltonian formulation of \textbf{Classical Field Theory}, where the dynamical degrees of freedom are represented by the fields \(\phi_a(\mathbf{x}, t)\) and their conjugate momenta \(\pi_a(\mathbf{x}, t)\), which satisfy canonical Poisson brackets.
+The next step is to promote this classical description to a \textbf{Quantum Field Theory (QFT)}, in which fields become operators acting on a Hilbert space, and classical observables become non-commuting operators.
+
+\paragraph{From Classical Mechanics to Quantum Mechanics.}
+The passage from classical to quantum mechanics provides a useful template.
+In \textbf{Classical Mechanics (CM)}, a system with \(n\) degrees of freedom is described by canonical variables \((q_i, p_i)\), whose dynamics is determined by Hamilton’s equations:
+\[
+    \dot{q}_i = \frac{\partial H}{\partial p_i}, \qquad
+    \dot{p}_i = -\frac{\partial H}{\partial q_i},
+\]
+and whose Poisson brackets encode the symplectic structure:
+\[
+    \{ q_i, p_j \} = \delta_{ij}.
+\]
+
+In \textbf{Quantum Mechanics (QM)}, the canonical variables are promoted to Hermitian operators \((\hat{q}_i, \hat{p}_i)\) on a Hilbert space, with the replacement
+\[
+    \{ \cdot, \cdot \} \;\longrightarrow\; \frac{1}{i\hbar} [\cdot, \cdot],
+\]
+leading to the canonical commutation relations
+\[
+    [\hat{q}_i, \hat{p}_j] = i\hbar \, \delta_{ij}.
+\]
+Observables evolve according to the Heisenberg equation
+\[
+    i\hbar \frac{d\hat{A}}{dt} = [\hat{A}, \hat{H}].
+\]
+
+\paragraph{From Classical Field Theory to Quantum Field Theory.}
+The same canonical quantization idea extends to continuous systems.
+Here we adopt the \textbf{Schr\"odinger picture}, in which operators are constant in time while states evolve.
+
+In Classical Field Theory, the generalized coordinates are fields \(\phi_a(\mathbf{x}, t)\), and the conjugate momenta are
+\[
+    \pi_a(\mathbf{x}, t) = \frac{\partial \mathcal{L}}{\partial \dot{\phi}_a(\mathbf{x}, t)},
+\]
+with canonical Poisson brackets
+\[
+    \{ \phi_a(\mathbf{x}, t), \pi_b(\mathbf{y}, t) \} = \delta_{ab} \, \delta^{(3)}(\mathbf{x} - \mathbf{y}).
+\]
+The Hamiltonian functional
+\[
+    H[\phi, \pi] = \int d^3x \, \mathcal{H}(\phi_a, \pi_a, \nabla\phi_a)
+\]
+generates the time evolution of the fields.
+
+In \textbf{Quantum Field Theory}, the fields become operators on a Hilbert (or Fock) space:
+\[
+    \phi_a(\mathbf{x}, t) \;\longrightarrow\; \hat{\phi}_a(\mathbf{x}),
+    \qquad
+    \pi_a(\mathbf{x}, t) \;\longrightarrow\; \hat{\pi}_a(\mathbf{x}),
+\]
+and the Poisson brackets are replaced by equal-time commutation relations:
+\[
+    [\hat{\phi}_a(\mathbf{x}), \hat{\pi}_b(\mathbf{y})] = i\hbar \, \delta_{ab}\, \delta^{(3)}(\mathbf{x}-\mathbf{y}), \qquad
+[\hat{\phi}_a(\mathbf{x}), \hat{\phi}_b(\mathbf{y})] = [\hat{\pi}_a(\mathbf{x}), \hat{\pi}_b(\mathbf{y})] = 0,
+\]
+defining operators acting on the Fock space which can be written in terms of \textit{ladder operators} (annihilation and creation operators) acting on the vacuum.
+
+In the Schr\"odinger picture, the states \(\ket{\psi(t)}\) evolve according to the Schr\"odinger equation:
+\[
+    i\hbar \frac{d}{dt} \ket{\psi(t)} = \hat{H} \ket{\psi(t)},
+\]
+where the wave functional \(\psi[\phi, t]\) encodes the probability amplitude for the field configuration \(\phi(\mathbf{x})\) at time \(t\).
+
+Solving the theory requires diagonalizing the Hamiltonian \(\hat{H}\), which is generally difficult due to the infinite number of degrees of freedom and possible discrete or continuous field labels.
+An important exception is \textbf{free theories} with quadratic Lagrangians, where the equations of motion are linear and can be solved exactly (e.g., the continuum limit of an elastic string).
+
+Thus, canonical quantization provides a direct bridge from the Hamiltonian structure of classical fields to the operator formalism of quantum theory, where particles naturally arise as quantized excitations of the underlying fields.
+
+\section{The Klein-Gordon Field as a Set of Harmonic Oscillators}
+
+The simplest relativistic free field theory is the Klein-Gordon theory for a real scalar field \(\psi(\mathbf{x},t)\). Its \textbf{Lagrangian density} is
+\begin{equation}
+    \mathcal{L} = \frac{1}{2} \partial_\mu \psi \, \partial^{\mu} \psi - \frac{1}{2} m^2 \psi^2,
+    \label{eq:KG_Lagrangian}
+\end{equation}
+and the corresponding \textbf{classical equations of motion}, obtained via the Euler-Lagrange procedure, read
+\begin{equation}
+    (\Box + m^2)\psi(x) = 0, \qquad \Box = \partial_\mu \partial^{\mu}.
+    \label{eq:KG_motion_equations}
+\end{equation}
+
+\begin{remark}
+    Although the Klein-Gordon equation appears as a single field equation in coordinate space, it is effectively a \emph{coupled system} of infinitely many degrees of freedom: the Laplacian term \(-\nabla^2 \psi\) couples the field at different spatial points.
+    By performing a spatial Fourier transform, one can \emph{decouple} the system, obtaining independent harmonic oscillators for each momentum mode \(\mathbf{k}\).
+    In momentum space, each mode evolves independently and can be quantized separately.
+\end{remark}
+
+We perform a spatial Fourier transform of the field:
+\[
+    \psi(t,\mathbf{x}) = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \, e^{i \mathbf{p}\cdot \mathbf{x}} \tilde{\psi}(t,\mathbf{p}).
+\]
+The Klein-Gordon equation in momentum space becomes
+\[
+    \left[\frac{\partial^2}{\partial t^2} + \omega_{\mathbf{p}}^2 \right] \tilde{\psi}(t, \mathbf{p}) = 0,
+    \qquad \omega_{\mathbf{p}} = \sqrt{|\mathbf{p}|^2 + m^2}.
+\]
+This shows explicitly that the system reduces to an infinite set of \emph{decoupled harmonic oscillators}, one for each momentum mode \(\mathbf{p}\).
+
+\subsection{Canonical Quantization in Momentum Space}
+
+Following the analogy with the quantum harmonic oscillator in quantum mechanics, each momentum mode can be quantized independently.
+Recall that for a single harmonic oscillator with mass \(m=1\) and frequency \(\omega\), the canonical operators satisfy
+\[
+    \hat{q} = \frac{1}{\sqrt{2\omega}} (\hat{a} + \hat{a}^{\dagger}), \qquad
+    \hat{p} = -i \sqrt{\frac{\omega}{2}} (\hat{a} - \hat{a}^{\dagger}),
+\]
+where \(\hat{a}, \hat{a}^\dagger\) are the annihilation and creation operators, obeying \([\,\hat{a}, \hat{a}^\dagger\,] = 1\).
+
+We can generalize this construction to the field operators. A general solution to the Klein-Gordon equation (satisfying reality of the field) can be written as
+\[
+    \hat{\psi}(\mathbf{x}) = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} \Big[ \hat{a}_{\mathbf{p}} e^{i \mathbf{p}\cdot \mathbf{x}} + \hat{a}_{\mathbf{p}}^\dagger e^{-i \mathbf{p}\cdot \mathbf{x}} \Big],
+\]
+with conjugate momentum operator
+\[
+    \hat{\pi}(\mathbf{x}) = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \, (-i) \sqrt{\frac{\omega_{\mathbf{p}}}{2}} \Big[ \hat{a}_{\mathbf{p}} e^{i \mathbf{p}\cdot \mathbf{x}} - \hat{a}_{\mathbf{p}}^\dagger e^{-i \mathbf{p}\cdot \mathbf{x}} \Big],
+\]
+where the ladder operators acts on the Fock space creating and destroying particles of momentum \(\mathbf{p}\) (or \(\mathbf{q}\)).
+Furthermore, they satisfy the canonical commutation relations:
+\[
+    [\,\hat{a}_{\mathbf{p}}, \hat{a}_{\mathbf{q}}\,] = [\,\hat{a}_{\mathbf{p}}^\dagger, \hat{a}_{\mathbf{q}}^\dagger\,] = 0, \qquad
+    [\,\hat{a}_{\mathbf{p}}, \hat{a}_{\mathbf{q}}^\dagger\,] = (2\pi)^3 \delta^3(\mathbf{p} - \mathbf{q}).
+\]
+
+Our solutions now have to respect similar canonical commutation relations. In fact we know that:
+\[
+    \begin{aligned}
+        [\,\hat{\psi}(\mathbf{x}),\hat{\pi}(\mathbf{y})\,]  & = i \delta^3 (\mathbf{x} - \mathbf{y}), \text{ while}    \\
+        [\,\hat{\psi}(\mathbf{x}),\hat{\psi}(\mathbf{y})\,] & = [\,\hat{\pi}(\mathbf{x}),\hat{\pi}(\mathbf{y})\,] = 0.
+    \end{aligned}
+\]
+Let us show this results:
+\[
+    \begin{aligned}
+        [\,\hat{\psi}(\mathbf{x}),\hat{\pi}(\mathbf{y})\,] & = \int \frac{\mathrm{d}^3 \mathbf{p}\mathrm{d}^3 \mathbf{q}}{(2\pi)^6} \, \frac{(-i)}{2} \sqrt{\frac{\omega_{\mathbf{q}}}{\omega_{\mathbf{p}}}} \left[ \,\hat{a}_{\mathbf{p}} e^{i \mathbf{p}\cdot \mathbf{x}} + \hat{a}_{\mathbf{p}}^\dagger e^{-i \mathbf{p}\cdot \mathbf{x}}\, , \,\hat{a}_{\mathbf{q}} e^{i \mathbf{q}\cdot \mathbf{y}} - \hat{a}_{\mathbf{q}}^\dagger e^{-i \mathbf{q}\cdot \mathbf{y}} \, \right]  \\
+                                                           & = \int \frac{\mathrm{d}^3 \mathbf{p}\mathrm{d}^3 \mathbf{q}}{(2\pi)^6} \, \frac{(-i)}{2} \sqrt{\frac{\omega_{\mathbf{q}}}{\omega_{\mathbf{p}}}} \left[ - [\,\hat{a}_{\mathbf{p}}, \hat{a}_{\mathbf{q}}^\dagger\,] e^{i (\mathbf{p} \cdot \mathbf{x} - \mathbf{q} \cdot \mathbf{y})} + [\,\hat{a}^\dagger_{\mathbf{p}}, \hat{a}_{\mathbf{q}}\,] e^{-i (\mathbf{p} \cdot \mathbf{x} - \mathbf{q} \cdot \mathbf{y})}\right] \\
+                                                           & = \int \frac{\mathrm{d}^3 \mathbf{p}\mathrm{d}^3 \mathbf{q}}{(2\pi)^6} \, \frac{(-i)}{2} \sqrt{\frac{\omega_{\mathbf{q}}}{\omega_{\mathbf{p}}}} (2\pi)^3\left[ - \delta^3(\mathbf{p} - \mathbf{q})e^{i (\mathbf{p} \cdot \mathbf{x} - \mathbf{q} \cdot \mathbf{y})} + (- \delta^3(\mathbf{q} - \mathbf{p}))e^{-i (\mathbf{p} \cdot \mathbf{x} - \mathbf{q} \cdot \mathbf{y})}\right]                                     \\
+                                                           & = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \, \frac{i}{2} \sqrt{\frac{\omega_{\mathbf{q}}}{\omega_{\mathbf{p}}}} \left[ \delta^3(\mathbf{p} - \mathbf{q})\left(e^{i (\mathbf{p} \cdot \mathbf{x} - \mathbf{q} \cdot \mathbf{y})} + e^{-i (\mathbf{p} \cdot \mathbf{x} - \mathbf{q} \cdot \mathbf{y})}\right) \right]                                                                                                \\
+                                                           & = \frac{i}{2} \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \, \sqrt{\frac{\omega_{\mathbf{p}}}{\omega_{\mathbf{p}}}} \left( e^{i \mathbf{p} \cdot (\mathbf{x} - \mathbf{y})} + e^{-i \mathbf{p} \cdot (\mathbf{x} - \mathbf{y})}\right)                                                                                                                                                                                 \\
+                                                           & =  \frac{i}{2} \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \,  e^{i \mathbf{p} \cdot (\mathbf{x} - \mathbf{y})} + \frac{i}{2} \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \, e^{i \mathbf{p} \cdot (\mathbf{y} - \mathbf{x})}                                                                                                                                                                                        \\
+                                                           & = \frac{i}{2} \delta^3(\mathbf{x} - \mathbf{y}) + \frac{i}{2} \delta^3(\mathbf{y} - \mathbf{x}) = i \delta^3(\mathbf{x} - \mathbf{y}),
+    \end{aligned}
+\]
+where in the first step we simplified the null commutators of the ladder operators, while in the last steps we recognized the integral representation of the Dirac delta function
+\[
+    \delta^3(\mathbf{x}) = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \,  e^{\pm i \mathbf{p}\cdot\mathbf{x}}
+\]
+which is by definition the Fourier transform of a constant and it respects the property
+\[
+    \delta(\alpha \mathbf{x}) = \frac{\delta(\mathbf{x})}{\vert \alpha \vert}, \quad \to \quad \delta(-\mathbf{x}) = \delta(\mathbf{x}).
+\]
+\TODO{compute the other two commutators.}
 
 
+
+\section{Two Real Klein Gordon Fields}
+
+ [...]
 \[
     \hat{Q} = \dots
 \]
