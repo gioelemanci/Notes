@@ -1,0 +1,200 @@
+\chapter{Path Integrals}
+
+Quantization can be introduced in two equivalent ways:
+- operator formalism (canonical quantization, Hilbert space, linear operators, etc ..)
+- path integrals (functional integrals).
+
+Path integrals were introduced in quantum mechanics by Feynman in 1948, but until about 1970 they did not meet with much success, and the operatorial methods of canonical quantization were still the most widespread. In 1970, the success of gauge theories in developing the Standard Model of particle physics gave a strong impulse to path integral methods. Quantization of gauge theories is much more clear and elegant if performed with path integrals. Furthermore, path integrals indicate a way of relating a quantum field theory in D spacetime dimensions (\(D-1\) spaces and 1 time) to the statistical mechanics of a system in D space dimensions. This link has given rise to a way of thinking and defining field theories using statistical mechanics and renormalization group ideas, as introduced by Wilson and others (lattice theories). Nowadays,it is convenient to master both methods: according to the problem at hand, one may find one formalism more convenient than the other, even though they are supposed to be equivalent. To introduce path integrals, let us follow Feynman and consider the two-slit experiment for the electron. The standard treatment used to explain the behavior of an electron which passes through the two slits of a barrier and creates a figure of interference on a screen employs the wave nature of the electron together with the Huygens principle for calculating the interference pattern from the elementary waves that originate from the slits. Feynman proposes an alternative description. He suggests to keep thinking of the electron as a particle that however can accomplish both trajectories, each one with a certain “amplitude”. The total amplitude Atot is defined as the sum of the single amplitudes, and its square is related to the probability that the electron is revealed at a given point on the screen. Moreover, the elementary amplitude for each possible trajectory is related in a simple way to the classical action evaluated on the trajectory itself: Feynman, inspired by previous considerations of Dirac, associates to each trajectory an amplitude of unit norm (so that all trajectories “weigh” democratically the same way) and with phase equal to the value of the action \(S\) in units of \(\hbar\).
+
+Thus we can write
+\[
+    A_{tot} = A(c_1) + A(c_2) + \dots + A(c_n), \quad A(c_n) = e^{\frac{i}{\hbar}S(c_n)}.
+\]
+thus we linked the total amplitude, which let us study probabilities in our experiments, to a sum of single aplitudes with the same module (1) but different phases, dfined by the action
+\[
+    S[x] = \int_0^{T} \d{t} \frac{1}{2}m \dot{x}^2.
+\]
+So for a path where we assume \(D \gg d\)\TODO{Insert drawing of slit.} we can write the action for the path
+\[
+    \begin{aligned}
+        S(c_1) & =                                         \\
+        S(c_2) & = \frac{m}{2} \frac{(D+d)^2}{T} = \dots .
+    \end{aligned}
+\]
+where \(p = \frac{mD}{T}\) is the momentum of the electron. Therefore we can no study the total amplitude
+\[
+    A_{tot} = e^{\frac{i}{\hbar}S(c_1)} + e^{\frac{i}{\hbar}S(c_2)} = \dots
+\]
+
+It is easy to notice that the maximum probability, associated to the maximum ampliutude, of revealiing the electron on the screen is
+\[
+    e^{\frac{i}{\hbar} pd} = 1, \quad \implies \quad \frac{pd}{\hbar} = 2\pi n , \text{ with } n \in \mathbb{N},
+\]
+One can interpret this condition as defining a wavelength \(\lambda = \frac{h}{p}\) so that when d contains an integer number of times such wavelengths there is constructive interference. The de Broglie relation is obtained by this rudimentary “path integral” and suggests that it contains the essential elements of quantum mechanics. The number of slits can be increased, as well as the number of intermediate screens, to have the particle performing all possible paths from the initial point to the final point of observation, thus creating a path integral for the total amplitude.\TODO{Insert drawing of multiple paths.}
+
+The action is used in an essential way
+\[
+    S[q(t)] = \int \d{t} \mathrm{L} (q(t),\,\dot{q}(t)).
+\]
+The classic path is the one that minimizes the action
+\[
+    \delta S = 0, \quad \implies \quad
+\]
+In quantum mechanics, the transition amplitude is obtained by using the action \(S[q]\) for any possible path
+\[
+    A = \sum_{c_n} e^{\frac{i}{\hbar}S(c_n)} \equiv \int \mathrm{D} q(t) \, e^{\frac{i}{\hbar}S[q(t)]}
+\]
+
+The final notation introduced here is that of the \textbf{path integral} or \textbf{functional integral}: $S[q]$ is a functional, i.e., a function of the functions $q(t)$, that indicate the possible ``paths'' of the system, and the symbol $\int \mathcal{D}q$ indicates the formal integration over the space of paths $\{q(t)\}$. Various mathematical subtleties on how to define exactly the path integration are still open. Nevertheless, path integrals have become one of the main tools to study quantum systems.
+In this formulation, the classic limit is intuitive: macroscopic systems have large values of the action $S$ in units of $\hbar$, the quantum of action. Small variations of a path induce phase variations $i\frac{1}{\hbar} \delta S[q]$ much bigger with respect to $i\pi$ (recall that for such a phase $e^{i\pi} = -1$) and the amplitudes of nearby paths cancel by destructive interference. This happens except at the point in which the action has a minimum, $\delta S = 0$, which identifies the classic trajectory. Trajectories close to the classical one have amplitudes that add up coherently since the phase does not vary: the functional integral is dominated by the classic path!
+
+\section{Action Principle}
+
+Let us briefly review the action principle in mechanics and field theories, considering the case of a particle. The main purpose is to underline its relation to canonical quantization and to stress the relevance of symmetries. As anticipated, the action is essential for the path integral quantization.
+
+Consider a non-relativistic particle of mass \(m\) that moves in a single dimension with coordinate \(q\) and subject to a conservative force \(F = -\frac{\partial}{\partial q}V\). Newton’s equations of motion reads
+\[
+    F = m \ddot{q},
+\]
+and can be derived from an action principle. The action is a functional of the trajectory of the particle \(q(t)\) (the dynamical variable of the system) and associates a real number to each function \(q(t)\). In general, physical systems are described by an action of the type
+\[
+    S[q(t)] = \int \d{t} \mathrm{L} (q(t),\,\dot{q}(t)), \quad \mathrm{L}(q(t),\,\dot{q}(t)) =
+\]
+
+
+[...]
+
+\subsection{Hamiltonian formalism}
+
+The basic idea of the hamiltonian formalism is to have equations of motion that are first order in time. To review it, we follow a simple example: a non-relativistic particle of coordinates \(q^i\) and configuration space lagrangian
+\[
+    pdf
+\]
+where indices are lowered with the metric \(\delta_{ij}\) (and are thus equivalent to upper indices in our model, the distinction of upper and lower indices is, however, useful in more general contexts). Transition to the hamiltonian formalism takes place as follows:
+\begin{enumerate}
+    \item The dynamical variables are doubled by introducing conjugate momentum \(p^i\) to each coordinate \(q_i\)
+          \[
+              pdf
+          \]
+          The set \((q_i,\,p^i)\) constitutes the coordinates of phase space.
+    \item The hamiltonian \(H(q,\,p)\) is defined as the Legendre transform of the lagrangian \(\mathrm{L}\)
+          \[
+              pdf
+          \]
+          It is a function on phase space.
+    \item The \textbf{Poisson brackets} are defined as follows. For any two functions A and B of phase space, their Poisson brackets are defined by
+          \[
+              pdf
+          \]
+          where we have used the summation convention for repeated indices. In particular,
+          \[
+              pdf
+          \]
+    \item The hamiltonian equations of motion can be written as
+          \[
+              pdf
+          \]
+          and are of the first order in time. In our example, they become
+          \[
+              pdf
+          \]
+          and are evidently equivalent to the lagrangian equations \([\dots]\) . The hamiltonian \(H\) is interpreted as the generator of time translations, and moves the initial conditions (a point in phase space) over time by an infinitesimal amount \(\mathrm{d} t\). The generator of these canonical transformations is given by \(H \mathrm{d} t\), and acts through the Poisson brackets (\([\dots ]\)).
+\end{enumerate}
+
+These equations can be obtained from an action. In phase space, the action takes the form
+\[
+    pdf
+\]
+and minimizing it, one finds
+\[
+    pdf
+\]
+from which one recognizes Hamilton’s equations of motion. Note that in this formulation one needs \(2n\) integration constants, which are given by specifying the coordinates \(q^i\) at initial and final times.
+
+The hamiltonian structure is the starting point of canonical quantization:
+\[
+    pdf
+\]
+where the classical dynamical variables \(z^a\) are elevated to linear operators \(\hat{z}^a\) acting on a Hilbert space. The quantum commutation relations are fixed by the values of the classical Poisson bracket. The vectors of the Hilbert space describe the possible quantum states of the system, whose evolution is governed by the Schr¨odinger equation.
+
+\section{Canonical Quantization}
+
+ [...] sofo [...] pdf [...]
+So now we can study the transition amplitude
+\[
+    A = \bra{\psi_f} e^{-\frac{i}{\hbar} \hat{H} T} \ket{\psi_i} \implies i \hbar \frac{\partial}{\partial T} A = \bra{\psi_f} \hat{H} e^{-\frac{i}{\hbar} \hat{H} T} \ket{\psi_i}.
+\]
+
+\section{Path Integrals in Phase Space}
+
+To derive a path integral expression for the transition amplitudes, we start by inserting twice the identity operator \(\mathbb{I}\), expressed using the eigenstates of the position operator
+\[
+    pdf
+\]
+then we can rewrite the transition amplitude derived previously by insterting two of this identityoperators
+\[
+    A = \bra{\psi_f} e^{-\frac{i}{\hbar} \hat{H} T} \ket{\psi_i} = \dots
+\]
+where \(\psi_i(x_i) = \bra{x}\ket{\psi_i}\) and \(\psi_f(x_f) = \bra{x}\ket{\psi_f}\) are the wave functions for the initial and final
+states. This rewriting shows that it is enough to consider the matrix element of the evolution operator between position eigenstates
+\[
+    A(x_i,\,x_f,\,T) = \bra{x_f} e^{-\frac{i}{\hbar} \hat{H} T} \ket{x_i}
+\]
+where \(T = t_f - t_i\) is the total propagation time. It satisfies the Schrodinger equation
+\[
+    pdf
+\]
+with initial condition \([\dots ]\).
+
+We are going to consider quantum hamiltonians of a paarticle interacting with a generc potential \(\hat{V}(\hat{x})\):
+\[
+    pdf
+\]
+The derivation of the path integral proceeds now as follows. One splits the transition amplitude \(A(x_i,\,x_f,\,T)\) as the product of \(N\) factors, and inserts the completeness relation \(N-1\) times in between the factors
+\[
+    \begin{aligned}
+        A(x_i,\,x_f,\,T) & = \bra{x_f} e^{-\frac{i}{\hbar} \hat{H} T} \ket{x_i} = \bra{x_f} \left(e^{-\frac{i}{\hbar} \hat{H} \frac{T}{N}}\right)^N \ket{x_i} \\
+                         & = \dots
+    \end{aligned}
+\]
+where for convenience we have denoted \(x_0 = x_i\), \(x_n = x_f\), and \(\epsilon = \frac{T}{N}\). To evaluate this expression better, it is convenient to use the resolution of the identity N more times, now expressed in terms of the momentum eigenstates
+\[
+    \mathbb{I} = \int \frac{\d{p}}{2\pi \hbar} \ket{p} \bra{p}, \quad \text{with } \bra{p}\ket{p^{\prime}} = 2\pi\hbar \delta(p-p^{\prime}),
+\]
+to obtain
+\[
+    A = \int \left(\prod_{k=1}^{N-1} \d{x_k}\right) \dots
+\]
+This is an exact expression. Note that there is one more integration over momenta than integrations over coordinates, a consequence of choosing coordinate eigenstates as initial and final states in the transition amplitude. Now, one can manipulate this expression further by making approximations that are valid in the limit \(N \to \infty\) (i.e., \(\epsilon \to  0\)). The crucial point is the evaluation of the following matrix element
+\[
+    \begin{aligned}
+        \bra{p} e^{-\frac{i\epsilon}{\hbar}\hat{H}(\hat{x},\,\hat{p})}\ket{x} & = \\
+                                                                              & = \\
+    \end{aligned}
+\]
+These approximations are all valid in the limit of small \(\epsilon\). The substitution \(\bra{p}\hat{H}(\hat{x},\,\hat{p})\ket{x} = \bra{p}\ket{x}H(x,p)\) follows from the simple structure of the considered hamiltonian (15), that allows one to act with the momentum operator on the left, and with the position operator on the right, to have the operators replaced by the corresponding eigenvalues. Notice that there is no need for commuting operators inside the hamiltonian, because of the simplicity of the hamiltonian
+we have considered. The final result is that all operators are simply replaced by eigenvalues. This way the quantum hamiltonian \(\hat{H}(\hat{x} ,\, \hat{p})\) gets replaced by the classical function \(H(x,p) = \frac{p^2}{2m} + V(x)\). There exists a mathematically rigorous proof that these manipulations are correct for a wide class of physically interesting potentials \(V(x)\) (the “Trotter formula”). We do not review these subtleties, as the physically intuitive derivation given above is enough for our purposes.
+
+Using now eq. (19), and remembering that the wave functions of the momentum eigenstates (the plane waves) are normalized as
+\[
+    \bra{x}\ket{p} = e^{\frac{i}{\hbar}px}, \quad \bra{p}\ket{x} = (\bra{x}\ket{p})^* = e^{-\frac{i}{\hbar}px}
+\]
+that follows from the normalization chosen in (11) and (17), one obtains
+\[
+    pdf
+\]
+up to terms that vanish for \(\epsilon \to 0\). This expression can now be inserted in (18). At this stage, the transition amplitude does not contain any more operators, bra and kets. It contains just integrations, though a big number of them, of ordinary functions
+\[
+    A = \lim_{N \to \infty} \int \left(\prod_{k=1}^{N-1} \d{x_k}\right) \left(\prod_{k=1}^{N} \frac{\mathrm{d} p_k}{2\pi \hbar}\right)e^{\frac{i\epsilon}{\hbar}\sum_{k=1}^N \left[p_k \frac{x_k - x_{k-1}}{\epsilon} - H(x_{k-1},\,p_k)\right] } = \int \mathrm{D} x \mathrm{D} p \, e^{\frac{i}{\hbar}S[x,\,p]}.
+\]
+This is the \textbf{path integral in phase space}. One recognizes in the exponent a discretization of the classical phase space action
+\[
+    S[x,\,p] = \int_{t_i}^{t_f} \d{t} \left(p\dot{x} - H(x,\,p)\right),\quad \implies \quad \sum_{k=1}^{N} \epsilon\left( p_k \frac{x_k - x_{k-1}}{\epsilon} - H(x_{k-1},\,p_k)\right),
+\]
+where \(t_f - t_i = T = N\epsilon\) is the total propagation time, with the paths in phase space discretized as
+\[
+    x(t),\,p(t) \longrightarrow x_k = x(t_i + k \epsilon),\, p_k = (t_i + k \epsilon).
+\]
+The last way of writing the amplitude in (22) is symbolic but suggestive: it indicates the sum over all paths in phase space weighted by the exponential of \(\frac{i}{\hbar}\) times the classical action. It depends implicitely on the boundary conditions assigned to the paths \(x(t)\).
+
+\section{Path Integrals in Configuration Space}
