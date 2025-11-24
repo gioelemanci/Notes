@@ -1,1 +1,414 @@
-\chapter{Quantum Mechanics Review}
+\chapter{Quantum Mechanics and Statistics}
+
+The starting point is a classical system with a finite number of degrees of freedom, from which we can either move to a classical field theory with infinite degrees of freedom (with the idea to quantize after it), or to a first quantization of our finite classical system (with the idea to extend observables to field later). It's not trivial that the result is the same taking both procedures, but it's true. \TODO{Add minipage with the scheme on one side and leave this as a description.}
+
+Let's briefly review quantum mechanics, in comparison with a classical system as a start.
+
+\begin{table}[h!]
+    \centering
+    \label{tab:cm_qm_comparison_en}
+    \begin{tabular}{l c l}
+        \toprule
+        \textbf{Classical Mechanics (CM)} &                         & \textbf{Quantum Mechanics (QM)}                                                                                                                                                                                                                                                                                                                                                            \\
+        \midrule
+        \begin{minipage}{5cm}
+            A precise point in the phase space $(\mathbf{q}, \mathbf{p})$, where position and momentum are simultaneously determined.
+        \end{minipage}
+                                          & \textbf{State}          &
+        \begin{minipage}{5cm}
+            A normalized state vector $\ket{\psi} \in \mathcal{H}$ (Hilbert Space), defined up to a global phase: equivalence classes called \textbf{rays}.
+        \end{minipage}                                                                                                                                                                                                                                                                                      \\
+        \midrule
+        \begin{minipage}{5cm}
+            Functions defined on the phase space, e.g. $f(\mathbf{q}, \mathbf{p}) \in \mathbb{R}$.
+        \end{minipage}
+                                          & \textbf{Observables}    &
+        \begin{minipage}{5cm}
+            Linear, self-adjoint (Hermitian) operators $\hat{A} = \hat{A}^{\dagger}$ acting on the Hilbert space.
+        \end{minipage}                                                                                                                                                                                                                                                                                                                                  \\
+        \midrule
+        \begin{minipage}{5cm}
+            Direct and simultaneous. The act of measurement does not alter the system's state. We can measure a value of the observable \(f(\mathbf{q}^o, \mathbf{p}^o)\) at a specific point \((\mathbf{q}^o, \mathbf{p}^o)\).
+        \end{minipage}
+                                          & \textbf{Measurements}   &
+        \begin{minipage}{5cm}
+            The result is a spectrum of eigenvalues $\lambda_n$ of $\hat{A}$. The state instantly collapses to the corresponding eigenstate $\ket{\lambda_n}$. The probability of \(\lambda_n\) as an outcome is \(P_n = \vert \langle \psi \vert \psi_n \rangle \vert^2 = \bra{\phi}\mathbb{P}_n \ket{\phi}\), if \(\ket{\phi}\) is the generic state and \(\ket{\psi_n}\) is the eigenstate \(\hat{A}\ket{\psi_n} = \lambda_n \ket{\psi_n}\).
+        \end{minipage} \\
+        \midrule
+        \begin{minipage}{5cm}
+            Determined by Hamilton's equations \(\dot{q}_i = -\frac{\partial H}{\partial p_i}\) and \(\dot{p}_i = \frac{\partial H}{\partial q_i}\). Evolving the system, the observables can be measured in the new points on the phase space.
+        \end{minipage}
+                                          & \textbf{Time Evolution} &
+        \begin{minipage}{5cm}
+            Determined by the Schrödinger equation for the states
+            $i\hbar \frac{\partial}{\partial t}\ket{\psi} = \hat{H}\ket{\psi}$.
+            Unitary time evolution operator, defined by the Hamiltonian.
+        \end{minipage}                                                                                                                                                                                                                                                                                                                                                     \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+In more detail, the degrees of freedom are described in terms of a vector in the hilbert space \(\ket{\psi},\,ket{\phi},\,\dots \in \mathcal{H}\), such that
+\[
+    \alpha \ket{\psi} + \beta\ket{\phi} \in \mathcal{H}, \text{ and } \langle \psi \vert \phi \rangle \in \mathbb{C}.
+\]
+
+A \textbf{pure state} is a \textit{ray} belonging to an \textbf{equivalence class}, defined up to a global phase
+\[
+    \ket{\psi} \sim e^{i \theta} \ket{\psi},\quad \langle \psi \vert \psi \rangle = 1.
+\]
+
+An \textbf{observable} is given by a \textit{self-adjoint} operator \(\hat{A} = \hat{A}^{\dagger}\), for which the \textit{spectral theorem} holds
+\[
+    \hat{A} \ket{\psi_j} = \lambda_j \ket{\psi_j}, \text{ where } \lambda_j \in \mathbb{R},
+\]
+since the outcome of a measure, the eigenvalues of the interesting observable, mast be real.
+
+\paragraph{Projectors.} It is very useful to introduce operators which can \textit{project} a given state, an arbitrary vector, in the direction spanned by a chosen vector:
+\[
+    \mathbb{P}_{\psi} = \ket{\psi}\bra{\psi} = \begin{pmatrix}
+        a_1   \\
+        a_2   \\
+        \dots \\
+        a_n
+    \end{pmatrix}\begin{pmatrix}
+        a_1^* & a_2^* & \dots & a_n^*
+    \end{pmatrix} = (n\times n) \text{ matrix}.
+\]
+These \textbf{projectors} have to be \textit{idempotent} matrices, such that
+\[
+    \mathbb{P}^{\dagger} = \mathbb{P}, \quad \mathbb{P}^2 = \mathbb{P}.
+\]
+They project vectors onto the \(1D\) Hilbert space spanned by their defining vector. Considering an orthonormal basis \(\{\ket{\psi_n}\}\), we can exploit some interesting properties:
+\[
+    \mathbb{P}_n\mathbb{P}_m = \ket{\psi_n} \langle\psi_n\vert\psi_m\rangle \bra{\psi_n} = \ket{\psi_n}\bra{\psi_n} \delta_{nm},
+\]
+hence if \(m\neq n\) then the two defining vectors are orthonormal and \(\mathbb{P}_n\mathbb{P}_m = 0\).
+If we sum the projectors, i.d. we apply them consequently, we find intersesting compisitions:
+\begin{itemize}
+    \item \(\mathbb{P}_1 + \mathbb{P}_2\) \(2D\) projector on the plane spanned by \(\{\ket{\psi_1},\,\ket{\psi_2}\}\);
+    \item \(\mathbb{P}_1 + \mathbb{P}_2 + \mathbb{P}_3\) \(3D\) projector on the volume spanned by \(\{\ket{\psi_1},\,\ket{\psi_2},\,\ket{\psi_3}\}\);
+    \item \(\mathbb{P}_1 + \dots + \mathbb{P}_n\) \(nD\) projector that coincides with the identity:
+          \[
+              \sum_{n} \mathbb{P}_n = \sum_{n} \ket{\psi_n}\bra{\psi_n} = \mathbb{I}_n.
+          \]
+\end{itemize}
+According to the \textit{spectral theorem}, any hermitian operator can be decomposed in:
+\[
+    \hat{A} = \sum_{n} \lambda_n \mathbb{P}_n = \sum_{n} \lambda_n \ket{\psi_n}\bra{\psi_n}.
+\]
+
+\paragraph{Measure.}
+A measure of an observable \(A\) on a state \(\ket{\psi}\) yields a set of possible outcomes \(\lambda_n\) wheighted by a probability \(p_n\) given by
+\[
+    \ket{\psi}  = \sum_{n} c_n \ket{\psi_n} \quad \implies \quad p_n = \vert c_n \vert^2.
+\]
+The average value of a measure is given by
+\[
+    \langle A \rangle = \sum_{n} \lambda_n p_n = \bra{\psi} A \ket{\psi},
+\]
+with associated standard deviation
+\[
+    (\Delta A)^2 = \langle A^2 \rangle - \langle A \rangle^2.
+\]
+One important feature of the measure is that it represents a \textit{destructive process}: once measured, the state \(\ket{\psi}\) collapses into a state in the eigenspace aassociated to the eigenvalue which is the outcome of the measure.
+
+\paragraph{Time evolution.}
+The time evolution of the system is governed by a special observable, the Hamiltonian; from Schrödinger equation we deeduce the time evolution of each state:
+\[
+    i \hbar \frac{\partial}{\partial t} \ket{\psi} = \hat{H} \ket{\psi}.
+\]
+We can also create an operator responsible for the active implementation of this equation, assuming the time independence of the Hamiltonian, which results to be a unitary operator:
+\[
+    \ket{\psi(t)} = U(t)\ket{\psi(0)}, \quad U(t) = e^{\tfrac{i}{\hbar} \hat{H} t}.
+\]
+
+\section{Density Matrix}
+
+\subsection{Pure State}
+
+We are going to introduce one of the most powerful tools in the quantum description of statistical mechanics, the \textbf{density matrix}.
+
+A pure density matrix \(\rho\) has the following properties:
+\begin{itemize}
+    \item it is a bounded operator : \(\Vert \rho \Vert \leq 1\);
+    \item it is self-adjoint: \(\rho^{\dagger} = \rho\);
+    \item it is a positive operator: \(\bra{\alpha} \rho \ket{\alpha} \geq 0 \text{ } \forall \ket{\alpha} \in \mathcal{H}\);
+    \item it has unitary trace: \(\Tr(\rho)=1\);
+    \item it is idempotent: \(\rho^2 = \rho\).
+\end{itemize}
+
+For a pure state, unambiguously defined by a ray \(\ket{\psi}\), the density matrix acquire the meaning of projector onto the subspace spanned by the state:
+\[
+    \rho_{\psi} = \ket{\psi} \bra{\psi}.
+\]
+We can use it to define \textbf{expextation values} for operators, which can be written in terms of the density matrix as
+\[
+    \langle A \rangle = \bra{\psi} A \ket{\psi} = \Tr(A \rho_\psi),
+\]
+where the trace of an operator with elements \(A_{mn} = \bra{\psi_m} A \ket{\psi_n}\) is given by \(\Tr(A) = \sum_{n} \bra{\psi_n} A \ket{\psi_n} = \sum_{n} A_{nn}\). A trace-class operator \(B\) is defined as, given any ON basis \(\{\ket{e_j}\}\)
+\[
+    \Tr(B) = \sum_{n} \bra{e_n} A \ket{e_n} < \infty,
+\]
+i.e. the class of operators with finite trace (for an infinite dimensional operators is absolutely non trivial to have finite trace, even the simplest one, the identity matrix, has a diverging trace).
+
+Let's show the unitariety of the density operator trace: given any ON basis \(\{\ket{e_j}\}\)
+\[
+    \begin{aligned}
+        \Tr(\rho) & = \sum_{n} \bra{e_n} \rho \ket{e_n} = \sum_{n} \bra{e_n} \ket{\psi} \bra{\psi} \ket{e_n}                 \\
+                  & = \bra{\psi} \left(\sum_{n} \ket{e_n}\bra{e_n}\right) \ket{\psi} = \bra{\psi} \mathbb{I} \ket{\psi} = 1.
+    \end{aligned}
+\]
+
+\subsection{Mixed State}
+
+The pure state, as we said, is unambiguously defined by a single ray \(\ket{\psi}\), but it might happen to encounter a system prepared into a ensamble of states \(\{\ket{\psi_{\alpha}},\,p_{\alpha}\}_{\alpha}\), where \(p_{\alpha}\) is the probability of finding the system in the state \(\ket{\psi_{\alpha}}\) and obviously they respect: \(0 \leq p_{\alpha} \leq 1\), \(\sum_{\alpha}p_{\alpha} = 1\).
+
+The density matrix of a classical mixture is given by
+\[
+    \rho = \sum_{\alpha} p_{\alpha} \rho_{\alpha} = \sum_{\alpha} p_{\alpha}\ket{\alpha} \bra{\alpha},
+\]
+where \(\rho_{\alpha}\) is the density matrix of the pure state \(\ket{\psi_{\alpha}}\).
+
+\begin{example}
+    Consider an experiment using thousands of electrons, where each electron can be in one of two orthogonal spin states along the $z$-axis:
+    \begin{enumerate}
+        \item \textbf{Pure State 1}: Spin up, $\ket{\psi_1} = \ket{\uparrow}$.
+        \item \textbf{Pure State 2}: Spin down, $\ket{\psi_2} = \ket{\downarrow}$.
+    \end{enumerate}
+    If the electron beam is unpolarized (not specially prepared), the overall system is a statistical mixture described by the ensemble:
+    \[
+        \left\{ \ket{\uparrow},\, p_1=1/2 \right\} \quad \text{and} \quad \left\{ \ket{\downarrow},\, p_2=1/2 \right\}
+    \]
+    This collection of electrons is thus described not by a single $\ket{\psi}$ (pure state), but by the density operator (mixed state):
+    \[
+        \rho = \sum_{\alpha} p_{\alpha} \ket{\psi_{\alpha}}\bra{\psi_{\alpha}} = \frac{1}{2} \ket{\uparrow}\bra{\uparrow} + \frac{1}{2} \ket{\downarrow}\bra{\downarrow}
+    \]
+\end{example}
+
+The density matrix \(\rho\) of a mixture has the following properties:
+\begin{itemize}
+    \item it is a bounded operator : \(\Vert \rho \Vert \leq 1\);
+    \item it is self-adjoint: \(\rho^{\dagger} = \rho\);
+    \item it is a positive operator: \(\bra{\alpha} \rho \ket{\alpha} \geq 0 \text{ } \forall \ket{\alpha} \in \mathcal{H}\);
+    \item it has unitary trace: \(\Tr(\rho)=1\);
+\end{itemize}
+but notice how it is not idempotent anymore. Let us analyze further those properties:
+\begin{itemize}
+    \item Self adjoint operator:
+          \[
+              \rho^{\dagger} = \left( \sum_{\alpha} p_{\alpha} \ket{\psi_{\alpha}}\bra{\psi_{\alpha}} \right)^{\dagger} = \sum_{\alpha} p_{\alpha} \bra{\psi^{\dagger}_{\alpha}} \ket{\psi^{\dagger}_{\alpha}} = \sum_{\alpha} p_{\alpha} \ket{\psi_{\alpha}}\bra{\psi_{\alpha}} = \rho.
+          \]
+    \item Positive operator:
+          \[
+              \bra{\psi}\rho\ket{\psi} = \bra{\psi}\left(\sum_{\alpha} p_{\alpha} \ket{\psi_{\alpha}}\bra{\psi_{\alpha}}\right) \ket{\psi} = \sum_{\alpha} p_{\alpha} \Vert \bra{\psi_{\alpha}}\ket{\psi} \Vert^2 \geq 0.
+          \]
+    \item Unitary trace:
+          \[
+              \begin{aligned}
+                  \Tr(\rho) & = \sum_{n} \bra{e_n}\rho\ket{e_n} = \sum_{n} \bra{e_n}\left(\sum_{\alpha} p_{\alpha} \ket{\psi_{\alpha}}\bra{\psi_{\alpha}}\right)\ket{e_n}                                            \\
+                            & =\sum_{\alpha n} p_{\alpha} \bra{\psi_{\alpha}}\ket{e_n}\bra{e_n}\ket{\psi_{\alpha}} = \sum_{\alpha} p_{\alpha} \bra{\psi_{\alpha}}\ket{\psi_{\alpha}} = \sum_{\alpha} p_{\alpha} = 1.
+              \end{aligned}
+          \]
+\end{itemize}
+
+Let us show and demonstrate an important theorem:
+\begin{theorem}
+    If the density matrix is idempotent, then it refers to a pure state:
+    \[
+        \rho^2 = \rho \iff \rho = \ket{\psi}\bra{\psi}\text{ with } \ket{\psi} \text{ pure.}
+    \]
+\end{theorem}
+\begin{proof}
+    \(\impliedby)\) trivial, by definition of density matrix of a pure state.
+    \(\implies)\) \(\rho\) has to satisfy at least the four properties reported above for a density matrix. Then if we apply the spectral theorem we can write
+    \[
+        \rho = \sum_{n} \lambda_n \ket{e_n}\bra{e_n}, \quad \{\ket{e_n}\} \text{ any ON basis},
+    \]
+    and this implies\QUESTION{What happened? We multiplied both side for what?}
+    \[
+        \rho \ket{e_n} = \sum_{n} \lambda_n \ket{e_n}.
+    \]
+    Since \(\rho\) is positive, we know \(\lambda_n \geq 0\), and since it has unitary trace, we can write
+    \[
+        \Tr(\rho) = 1 \quad \iff \quad 0 \geq \lambda_n \leq 1.
+    \]
+    If we now compute \(\rho^2\), we get
+    \[
+        \begin{aligned}
+            \rho^2 & = \left( \sum_{n} \lambda_n \ket{e_n}\bra{e_n} \right) \left( \sum_{m} \lambda_m \ket{e_m}\bra{e_m} \right)                                                                   \\
+                   & = \sum_{nm} \lambda_n \lambda_m \ket{e_n}\bra{e_n}\ket{e_m}\bra{e_m} = \sum_{nm} \lambda_n \lambda_m \ket{e_n}\delta_{nm}\bra{e_m} = \sum_{n} \lambda_n^2 \ket{e_n}\bra{e_n},
+        \end{aligned}
+    \]
+    and by imposing \(\rho^2 = \rho\) we find out that
+    \[
+        \rho^2 = \rho \quad \implies \quad \sum_{n} \lambda_n^2 \ket{e_n}\bra{e_n} = \sum_{n} \lambda_n \ket{e_n}\bra{e_n}
+    \]
+    hence \(\lambda_n^2 = \lambda_n\), which admits \(\lambda_n = 0,\,1\).
+    But since \(\sum_{j} \lambda_j = 1\), then the solution imply one \(\lambda_j = 1\) and \(\lambda_i = 0\) for all other indices \(i \neq j\). But if only one eigenvalue survives, then we can only deduce it is a pure density matrix:
+    \[
+        \rho = \sum_{n} \lambda_n \ket{e_n}\bra{e_n} = \lambda_j \ket{e_j}\bra{e_j} = \ket{e_j}\bra{e_j}.
+    \]
+\end{proof}
+
+\section{Qubit}
+
+The qubit is a quantum system with only two available states: \(\ket{0}\) and \(\ket{1}\). If we consider the following Hilbert space
+\[
+    \mathcal{H} = \mathbb{C}^2 = \left\{ \begin{pmatrix}
+        \alpha \\
+        \beta
+    \end{pmatrix}; \quad \alpha,\,\beta \in \mathbb{C} \right\}
+\]
+and the two states \(\ket{0} = \begin{pmatrix}
+    1 \\
+    0
+\end{pmatrix}\) and \(\ket{1} = \begin{pmatrix}
+    0 \\
+    1
+\end{pmatrix}\), they respect
+\[
+    \bra{0}\ket{0} = \bra{1}\ket{1} = 1, \text{ and } \bra{1}\ket{0} = \bra{0}\ket{1} = 0.
+\]
+Then any vector in the hilbert space can be written as a linear combination of these two states:
+\[
+    \ket{\psi} = \alpha\ket{0}+\beta\ket{1} = \begin{pmatrix}
+        \alpha \\
+        \beta
+    \end{pmatrix}, \quad \vert \alpha \vert^2 + \vert \beta \vert^2 = 1,
+\]
+for all \(\ket{\psi} \in \mathcal{H}\). Let's notice that \(p_0 = \vert \alpha \vert^2 \) and \(p_1 = \vert \beta \vert^2 \), since they are the weight of the state with respect to \(\ket{0}\) and \(\ket{1}\): they are the probabilities to get an outcome of \(\ket{0}\) or \(\ket{1}\) from a measure on \(\ket{\psi}\). Thus we call \(\ket{\psi}\) a \textbf{quantum mixture}, which is a pure state. Its density matrix is defined as:
+\[
+    \rho = \ket{\psi}\bra{\psi} = \begin{pmatrix}
+        \alpha \\
+        \beta
+    \end{pmatrix}\begin{pmatrix} \alpha^* & \beta^* \end{pmatrix} = \begin{pmatrix}
+        \vert \alpha \vert^2 & \alpha\beta^*       \\
+        \beta \alpha^*       & \vert \beta \vert^2
+    \end{pmatrix},
+\]
+where the off-diagonal elements are proportional to a phase \(\alpha\beta^*\), making them responsble for \textbf{interference} effect between the two states.
+
+If we instead prepare from the beginning a state \(\ket{\psi}\) with the same probabilities as before (\(p_0 = \vert \alpha \vert^2\) and \(p_1 = \vert \beta \vert^2\)) but not related to expectation values of observables when measured on \(\ket{\psi}\), but direct probabilities that the system will be either in \(\ket{0}\) or \(\ket{1}\), then we have a \textbf{classical mixture}.
+Its density matrix is defined by
+\[
+    \rho = \vert \alpha \vert^2 \ket{0}\bra{0} + \vert \beta \vert^2 \ket{1}\bra{1} = \vert \alpha \vert^2\begin{pmatrix}
+        1 & 0 \\
+        0 & 0
+    \end{pmatrix} + \vert \beta \vert^2\begin{pmatrix}
+        0 & 0 \\
+        0 & 1
+    \end{pmatrix} = \begin{pmatrix}
+        \vert \alpha \vert^2 & 0                   \\
+        0                    & \vert \beta \vert^2
+    \end{pmatrix}.
+\]
+
+If we compare the two expression we can find interesting that the diagonal is the same, while the off diagonal elements are not trivial: while the classical mixture has null off diagonal elements (respectiing a classical probability distribution without interactions among the two states), the quantum mixture presents terms correlated to \textbf{interference} in the measures among the two states.
+
+\paragraph{Observables and expectation values.}
+Lets consider a quantum system in a pure state \(\ket{\psi}\); an observable \(A\) (which we remember to be hermitian) will have an expectation value given by
+\[
+    \langle A \rangle_{\psi} = \bra{\psi} A \ket{\psi} = \Tr(A \rho_{\psi}).
+\]
+Let us show that the last equation holds:
+\[
+    \begin{aligned}
+        \langle A \rangle_{\psi} & = \Tr(A \rho_{\psi}) = \sum_{n} \bra{e_n} A \rho_{\psi} \ket{e_n}                                             \\
+                                 & = \sum_{n} \bra{e_n} \ket{\psi} \bra{\psi} A \ket{e_n} = \sum_{n} \bra{\psi} A \ket{e_n} \bra{e_n} \ket{\psi} \\
+                                 & = \bra{\psi} A \sum_{n} \ket{e_n} \bra{e_n} \ket{\psi} = \bra{\psi} A \ket{\psi} = \langle A \rangle_{\psi}.
+    \end{aligned}
+\]
+This expression is very useful because it can be generalized to treat expectation values of observables acting on mixed states. The density matrix for a mixed state \(\ket{\psi}\) is
+\[
+    \rho_{\psi}  = \sum_{\alpha} p_{\alpha} \rho_{\alpha} = \sum_{\alpha} p_{\alpha}\ket{\psi_\alpha}\bra{\psi_\alpha},
+\]
+then if we compute the expectation value of \(A\):
+\[
+    \begin{aligned}
+        \langle A \rangle_{\psi} & = \Tr(A \rho_{\psi}) = \Tr\left(\sum_{\alpha} p_{\alpha} \rho_{\alpha} A \right) = \sum_{\alpha} p_{\alpha} \Tr(\rho_{\alpha} A) = \sum_{\alpha} p_{\alpha} \langle A \rangle_{\alpha},
+    \end{aligned}
+\]
+which is the sum of the expectations value of \(A\) in each of the pure states, weighted by the probability of the mixed state to be observed in that state.\footnote{A clearer but heavier notation would have called \(\rho_{\alpha} \to \rho_{\psi_{\alpha}}\) and \(\langle A \rangle_{\alpha} \to \langle A \rangle_{\psi_\alpha}\).}
+
+\section{Identical Particles}
+
+A system of \(N\) particles, each of which are described by a subsystem and its Hilbert space \(\mathcal{H}_j\), lives in the bigger hilbert space defined by
+\[
+    \mathcal{H} = \mathcal{H}_1 \times \dots \times \mathcal{H}_N.
+\]
+We can find a base of our system by composing the basis of each subsystem:
+\[
+    \mathcal{H}_j \longrightarrow \{\ket{e_{k_j}}\}_{k_j} \quad \forall k_j = 1, \dots, \dim(\mathcal{H}_j),
+\]
+so that the general base will take form
+\[
+    \mathcal{H} \longrightarrow \{\ket{e_{k_1}},\, \dots ,\, \ket{e_{k_N}}\}_{k_1,\,\dots,\,k_N} \quad \forall k_j = 1, \dots, \dim(\mathcal{H}_j).
+\]
+Now we can write a generic state (vector) in coordinates of this base as
+\[
+    \ket{\psi} = \sum_{k_1,\,\dots,\,k_N} \alpha_{k_1,\,\dots,\,k_N} \ket{e_{k_1}} \dots \ket{e_{k_N}}.
+\]
+The dimensionality of this space will be given by the product of the dimensionalities of the subsystems
+\[
+    \dim(\mathcal{H}) = \dim(\mathcal{H}_1)\dots\dim(\mathcal{H}_N),
+\]
+thus the dimensionality of the system grows really fast with the number of particles considered.
+
+Note that if the particles are identical, then
+\[
+    \mathcal{H} = (\mathcal{H}_1)^{\otimes N}, \quad \dim(\mathcal{H}) = \dim(\mathcal{H}_1)^N.
+\]
+The system of \textbf{indistinguishable} particles acquire also an important property: it should be invariant under transformations of the \textbf{permutation group}, up to a phase.
+If we take as an example a system of two indistinguishable classical particles, then the phase space \((\mathbf{q}_1,\,\mathbf{q}_2,\,\mathbf{p}_1,\,\mathbf{p}_2)\) should be invariant under the exchange of the particles:
+\[
+    (\mathbf{q}_1,\,\mathbf{q}_2,\,\mathbf{p}_1,\,\mathbf{p}_2) = (\mathbf{q}_2,\,\mathbf{q}_1,\,\mathbf{p}_2,\,\mathbf{p}_1).
+\]
+Thus a system of \(N\) identicle particles should be invariant under a set of \(N!\) permutations, with the states spanning only a subspace of the bigger Hilbert space just described.
+
+To clarify further, let's take two particles \(e\) and \(f\), both of which can be observed in the state \(\ket{}_1\) or \(\ket{}_2\): we have two possible global states
+\[
+    \ket{e}_1 \ket{f}_2 \quad \text{or} \quad \ket{f}_1 \ket{e}_2.
+\]
+But if we consider the case in which the two particles are identical \(e \equiv f\) or the two states are the same \(\ket{e}_1 \equiv \ket{e}_2\), then the system can be written in thw previous two ways, but now they are completely undistinguishable, i.e. a single state:
+\[
+    \ket{e}_1 \ket{f}_2 \equiv \ket{f}_1 \ket{e}_2.
+\]
+
+So if a state of \(N\) particles living in \(\ket{\psi} \in \mathcal{H}\) and it is left invariant by any of the \(N!\) permutations, then the particles are indistinguishable and \(\ket{\psi} \in \mathcal{H}_1^{\otimes N}\):
+\[
+    \ket{\psi} \xrightarrow{P} \ket{\psi^{\prime}} = P\ket{\psi} = e^{i \alpha} \ket{\psi}.
+\]
+Let's then analyze further the \textit{permutation group} of these transformations.
+
+\subsection{Permutation Group}
+The set of all possible permutations \(P_j\) of \(N\) elements defines the permutation group, wich respects the usual properties of a transformations group:
+\begin{itemize}
+    \item Closed under a \textit{composition operation};
+    \item It has an \textit{inverse element} with respect to the composition law;
+    \item It has a \textit{neutral element} with respect to the composition law;
+    \item It resoects \textit{associativity} under the composition law.
+\end{itemize}
+So if we consider two permutations \(P_i\) and \(P_j\), then their consequent application (their composition), is still a permutation. Since there are \(N!\) way of permuting \(N\) elements, we conclude that the permutation group is made of \(N!\) elements.
+
+We can study the simplest transformation of this group, the\textbf{elementary permutation} (or transposition) exchanging the \(i-\)th element with the \((i+1)-\)th one, in order to understand better this group and his properties. The elementary permutation is so important because it is the \textbf{generator} of this transformation group: we can write any other permutation by composing different elementary permutations. Thus \(\sigma_i\) with \(i = 1,\,\dots,\,N\) are the generators of the group.
+Decomposing a oermutation in such way is not uniquely defined:
+\[
+    \sigma = \sigma_{\alpha_1} \sigma_{\alpha_2} \dots \sigma_{\alpha_N},
+\]
+there mey be different combinations of \((\alpha_1,\,\alpha_2,\,\dots ,\,\alpha_N)\) which give the same result. But it can be shown that a permutation made by an even (or odd) number of elementary permutations, will always be made of an even (or odd) number of elementary permutation. Furthermore, the number of transpositions defines the sign of the decomposition:
+\[
+    \mathrm{sgn}(\sigma) = \begin{dcases}
+        +1, & \text{ for an even number of transpositions}, \\
+        -1, & \text{ for an odd number of transpositions}.  \\
+    \end{dcases}
+\]
+It can be shown that the generators of the permutation group satisfy the following properties:
+\begin{enumerate}
+    \item prop1;
+    \item prop2;
+    \item prop3.
+\end{enumerate}
+
+
+\section{Quantum Statistics}
