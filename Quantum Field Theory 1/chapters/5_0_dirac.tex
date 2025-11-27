@@ -460,3 +460,411 @@ so that
         \psi_R^{\prime (w)} = \psi_L^{(w)}.
     \end{dcases}
 \]
+
+------
+
+\subsection{Solutions of the Dirac Equation}
+
+Each component of the dirac spinor \(\psi(x)\) satisfies the KG equation, so we can look for plane wave solutions of the form
+\[
+    \psi_{\alpha}(x) = u_{\alpha}(\mathbf{p}) e^{-i p_\mu x^{\mu}} = u_{\alpha}(\mathbf{p}) e^{-i (E_{\mathbf{p}} t - \mathbf{p} \cdot \mathbf{x})},
+\]
+where \(\alpha = 1,\,2,\,3,\,4\) and \(u_{\alpha}(\mathbf{p})\) are complex coefficients depending on the momentum \(\mathbf{p}\) (it's a 4-component vector). Plugging this ansatz into the Dirac equation we get
+\[
+    (i \gamma^{\mu} \partial_{\mu} - m) \psi(x) = 0, \quad \implies \quad (\gamma^{\mu} p_{\mu} - m) u(\mathbf{p}) = 0.
+\]
+which in spinorial representation reads
+\[
+    \left[ \begin{pmatrix}
+            0 & 1 \\
+            1 & 0
+        \end{pmatrix} p_0 + \begin{pmatrix}
+            0         & \sigma^i \\
+            -\sigma^i & 0
+        \end{pmatrix} p_i - m \begin{pmatrix}
+            1 & 0 \\
+            0 & 1
+        \end{pmatrix}\right] u(\mathbf{p}) = \begin{pmatrix}
+        -m                         & p^{\mu} \sigma_{\mu} \\
+        p^{\mu} \bar{\sigma}_{\mu} & -m
+    \end{pmatrix} u(\mathbf{p}) = 0,
+\]
+where we have defined \(\sigma^{\mu} = (1,\,\sigma^i)\) and \(\bar{\sigma}^{\mu} = (1,\,-\sigma^i)\). Writing the spinor \(u(\mathbf{p})\) in terms of its two-component chiral parts
+\[
+    u(\mathbf{p}) = \begin{pmatrix}
+        u_L(\mathbf{p}) \\
+        u_R(\mathbf{p})
+    \end{pmatrix},
+\]
+we get the system of equations
+\[
+    \begin{dcases}
+        (p^{\mu} \sigma_{\mu}) u_R(\mathbf{p}) = m u_L(\mathbf{p}), \\
+        (p^{\mu} \bar{\sigma}_{\mu}) u_L(\mathbf{p}) = m u_R(\mathbf{p}) .
+    \end{dcases}
+\]
+It's a system of two coupled equations for the two chiral components of the spinor. We can solve for one component in terms of the other; for example, solving for \(u_R(\mathbf{p})\) from the second equation and plugging it into the first, we get
+\[
+    (p^{\mu} \sigma_{\mu})(p^{\nu} \bar{\sigma}_{\nu}) = (p_0 + p_i \sigma^i)(p_0 - p_j \sigma^j) = p_0^2 - - p_i p_j \sigma^i \sigma^j = p_0^2 - \mathbf{p}^2 = m^2,
+\]
+where we have used the clifford algebra of the Pauli matrices \(\sigma^i \sigma^j = \delta^{ij} + i \epsilon^{ijk} \sigma^k\) and the relativistic dispersion relation \(p_0^2 - \mathbf{p}^2 = m^2\). Thus we can write
+\[
+    \begin{aligned}
+        u_L(\mathbf{p})                             & = A (p^{\mu} \sigma_{\mu}) \chi,                             \\
+        (p^{\mu} \bar{\sigma}_{\mu}) u_L(\mathbf{p} & = (p^{\mu} \bar{\sigma}_{\mu}) (p^{\mu} \sigma_{\mu}) A \chi \\
+                                                    & = m^2 A \chi = m u_R(\mathbf{p})                             \\
+        \implies u_R(\mathbf{p})                    & = m A \chi,
+    \end{aligned}
+\]
+and similarly for \(u_L(\mathbf{p})\):
+\[
+    \begin{aligned}
+        u_R(\mathbf{p})                       & = B (p^{\mu} \bar{\sigma}_{\mu}) \xi,                       \\
+        (p^{\mu} \sigma_{\mu}) u_R(\mathbf{p} & = (p^{\mu} \sigma_{\mu}) (p^{\mu} \bar{\sigma}_{\mu}) B \xi \\
+                                              & = m^2 B \xi = m u_L(\mathbf{p})                             \\
+        \implies u_L(\mathbf{p})              & = m B \xi,
+    \end{aligned}
+\]
+where \(\chi\) and \(\xi\) are arbitrary two-component spinors and \(A\), \(B\) are normalization constants. Thus the general solution for \(u(\mathbf{p})\) can be written as
+\[
+    u(\mathbf{p}) = A \begin{pmatrix}
+        (p^{\mu} \sigma_{\mu}) \chi \\
+        m \chi
+    \end{pmatrix},
+\]
+where now we want to symmetrize the solution by choosing \(A = \frac{1}{m}\) and \(\chi = \sqrt{p^{\mu} \bar{\sigma}_{\mu}} \xi\), where \(\xi\) is a constant two-component spinor respecting
+\[
+    \xi^{\dagger} \xi = 1.
+\]
+Thus we get the final expression for the \textbf{positive frequency solution} of the Dirac equation:
+\[
+    u_L(\mathbf{p}) = \dots
+\]
+\[
+    u_R (\mathbf{p}) = \dots
+\]
+\[
+    \psi(x) = \dots
+\]
+
+We can also find \textbf{negative frequency solutions} of the Dirac equation by considering
+\[
+    \psi(x) = v(\mathbf{p}) e^{i p_{\mu} x^{\mu}},
+\]
+where \(v(\mathbf{p})\) satisfies
+\[
+    (\gamma^{\mu} p_{\mu} + m) v(\mathbf{p}) = \begin{pmatrix}
+        m                          & p^{\mu} \sigma_{\mu} \\
+        p^{\mu} \bar{\sigma}_{\mu} & m
+    \end{pmatrix} v(\mathbf{p}) = 0,
+\]
+and following the same steps as before we get
+\[
+    v(\mathbf{p}) = C \begin{pmatrix}
+        \sqrt{p^{\mu} \sigma_{\mu}} \eta \\
+        -\sqrt{p^{\mu} \bar{\sigma}_{\mu}} \eta
+    \end{pmatrix}.
+\]
+
+If we were to apply the Hamiltonian on these ansatzs we would get
+\[
+    \hat{H} \psi(x) = i \partial_t (u(\mathbf{p}) e^{-i p_{\mu} x^{\mu}}) =,
+\]
+\[
+    \hat{H} \psi(x) = i \partial_t (v(\mathbf{p}) e^{i p_{\mu} x^{\mu}}) =.
+\]
+Thus \(u(\mathbf{p})\) are positive energy solutions while \(v(\mathbf{p})\) are negative energy solutions of the Dirac equation.
+
+\begin{example}
+    In the rest frame of a massive particle
+    \[
+        \mathbf{p} = 0, \quad E_{\mathbf{p}} = p^0 = m.
+    \]
+    Thus the positive frequency solutions read
+    \[
+        u(\mathbf{0}) = \begin{pmatrix}
+            \sqrt{p^{\mu} \sigma_\mu} \xi \\
+            \sqrt{p^{\mu} \bar{\sigma}_\mu} \xi
+        \end{pmatrix} = \sqrt{m} \begin{pmatrix}
+            \xi \\
+            \xi
+        \end{pmatrix},
+    \],
+    so that the plane wave solution is
+    \[
+        \psi(x) = \sqrt{m} \begin{pmatrix}
+            \xi \\
+            \xi
+        \end{pmatrix} e^{-i m t}.
+    \]
+
+    Now recalling the Lorentz transformation for spinors
+    \[
+        \psi^{\prime \, \alpha}(x^{\prime}) = S(\Lambda)^{\alpha}_{\beta} \psi^{\beta}(x), \quad S(\Lambda)^{\alpha}_{\beta} = (e^{-\frac{i}{2} \omega_{\mu \nu} S^{\mu \nu}})^{\alpha}_{\beta},
+    \]
+    where the algebra generators of the Lorentz transformation are
+    \[
+        S^{\mu \nu} = \frac{i}{4} [\gamma^{\mu},\, \gamma^{\nu}]
+    \]
+    with parameters \(\omega_{\mu \nu}\) depending on the boost/rotation we are performing. For a pure spatial rotation we have
+    \[
+        S^{ij} = -\frac{i}{2} \begin{pmatrix}
+            \sigma^k & 0        \\
+            0        & \sigma^k
+        \end{pmatrix}, \quad (i \neq j)
+    \]
+    where \(k\) is the axis of rotation, and the three parameters
+    \[
+        \omega_{ij} = - \epsilon_{ijk} \theta^k, \quad (i \neq j)
+    \]
+    are related to the rotation angles around the three spatial axes. Thus the spinor transformation under a spatial rotation reads
+    \[
+        e^{\frac{1}{2} \omega_{ij} S^{ij}} = \begin{pmatrix}
+            e^{i \frac{\theta^k}{2} \sigma^k} & 0                                 \\
+            0                                 & e^{i \frac{\theta^k}{2} \sigma^k}
+        \end{pmatrix},
+    \]
+    and if we apply this transformation to the rest-frame spinor we get
+    \[
+        \psi(x) = \sqrt{m} \begin{pmatrix}
+            \xi \\
+            \xi
+        \end{pmatrix} e^{-i m t} \to  \psi^{\prime}(x^{\prime}) = \begin{pmatrix}
+            e^{i \frac{\theta^k}{2} \sigma^k} & 0                                 \\
+            0                                 & e^{i \frac{\theta^k}{2} \sigma^k}
+        \end{pmatrix} \psi(x) = \sqrt{m} \begin{pmatrix}
+            e^{i \frac{\theta^k}{2} \sigma^k} \xi \\
+            e^{i \frac{\theta^k}{2} \sigma^k} \xi
+        \end{pmatrix} e^{-i m t},
+    \]
+    so that both chiral components transform in the same way under spatial rotations, as expected since in the rest frame chirality and helicity are not defined
+    \[
+        \xi \to \xi^{\prime} = e^{i \frac{\theta^k}{2} \sigma^k} \xi.
+    \]
+    This is the representation of the standard \(\mathrm{SO}(2)\) transformation for spin \(\tfrac12\) objects
+    \[
+        \mathbf{S} = \frac{1}{2} \hbar \bs{\sigma}.
+    \]
+    We are considering particles at rest with spin \(\tfrac12\), so we can choose the basis where the spin is aligned along the \(z\)-axis:
+    \[
+        \xi_+ = \begin{pmatrix}
+            1 \\
+            0
+        \end{pmatrix}, \quad \xi_- = \begin{pmatrix}
+            0 \\
+            1
+        \end{pmatrix},
+    \]
+    which are eigenstates of the spin operator \(S_z = \frac{\hbar}{2} \sigma^3\) with eigenvalues \(\pm \frac{\hbar}{2}\).
+\end{example}
+
+\begin{example}
+    Now consider a particle with spin up along the \(z\)-axis moving with momentum \(\mathbf{p} = (0,\,0,\,p_z)= (0,\,0,\,p)\) along the \(z\)-axis
+    \[
+        p^{\mu} = (E_{\mathbf{p}},\,0,\,0,\,p_z), \quad E_{\mathbf{p}} = \sqrt{p_z^2 + m^2} = E.
+    \]
+    We have the positiv frequency solution as
+    \[
+        \psi(x) = \begin{pmatrix}
+            \sqrt{p^{\mu} \sigma_{\mu}} \xi_+ \\
+            \sqrt{p^{\mu} \bar{\sigma}_{\mu}} \xi_+
+        \end{pmatrix}e^{-i p_{\mu} x^{\mu}},
+    \]
+    where computing the square roots we get
+    \[
+        \psi(x) = \begin{pmatrix}
+            \begin{pmatrix}
+                \sqrt{E + p} & 0            \\
+                0            & \sqrt{E - p}
+            \end{pmatrix}\begin{pmatrix}
+                             1 \\
+                             0
+                         \end{pmatrix} \\
+            \begin{pmatrix}
+                \sqrt{E - p} & 0            \\
+                0            & \sqrt{E + p}
+            \end{pmatrix}\begin{pmatrix}
+                             1 \\
+                             0
+                         \end{pmatrix}
+        \end{pmatrix} e^{-i (E t - p z)} = \begin{pmatrix}
+            \sqrt{E + p} \\
+            0            \\
+            \sqrt{E - p} \\
+            0
+        \end{pmatrix} e^{-i (E t - p z)}.
+    \]
+    where we have a right handed helicity state since both momentum and spin are aligned along the \(z\)-axis, but both chiral components since for massive particles chirality and helicity do not coincide. Now we can consider the massless limit \(m \to 0\), so that \(E = p\) and we get that the left chiral component vanishes
+    \[
+        \psi(x) = \begin{pmatrix}
+            \sqrt{2 p} \\
+            0          \\
+            0          \\
+            0
+        \end{pmatrix} e^{-i p (t - z)},
+    \]
+    which is a purely right-handed spinor, as expected since in the massless limit chirality and helicity coincide:
+    \[
+        \begin{aligned}
+            \psi_L (x) & = 0,                        \\
+            \psi_R (x) & = \sqrt{2 p} \begin{pmatrix}
+                                          1 \\
+                                          0
+                                      \end{pmatrix}.
+        \end{aligned}
+    \]
+\end{example}
+
+\subsection{Useful Formulae}
+
+We want to introduce some useful formulae for manipulating Dirac spinors and gamma matrices, in order to comprehend better the structure of the quantum theory.
+
+\paragraph{Inner product.}
+We have to define a basis \(\xi^n\) and \(\eta^n\) for the two-component spinors used to build the positive and negative frequency solutions of the Dirac equation (with \(n = 1,\,2\)):
+\[
+    \xi^{n \, \dagger} \xi^m = \delta^{nm}, \quad \eta^{n \, \dagger} \eta^m = \delta^{nm},
+\]
+with trivial example
+\[
+    \xi^1 = \begin{pmatrix}
+        1 \\
+        0
+    \end{pmatrix}, \quad \xi^2 = \begin{pmatrix}
+        0 \\
+        1
+    \end{pmatrix}.
+\]
+Thus solutions of the Dirac equation can be labeled with this index and distinguished into different spin states:
+\[
+    u^{n\,\dagger}(\mathbf{p}) u^m(\mathbf{p}) = \begin{pmatrix}
+        \xi^{n\, \dagger} \sqrt{p^{\mu} \sigma_\mu} & \xi^{n\, \dagger} \sqrt{p^{\mu} \bar{\sigma}_\mu}
+    \end{pmatrix} \begin{pmatrix}
+        \sqrt{p^{\mu} \sigma_\mu} \xi^m \\
+        \sqrt{p^{\mu} \bar{\sigma}_\mu} \xi^m
+    \end{pmatrix}
+\]
+which can be computed as
+\[
+    \begin{aligned}
+        u^{n\,\dagger}(\mathbf{p}) u^m(\mathbf{p}) & = \xi^{n\, \dagger} (p^{\mu} \sigma_\mu) \xi^m + \xi^{n\, \dagger} (p^{\mu} \bar{\sigma}_\mu) \xi^m \\
+                                                   & = \dots = 2 p_0 \xi^{n\, \dagger} \xi^m = 2 E_{\mathbf{p}} \delta^{nm}.
+    \end{aligned}
+\]
+Instead if we have
+\[
+    \overline{u}^{n}(\mathbf{p}) u^m(\mathbf{p}) = \begin{pmatrix}
+        \xi^{n\, \dagger} \sqrt{p^{\mu} \sigma_\mu} & \xi^{n\, \dagger} \sqrt{p^{\mu} \bar{\sigma}_\mu}
+    \end{pmatrix} \begin{pmatrix}
+        0 & 1 \\
+        1 & 0
+    \end{pmatrix} \begin{pmatrix}
+        \sqrt{p^{\mu} \sigma_\mu} \xi^m \\
+        \sqrt{p^{\mu} \bar{\sigma}_\mu} \xi^m
+    \end{pmatrix},
+\]
+and we get (\(\overline{u}^n = u^{n\,\dagger} \gamma^0\))
+\[
+    \begin{aligned}
+        u^{n\,\dagger}(\mathbf{p}) \gamma^0 u^m(\mathbf{p}) & = \xi^{n\, \dagger} (p^{\mu} \sigma_\mu) \xi^m + \xi^{n\, \dagger} (p^{\mu} \bar{\sigma}_\mu) \xi^m \\
+                                                            & = \dots = 2 m \xi^{n\, \dagger} \xi^m = 2 m \delta^{nm}.
+    \end{aligned}
+\]
+Now we can summarize these two results as
+\[
+    \begin{dcases}
+        u^{n\,\dagger}(\mathbf{p}) u^m(\mathbf{p}) = 2 E_{\mathbf{p}} \delta^{nm}, \\
+        \overline{u}^n (\mathbf{p}) u^m(\mathbf{p}) = 2 m \delta^{nm}.
+    \end{dcases}
+\]
+Similarly for the negative frequency solutions we have\TODO{Compute these explicitly.}
+\[
+    \begin{dcases}
+        v^{n\,\dagger}(\mathbf{p}) v^m(\mathbf{p}) = 2 E_{\mathbf{p}} \delta^{nm}, \\
+        \overline{v}^n (\mathbf{p}) v^m(\mathbf{p}) = -2 m \delta^{nm}.
+    \end{dcases}
+\]
+Now we can compute the mixed products
+\[
+    \overline{u}^n (\mathbf{p}) v^m(\mathbf{p}) = \dots = 0,
+\]
+and similarly
+\[
+    \overline{v}^n (\mathbf{p}) u^m(\mathbf{p}) = \dots = 0.
+\]
+Thus we have the orthogonality relations, which do not mix positive and negative frequency solutions.
+We have also
+\[
+    u^{n\,\dagger}(\mathbf{p}) v^m(-\mathbf{p}) = \dots = 0,
+\]
+and similarly
+\[
+    v^{n\,\dagger}(\mathbf{p}) u^m(-\mathbf{p}) = \dots = 0.
+\]
+
+\paragraph{Outer products.}
+We can compute the outer products of the spinors, starting from the positive frequency solutions:
+\[
+    \sum_{n} u^n(\mathbf{p}) \overline{u}^n(\mathbf{p}) = \sum_n \begin{pmatrix}
+        \sqrt{p^{\mu} \sigma_\mu} \xi^n \\
+        \sqrt{p^{\mu} \bar{\sigma}_\mu} \xi^n
+    \end{pmatrix} \begin{pmatrix}
+        \xi^{n\, \dagger} \sqrt{p^{\mu} \sigma_\mu} & \xi^{n\, \dagger} \sqrt{p^{\mu} \bar{\sigma}_\mu}
+    \end{pmatrix} \begin{pmatrix}
+        0 & 1 \\
+        1 & 0
+    \end{pmatrix},
+\]
+where we have used the definition of \(\overline{u}^n\). Computing the sum over the basis we get
+\[
+    \sum_{n} u^n(\mathbf{p}) \overline{u}^n(\mathbf{p}) = \sum_{n} \begin{pmatrix}
+        \sqrt{p^{\mu} \sigma_\mu} \xi^n \xi^{n\, \dagger} \sqrt{p^{\mu} \overline{\sigma}_\mu}            & \sqrt{p^{\mu} \sigma_\mu} \xi^n \xi^{n\, \dagger} \sqrt{p^{\mu} \sigma_\mu}            \\
+        \sqrt{p^{\mu} \overline{\sigma}_\mu} \xi^n \xi^{n\, \dagger} \sqrt{p^{\mu} \overline{\sigma}_\mu} & \sqrt{p^{\mu} \overline{\sigma}_\mu} \xi^n \xi^{n\, \dagger} \sqrt{p^{\mu} \sigma_\mu}
+    \end{pmatrix} = (\gamma^{\mu} p_{\mu} + m).
+\]
+Now if we use the completeness relation for the basis
+\[
+    \sum_{n} \xi^n \xi^{n\, \dagger} = \sum_{n} \begin{pmatrix}
+        1 \\
+        0
+    \end{pmatrix} \begin{pmatrix}
+        1 & 0
+    \end{pmatrix} = \begin{pmatrix}
+        1 & 0 \\
+        0 & 1
+    \end{pmatrix} = \mathbb{I}_2,
+\]
+then we find
+\[
+    \sum_{n} u^n(\mathbf{p}) \overline{u}^n(\mathbf{p}) = \begin{pmatrix}
+        \sqrt{(p \sigma)(p \overline{\sigma})} & (p \sigma)                             \\
+        (p \overline{\sigma})                  & \sqrt{(p \overline{\sigma})(p \sigma)}
+    \end{pmatrix} = \begin{pmatrix}
+        m                          & p^{\mu} \sigma_{\mu} \\
+        p^{\mu} \bar{\sigma}_{\mu} & m
+    \end{pmatrix} = \gamma^{\mu} p_{\mu} + m \mathbb{I}_4.
+\]
+Similarly for the negative frequency solutions we have
+\[
+    \sum_{n} v^n(\mathbf{p}) \overline{v}^n(\mathbf{p}) = \dots = \gamma^{\mu} p_{\mu} - m \mathbb{I}_4.
+\]
+
+\section{Quantizing Dirac Theory}
+We aim to quantize the theory as we did for the scalar KG field, promoting the classical fields to operators acting on a suitable Hilbert space. Starting from Lagrangian formalism, we aim to compute the conjugate momenta, Hamiltonian density, and Hamiltonian operator for the Dirac field.
+
+We know \(\pi = \frac{\partial \mathcal{L}}{\partial \dot{\psi}}\), with the Dirac lagrangian density
+\[
+    \mathcal{L} = \overline{\psi} (i \gamma^{\mu} \partial_{\mu} - m) \psi,
+\]
+we have
+\[
+    \pi =\overline{\psi} i \gamma^0 = i \psi^{\dagger}.
+\]
+
+Now, exactely as for the scalar field, we have to impose canonical commutation relations between the field and its conjugate momentum at equal times, only now we have to take into account that the Dirac field is a spinor, so we have to consider each component separately; so in Schrödinger picture we impose
+\[
+    \begin{aligned}
+        [\psi_{\alpha}(\mathbf{x}),\, \pi_{\beta}(\mathbf{y})]  & = i \delta_{\alpha \beta} \delta^{(3)}(\mathbf{x} - \mathbf{y}), \\
+        [\psi_{\alpha}(\mathbf{x}),\, \psi_{\beta}(\mathbf{y})] & = [\pi_{\alpha}(\mathbf{x}),\, \pi_{\beta}(\mathbf{y})] = 0.
+    \end{aligned}
+\]
+We will see how this choice leads to inconsistencies, so we will have to modify it. In fact we will obtain either negative energy states or negative norm states, both unphysical; thus we will have to impose anticommutation relations instead of commutation relations, in order to obtain a consistent quantum theory for spin \(\tfrac12\) particles. This is related to the spin-statistics theorem, which states that particles with half-integer spin are fermions and must obey Fermi-Dirac statistics, while particles with integer spin are bosons and obey Bose-Einstein statistics.
