@@ -1,1 +1,121 @@
 \chapter{Quantum Ensambles}
+
+In this chapter, we extend the concepts of statistical mechanics to quantum systems. We will explore the different quantum ensembles and their applications to various physical systems.
+
+We will consider only systems in thermal equilibrium, where the principles of quantum mechanics and statistical mechanics intersect; we will discuss the microcanonical, canonical, and grand canonical ensembles in the quantum context. Additionally, we will examine quantum gases, including Bose-Einstein and Fermi-Dirac statistics.
+
+The systems we are going to address are caracterized by discrete energy levels, and the state of the system \(\ket{\psi} in \mathcal{H}_N\) is described by a density matrix rather than a classical probability distribution
+\[
+    \rho_{\psi} = \ket{\psi}\bra{\psi} \text{ or } \rho_{\psi} = \sum_{\alpha} p_{\alpha} \ket{\alpha}\bra{\alpha},
+\]
+Operators are going to be assumed time independent and they will act on the proper Hilbert space of the system: if we are treating a system of $N$ particles, the Hilbert space will be the tensor product of the single-particle Hilbert spaces:
+\[
+    \begin{aligned}
+        \mathcal{H}_{N} & = \mathcal{H}_{1}^{\otimes N} \text{ for distinguishable particles,} \\
+        \mathcal{H}_{N} & = \mathcal{H}^{(N)}_{S}  \text{ for bosons,}                         \\
+        \mathcal{H}_{N} & = \mathcal{H}^{(N)}_{A} \text{ for fermions,}
+    \end{aligned}
+\]
+and when we will need \(N\) to vary, we will work in the Fock space \(\mathcal{F} = \bigoplus_{N=0}^{\infty} \mathcal{H}_{N}\).
+
+The Hamiltonian operator \(H\) will have discrete eigenvalues \(E_n\) with eigenstates \(\ket{n}\), and it will commute with other observables of the system, such as the number operator \(N\), to ensure conservation laws.\QUESTION{Even in GC ensemble? Shouldn't N vary there?}
+
+\section{Microcanonical Ensemble}
+
+As in the classical case, the microcanonical ensemble describes an isolated quantum system with fixed energy \(E\) (configurations on a costant energy surface), volume \(V\), and number of particles \(N\); most operators will have a descrete spectrum and a finite degeneracy \(g_n\) associated to each energy level \(E_n\), working at fixed volume and number of particles.
+
+For a generic, time independent Hamiltonian operator \(H\), we have
+\[
+    H \ket{\psi_{j,\,\alpha}} = E_j \ket{\psi_{j,\,\alpha}}, \quad \alpha = 1, \ldots, g_j,
+\]
+where \(\alpha\) encodes the degeneracy \(g_j\) of each energy level \(E_j\) and we can express the Hamiltonian in terms of its spectral decomposition:
+\[
+    H = \sum_{j} \sum_{\alpha=1}^{g_j} E_j \ket{\psi_{j,\,\alpha}}\bra{\psi_{j,\,\alpha}} = \sum_{j} E_j \mathbb{P}_j,
+\]
+where \(\mathbb{P}_j = \sum_{\alpha=1}^{g_j} \ket{\psi_{j,\,\alpha}}\bra{\psi_{j,\,\alpha}}\) is the projector onto the eigenspace associated to the energy level \(E_j\). Since the system is isolated, the energy is constrained to lie within a small interval \([E, E + \delta E]\), and all accessible microstates within this energy range are equally probable: in the limit \(E=E_j\).
+
+Thus the density operator for the microcanonical ensemble is given by
+\[
+    \rho_{mc} = \frac{1}{g_j} \mathbb{P}_j = \frac{1}{g_j} \sum_{\alpha=1}^{g_j} \ket{\psi_{j,\,\alpha}}\bra{\psi_{j,\,\alpha}},
+\]
+where \(g_j\) is the degeneracy of the energy level \(E_j\). Since the density operator is normalized, we have \(\text{Tr}(\rho_{mc}) = 1\). Let us drop the subscript \(j\) when there is no ambiguity, since we are working at fixed energy, after selecting a specific eigenspace of the Hamiltonian.
+
+The expectation value of an observable \(A\) in the microcanonical ensemble is given by
+\[
+    \langle A \rangle_{mc}  = \text{Tr}(\rho_{mc} A) = \frac{1}{g} \sum_{\alpha=1}^{g} \bra{\alpha} A \ket{\alpha},
+\]
+where \(\frac{1}{g}\) represents the equal probability of each microstate within the energy shell; we also used \(\ket{\alpha}\) to denote the eigenstates \(\ket{\psi_{j,\,\alpha}}\) for simplicity.
+
+We can also define the quantum analog of the entropy in the microcanonical ensemble, from the Boltzmann formula:
+\[
+    \begin{aligned}
+        S & = - k_B \langle \log \rho_{mc} \rangle_{mc} = -k_B \text{Tr}(\rho_{mc} \log \rho_{mc})                                                                                  \\
+          & = - k_B \sum_{\alpha} \bra{\alpha} \left[ \frac{1}{g} \sum_{\beta} \ket{\beta}\bra{\beta} \log(\frac{1}{g} \sum_{\gamma} \ket{\gamma}\bra{\gamma}) \right] \ket{\alpha} \\
+          & = -k_B \sum_{\alpha} \frac{1}{g} \log(\frac{1}{g}) \bra{\alpha} \ket{\alpha} = - k_B \frac{g}{g} \log(\frac{1}{g}) = k_B \log g,
+    \end{aligned}
+\]
+where again \(g\) is the number of accessible microstates at energy \(E\) and we have used the completeness relations \(\sum_{\alpha} \ket{\alpha}\bra{\alpha} = \mathbb{I}\).
+Everything else being equal, a higher degeneracy \(g\) leads to a higher entropy \(S\), reflecting the greater number of accessible microstates for the system. This aligns with the classical interpretation of entropy as a measure of the number of microstates corresponding to a given macrostate.
+
+\section{Canonical Ensemble}
+
+In the canonical ensemble, we consider a quantum system in thermal equilibrium with a heat bath at a fixed temperature \(T\). The system can exchange energy with the bath, leading to fluctuations in its energy levels. The number of particles \(N\) and the volume \(V\) of the system remain constant.
+
+Now we cannot restrict the system to a single energy level, as in the microcanonical ensemble; instead, the system can occupy various energy levels \(E_j\) with probabilities determined by the Boltzmann distribution: for each level \(E_j\) the system has a probability proportional to \(e^{-\beta E_j}\) of being observed in that level.
+
+Now the density operator for the canonical ensemble is given by
+\[
+    \rho_{c} = \frac{1}{Z_N} \sum_{j} e^{-\beta E_j} \mathbb{P}_j = \frac{1}{Z_N} e^{-\beta H_N},
+\]
+where \(Z_N= \text{Tr}(e^{-\beta H_N})\) is the partition function, ensuring the normalization of the density operator. Let's compute this results explicitly:
+\[
+    e^{-\beta H_N} = \sum_{n} \frac{(-\beta H_N)^n}{n!} = \sum_{n} \frac{(-\beta)^n}{n!} \left( \sum_{j} E_j \mathbb{P}_j \right)^n,
+\]
+practically we need to compute the \(n\)-th power of the Hamiltonian:
+\[
+    H_N^2 = \left(\sum_{i} E_i \mathbb{P}_i \right)\left(\sum_{j} E_j \mathbb{P}_j \right) = \sum_{i,\,j} E_i E_j \mathbb{P}_i \mathbb{P}_j = \sum_{j} E_j^2 \mathbb{P}_j,
+\]
+so we can generalize to \(H_N^{n} = \sum_{j} E_j^{n} \mathbb{P}_j\); thus we have
+\[
+    e^{-\beta H_N} = \sum_{j} \left( \sum_{n} \frac{(-\beta E_j)^n}{n!} \right) \mathbb{P}_j = \sum_{j} e^{-\beta E_j} \mathbb{P}_j.
+\]
+
+For the partition function, instead, we have
+\[
+    Z_N = \text{Tr}_{H_N}(e^{-\beta H_N}) = \sum_{j} e^{-\beta E_j} \text{Tr}_{H_N}(\mathbb{P}_j) = \sum_{j} g_j e^{-\beta E_j},
+\]
+where \(g_j = \text{Tr}_{H_N}(\mathbb{P}_j)\) is the degeneracy of the energy level \(E_j\).
+
+The expectation value of an observable \(A\) in the canonical ensemble is given by
+\[
+    \langle A \rangle_{c} = \text{Tr}_{H_N}(\rho_{c} A) = \frac{1}{Z_N} \sum_{j} e^{-\beta E_j} \text{Tr}_{H_N}(\mathbb{P}_j A).
+\]
+
+Now we can compute the quantum analog of the Helmholtz free energy \(F\) in the canonical ensemble, in order to relate thermodynamic quantities to the partition function:
+\[
+    Z_N = e^{-\beta F} \implies F = - \frac{1}{\beta} \log Z_N.
+\]
+From the Helmholtz free energy, we can derive other thermodynamic quantities. For instance, the internal energy \(E\) is given by
+\[
+    \begin{aligned}
+        E = \langle H_N \rangle_{c} & = \text{Tr}_{H_N}(\rho_{c} H_N) = \frac{1}{Z_N} \text{Tr}_{H_N}(e^{-\beta H_N} H_N)                                            \\
+                                    & = \frac{-1}{Z_N} \frac{\partial}{\partial \beta} \text{Tr}_{H_N}(e^{-\beta H_N}) = - \frac{\partial}{\partial \beta} \log Z_N.
+    \end{aligned}
+\]
+
+The entropy \(S\) in the canonical ensemble can be computed using the relation
+\[
+    \begin{aligned}
+        S & = -k_B \langle \log \rho_{c} \rangle_{c} = - k_B \text{Tr}_{H_N}(\rho_{c} \log \rho_{c}) = -k_B \text{Tr}_{H_N} \left( \frac{e^{-\beta H_N}}{Z_N} (- \beta H_N - \log Z_N) \right) \\
+          & = - k_B \left( -\beta \text{Tr}_{H_N}(\frac{H_N e^{-\beta H_N}}{Z_N}) + \frac{\beta F}{Z_N} \text{Tr}_{H_N}(e^{-\beta H_N}) \right)                                                \\
+          & = - k_B \left( - \beta E + \beta F \right) = \frac{E - F}{T},
+    \end{aligned}
+\]
+since \(\log Z_N = -\beta F\) and \(\text{Tr}_{H_N}(e^{-\beta H_N}) = Z_N\). This result is consistent with the thermodynamic, confirming the validity of our quantum statistical mechanics framework.
+
+\section{Grand Canonical Ensemble}
+
+In the grand canonical ensemble, we consider a quantum system that can exchange both energy and particles with a reservoir. The system is characterized by a fixed temperature \(T\), volume \(V\), and chemical potential \(\mu\). The number of particles \(N\) in the system can fluctuate.
+
+
+\section{Quantum Gases}
