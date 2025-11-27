@@ -1,4 +1,4 @@
-\section{Two Real Klein Gordon Fields}
+\section{Two Real Klein Gordon Fields}\label{sec:two_real_KG_fields}
 
 Since our final goal is to describe all particles and their interactions, we can start to study a more complex model: the quantization of a system with more than one field.
 
@@ -164,7 +164,7 @@ Let us now determine the spectrum of the theory by exploiting the properties of 
     \end{aligned}
 \]
 
-It can be shown that the following commutators relate the new ladder operators to the charge operator:
+It can be shown (full computation in appendix \ref{app:computations}) that the following commutators relate the new ladder operators to the charge operator:
 \[
     \begin{aligned}
         [\hat{Q},\, \hat{a}_{\pm,\,\mathbf{p}}]           & = \mp \hat{a}_{\pm,\,\mathbf{p}},           \\
@@ -294,39 +294,48 @@ To answer these questions, we need to move to the Heisenberg picture, where oper
 \]
 and the time derivative of the operator is given by:
 \[
-    i \ddt \hat{O}_H(t) = i \hat{H} e^{i \hat{H} t} \hat{O}_S e^{-i \hat{H} t} + e^{i \hat{H} t} \hat{O}_S e^{-i \hat{H} t} (-i \hat{H}) = [\hat{O}_H(t),\, \hat{H}].
+    \ddt \hat{O}_H(t) = i \hat{H} e^{i \hat{H} t} \hat{O}_S e^{-i \hat{H} t} + e^{i \hat{H} t} \hat{O}_S e^{-i \hat{H} t} (-i \hat{H}) = -i [\hat{O}_H(t),\, \hat{H}].
 \]
 
 Thus if in the Schrödinger picture we had canonical commutation relations (computed at the same istant by definition of time independent operators)
 \[
     \begin{dcases}
-        [\hat{\psi}(\mathbf{x}),\, \hat{\psi}(\mathbf{y})] = [\hat{\pi}(\mathbf{x}),\, \hat{\pi}(\mathbf{y})] = 0, \\
-        [\hat{\psi}(\mathbf{x}),\, \hat{\pi}(\mathbf{y})] = i \delta^{(3)}(\mathbf{x}-\mathbf{y}),
+        \left[\hat{\psi}(\mathbf{x}),\, \hat{\psi}(\mathbf{y})\right] = \left[\hat{\pi}(\mathbf{x}),\, \hat{\pi}(\mathbf{y})\right] = 0, \\
+        \left[\hat{\psi}(\mathbf{x}),\, \hat{\pi}(\mathbf{y})\right] = i \delta^{(3)}(\mathbf{x}-\mathbf{y}),
     \end{dcases}
 \]
 in the Heisenberg picture we have \textbf{equal-time canonical commutation relations}:
 \[
     \begin{dcases}
-        [\hat{\psi}(\mathbf{x}, t),\, \hat{\psi}(\mathbf{y}, t)] = [\hat{\pi}(\mathbf{x}, t),\, \hat{\pi}(\mathbf{y}, t)] = 0, \\
-        [\hat{\psi}(\mathbf{x}, t),\, \hat{\pi}(\mathbf{y}, t)] = i \delta^{(3)}(\mathbf{x}-\mathbf{y}).
+        \left[\hat{\psi}(\mathbf{x}, t),\, \hat{\psi}(\mathbf{y}, t)\right] = \left[\hat{\pi}(\mathbf{x}, t),\, \hat{\pi}(\mathbf{y}, t)\right] = 0, \\
+        \left[\hat{\psi}(\mathbf{x}, t),\, \hat{\pi}(\mathbf{y}, t)\right] = i \delta^{(3)}(\mathbf{x}-\mathbf{y}).
     \end{dcases}
 \]
 When two events are separated by a spacelike interval (outside each other's light cones), there exists a reference frame in which they occur at the same time. Therefore, to ensure causality in our quantum field theory, we require that operators corresponding to measurements at spacelike-separated points commute. This means that measurements performed at these points cannot influence each other (they can be measured with arbitrary precision independently at the same time), preserving the principle of causality.
 
 \(\hat{\psi}(t, \mathbf{x})\) and \(\hat{\psi}(t, \mathbf{y})\) are certainly spacelike separated if \(\mathbf{x} \neq \mathbf{y}\) at equal times, since they are describing events that occur at different spatial locations simultaneously.
 
-We want now to see how the field operators evolve in time in the Heisenberg picture:
+We want now to see how the field operators evolve in time in the Heisenberg picture:\footnote{Note that in the commutator we are using Heisenberg oprators, even if we do not know their expression yet; we can since the relations we will use are all well defined and applied at equal times, there will be no problems. The expression of the Hamiltonian comes from the Schrödinger picture Legendre transform in equation \eqref{eq:KG_Hamiltonian_operator}, and then promoted to the Heisenberg picture.}\QUESTION{Why partial derivative wrt time? Shouldn't it be total derivative? (I wrote total, prof notes say partial.)}
 \[
     \begin{aligned}
-        \ddt \hat{\psi} (\mathbf{x}, t) & = -i [\hat{H}(t),\,\hat{\psi}(\mathbf{x}, t)] = -i [\pi(\mathbf{y},t)\dot{\psi}(\mathbf{y},t) - \mathcal{L}(\mathbf{y},t),\,\hat{\psi}(\mathbf{x}, t)] \\
-                                        & = \dots
+        \ddt \hat{\psi} (\mathbf{x}, t) & = \frac{i}{2} \left[\hat{H}(t),\,\hat{\psi}(\mathbf{x}, t) \right] = i \left[\int \mathrm{d}^3 \mathbf{y} \, \left( \hat{\pi}^2(\mathbf{y},t) + \vert \nabla_{\mathbf{y}}  \hat{\psi}(\mathbf{y},t) \vert^2 + m^2 \hat{\psi}^2(\mathbf{y},t) \right),\,\hat{\psi}(\mathbf{x}, t)\right]                               \\
+                                        & = \frac{i}{2} \int \mathrm{d}^3 \mathbf{y} \, \left\{ \left[ \hat{\pi}^2(\mathbf{y},t),\,\hat{\psi}(\mathbf{x}, t) \right] + \left[ \vert \nabla_{\mathbf{y}} \hat{\psi}(\mathbf{y},t) \vert^2,\,\hat{\psi}(\mathbf{x},t)\right] + m^2 \left[ \hat{\psi}^2(\mathbf{y},t),\,\hat{\psi}(\mathbf{x}, t) \right] \right\} \\
+                                        & \qquad \left[ \hat{\pi}^2(\mathbf{y},t),\,\hat{\psi}(\mathbf{x}, t) \right] = 2\hat{\pi}(\mathbf{y},t) [\hat{\pi}(\mathbf{y},t),\,\hat{\psi}(\mathbf{x}, t)] = -2i \delta^{(3)}(\mathbf{x}-\mathbf{y}) \hat{\pi}(\mathbf{y},t),                                                                                       \\
+                                        & \qquad \left[ \vert \nabla_{\mathbf{y}} \hat{\psi}(\mathbf{y},t) \vert^2,\,\hat{\psi}(\mathbf{x},t)\right] = 2 \nabla_{\mathbf{y}}\hat{\psi}(\mathbf{y},t) \nabla_{\mathbf{y}}\left[\hat{\psi}(\mathbf{y},t) ,\,\hat{\psi}(\mathbf{x},t)\right] = 0,                                                                  \\
+                                        & \qquad \left[ \hat{\psi}^2(\mathbf{y},t),\,\hat{\psi}(\mathbf{x}, t) \right] = 2 \hat{\psi}(\mathbf{y},t)\left[ \hat{\psi}(\mathbf{y},t),\,\hat{\psi}(\mathbf{x}, t) \right] =  0,                                                                                                                                    \\
+                                        & = \frac{i}{2} \int \mathrm{d}^3 \mathbf{y} \, (-2i) \delta^{(3)}(\mathbf{x}-\mathbf{y}) \hat{\pi}(\mathbf{y},t) = \int \mathrm{d}^3 \mathbf{y} \, \delta^{(3)}(\mathbf{x}-\mathbf{y}) \hat{\pi}(\mathbf{y},t) = \hat{\pi}(\mathbf{x}, t).
     \end{aligned}
 \]
-where we have used the expression for the Hamiltonian density in terms of the Lagrangian density. We fond that \(\ddt \hat{\psi} (\mathbf{x}, t) = \hat{\pi}(\mathbf{x}, t)\) as expected, and similarly we can compute the time derivative of \(\hat{\pi}(\mathbf{x}, t)\):
+where we have used the commutator of a product expression \([AB,\,C] = A[B,\,C]+[A,\,C]B\) and we were able to take the spatial derivative out of the commutator since it was cating on functions of \(\mathbf{y}\) and not of \(\mathbf{x}\). We found that \(\ddt \hat{\psi} (\mathbf{x}, t) = \hat{\pi}(\mathbf{x}, t)\) as expected, and similarly we can compute the time derivative of \(\hat{\pi}(\mathbf{x}, t)\):
 \[
     \begin{aligned}
-        \ddt \hat{\pi} (\mathbf{x}, t) & = -i [\hat{H}(t),\,\hat{\pi}(\mathbf{x}, t)] = -i [\hat{\pi}(\mathbf{y},t)\dot{\hat{\psi}}(\mathbf{y},t) - \mathcal{L}(\mathbf{y},t),\,\hat{\pi}(\mathbf{x}, t)] \\
-                                       & = \dots
+        \ddt \hat{\pi} (\mathbf{x}, t) & = \frac{i}{2} [\hat{H}(t),\,\hat{\pi}(\mathbf{x}, t)] = i \left[\int \mathrm{d}^3 \mathbf{y} \, \left( \hat{\pi}^2(\mathbf{y},t) + \vert \nabla_{\mathbf{y}}  \hat{\psi}(\mathbf{y},t) \vert^2 + m^2 \hat{\psi}^2(\mathbf{y},t) \right),\,\hat{\pi}(\mathbf{x}, t)\right]                                                                               \\
+                                       & = \frac{i}{2} \int \mathrm{d}^3 \mathbf{y} \, \left\{ \left[ \hat{\pi}^2(\mathbf{y},t),\,\hat{\pi}(\mathbf{x}, t) \right] + \left[ \vert \nabla_{\mathbf{y}} \hat{\psi}(\mathbf{y},t) \vert^2,\,\hat{\pi}(\mathbf{x},t)\right] + m^2 \left[ \hat{\psi}^2(\mathbf{y},t),\,\hat{\pi}(\mathbf{x}, t) \right] \right\}                                      \\
+                                       & \qquad \left[ \hat{\pi}^2(\mathbf{y},t),\,\hat{\pi}(\mathbf{x}, t) \right] = 2\hat{\pi}(\mathbf{y},t)\left[ \hat{\pi}(\mathbf{y},t),\,\hat{\pi}(\mathbf{x}, t) \right] = 0,                                                                                                                                                                             \\
+                                       & \qquad \left[ \vert \nabla_{\mathbf{y}} \hat{\psi}(\mathbf{y},t) \vert^2,\,\hat{\pi}(\mathbf{x},t)\right] = 2 \nabla_{\mathbf{y}}\hat{\psi}(\mathbf{y},t) \nabla_{\mathbf{y}}\left[\hat{\psi}(\mathbf{y},t) ,\,\hat{\pi}(\mathbf{x},t)\right] = 2i \nabla_{\mathbf{y}}\hat{\psi}(\mathbf{y},t) \nabla_{\mathbf{y}} \delta^{(3)}(\mathbf{x}-\mathbf{y}), \\
+                                       & \qquad \left[ \hat{\psi}^2(\mathbf{y},t),\,\hat{\pi}(\mathbf{x}, t) \right] = 2 \hat{\psi}(\mathbf{y},t)\left[ \hat{\psi}(\mathbf{y},t),\,\hat{\pi}(\mathbf{x}, t) \right] = 2i\hat{\psi}(\mathbf{y},t)\delta^{(3)}(\mathbf{x}-\mathbf{y}),                                                                                                             \\
+                                       & = \frac{i}{2} \int \mathrm{d}^3 \mathbf{y} \, \left\{ 2i \nabla_{\mathbf{y}}\hat{\psi}(\mathbf{y},t) \nabla_{\mathbf{y}} \delta^{(3)}(\mathbf{x}-\mathbf{y}) + 2i m^2 \hat{\psi}(\mathbf{y},t)\delta^{(3)}(\mathbf{x}-\mathbf{y}) \right\}                                                                                                              \\
+                                       & = - \int \mathrm{d}^3 \mathbf{y} \, \left\{ - \nabla_{\mathbf{y}}^2 \hat{\psi}(\mathbf{y},t) + m^2 \hat{\psi}(\mathbf{y},t) \right\} \delta^{(3)}(\mathbf{x}-\mathbf{y}) = \nabla_{\mathbf{y}}^2 \hat{\psi}(\mathbf{x},t) - m^2 \hat{\psi}(\mathbf{x},t),                                                                                               \\
     \end{aligned}
 \]
 where we find \(\ddt \hat{\pi} (\mathbf{x}, t) = (\nabla^2 - m^2) \hat{\psi}(\mathbf{x}, t)\). Combining these two results, we find that the field operator \(\hat{\psi}(\mathbf{x}, t)\) satisfies the Klein-Gordon equation in the Heisenberg picture:
@@ -343,7 +352,7 @@ which is clearly time independent, due to the definition of the ladder operators
 \[
     \left(\hat{a}_{\mathbf{p}}\right)_H = e^{i \hat{H} t} (\hat{a}_{\mathbf{p}})_S e^{-i \hat{H} t}, \quad \left(\hat{a}^{\dagger}_{\mathbf{p}}\right)_H = e^{i \hat{H} t} (\hat{a}^{\dagger}_{\mathbf{p}})_S e^{-i \hat{H} t}.
 \]
-If we recall the commutators between the ladder operators and the Hamiltonian, we can compute:
+If we recall the commutators between the ladder operators and the Hamiltonian, we can compute:\footnote{Since \(\hat{H}\ket{0} = 0 = \hat{H} \hat{a}_{\mathbf{p}}\ket{\mathbf{p}} = \left([\hat{H} ,\, \hat{a}_{\mathbf{p}}] + \hat{a}_{\mathbf{p}}\hat{H}\right)\ket{\mathbf{p}}\) leads to \([\hat{H},\, \hat{a}_{\mathbf{p}}]\ket{\mathbf{p}} = -\hat{a}_{\mathbf{p}}\hat{H} \ket{\mathbf{p}} = -\hat{a}_{\mathbf{p}} \omega_{\mathbf{p}} \ket{\mathbf{p}}\), and similarly for the creation operator \(\hat{H} \hat{a}^{\dagger}_{\mathbf{p}} \ket{0} = \left([\hat{H},\,\hat{a}^{\dagger}_{\mathbf{p}}] + \hat{a}^{\dagger}_{\mathbf{p}} \hat{H} \right) \ket{0}\) leads to \([\hat{H},\,\hat{a}^{\dagger}_{\mathbf{p}}] \ket{0} = \hat{H} \hat{a}^{\dagger}_{\mathbf{p}} \ket{0} = \omega_{\mathbf{p}} \hat{a}^{\dagger}_{\mathbf{p}} \ket{0}\).}
 \[
     [\hat{H},\, \hat{a}_{\mathbf{p}}] = - \omega_{\mathbf{p}} \hat{a}_{\mathbf{p}}, \quad [\hat{H},\, \hat{a}^{\dagger}_{\mathbf{p}}] = + \omega_{\mathbf{p}} \hat{a}^{\dagger}_{\mathbf{p}},
 \]\QUESTION{Probably stupid question, but why?}
@@ -496,32 +505,30 @@ Now we can check the three considerations:
           where \(Y_1\) is a Bessel function of the II kind while \(J_1\) is of the I kind. Now let's take a look at the asymptotic behaviour:
           \[
               \begin{aligned}
-                  J_1(x) & =       \\
-                  Y_1(x) & = \dots
+                  J_1(x) & \xrightarrow{x \to \infty} \sqrt{\frac{2}{\pi x}} \cos x, \\
+                  Y_1(x) & \xrightarrow{x \to \infty} \sqrt{\frac{2}{\pi x}} \sin x.
               \end{aligned}
           \]
-          thus when we take \(t \to \infty \) we get something like \(\sin  - \cos\) so we get
+          thus when we take \(t \to \infty\) we get something like \(\sin x + i\cos x\)\footnote{computed with exponentials it becomes \(\sin x + i\cos x = \frac{1}{2}(-i(e^{ix} - e^{-ix}) + i(e^{ix} + e^{-ix})) = ie^{-ix}\).} so we get
           \[
               Y_1(mt) + i {J_1}(mt) \xrightarrow{t \to \infty} i \sqrt{\frac{2}{\pi m t}}e^{-imt},
           \]
           so that
           \[
-              \Delta(x-y) = \left[\hat \psi(x),\, \hat \psi(y)\right] \xrightarrow{t \to \infty} \left(e^{-imt} - e^{imt}\right) \neq 0.
+              \Delta(x-y) = \frac{1}{4\pi^2} \int_m^{\infty} \mathrm{d}E_{\mathbf{p}} \sqrt{E^2_{\mathbf{p}} - m^2} \left( e^{-i E_{\mathbf{p}} t} - e^{i E_{\mathbf{p}} t} \right) \xrightarrow{t \to \infty} \left(e^{-imt} - e^{imt}\right) \neq 0.
           \]
     \item \textbf{Spacelike separation}: \(\Delta(x-y) = 0\). Let us now consider the case where \(x\) and \(y\) are separated only in space, i.e. \(t_x = t_y\) and \(\mathbf{x} \neq \mathbf{y}\), thus \((x-y)^2 < 0\). We want to prove, in the easiest case where \(x = (t,\, \mathbf{x})\) and \(y=(t, \mathbf{y})\), that the commutator vanishes:
           \[
-              \Delta(x-y) = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \frac{1}{2\omega_{\mathbf{p}}} \left( e^{-i \mathbf{p} \cdot (\mathbf{x}-\mathbf{y})} - e^{i \mathbf{p} \cdot (\mathbf{x}-\mathbf{y})} \right).
+              \begin{aligned}
+                  \Delta(x-y) & = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \frac{1}{2\omega_{\mathbf{p}}} \left( e^{-i p_{\mu} (x^{\mu}-y^{\mu})} - e^{i p_{\mu}(x^{\mu}-y^{\mu})} \right)                                                                                              \\
+                              & = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \frac{1}{2\omega_{\mathbf{p}}} e^{-i \mathbf{p} \cdot (\mathbf{x}-\mathbf{y})} - \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \frac{1}{2\omega_{\mathbf{p}}} e^{i \mathbf{p} \cdot (\mathbf{x}-\mathbf{y})} \\
+                              & = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \frac{1}{2\omega_{\mathbf{p}}} \left( e^{-i \mathbf{p} \cdot (\mathbf{x}-\mathbf{y})} - e^{i (-\mathbf{p}) \cdot (\mathbf{x}-\mathbf{y})} \right) = 0,
+              \end{aligned}
           \]
-          \[
-              \dots \dots \dots
-          \]
-          since \(x_0 = y_0 = t\), only the space variables survive in the computation, and the sum of the last two integrals (performing a change of variable from \(\mathbf{p}\) to \(-\mathbf{p}\) on the second integral) we are left with two identical terms subtracted to each other, so we get \(0\). Since this guy is Lorentz invariant, we found this result true for any \((x-y)^2 = - (x-y)^2 < 0\), since the time can be different in \(x\) and \(y\), but we are speaking of spacelike vectors.
+          since \(x_0 = y_0 = t\), only the space variables survive in the computation, and the sum of the last two integrals (performing a change of variable from \(\mathbf{p}\) to \(-\mathbf{p}\) on the second integral) we are left with two identical terms subtracted to each other, so we get \(0\). Since this guy is Lorentz invariant, we found this result true for any \((x-y)^2 = - (x-y)^2 < 0\), since the time can be different in \(x\) and \(y\), but we are speaking of spacelike vectors (as we said, we can generalize via Lorentz transformations).
 \end{enumerate}
 
-
-
-
-We have proven that KG theory mathematically preserve causality (rememner that in RQMPI we looked at how there was a non zero prob of finding a particle propagating at \(v>c\)), let's check this instance phisically: the probability of finding a particle at \(v>c\) should be null.
+We have proven that KG theory mathematically preserve causality (remember that in RQMPI we looked at how there was a non zero probability of finding a particle propagating at \(v>c\)), let's check this instance phisically: the probability of finding a particle at \(v>c\) should be null.
 
 \section{Klein Gordon Correlators}
 

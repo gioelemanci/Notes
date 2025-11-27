@@ -169,7 +169,7 @@ similarly:
     \end{aligned}
 \]
 
-\subsection{Hamiltonian and Ladder Operators}
+\subsection{Hamiltonian and Ladder Operators}\label{sec:KG_Hamiltonian_ladder}
 
 Let us examine the classical Klein-Gordon Hamiltonian:
 \[
@@ -196,9 +196,10 @@ where \(\omega_{\mathbf{p}} = \sqrt{\vert \mathbf{p} \vert^2 + m^2}\), and
     \hat{\pi} (x) = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3}\,(-i)\sqrt{\frac{\omega_{\mathbf{p}}}{2}} \left[ \hat{a}_{\mathbf{p}}e^{i \mathbf{p} \cdot \mathbf{x}} - \hat{a}^{\dagger}_{\mathbf{p}} e^{-i \mathbf{p} \cdot \mathbf{x}} \right].
 \]
 The promoted Hamiltonian operator now takes the form:
-\[
+\begin{equation}
     \hat{H} = \frac{1}{2} \int \mathrm{d}^3 \mathbf{x} \left( \hat{\pi}^2 + \vert \nabla \hat{\psi} \vert^2 + m^2 \hat{\psi}^2 \right).
-\]
+    \label{eq:KG_Hamiltonian_operator}
+\end{equation}
 We compute the integrands of the individual squared terms (implicitly involving a double momentum integral $\int d^3\mathbf{p} d^3\mathbf{q}$):
 \[
     \begin{aligned}

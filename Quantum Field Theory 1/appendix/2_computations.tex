@@ -146,3 +146,30 @@ The first term vanishes identically because the factor \(-\omega_{\mathbf{p}}^2 
 \[
     \hat{H} = \frac{1}{2} \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \, \omega_{\mathbf{p}}\left( \hat{a}_{\mathbf{p}} \hat{a}^{\dagger}_{\mathbf{p}} + \hat{a}^{\dagger}_{\mathbf{p}} \hat{a}_{\mathbf{p}} \right).
 \]
+
+\subsection*{Commutators between ladder operators and charge operator in complex KG}
+As anticipated in section \ref{sec:two_real_KG_fields}, we want to compute the commutators between the ladder operators and the charge operator for the complex Klein-Gordon field: let us recall the expressions for the charge operator and the ladder operators
+\[
+    \hat{Q} = -i \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \, \left( \hat{a}^{\dagger}_{1,\,\mathbf{p}} \hat{a}_{2,\,\mathbf{p}} - \hat{a}^{\dagger}_{2,\,\mathbf{p}} \hat{a}_{1,\,\mathbf{p}} \right),
+\]
+\[
+    \hat{a}_{\pm,\,\mathbf{p}}  = \frac{1}{\sqrt{2}}\left( \hat{a}_{1,\,\mathbf{p}} \pm i \hat{a}_{2,\,\mathbf{p}} \right), \quad \hat{a}^{\dagger}_{\pm,\,\mathbf{p}} = \frac{1}{\sqrt{2}}\left( \hat{a}^{\dagger}_{1,\,\mathbf{p}} \mp i \hat{a}^{\dagger}_{2,\,\mathbf{p}} \right).
+\]
+Then we can start the computation, remembering that commutators among ladder operators of different fields vanish:
+\[
+    \begin{aligned}
+        \left[\hat{Q} ,\, \hat{a}_{\pm,\,\mathbf{p}}\right] & = \frac{1}{\sqrt{2}} \int \frac{\mathrm{d}^3 \mathbf{q}}{(2\pi)^3} \left[ -i (\hat{a}^{\dagger}_{1,\,\mathbf{q}} \hat{a}_{2,\,\mathbf{q}} - \hat{a}^{\dagger}_{2,\,\mathbf{q}} \hat{a}_{1,\,\mathbf{q}}),\, \hat{a}_{1,\,\mathbf{p}} \pm i \hat{a}_{2,\,\mathbf{p}} \right]                        \\
+                                                            & = \frac{1}{\sqrt{2}} \int \frac{\mathrm{d}^3 \mathbf{q}}{(2\pi)^3} \left( -i \hat{a}_{2,\,\mathbf{q}} \left[\hat{a}^{\dagger}_{1,\,\mathbf{q}},\, \hat{a}_{1,\,\mathbf{p}}\right] \pm \hat{a}_{1,\,\mathbf{q}} \left[\hat{a}^{\dagger}_{2,\,\mathbf{q}},\, \hat{a}_{2,\,\mathbf{p}}\right] \right) \\
+                                                            & = \frac{1}{\sqrt{2}} \int \frac{\mathrm{d}^3 \mathbf{q}}{(2\pi)^3} \left( -i \hat{a}_{2,\,\mathbf{q}} \pm \hat{a}_{1,\,\mathbf{q}} \right) (-1) \delta^{(3)}(\mathbf{q} - \mathbf{p})                                                                                                              \\
+                                                            & = \pm \hat{a}_{1,\,\mathbf{p}} + i \hat{a}_{2,\,\mathbf{p}} = \pm \hat{a}_{\pm,\,\mathbf{p}}.
+    \end{aligned}
+\]
+Similarly, for the creation operators we have:
+\[
+    \begin{aligned}
+        \left[\hat{Q} ,\, \hat{a}^{\dagger}_{\pm,\,\mathbf{p}}\right] & = \frac{1}{\sqrt{2}} \int \frac{\mathrm{d}^3 \mathbf{q}}{(2\pi)^3} \left[ -i (\hat{a}^{\dagger}_{1,\,\mathbf{q}} \hat{a}_{2,\,\mathbf{q}} - \hat{a}^{\dagger}_{2,\,\mathbf{q}} \hat{a}_{1,\,\mathbf{q}}),\, \hat{a}^{\dagger}_{1,\,\mathbf{p}} \mp i \hat{a}^{\dagger}_{2,\,\mathbf{p}} \right]                        \\
+                                                                      & = \frac{1}{\sqrt{2}} \int \frac{\mathrm{d}^3 \mathbf{q}}{(2\pi)^3} \left( +i \hat{a}^{\dagger}_{2,\,\mathbf{q}} \left[\hat{a}_{1,\,\mathbf{q}},\, \hat{a}^{\dagger}_{1,\,\mathbf{p}}\right] \mp \hat{a}^{\dagger}_{1,\,\mathbf{q}} \left[\hat{a}_{2,\,\mathbf{q}},\, \hat{a}^{\dagger}_{2,\,\mathbf{p}}\right] \right) \\
+                                                                      & = \frac{1}{\sqrt{2}} \int \frac{\mathrm{d}^3 \mathbf{q}}{(2\pi)^3} \left( +i \hat{a}^{\dagger}_{2,\,\mathbf{q}} \mp \hat{a}^{\dagger}_{1,\,\mathbf{q}} \right) \delta^{(3)}(\mathbf{q} - \mathbf{p})                                                                                                                   \\
+                                                                      & = \mp \hat{a}^{\dagger}_{1,\,\mathbf{p}} + i \hat{a}^{\dagger}_{2,\,\mathbf{p}} = \mp \hat{a}^{\dagger}_{\pm,\,\mathbf{p}}.
+    \end{aligned}
+\]
