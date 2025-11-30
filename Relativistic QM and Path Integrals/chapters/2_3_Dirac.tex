@@ -1,20 +1,617 @@
 \section{Dirac Equation}
+Dirac found the correct equation to describe particles of spin \(\tfrac{1}{2}\) by looking for a relativistic wave equation that could admit a probabilistic interpretation and thus be consistent with the principles of quantum mechanics. The Klein-Gordon equation did not have such an interpretation. Although a probabilistic interpretation will not be possible in the presence of interactions (eventually, Dirac’s wave function must be treated as a classical field to be quantized again in the second quantization), it is useful to retrace the line of thinking that brought Dirac to the formulation of an equation of first order in time.
 
-\subsection{Continuity Equations}
+The relativistic relation between energy and momentum reads
+\[
+    p_\mu p^{\mu} = -m^2c^2 \iff E^2 = p^2 c^2 + m^2 c^4,
+\]
+thus, with the correspondence principle
+\[
+    E = cp^0 \to i \hbar \frac{\partial}{\partial t}, \quad \mathbf{p} \to -i \hbar \nabla \quad \implies p_\mu \to i \hbar \partial_\mu,
+\]
+which leads to the Klein-Gordon equation, second order in both time and space derivatives. As a consequence, the KG conserved current density is not positive definite, making difficult a probability density interpretation of the theory.
+
+Dirac proposed an alternative equation, first order in both time and space derivatives, that could overcome these problems. He started from the ansatz
+\begin{equation}
+    E = c \mathbf{p} \cdot \bs{\alpha} + \beta m c^2,
+    \label{eq:dirac_equation_alpha_beta}
+\end{equation}
+with \(\bs{\alpha} = (\alpha^1,\,\alpha^2,\,\alpha^3)\) and \(\beta\) hermitian matrices to be determined. Squaring both sides and imposing the relativistic relation, one finds the conditions
+\[
+    \begin{aligned}
+        E^2 & = (c \mathbf{p} \cdot \bs{\alpha} + \beta m c^2)(c \mathbf{p} \cdot \bs{\alpha} + \beta m c^2)                                                                                                 \\
+            & = c^2 (p^i \alpha^i)^2 + m^2 c^4 \beta^2 + mc^3 \left(p^i \alpha^i \beta + \beta p^j \alpha^j \right)                                                                                          \\
+            & = m^2 c^4 \frac{1}{2} (\beta\beta + \beta\beta) + c^2 p^i p^j \alpha^i \alpha^j + m c^3 p^i \left(\alpha^i \beta + \beta \alpha^i \right)                                                      \\
+            & = m^2 c^4 \frac{1}{2} \{\beta,\,\beta\} + c^2 p_i p^j \frac{1}{2}\left(\alpha^i \alpha^j + \alpha^j \alpha^i + \alpha^i \alpha^j - \alpha^j \alpha^i \right) + m c^3 p^i \{\alpha^i,\,\beta\},
+    \end{aligned}
+\]
+where we have recognized the anticommutator \(\{\,,\,\}\) and decomposed the product of \(\alpha\) matrices into symmetric and antisymmetric parts. Since \(p^i p^j \to \hbar^2 \partial^i \partial^j\) is symmetric in the indices \(i\) and \(j\), the antisymmetric part of the product of \(\alpha\) matrices vanishes. Thus, we are able to recognize another commutator, before imposing the realativistic relation:
+\[
+    E^2 = m^2 c^4 \frac{1}{2}\{\beta,\,\beta\} + c^2 p^i p^j \frac{1}{2} \{\alpha^i,\,\alpha^j\} + m c^3 p^i \{\alpha^i,\,\beta\} = m^2 c^4 + c^2 p^2,
+\]
+hence the relations that the matrices must satisfy:
+\begin{equation}
+    \begin{aligned}
+        \{\alpha^i,\,\alpha^j\} & = 2 \delta^{ij} \mathbb{I}, \\
+        \{\alpha^i,\,\beta\}    & = 0,                        \\
+        \{\beta,\,\beta\}       & = 2 \mathbb{I}.
+    \end{aligned}
+    \label{eq:clifford_relations}
+\end{equation}
+These relations define the \textbf{Clifford Algebra} and cannot be satisfied by numbers, as the first relation implies that \(\alpha^i\) cannot commute among themselves. The smallest matrices that can satisfy these relations (minimal solution) are \(4 \times 4\) \textbf{traceless} matrices, which can be constructed in terms of the Pauli matrices \(\sigma^i\):
+\begin{equation}
+    \alpha^i = \begin{pmatrix}
+        0        & \sigma^i \\
+        \sigma^i & 0
+    \end{pmatrix}, \quad \beta = \begin{pmatrix}
+        \mathbb{I} & 0           \\
+        0          & -\mathbb{I}
+    \end{pmatrix},
+    \label{eq:dirac_representation}
+\end{equation}
+known as the \textbf{Dirac representation} of the Clifford algebra; let us remember that the Pauli matrices are
+\[
+    \sigma^1 = \begin{pmatrix}
+        0 & 1 \\
+        1 & 0
+    \end{pmatrix}, \quad
+    \sigma^2 = \begin{pmatrix}
+        0 & -i \\
+        i & 0
+    \end{pmatrix}, \quad
+    \sigma^3 = \begin{pmatrix}
+        1 & 0  \\
+        0 & -1
+    \end{pmatrix},
+\]
+and they satisfy the relation \(\sigma^i \sigma^j = \delta^{ij} \mathbb{I} + i \epsilon^{ijk} \sigma^k\).
+
+\begin{theorem}
+    All four dimensional irreducible representations of the Clifford algebra are unitarily equivalent to the Dirac representation, and thus related by a change of basis; other non trivial representations can be constructed as direct sums of irreducible ones and are thus reducible.
+\end{theorem}
+
+With the correspondence principle, we can now quantize the ansatz for the energy and thus write the \textbf{Dirac equation} in Hamiltonian form:
+\begin{equation}
+    i \hbar \frac{\partial}{\partial t} \psi(\mathbf{x},\,t) = \left(-i \hbar c \bs{\alpha} \cdot \nabla + \beta m c^2 \right) \psi(\mathbf{x},\,t),
+    \label{eq:dirac_equation_hamiltonian}
+\end{equation}
+where the operator acting on the right-hand side is the Dirac Hamiltonian, acting on the four-component spinor \(\psi(\mathbf{x},\,t)\); since \(\bs{\alpha}\) and \(\beta\) are hermitian matrices, the Hamiltonian is hermitian as well and the time evolution is unitary. The Dirac equation can be written in covariant form\TODO{Finish computation}
+\[
+    \begin{aligned}
+        \frac{-\beta}{\hbar c} \left(i \hbar \frac{\partial}{\partial t} - \beta m c^2 \right) \psi  = \frac{\beta}{\hbar c} \left(-i \hbar c \bs{\alpha} \cdot \nabla + \beta m c^2 \right) \psi \\
+        =  \dots,
+    \end{aligned}
+\]
+we can identify components of a scalar product between four-vectors if we define the gamma matrices as
+\begin{equation}
+    \gamma^0 = -i\beta, \quad \gamma^i = -i \beta \alpha^i,
+    \label{eq:gamma_matrices}
+\end{equation}
+so that the Dirac equation takes the form
+\begin{equation}
+    (i \hbar \gamma^{\mu} \partial_{\mu} + \mu^2) \psi(x) = 0,
+    \label{eq:dirac_equation_covariant}
+\end{equation}
+with \(\mu = \frac{m c}{\hbar}\) the inverse Compton wavelength of the particle. The gamma matrices satisfy the clifford algebra relations
+\[
+    \left\{ \gamma^\mu, \gamma^\nu \right\} = 2 \eta^{\mu \nu},
+\]
+where \(\eta^{\mu \nu} = \text{diag}(-1,\,1,\,1,\,1)\)\TODO{Check if notation is mostly plus or minus.} is the Minkowski metric tensor. In the Dirac representation, the gamma matrices read
+\[
+    \gamma^0 = -i \begin{pmatrix}
+        \mathbb{I} & 0           \\
+        0          & -\mathbb{I}
+    \end{pmatrix}, \quad \gamma^i = -i \begin{pmatrix}
+        0         & \sigma^i \\
+        -\sigma^i & 0
+    \end{pmatrix},
+\]
+and we can adopt natural units and \textbf{Feynman slash notation}
+\[
+    \slashed{A} = \gamma^{\mu} A_{\mu} = - \gamma_{\mu} A^{\mu},
+\]
+so that \(\slashed{\partial} = \gamma^{\mu} \partial_{\mu}\) to write the Dirac equation in a more compact form:
+\[
+    \left(i \gamma^{\mu} \partial_{\mu} + \mu \right) \psi(x) = 0 \quad \Longleftrightarrow \quad (i \slashed{\partial} + m) \psi(x) = 0.
+\]
+
+\subsection{Continuity Equation}
+
+It is immediate to derive an equation of continuity describing the conservation of a positive definite charge. Dirac tentatively identified the relative charge density, appropriately normalized, with a probability density. Let us see how to get the continuity equation algebraically. Using the hamiltonian form, we multiply eq. \eqref{eq:dirac_equation_hamiltonian} with \(\psi^\dagger\) on the left and subtract the hermitian-conjugated equation multiplied by \(\psi\) on the right, and obtain (remember that \(\bs{\alpha}\) and \(\beta\) are hermitian matrices)
+\[
+    \begin{aligned}
+         & i \hbar \psi^{\dagger} \frac{\partial}{\partial t} \psi + i \hbar c \psi^{\dagger} \bs{\alpha} \cdot \nabla \psi - m c^2 \psi^{\dagger} \beta \psi        \\
+         & - i \hbar \frac{\partial}{\partial t} \psi^{\dagger} \psi - i \hbar c \nabla \psi^{\dagger} \cdot \bs{\alpha} \psi + m c^2 \psi^{\dagger} \beta \psi = 0,
+    \end{aligned}
+\]
+which can be rearranged, after simplifying the mass terms, as the continuity equation
+\begin{equation}
+    \frac{\partial \psi^{\dagger} \psi}{\partial t} + \nabla \cdot (c \psi^{\dagger} \bs{\alpha} \psi) = 0,
+    \label{eq:dirac_continuity_equation}
+\end{equation}
+identifying the probability density and current density as
+\[
+    \rho = \psi^{\dagger} \psi, \quad \mathbf{J} = c \psi^{\dagger} \bs{\alpha} \psi.
+\]
+The probability density is positive definite, overcoming the problem of the Klein-Gordon equation. The current density can be interpreted as the flow of probability per unit area per unit time.
 
 \subsection{Plane Wave Solutions}
 
+The free equation admits plane wave solutions which contain the phase \(e^{ip_\mu x^{\mu}}\) for propagation in space-time and a polarization \(\omega(p)\) for the spin. Inserting in the Dirac equation \eqref{eq:dirac_equation_covariant} a plane wave ansatz of the form
+\[
+    \psi_p (x) \sim \omega(p) e^{i p_\mu x^{\mu}}, \quad \omega(p) = \begin{pmatrix}
+        \omega_1(p) \\
+        \omega_2(p) \\
+        \omega_3(p) \\
+        \omega_4(p)
+    \end{pmatrix},
+\]
+with \(p^{\mu}\) arbitrary four-momentum, one finds conditions on the spinor \(\omega(p)\) and on the four-momentum \(p^{\mu}\) such that the Dirac equation is satisfied. Plugging the ansatz in the Dirac equation, one finds
+\[
+    \left(\slashed{\partial} + m\right)\psi_p (x) = \left(\gamma^{\mu} p_{\mu} + m \right) \omega(p) e^{i p_\mu x^{\mu}} = 0,
+\]
+where \(\partial_{\mu} \psi_p = \partial_\mu \left(\omega(p) e^{i p_\mu x^{\mu}}\right) = i p_\mu \omega(p) e^{i p_\mu x^{\mu}}\), hence we find
+\[
+    \left(i \gamma^{\mu} p_{\mu} + m \right) \omega(p) e^{i p_\mu x^{\mu}} = 0,
+\]
+which can be multiplied by \(\left(-i \gamma^{\nu} p_{\nu} + m \right)\) on the left to obtain
+\[
+    \left(\slashed{p}^2 + m^2 \right) \omega(p) e^{i p_\mu x^{\mu}} = \left(p_{\mu} p^{\mu} + m^2 \right) \omega(p) = 0,
+\]
+since it is easy to show that \(\slashed{p}^2 = p^2\):
+\[
+    \begin{aligned}
+        \slashed{p}^2 & = \gamma^{\mu} \gamma^{\nu} p_{\mu} p_{\nu} = \frac{1}{2} \left(\gamma^{\mu} \gamma^{\nu} + \gamma^{\nu} \gamma^{\mu} + \gamma^{\mu} \gamma^{\nu} - \gamma^{\nu} \gamma^{\mu}\right) p_{\mu} p_{\nu} \\
+                      & = \frac{1}{2} \{\gamma^{\mu},\,\gamma^{\nu}\} p_{\mu} p_{\nu} = \eta^{\mu \nu} p_{\mu} p_{\nu} = p^2,
+    \end{aligned}
+\]
+since the antisymmetric part vanishes due to the symmetry of \(p_{\mu} p_{\nu}\). Thus, we find the mass-shell condition
+\[
+    p_{\mu} p^{\mu} + m^2 = 0 \quad \Longleftrightarrow \quad E^2 = p^2 + m^2,
+\]
+which is satisfied by both positive and negative energy solutions \(E = \pm \sqrt{p^2 + m^2}\), as for Klein-Gordon. The spinor \(\omega(p)\) must satisfy the equation
+\begin{equation}
+    \left(p_{\mu}p^{\mu} + m^2 \right) \omega(p) = 0.
+    \label{eq:dirac_spinor_equation}
+\end{equation}
+
+\paragraph{Particle at rest.}
+In order to understand the structure of the spinor \(\omega(p)\), let us first consider the case of a particle at rest, i.e., \(p^{\mu} = (E,\, 0,\, 0,\, 0)\). In this case, the Dirac equation \eqref{eq:dirac_equation_covariant} with the plane wave ansatz reduces to
+\[
+    \begin{aligned}
+        \left(\gamma^0 p_0 + m \right) \omega(p) e^{-i p_0 x^0} = 0, \\
+        \left(-i (-i \beta) E + m\right) \omega(p) e^{-i Et} = 0,    \\
+        \beta E \omega(p) = m \omega(p),
+    \end{aligned}
+\]
+and by multiplting by beta (\(\beta^2 = \mathbb{I}\)) we get
+\[
+    E \omega(p) = \beta m \omega(P) \implies E \omega(p) = \begin{pmatrix}
+        m & 0 & 0  & 0  \\
+        0 & m & 0  & 0  \\
+        0 & 0 & -m & 0  \\
+        0 & 0 & 0  & -m
+    \end{pmatrix}
+\]
+which are the four solutions of the Dirac equation for a particle at rest. The first two solutions correspond to positive energy, while the last two correspond to negative energy. The spinor \(\omega(p)\) is thus a four-component object, with two independent components for each value of the energy:
+\[
+    \begin{aligned}
+        E = m ) \quad \psi_1(x)  & = \begin{pmatrix}
+                                         1 \\
+                                         0 \\
+                                         0 \\
+                                         0
+                                     \end{pmatrix} e^{-imt}, \quad &  & \psi_2(x) = \begin{pmatrix}
+                                                                                        0 \\
+                                                                                        1 \\
+                                                                                        0 \\
+                                                                                        0
+                                                                                    \end{pmatrix} e^{-imt}, \\
+        E = -m ) \quad \psi_3(x) & = \begin{pmatrix}
+                                         0 \\
+                                         0 \\
+                                         1 \\
+                                         0
+                                     \end{pmatrix} e^{imt}, \quad  &  & \psi_4(x)  = \begin{pmatrix}
+                                                                                         0 \\
+                                                                                         0 \\
+                                                                                         0 \\
+                                                                                         1
+                                                                                     \end{pmatrix} e^{imt}.
+    \end{aligned}
+\]
+The general case with arbitrary momentum can be derived with similar calculations. Alternatively, they can be obtained from a Lorentz transformation applied to the solution above. To use the last method, it is necessary to study explicitly the covariance of the Dirac equation, which we postpone for a while. At this stage, Dirac seemed to have solved the issue regarding the probabilistic interpretation of relativistic quantum mechanics, but was confronted with the existence of apparently unphysical negative energy solutions. Nevertheless, he continued to explore the consequences of his equation, starting by looking at its non-relativistic limit.
+
 \subsection{Pauli Equation: Non-Relativistic Limit}
+
+To study the non-relativistic limit of the Dirac equation, we reinsert \(\hbar\) and \(c\). It is convenient to use the hamiltonian form
+\[
+    i \hbar \partial_t \psi(\mathbf{x},\,t) = \left( c \bs{\alpha} \cdot \mathbf{p} + \beta m c^2 \right) \psi(\mathbf{x},\,t),
+\]
+where \(\mathbf{p} = -i \hbar \nabla\). We separate the rest energy from the total energy by writing the spinor as
+\[
+    \psi(\mathbf{x},\,t) = e^{-\tfrac{i}{\hbar} m c^2 t} \begin{pmatrix}
+        \varphi(\mathbf{x},\,t) \\
+        \chi(\mathbf{x},\,t)
+    \end{pmatrix},
+\]
+factoring out an expected time dependence due to the rest energy \(E = mc^2\), and splitting the Dirac spinor into two two-component spinors \(\varphi\) and \(\chi\). Inserting this expression into the Dirac equation (and remembering the expressions for \(\alpha^i\) and \(\beta\) in \eqref{eq:dirac_representation}), we obtain two coupled equations for \(\varphi\) and \(\chi\):
+\[
+    i \hbar \frac{\partial}{\partial t} e^{-\tfrac{i}{\hbar} m c^2 t} \begin{pmatrix}
+        \varphi(\mathbf{x},\,t) \\
+        \chi(\mathbf{x},\,t)
+    \end{pmatrix} = \left(- i \hbar c \bs{\alpha} \cdot \nabla + mc^2 \beta\right)e^{-\tfrac{i}{\hbar} m c^2 t} \begin{pmatrix}
+        \varphi(\mathbf{x},\,t) \\
+        \chi(\mathbf{x},\,t)
+    \end{pmatrix},
+\]
+whch computing terms individually gives
+\[
+    \begin{aligned}
+        i \hbar\partial_t \left(e^{-\tfrac{i}{\hbar} m c^2 t} \begin{pmatrix}
+                                                                  \varphi(\mathbf{x},\,t) \\
+                                                                  \chi(\mathbf{x},\,t)
+                                                              \end{pmatrix}\right)                     = i \hbar e^{-\tfrac{i}{\hbar} m c^2 t} \left[-\frac{i}{\hbar} m c^2 \begin{pmatrix}
+                                                                                                                                                                                    \varphi(\mathbf{x},\,t) \\
+                                                                                                                                                                                    \chi(\mathbf{x},\,t)
+                                                                                                                                                                                \end{pmatrix} + \begin{pmatrix}
+                                                                                                                                                                                                    \partial_t \varphi(\mathbf{x},\,t) \\
+                                                                                                                                                                                                    \partial_t \chi(\mathbf{x},\,t)
+                                                                                                                                                                                                \end{pmatrix}\right],  \\
+        -i \hbar c \bs{\alpha} \cdot \nabla e^{-\tfrac{i}{\hbar} m c^2 t} \begin{pmatrix}
+                                                                              \varphi(\mathbf{x},\,t) \\
+                                                                              \chi(\mathbf{x},\,t)
+                                                                          \end{pmatrix} = -i \hbar c\, e^{-\tfrac{i}{\hbar} m c^2 t} \begin{pmatrix}
+                                                                                                                                         0                                             & \bs{\sigma}\cdot\nabla\chi(\mathbf{x},\,t) \\
+                                                                                                                                         \bs{\sigma}\cdot\nabla\varphi(\mathbf{x},\,t) & 0
+                                                                                                                                     \end{pmatrix}, \\
+        mc^2 \beta e^{-\tfrac{i}{\hbar} m c^2 t} \begin{pmatrix}
+                                                     \varphi(\mathbf{x},\,t) \\
+                                                     \chi(\mathbf{x},\,t)
+                                                 \end{pmatrix} = mc^2 e^{-\tfrac{i}{\hbar} m c^2 t} \begin{pmatrix}
+                                                                                                        \varphi(\mathbf{x},\,t) \\
+                                                                                                        -\chi(\mathbf{x},\,t)
+                                                                                                    \end{pmatrix}.
+    \end{aligned}
+\]
+Finally we get
+\[
+    \left[-\frac{i}{\hbar} m c^2 \begin{pmatrix}
+            \varphi(\mathbf{x},\,t) \\
+            \chi(\mathbf{x},\,t)
+        \end{pmatrix} + \begin{pmatrix}
+            \partial_t \varphi(\mathbf{x},\,t) \\
+            \partial_t \chi(\mathbf{x},\,t)
+        \end{pmatrix}\right] = - \begin{pmatrix}
+        0                                             & \bs{\sigma}\cdot\nabla\chi(\mathbf{x},\,t) \\
+        \bs{\sigma}\cdot\nabla\varphi(\mathbf{x},\,t) & 0
+    \end{pmatrix} -\frac{i}{\hbar} mc^2 \begin{pmatrix}
+        \varphi(\mathbf{x},\,t) \\
+        -\chi(\mathbf{x},\,t)
+    \end{pmatrix}, \\
+\]
+which can be separated into the two equations
+\[
+    \begin{aligned}
+        i \hbar \frac{\partial}{\partial t} \varphi(\mathbf{x},\,t) & = c \bs{\sigma} \cdot \mathbf{p} \chi(\mathbf{x},\,t),                                   \\
+        i \hbar \frac{\partial}{\partial t} \chi(\mathbf{x},\,t)    & = c \bs{\sigma} \cdot \mathbf{p} \varphi(\mathbf{x},\,t) - 2 m c^2 \chi(\mathbf{x},\,t).
+    \end{aligned}
+\]
+If we now take the non relativistic limit, where the kinetic energy is much smaller than the rest energy, we can neglect the time derivative in the second equation, obtaining
+\[
+    \chi(\mathbf{x},\,t) \simeq \frac{\bs{\sigma} \cdot \mathbf{p}}{2 m c} \varphi(\mathbf{x},\,t),
+\]
+which can be inserted into the first equation to obtain
+\[
+    i \hbar \frac{\partial}{\partial t} \varphi(\mathbf{x},\,t) = \frac{(\bs{\sigma} \cdot \mathbf{p})^2}{2 m} \varphi(\mathbf{x},\,t).
+\]
+Using the identity
+\[
+    (\bs{\sigma} \cdot \mathbf{p})^2 = \mathbf{p}^2 + i \epsilon^{ijk} \sigma^k p^i p^j = \mathbf{p}^2,
+\]
+from the algebra of the Pauli matrices \(\sigma^i \sigma^j = \delta^{ij} + i \epsilon^{ijk} \sigma^k\) and the null product of the symmetric momenta operators and the antisymmetric Levi-Civita symbol, we finally obtain the \textbf{Pauli equation} for a free particle:
+\begin{equation}
+    i \hbar \frac{\partial}{\partial t} \varphi(\mathbf{x},\,t) = \frac{\mathbf{p}^2}{2 m} \varphi(\mathbf{x},\,t).
+\end{equation}
+It is similar to the Schrödinger equation, but the wave function \(\varphi(\mathbf{x},\,t)\) is a two-component spinor, describing the two possible spin states of a spin-\(\tfrac{1}{2}\) particle.
 
 \subsubsection{Electromagnetic Coupling}
 
+This analysis can be extended to include the interaction with an external electromagnetic field, introduced via \textbf{minimal coupling}:
+\[
+    p^{\mu} \to \pi^{\mu} = p^{\mu} - \frac{e}{c} A^{\mu},
+\]
+where \(A^{\mu} = (\phi,\, \mathbf{A})\) is the four-potential of the electromagnetic field. The Hamiltonian in presence of an external electromagnetic field reads
+\[
+    H = \frac{\pi^2}{2m} = \frac{1}{2m}\left(p - \frac{e}{c}A\right)^2,
+\]
+thus we are substituting \(E \to E - e\phi\) and \(\mathbf{p} \to \mathbf{p} - \frac{e}{c} \mathbf{A}\).
+Starting from the Dirac equation in \eqref{eq:dirac_equation_alpha_beta}\footnote{We can invert \(\mathbf{p} \cdot \bs{\alpha} \to \bs{\alpha}\cdot \mathbf{p}\) since they act on different spaces, hence they commute.} making the minimal substitution, we have
+\[
+    E - e\phi = c \bs{\alpha} \cdot \bs{\pi} + \beta m c^2 \implies E = c \bs{\alpha} \cdot \bs{\pi} + \beta m c^2 + e \phi,
+\]
+thus the Dirac equation in presence of an external electromagnetic field reads
+\[
+    i \hbar \frac{\partial}{\partial t} \psi(\mathbf{x},\,t) = \left(c \bs{\alpha} \cdot \bs{\pi} + \beta m c^2 + e \phi \right) \psi(\mathbf{x},\,t).
+\]
+If we repeat the previous analysis for the non-relativistic limit, splitting the spinor and factoring out the rest energy, we obtain
+\[
+    i \hbar \frac{\partial}{\partial t} \begin{pmatrix}
+        \varphi(\mathbf{x},\,t) \\
+        \chi(\mathbf{x},\,t)
+    \end{pmatrix} + mc^2 \begin{pmatrix}
+        \varphi(\mathbf{x},\,t) \\
+        \chi(\mathbf{x},\,t)
+    \end{pmatrix} = c \bs{\sigma} \cdot \bs{\pi} \begin{pmatrix}
+        \chi(\mathbf{x},\,t) \\
+        \varphi(\mathbf{x},\,t)
+    \end{pmatrix} + mc^2 \begin{pmatrix}
+        \varphi(\mathbf{x},\,t) \\
+        -\chi(\mathbf{x},\,t)
+    \end{pmatrix} + e \phi \begin{pmatrix}
+        \varphi(\mathbf{x},\,t) \\
+        \chi(\mathbf{x},\,t)
+    \end{pmatrix}.
+\]
+This leads to the coupled equations
+\[
+    \begin{aligned}
+        i \hbar \frac{\partial}{\partial t} \varphi(\mathbf{x},\,t) & = c \bs{\sigma} \cdot \bs{\pi} \chi(\mathbf{x},\,t) + e \phi \varphi(\mathbf{x},\,t),                                \\
+        i \hbar \frac{\partial}{\partial t} \chi(\mathbf{x},\,t)    & = c \bs{\sigma} \cdot \bs{\pi} \varphi(\mathbf{x},\,t) - 2 m c^2 \chi(\mathbf{x},\,t) + e \phi \chi(\mathbf{x},\,t).
+    \end{aligned}
+\]
+In the non-relativistic limit, we can neglect again the time derivative in the second equation, obtaining
+\[
+    \chi(\mathbf{x},\,t) \simeq \frac{\bs{\sigma} \cdot \bs{\pi}}{2 m c} \varphi(\mathbf{x},\,t),
+\]
+which can be inserted into the first equation to obtain
+\[
+    i \hbar \frac{\partial}{\partial t} \varphi(\mathbf{x},\,t) = \left(\frac{(\bs{\sigma} \cdot \bs{\pi})^2}{2 m} + e \phi \right) \varphi(\mathbf{x},\,t).
+\]
+Using the algebra of the Pauli matrices, we can expand \((\bs{\sigma} \cdot \bs{\pi})^2\) as
+\[
+    \begin{aligned}
+        (\bs{\sigma} \cdot \bs{\pi})^2 & = \sigma^i \sigma^j \pi_i \pi_j = \left(\delta^{ij} + i \epsilon^{ijk} \sigma_k\right) \pi_i \pi_j                       \\
+                                       & = \pi^2 + i \epsilon^{ijk} \sigma_k \pi_i \pi_j = \pi^2 + \frac{i}{2} \epsilon^{ijk} \sigma_k \left[\pi_i, \pi_j\right],
+    \end{aligned}
+\]\QUESTION{Is the index of sigma k lower? i think so but professor used upper index.}
+since only the antisymmetric part of \(\pi_i \pi_j\) contributes to the last term. The commutator of the kinetic momenta can be computed as
+\[
+    \left[\pi_i, \pi_j\right] = \left[p_i - \frac{e}{c} A_i, p_j - \frac{e}{c} A_j\right] = -\frac{e}{c} \left([p_i, A_j] - [p_j, A_i]\right),
+\]
+which can be applied to a test function \(f(\mathbf{x})\) to obtain
+\[
+    \left[p_i,\,A_j\right] f(\mathbf{x}) = -i \hbar \partial_i (A_j f(\mathbf{x})) + A_j i \hbar \partial_i f(\mathbf{x}) = -i \hbar (\partial_i A_j) f(\mathbf{x}),
+\]
+so that the commutator \(\left[p_i,\,A_j\right] = -i \hbar \partial_i A_j\) and we can continue the computation of \(\left[\pi_i, \pi_j\right]\) as:
+\[
+    \left[\pi_i, \pi_j\right] = -\frac{e}{c} \left([p_i, A_j] - [p_j, A_i]\right) =  \frac{e i \hbar}{c} \left(\partial_i A_j - \partial_j A_i\right).
+\]
+If we now insert this commutator into the previous expression for \((\bs{\sigma} \cdot \bs{\pi})^2\), we obtain
+\[
+    (\bs{\sigma}\cdot \bs{\pi})^2 = \bs{\pi}^2 - \frac{e \hbar}{2 c} \sigma_k \epsilon^{ijk} (\partial_i A_j - \partial_j A_i),
+\]
+where we can recgnize the electromagnetic strength tensor components \(F_{ij} = \partial_i A_j - \partial_j A_i\), which can be related to the magnetic field as \(B^k = \frac{1}{2} \epsilon^{ijk} F_{ij}\), indeed
+\[
+    \epsilon^{ijk} F_{ij} = \epsilon^{ijk} (\partial_i A_j - \partial_j A_i) = B^k - \epsilon^{jik} \partial_j A_i = = B^k + \epsilon^{ijk} \partial_i A_j = 2 B^k.
+\]
+Thus, we finally obtain
+\[
+    (\bs{\sigma}\cdot \bs{\pi})^2 = \bs{\pi}^2 - \frac{e \hbar}{c} \bs{\sigma} \cdot \mathbf{B},
+\]
+and recognizing the \textbf{Pauli spin operator} \(\mathbf{S} = \frac{\hbar}{2} \bs{\sigma}\), we can write the non-relativistic limit of the Dirac equation (Pauli equation) in presence of an external electromagnetic field as
+\begin{equation}
+    i \hbar \frac{\partial}{\partial t} \varphi(\mathbf{x},\,t) = \left[\frac{\bs{\pi}^2}{2 m} + e \phi - \frac{e}{m c} \mathbf{S} \cdot \mathbf{B}\right] \varphi(\mathbf{x},\,t).
+    \label{eq:pauli_equation_em}
+\end{equation}
+
 \paragraph{Gyromagnetic factor.}
+The last term in the Pauli equation \eqref{eq:pauli_equation_em} describes the interaction between the intrinsic magnetic moment of the particle and the external magnetic field. The magnetic moment operator is defined as
+\[
+    \boldsymbol{\mu} = \frac{g e}{2 m c} \mathbf{S},
+\]
+where \(g\) is the \textbf{gyromagnetic factor}. Comparing with the Pauli equation, we find that the gyromagnetic factor for a Dirac particle is \(g = 2\). This result was one of the first triumphs of the Dirac equation, as it correctly predicted the gyromagnetic factor of the electron, which had been measured experimentally to be very close to 2.
+
+Classically, when we have electromagnetic coupling, the interacting term of the Hamiltonian is
+\[
+    H = - \bs{\mu} \cdot \mathbf{B},
+\]
+where \(\bs{\mu} = \frac{g e}{2 m c} \mathbf{L}\) is the magnetic moment of the particle with orbital angular momentum \(\mathbf{L}\) and \(g\) expected to be 1. We can see that the intrinsic spin of the electron gives rise to a magnetic moment twice as large as that expected from classical considerations, but we can concile the results by noting that the spin is not a classical angular momentum; considering a constant magnetic field \(\mathbf{B} = B \hat{z}\), the vector potential can be chosen as \(\mathbf{A} = \frac{1}{2} \mathbf{B} \times \mathbf{r}\), so that the squared kinetic momentum reads
+\[
+    \begin{aligned}
+        \bs{\pi}^2 & = \left(\mathbf{p} - \frac{e}{c} \mathbf{A}\right)^2 = \mathbf{p}^2 - \frac{e}{c} (\mathbf{p} \cdot \mathbf{A} + \mathbf{A} \cdot \mathbf{p}) + \frac{e^2}{c^2} \mathbf{A}^2,                                    \\
+                   & = \mathbf{p}^2 + \frac{e^2}{c^2} \mathbf{A}^2 - \frac{e}{c} \left\{ \mathbf{p},\, \mathbf{A} \right\} = \mathbf{p}^2 + \frac{e^2}{c^2} \mathbf{A}^2 - \frac{2e}{c} \mathbf{p} \cdot \mathbf{A}                   \\
+                   & = \mathbf{p}^2 + \frac{e^2}{c^2} \mathbf{A}^2 - \frac{e}{ c} \mathbf{B} \cdot \left(\mathbf{r} \times \mathbf{p}\right) = \mathbf{p}^2 + \frac{e^2}{c^2} \mathbf{A}^2 - \frac{e}{c} \mathbf{B} \cdot \mathbf{L},
+    \end{aligned}
+\]
+where we have used the fact that \(\nabla \cdot \mathbf{A} = 0\) for this choice of gauge, so that \(\mathbf{p} \cdot \mathbf{A} = \mathbf{A} \cdot \mathbf{p}\) and in the end the identity of the triple product \(\mathbf{a} \cdot (\mathbf{b} \times \mathbf{c}) = \mathbf{b} \cdot (\mathbf{c} \times \mathbf{a})\). Thus, inserting this back into the Pauli equation \eqref{eq:pauli_equation_em} gives
+\[
+    i \hbar \frac{\partial}{\partial t} \varphi(\mathbf{x},\,t) = \left[\frac{\mathbf{p}^2}{2 m} + \frac{e^2}{2 m c^2} \mathbf{A}^2 + e \phi - \frac{e}{2 m c} (\mathbf{L} + 2 \mathbf{S}) \cdot \mathbf{B}\right] \varphi(\mathbf{x},\,t),
+\]
+where we can see that both the orbital angular momentum and the intrinsic spin contribute to the magnetic moment, with gyromagnetic factors \(g_L = 1\) and \(g_S = 2\) respectively.
 
 \subsection{Angular Momentum and Spin}
 
+As seen from the non-relativistic limit, the Dirac spinor describes a particle of spin \(\tfrac12\), such as the electron. The spin operator acts on the two components of the wave function \(\psi\), and is proportional to the Pauli matrices \(\mathbf{S} = \frac{\hbar}{2}\bs{\sigma}\). This suggests that the full spin operator acting on the four-component Dirac spinor is given (in natural units) in the Dirac representation by
+\[
+    \mathbf{S} = \frac{1}{2} \bm{\Sigma} = \frac{1}{2} \begin{pmatrix}
+        \bs{\sigma} & 0           \\
+        0           & \bs{\sigma}
+    \end{pmatrix}, \text{ acting on } \psi = \begin{pmatrix}
+        \varphi \\
+        \chi
+    \end{pmatrix}.
+\]
+The \(\Sigma^i\) matrices can be expressed in terms of the Pauli matrices as
+\[
+    \Sigma^i = -\frac{i}{2} \epsilon^{ijk} \alpha^j \alpha^k, \quad \text{where} \quad \alpha^i = \begin{pmatrix}
+        0        & \sigma^i \\
+        \sigma^i & 0
+    \end{pmatrix}.
+\]
+Indeed we can compute \(\Sigma^1\) as
+\[
+    \Sigma^1 = -\frac{i}{2} \left(\epsilon^{123} \alpha^2 \alpha^3 + \epsilon^{132} \alpha^3 \alpha^2\right) = -\frac{i}{2} \left(\alpha^2 \alpha^3 - \alpha^3 \alpha^2\right),
+\]
+since \(\epsilon^{123} = 1\) and \(\epsilon^{132} = -1\). Now we can use the fact that the \(\alpha^i\) matrices anticommute, \(\{\alpha^i,\, \alpha^j\} = 0\), to write
+\[
+    \Sigma^1 = -\frac{i}{2} \left(2 \alpha^2 \alpha^3\right) = -i \alpha^2 \alpha^3 = \begin{pmatrix}
+        \sigma^1 & 0        \\
+        0        & \sigma^1
+    \end{pmatrix},
+\]
+since from the Pauli algebra \(\sigma^2 \sigma^3 = i \sigma^1\).
+
+The orbital angular momentum operator is defined as usual as the operatoral version of the classical expression
+\[
+    \mathbf{L} = \mathbf{r}\times \mathbf{p} \longrightarrow L^i = \epsilon^{ijk} x^J p^k,
+\]
+while the total angular momentum operator is given by
+\[
+    \mathbf{J} = \mathbf{L} + \mathbf{S} \quad \Longrightarrow \quad J^i = L^i + S^i,
+\]
+which is conserved under rotational symmetry. It is possible to verify that the total angular momentum operator commutes with the Dirac Hamiltonian (appearing in r.h.s. of equation \eqref{eq:dirac_equation_hamiltonian}) in the free partile case:
+\[
+    \left[H_D,\, J^i\right] = 0, \quad \text{where} \quad H_D = p^i \alpha^i + \beta m.
+\]
+This can be shown by computing the commutators \(\left[H_D,\, L^i\right]\) and \(\left[H_D,\, S^i\right]\) separately, using the commutation relations of the angular momentum operators and the properties of the \(\alpha^i\) and \(\beta\) matrices. We will start from the orbital part:
+\[
+    \begin{aligned}
+        \left[H_D,\, L^i\right] & = \left[\alpha^l p^l + \beta m,\, \epsilon^{ijk} x^j p^k\right] = \alpha^l \left[p^l,\, x^j \right] \epsilon^{ijk} p^k + \left[\beta m,\, \epsilon^{ijk} x^j p^k\right], \\
+                                & = \alpha^l \left(-i \delta^{lj}\right) \epsilon^{ijk} p^k = -i \epsilon^{ijk} \alpha^j p^k,
+    \end{aligned}
+\]
+since in the first step we used the null commutators \(\left[p^l,\, p^k\right] = 0\) and \(\left[\beta m,\, x^j\right] = 0 = \left[\beta m,\, p^k\right]\). Now we can compute the spin part:
+\[
+    \left[H_D,\, S^i\right] = \left[\alpha^l p^l + \beta m,\, -\tfrac{i}{4} \epsilon^{ijk} \alpha^j \alpha^k\right] = - \frac{i}{4} \epsilon^{ijk} p^l \left[\alpha^l,\, \alpha^j \alpha^k\right] - \frac{i}{4} \epsilon^{ijk} \left[\beta m,\, \alpha^j \alpha^k\right],
+\]
+where the second term is zero since \(\beta\) commutes with the \(\alpha^i\) matrices and the first term is the only commutator to compute since \(p^i\) commutes with \(\alpha^j\). Using the expression \(\left[A,\,BC\right] = \left\{A,\,B\right\}C - B\left\{A,\,C\right\}\) we can write
+\[
+    \begin{aligned}
+        \left[H_D,\, S^i\right] & = - \frac{i}{4} \epsilon^{ijk} p^l \left( \left\{\alpha^l,\,\alpha^j\right\}\alpha^k - \alpha^j \left\{\alpha^l,\, \alpha^k\right\} \right) \\
+                                & = - \frac{i}{4} \epsilon^{ijk} p^l \left( 2 \delta^{lj} \alpha^k - 2 \delta^{lk} \alpha^j \right)                                           \\
+                                & = - \frac{i}{2} \epsilon^{ijk} \left(p^j \alpha^k - p^k \alpha^j\right) = + i \epsilon^{ijk} \alpha^j p^k,
+    \end{aligned}
+\]
+since the two terms are antisymmetric in \(j\) and \(k\). Finally, summing the two contributions we obtain
+\[
+    \left[H_D,\, J^i\right] = \left[H_D,\, L^i\right] + \left[H_D,\, S^i\right] = -i \epsilon^{ijk} \alpha^j p^k + i \epsilon^{ijk} \alpha^j p^k = 0,
+\]
+showing that the total angular momentum is conserved in the Dirac theory.
+
 \subsection{Idrogen Atom and Dirac Equation}
 
+A crucial test for the Dirac equation was to check its predictions for the quantized energy levels of the hydrogen atom. The problem is exactly solvable. Nevertheless, it is illuminating to study perturbatively the solution for the energy levels and compare it with the non-relativistic solution of the Schrödinger equation. The energies obtained from the Schrödinger, Klein-Gordon, and Dirac equations are
+\[
+    \begin{aligned}
+        E^{(S)}_{n,\,l}  & = - \frac{m_e \alpha^2}{2 n^2}, \quad \alpha = \frac{e^2}{4 \pi \epsilon_0 \hbar c} \simeq \frac{1}{137},                       \\
+        E^{(KG)}_{n,\,l} & = m_e \left[1 - \frac{\alpha^2}{2n^2} - \frac{\alpha^4}{n^4} \left( \frac{n}{2l + 1} -\frac{3}{8} \right) + O(\alpha^6)\right], \\
+        E^{(D)}_{n,\,j}  & = m_e \left[1 - \frac{\alpha^2}{2n^2} - \frac{\alpha^4}{n^4} \left( \frac{n}{2j + 1} -\frac{3}{8} \right) + O(\alpha^6)\right],
+    \end{aligned}
+\]
+where \(n = 1,\,2,\,\dots \infty\) is the principal quantum number, \(l>0\) is the orbital angular momentum quantum number, and \(j = l \pm \tfrac{1}{2}\) is the total angular momentum quantum number. The Schrödinger non-relativistic result has the main quantum number \(n\) and degeneration in \(l = 0,\,1,\,\dots n-1\) (as \(n-l\) must be a strictly positive integer, \(n-l > 0\)). The degeneration\footnote{There is an additional degeneration in the magnetic quantum number \(m\), common to all three cases.} in \(l\) is broken by relativistic effects (“fine structure” effects), but the Klein-Gordon prediction is in contradiction with the experimental results (seen in the Pashen spectroscopic series, the spectral lines in the infrared due to transitions to level \(n=3\) from higher levels): \(2l + 1\) is an odd integer, but that number is experimentally measured to be even. The prediction from the Dirac equation gives instead a result compatible with experiments since now \(2j + 1\) is even.\footnote{Additional effects exist but are smaller. The most important ones are the hyperfine structure, due to the interaction of the electron with the magnetic moment of the nucleus, and the “Lamb shift”, which breaks the degeneracy in \(j\), due to quantum corrections obtainable by using the Dirac field as a QFT.}
+
 \subsection{Properties of Gamma Matrices}
+
+The original Dirac equation was written in terms of the \(\alpha^i\) and \(\beta\) matrices, but it is often more convenient to use the set of four gamma matrices defined as
+\[
+    \gamma^0 = -i \beta, \quad \gamma^i = -i \beta \alpha^i,
+\]
+which are \(4\times 4\) traceless matrices\footnote{We can reconstruct \(\alpha^i\) with \(\alpha^i = \gamma^i \gamma^0 = -i \beta \alpha^i (-i \beta) = - \beta \alpha^i \beta = \beta^2 \alpha^i = \alpha^i\).} satisfying the \textbf{Clifford algebra}
+\[
+    \left\{\gamma^{\mu},\, \gamma^{\nu}\right\} = 2 \eta^{\mu \nu},
+\]
+with
+\[
+    \begin{aligned}
+        \left(\gamma^0\right)^{\dagger} = - \gamma^0 \textit{ antihermitian}, \\
+        \left(\gamma^i\right)^{\dagger} = + \gamma^i \textit{ hermitian}.
+    \end{aligned}
+\]
+We can compact the last two properties as
+\[
+    \left(\gamma^{\mu}\right)^{\dagger} = \gamma^0 \gamma^{\mu} \gamma^0 = -\beta \gamma^{\mu} \beta,
+\]
+which can be verified separately for \(\mu = 0\) and \(\mu = i\).
+
+We can now prove that they are traceless, \(\mathrm{Tr}(\gamma^{\mu}) = 0\). We will prove it only for \(\gamma^1\), the other cases being similar. Using the anticommutation relations we have \((\gamma^{\mu})^2 = \mathbb{I}\) for \(\mu = 0,\,1,\,2,\,3\). Thus,
+\[
+    \mathrm{Tr}(\gamma^1) = \mathrm{Tr}(\gamma^1 \gamma^2 \gamma^2) = \mathrm{Tr}(\gamma^2 \gamma^1 \gamma^2),
+\]
+where in the last step we used the cyclicity of the trace. If we instead use the anticommutation relation \(\{\gamma^1,\, \gamma^2\} = 0\), we have
+\[
+    \Tr(\gamma^2 \gamma^1 \gamma^2) = - \Tr(\gamma^1 \gamma^2 \gamma^2) = - \Tr(\gamma^1),
+\]
+so that \(\Tr(\gamma^1) = - \Tr(\gamma^1) \implies \Tr(\gamma^1) = 0\).
+
+\paragraph{Chirality matrix.}
+We have to introduce one last matrix, the \textbf{chirality matrix} or \textbf{gamma five}:
+\begin{equation}
+    \gamma^5 = i \gamma^0 \gamma^1 \gamma^2 \gamma^3,
+    \label{eq:chirality_matrix}
+\end{equation}
+which has the properties
+\[
+    \begin{aligned}
+        \left(\gamma^5\right)^{\dagger}         & = \gamma^5 \text{ hermiticity},                              \\
+        \left(\gamma^5\right)^2                 & = \mathbb{I} \text{ idempotency},                            \\
+        \left\{\gamma^5,\, \gamma^{\mu}\right\} & = 0, \forall \mu \text{ anticommutation with } \gamma^{\mu}, \\
+        \Tr(\gamma^5)                           & = 0 \text{ tracelessness}.
+    \end{aligned}
+\]
+In the Dirac representation, the chirality matrix takes the form
+\[
+    \gamma^5 = \begin{pmatrix}
+        0           & -\mathbb{I} \\
+        -\mathbb{I} & 0
+    \end{pmatrix}.
+\]
+
+\begin{example}
+    Let's verify the anticommutation relation between \(\gamma^5\) and \(\gamma^{3}\):
+    \[
+        \begin{aligned}
+            \left\{\gamma^5, \gamma^{3}\right\} & = i \left(\gamma^0 \gamma^1 \gamma^2 \gamma^3 \gamma^3 + \gamma^3 \gamma^0 \gamma^1 \gamma^2 \gamma^3\right) \\
+                                                & = i \left(\gamma^0 \gamma^1 \gamma^2 + (-\gamma^0 \gamma^1 \gamma^2)\right) = 0,
+        \end{aligned}
+    \]
+    since \((\gamma^3)^2 = \mathbb{I}\) and \(\gamma^3\) anticommutes with \(\gamma^0\), \(\gamma^1\), and \(\gamma^2\), so we changed the sign three times in the second term.
+\end{example}
+
+\paragraph{Chiral projectors.}
+We can use the chirality matrix to define the \textbf{chiral projectors}
+\begin{equation}
+    P_{R} = \frac{1 + \gamma^5}{2}, \quad P_{L} = \frac{1 - \gamma^5}{2},
+    \label{eq:chiral_projectors}
+\end{equation}
+which satisfy the properties of projectors:
+\[
+    P_R + P_L = \mathbb{I}, \quad P_L^2 = P_L, \quad P_R^2 = P_R.
+\]
+These projectors can be used to decompose a Dirac spinor into its right-handed and left-handed components:
+\[
+    \psi = \psi_R + \psi_L, \quad \text{where} \quad \psi_R = P_R \psi, \quad \psi_L = P_L \psi.
+\]
+These two components have definite chirality, with \(\gamma^5 \psi_R = + \psi_R\) and \(\gamma^5 \psi_L = - \psi_L\), and they live in two-dimensional subspaces of the four-dimensional spinor space: they are \textbf{Weyl spinors}, which transform under the \((\tfrac{1}{2},\,0)\) and \((0,\,\tfrac{1}{2})\) representations of the Lorentz group independently:
+\[
+    \psi \in \left(\tfrac{1}{2},\,0\right) \oplus \left(0,\,\tfrac{1}{2}\right) \quad \Longrightarrow \quad \psi_R \in \left(\tfrac{1}{2},\,0\right), \quad \psi_L \in \left(0,\,\tfrac{1}{2}\right).
+\]
+
+Gamma matrices are four dimensional operators acting on Dirac spinors, which are elements of a four-dimensional complex vector space \(\psi \in \mathbb{C}^4\). They provide a representation of the Clifford algebra associated with the Minkowski spacetime metric, and they are essential in formulating the Dirac equation and describing the behavior of spin-\(\tfrac{1}{2}\) particles in relativistic quantum mechanics.
+
+It is useful to introduce a complete basis for these linear operators acting on \(\mathbb{C}^4\). Such a basis is given by the set of \(4 \times 4 = 16\) linearly independent matrices:
+\[
+    \left\{ \mathbb{I},\, \gamma^\mu,\, \Sigma^{\mu \nu}, \gamma^{\mu}\gamma^{5},\, \gamma^{5} \right\},
+\]
+where \(\Sigma^{\mu \nu} = \frac{-i}{4} [\gamma^\mu, \gamma^\nu]\) (with \(\mu<\nu\)) and we can count \(1 + 4 + 6 + 4 + 1 = 16\) independent matrices. We can also generalize this complete basis to span any even dimensional space of gamma matrices, i.e. \(d = 2k\) with \(k \in \mathbb{N}\). In this case, the dimension of the space of linear operators acting on spinors is \(2^{2k} = 4^k\), and a complete basis is given by
+\[
+    \left\{ \mathbb{I},\, \gamma^{\mu},\, \gamma^{\mu \nu},\, \gamma^{\mu \nu \rho},\, \dots,\, \gamma^{\mu_1 \mu_2 \dots \mu_{2k}} \right\}, \quad \gamma^{\mu_1 \mu_2 \dots \mu_n} = \frac{1}{n!} \sum_{\sigma \in S_n} \text{sgn}(\sigma) \gamma^{\mu_{\sigma(1)}} \gamma^{\mu_{\sigma(2)}} \dots \gamma^{\mu_{\sigma(n)}},
+\]
+where the totally antisymmetric products of gamma matrices are defined as above, summing over all permutations \(\sigma\) of \(n\) indices with the appropriate sign.
+
+\begin{remark}
+    \(\gamma^{\mu_1 \mu_2 \dots \mu_n}\), the totally antisymmetric product of \(n\) gamma matrices, works in odd dimensions as well, but in that case the set of gamma matrices is not complete, as there is an additional matrix (the analog of \(\gamma^5\) in four dimensions) that commutes with all gamma matrices and can be used to construct additional linearly independent matrices. There is then degeneracy in the representation of the Clifford algebra in odd dimensions. Since we cannot define chirality in odd dimensions, this means that Weyl spinors cannot be defined in odd dimensions.
+\end{remark}
 
 \subsection{Covariance Formulation}
 
