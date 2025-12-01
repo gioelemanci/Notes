@@ -868,3 +868,174 @@ Now, exactely as for the scalar field, we have to impose canonical commutation r
     \end{aligned}
 \]
 We will see how this choice leads to inconsistencies, so we will have to modify it. In fact we will obtain either negative energy states or negative norm states, both unphysical; thus we will have to impose anticommutation relations instead of commutation relations, in order to obtain a consistent quantum theory for spin \(\tfrac12\) particles. This is related to the spin-statistics theorem, which states that particles with half-integer spin are fermions and must obey Fermi-Dirac statistics, while particles with integer spin are bosons and obey Bose-Einstein statistics.
+
+\subsection{Quantizing with canonical commutation relations}
+
+Let us write the general solution of the Dirac equation in terms of linear combinations of positive and negative frequency solutions:
+\[
+    \psi(\mathbf{x}) = \sum_{s=1}^2 \int \frac{d^3 p}{(2 \pi)^3} \frac{1}{\sqrt{2 E_{\mathbf{p}}}} \left( \hat{b}_{\mathbf{p}}^s u^s(\mathbf{p}) e^{i \mathbf{p} \cdot \mathbf{x}} + \hat{c}^{s\, \dagger}_{\mathbf{p}} v^s(\mathbf{p}) e^{-i \mathbf{p} \cdot \mathbf{x}} \right),
+\]
+and its adjoint
+\[
+    \psi^{\dagger}(\mathbf{x}) = \sum_{s=1}^2 \int \frac{d^3 p}{(2 \pi)^3} \frac{1}{\sqrt{2 E_{\mathbf{p}}}} \left( \hat{b}_{\mathbf{p}}^{s\, \dagger} u^{s\, \dagger}(\mathbf{p}) e^{-i \mathbf{p} \cdot \mathbf{x}} + \hat{c}^s_{\mathbf{p}} v^{s\, \dagger}(\mathbf{p}) e^{i \mathbf{p} \cdot \mathbf{x}} \right).
+\]
+We understand that the operators \(\hat{b}_{\mathbf{p}}^s\) and \(\hat{b}_{\mathbf{p}}^{s\, \dagger}\) are annihilation and creation operators for particles with momentum \(\mathbf{p}\) and spin \(s\), while \(\hat{c}_{\mathbf{p}}^s\) and \(\hat{c}_{\mathbf{p}}^{s\, \dagger}\) are annihilation and creation operators for antiparticles with momentum \(\mathbf{p}\) and spin \(s\). So we can interpret the negative frequency solutions as antiparticles, as we did for the scalar field.\footnote{Of course this field can consider the charge degrees of freedom, since it is a complex field.}
+
+If we now impose the canonical commutation relations on the field operators, we find that the commutation relations for the creation and annihilation operators are
+\[
+    \begin{aligned}
+        [\hat{b}_{\mathbf{p}}^s,\, \hat{b}_{\mathbf{q}^{r}\, \dagger}] & = (2 \pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q}) \delta^{s r},  \\
+        [\hat{c}_{\mathbf{p}}^s,\, \hat{c}_{\mathbf{q}}^{r\, \dagger}] & = -(2 \pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q}) \delta^{s r},
+    \end{aligned}
+\]
+with all other commutators vanishing.
+The minus sign in the second commutation relation is problematic, since it leads to negative norm states when we compute the norm of single antiparticle states, as we will see.
+
+It is easy to compute that from these commutation relations we can derive the first relations presented in this section \(\left[\hat{\psi}_{\alpha}(\mathbf{x}),\, \hat{\psi}_{\beta}^\dagger(\mathbf{y})\right] = \delta_{\alpha \beta}\delta^{(3)}(\mathbf{x} - \mathbf{y})\):\footnote{The second term being proportional to \(\hat{\pi} \) as we have seen.}
+\[
+    \begin{aligned}
+        \left[\hat{\psi}(\mathbf{x}),\, \hat{\psi}^\dagger(\mathbf{y})\right] & = \sum_{r,s} \int \frac{\mathrm{d}^3 p \mathrm{d}^3 q}{(2 \pi)^6} \frac{1}{2 \sqrt{E_{\mathbf{p}} E_{\mathbf{q}}} } \left( [\hat{b}_{\mathbf{p}}^s,\, \hat{b}_{\mathbf{q}}^{r\, \dagger}] u^s(\mathbf{p}) u^{r\, \dagger}(\mathbf{q}) e^{i (\mathbf{p} \cdot \mathbf{x} - \mathbf{q} \cdot \mathbf{y})} + [\hat{c}_{\mathbf{p}}^{s\, \dagger},\, \hat{c}_{\mathbf{q}}^r] v^s(\mathbf{p}) v^{r\, \dagger}(\mathbf{q}) e^{-i (\mathbf{p} \cdot \mathbf{x} - \mathbf{q} \cdot \mathbf{y})} \right) \\
+                                                                              & = \sum_{s} \int \frac{\mathrm{d}^3 p}{(2 \pi)^3} \frac{1}{2 E_{\mathbf{p}}} \left( u^s(\mathbf{p}) u^{s\, \dagger}(\mathbf{p}) e^{i \mathbf{p} \cdot (\mathbf{x} - \mathbf{y})} - v^s(\mathbf{p}) v^{s\, \dagger}(\mathbf{p}) e^{-i \mathbf{p} \cdot (\mathbf{x} - \mathbf{y})} \right)                                                                                                                                                                                                         \\
+                                                                              & = \dots                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         \\
+    \end{aligned}
+\]
+where we can use the outer product formulae for the spinors
+\[
+    \begin{dcases}
+        \sum_{s=1}^2 u^s(\mathbf{p}) \overline{u}^s(\mathbf{p}) = \gamma^{\mu} p_{\mu} + m, \\
+        \sum_{s=1}^2 v^s(\mathbf{p}) \overline{v}^s(\mathbf{p}) = \gamma^{\mu} p_{\mu} - m,
+    \end{dcases}
+\]
+to obtain
+\[
+    \dots = \int \frac{\mathrm{d}^3 p}{(2 \pi)^3} \left[ \left(p_0 \gamma^0 + p_i \gamma^i + m\right) e^{i \mathbf{p} \cdot (\mathbf{x} - \mathbf{y})} + \left(p_0 \gamma^0 + p_i \gamma^i - m\right) e^{-i \mathbf{p} \cdot (\mathbf{x} - \mathbf{y})} \right],
+\]
+where now we can perform a change of variable on the second term \(\mathbf{p} \to -\mathbf{p}\), so that \(p_i \to -p_i\) and \(p_0 \to p_0\), and we get
+\[
+    \dots = \int \frac{\mathrm{d}^3 p}{(2 \pi)^3} \left[ 2 p_0 \gamma^0 e^{i \mathbf{p} \cdot (\mathbf{x} - \mathbf{y})} \right] = \gamma^0 \delta^{(3)}(\mathbf{x} - \mathbf{y}),
+\]\TODO{there was a gamma0 missing from the last step of aligned which simplifies in the end.}
+which is exactly what we wanted to prove.
+
+If we consider the vacuum state \(\ket{0}\) such that
+\[
+    \hat{c}^r_{\mathbf{p}} \ket{0} = 0, \quad \forall \mathbf{p},\, r,
+\]
+and
+\[
+    \hat{c}^{s\, \dagger}_{\mathbf{p}} \ket{0} = \ket{\mathbf{p},\, s},
+\]
+but if we now compute the norm of this one-particle state we get
+\[
+    \bra{\mathbf{p},\,s}\ket{\mathbf{p},\, s} = \bra{0} \hat{c}^s_{\mathbf{p}} \hat{c}^{s\, \dagger}_{\mathbf{p}} \ket{0} = \bra{0} [\hat{c}^s_{\mathbf{p}},\, \hat{c}^{s\, \dagger}_{\mathbf{p}}] \ket{0} = - (2 \pi)^3 \delta^{(3)}(0) \bra{0}\ket{0} < 0,
+\]
+which is negative, leading to negative norm states, which are unphysical. Thus we have to modify our initial assumption, since maybe we have made a wrong choice in imposing the dagger on the creation operator; maybe the creation operator should be defined without the dagger, so that
+\[
+    \hat{c}^r_{\mathbf{p}} \ket{0} \neq 0 \to \hat{c}^r_{\mathbf{p}} \ket{0} = \ket{\mathbf{p},\, r},
+\]
+and if we swap the dagger in the commutation relations we get the opposite sign indeed:
+\[
+    \left[\hat{c}^{r,\,\dagger}_{\mathbf{p}},\, \hat{c}^s_{\mathbf{q}} \right] = - (2 \pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q}) \delta^{r s}.
+\]
+But this interpretation is not consistent, since when we consider the energy solutions they will be negative. As we will see, the solution to this problem is to impose anticommutation relations instead of commutation relations, so that we can have positive norm states for both particles and antiparticles.
+
+Let us ignore the probability interpretation for now and compute the Hamiltonian operator for the Dirac field, to show that this is not the solution of the problem. Starting from the Hamiltonian density
+\[
+    \begin{aligned}
+        \mathcal{H} & = \pi \dot{\psi} - \mathcal{L} = i \psi^{\dagger} \partial_t \psi - \overline{\psi} (i \gamma^{\mu} \partial_{\mu} - m) \psi = \dots \\
+                    & = \overline{\psi} ( - i \gamma^i \partial_i + m) \psi,
+    \end{aligned}
+\]
+where we have used the Dirac equation to simplify the expression. Now we can write the Hamiltonian operator by promoting the fields to operators and using the
+\[
+    \begin{aligned}
+        ( - i \gamma^i \partial_i + m) \psi(x) & = \sum_{s} \int \frac{\mathrm{d}^3 p}{(2 \pi)^3} \frac{1}{\sqrt{2 E_{\mathbf{p}}}} \left( \hat{b}_{\mathbf{p}}^s ( - i \gamma^i \partial_i + m) u^s(\mathbf{p}) e^{i \mathbf{p} \cdot \mathbf{x}} + \hat{c}_{\mathbf{p}}^{s\, \dagger} ( - i \gamma^i \partial_i + m) v^s(\mathbf{p}) e^{-i \mathbf{p} \cdot \mathbf{x}} \right) \\
+                                               & = \sum_{s} \int \frac{\mathrm{d}^3 p}{(2 \pi)^3} \frac{1}{\sqrt{2 E_{\mathbf{p}}}} \left( \hat{b}_{\mathbf{p}}^s (-\gamma^{i} p_{i} + m) u^s(\mathbf{p}) e^{i \mathbf{p} \cdot \mathbf{x}} + \hat{c}_{\mathbf{p}}^{s\, \dagger} (\gamma^{i} p_{i} + m) v^s(\mathbf{p}) e^{-i \mathbf{p} \cdot \mathbf{x}} \right),
+    \end{aligned}
+\]
+where we can now use the dirac equations for the spinors
+\[
+    (\gamma^{\mu} p_{\mu} - m) u^s(\mathbf{p}) = 0, \quad (\gamma^{\mu} p_{\mu} + m) v^s(\mathbf{p}) = 0,
+\]
+to get
+\[
+    \begin{aligned}
+        (-\gamma^{i} p_{i} + m) u^s(\mathbf{p}) & = \gamma^{0} p_{0} u^s(\mathbf{p}) = E_{\mathbf{p}} \gamma^{0} u^s(\mathbf{p}),    \\
+        (\gamma^{i} p_{i} + m) v^s(\mathbf{p})  & = -\gamma^{0} p_{0} v^s(\mathbf{p}) = - E_{\mathbf{p}} \gamma^{0} v^s(\mathbf{p}).
+    \end{aligned}
+\]
+Thus if we insert these results back into the expression for \(( - i \gamma^i \partial_i + m) \psi(x)\) we get
+\[
+    \dots = \sum_{s} \int \frac{\mathrm{d}^3 p}{(2 \pi)^3} \sqrt{\frac{E_{\mathbf{p}}}{2}} \gamma^{0} \left( \hat{b}_{\mathbf{p}}^s u^s(\mathbf{p}) e^{i \mathbf{p} \cdot \mathbf{x}} - \hat{c}_{\mathbf{p}}^{s\, \dagger} v^s(\mathbf{p}) e^{-i \mathbf{p} \cdot \mathbf{x}} \right),
+\]
+and finally we can write the Hamiltonian operator as
+\[
+    \begin{aligned}
+        \hat{H} & = \int \mathrm{d}^3 x \, \hat{\overline{\psi}}(x) \left( - i \gamma^i \partial_i + m \right) \hat{\psi}(x)                                                                                                                                                                                                                                                                                                                                                                                                                                                     \\
+                & = \sum_{r,s} \int \frac{\mathrm{d}^{3}\mathbf{x} \mathrm{d}^3 p \mathrm{d}^3 q}{(2 \pi)^6} \frac{1}{2}\sqrt{\frac{E_{\mathbf{p}}}{ E_{\mathbf{q}}}} \left( \hat{b}_{\mathbf{q}}^{r\, \dagger} \overline{u}^r(\mathbf{q}) e^{-i \mathbf{q} \cdot \mathbf{x}} + \hat{c}_{\mathbf{q}}^r \overline{v}^r(\mathbf{q}) e^{i \mathbf{q} \cdot \mathbf{x}} \right) \gamma^{0} \gamma^0 \left( \hat{b}_{\mathbf{p}}^s u^s(\mathbf{p}) e^{i \mathbf{p} \cdot \mathbf{x}} - \hat{c}_{\mathbf{p}}^{s\, \dagger} v^s(\mathbf{p}) e^{-i \mathbf{p} \cdot \mathbf{x}} \right),
+    \end{aligned}
+\]
+since \(\overline{\psi} = \psi^{\dagger} \gamma^0\) and \(\gamma^0 \gamma^0 = \mathbb{I}\). Now we can perform the integration over \(\mathbf{x}\) which gives us a delta function \((2 \pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q})\) or \((2 \pi)^3 \delta^{(3)}(\mathbf{p} + \mathbf{q})\) depending on the exponentials, so that we get
+\[
+    \dots = \sum_{r,s} \int \frac{\mathrm{d}^3 p \mathrm{d}^3 \mathbf{q}}{(2 \pi)^3} \frac{1}{2} \sqrt{\frac{E_{\mathbf{p}}}{E_{\mathbf{q}}}} \left( \hat{b}_{\mathbf{q}}^{r\, \dagger} \hat{b}_{\mathbf{p}}^s u^{r,\,\dagger}(\mathbf{q}) u^s(\mathbf{p}) \delta^{(3)}(\mathbf{p} -\mathbf{q}) + \dots  \right),
+\]
+where we can now use the delta functions to perform the integration over \(\mathbf{q}\):\footnote{Remember that we are working with four dimensional vectors, but the Hamiltonian is either a number or an operator: in the end we ought to have products among row vectors (daggered) and column ones.}
+\[
+    \dots = \sum_{r,s} \int \frac{\mathrm{d}^3 p}{(2 \pi)^3} \frac{1}{2} \left( \hat{b}_{\mathbf{p}}^{r\, \dagger} \hat{b}_{\mathbf{p}}^s u^{r,\,\dagger}(\mathbf{p}) u^s(\mathbf{p}) - \hat{c}^r_{\mathbf{p}}\hat{c}^{s,\,\dagger}_{\mathbf{p}} v^{s,\,\dagger}(\mathbf{p}) v^s(\mathbf{p}) - bc + cb [\dots]  \right).
+\]
+If we remember the inner product formulae for the spinors
+\[
+    \begin{dcases}
+        u^{n\,\dagger}(\mathbf{p}) u^m(\mathbf{p}) = 2 E_{\mathbf{p}} \delta^{nm}, \\
+        v^{n\,\dagger}(\mathbf{p}) v^m(\mathbf{p}) = 2 E_{\mathbf{p}} \delta^{nm}, \\
+        u^{n\,\dagger}(\mathbf{p}) v^m(-\mathbf{p}) = \dots = 0,                   \\
+        v^{n\,\dagger}(\mathbf{p}) u^m(-\mathbf{p}) = \dots = 0,
+    \end{dcases}
+\]
+we note that the last two terms can be simplified since they are proportional to the same inner product with different sign on the momentum, so they vanish. Thus we get
+\[
+    \hat{H} = \sum_{s} \int \frac{\mathrm{d}^3 p}{(2 \pi)^3} E_{\mathbf{p}} \left( \hat{b}_{\mathbf{p}}^{s\, \dagger} \hat{b}_{\mathbf{p}}^s - \hat{c}^s_{\mathbf{p}} \hat{c}^{s\, \dagger}_{\mathbf{p}} \right).
+\]
+After this long computation, we chack the physical consistency of this Hamiltonian operator: we are spanning spins and momenta, then we have an energy term \(E_{\mathbf{p}} = \sqrt{\mathbf{p}^2 + m^2} > 0\) multiplied by number operators for particles and antiparticles. The problem is that the c-particle term \(c^s_{\mathbf{p}}c^{s,\,\dagger}\) has a minus sign, associeted than to negative energy contribution. Thus we have fixed the norm problem, but now we have negative energy states, which are also unphysical.
+
+We try to solve it by reordering the operators in the antiparticle term, so that we have \(- \hat{c}^s_{\mathbf{p}} \hat{c}^{s\, \dagger}_{\mathbf{p}} = - \hat{c}^{s\, \dagger}_{\mathbf{p}} \hat{c}^s_{\mathbf{p}} - \left[commutator\right]\) such that
+\[
+    \hat{H} = \sum_{s} \int \frac{\mathrm{d}^3 p}{(2 \pi)^3} E_{\mathbf{p}} \left( \hat{b}_{\mathbf{p}}^{s\, \dagger} \hat{b}_{\mathbf{p}}^s - \hat{c}^{s\, \dagger}_{\mathbf{p}} \hat{c}^s_{\mathbf{p}} + (2 \pi)^3 \delta^{(3)}(0) \right),
+\]
+where we have used the commutation relations to swap the operators. Now we have positive energy contributions only, but we have introduced an infinite constant term proportional to \(\delta^{(3)}(0)\), which is divergent, but we can remove it by redefining the zero point of energy and normal ordering, as we did for the scalar field.
+
+Let us verify explicitly that b-type particles have positive energy while c-typ particles have negative energy if we define them with positive norm, by computing the commutator of the Hamiltonian with the creation operators:
+\[
+    \begin{aligned}
+        \left[\hat{H} ,\, b_{\mathbf{p}}^{s,\, \dagger} \right] & = \dots                                         \\
+                                                                & = E_{\mathbf{p}} b_{\mathbf{p}}^{s,\, \dagger},
+    \end{aligned}
+\]
+while for the c-type particles we have similarly
+\[
+    \begin{aligned}
+        \left[\hat{H} ,\, c_{\mathbf{p}}^{s,\, \dagger} \right] & = \dots                                         \\
+                                                                & = E_{\mathbf{p}} c_{\mathbf{p}}^{s,\, \dagger},
+    \end{aligned}
+\]
+so that both particles have positive energy excitations, but we have to face the negative norm problem again for c-type particles.\TODO{change notation until now so that we dont speak of part and antipart but b-type and c-type particles.}
+Now the action of the Hamiltonian on one-particle states is
+\[
+    \begin{aligned}
+        \hat{H} \left( \hat{b}^{s,\,\dagger}_{\mathbf{p}} \ket{0}\right) & = E_{\mathbf{p}} \left( \hat{b}^{s,\,\dagger}_{\mathbf{p}} \ket{0}\right) + \hat{b}^{s,\,\dagger}_{\mathbf{p}} \hat{H} \ket{0} = E_{\mathbf{p}} \left( \hat{b}^{s,\,\dagger}_{\mathbf{p}} \ket{0}\right), \\
+        \hat{H} \left( \hat{c}^{s,\,\dagger}_{\mathbf{p}} \ket{0}\right) & = E_{\mathbf{p}} \left( \hat{c}^{s,\,\dagger}_{\mathbf{p}} \ket{0}\right) + \hat{c}^{s,\,\dagger}_{\mathbf{p}} \hat{H} \ket{0} = E_{\mathbf{p}} \left( \hat{c}^{s,\,\dagger}_{\mathbf{p}} \ket{0}\right),
+    \end{aligned}
+\]
+so that both types of particles have positive energy excitations, but we still have the negative norm problem for c-type particles.
+
+If we try quantizing the Dirac field by imposing commutation relations we end up with either negative norm states or negative energy states, both unphysical:
+\begin{itemize}
+    \item \textbf{b-type} particles are associated to positive frequency solutions, have positive norm and positive energy;
+    \item \textbf{c-type} particles are associated to negative frequency solutions, give us problems:
+          \begin{enumerate}
+              \item if we define them with positive energy states (\(\hat{c}^{s,\,\dagger}_{\mathbf{p}}\) defined as creation operator) they have negative norm: ill-defined Hilbert space;
+              \item if we define them with positive norm (\(\hat{c}^s_{\mathbf{p}}\) defined as creation operator) they have negative energy states: energy unbounded from below.\footnote{This is similar to what happened for the classical Dirac equation, where negative frequency solutions had to be reinterpreted as antiparticles to avoid negative energy states; we say unbounded from below because we could create more and more negative energy states by adding more and more c-type particles, leading to an unstable vacuum.}
+          \end{enumerate}
+\end{itemize}
+We thus have to change paradigm of quantization.
+
+\subsection{Quantizing with canonical anticommutation relations}
