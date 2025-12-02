@@ -493,9 +493,9 @@ As an example, consider the harmonic oscillator, whose action is
 \]
 where we integrated by parts and introduced the Dirac delta function \(\delta(t-t^{\prime})\) to expose the “kinetic matrix” \(K(t,t^{\prime}) = \left(\frac{\mathrm{d}^2}{\mathrm{d} t^2} + \omega^2 \right) \delta(t - t^{\prime})\), thus we can write the action in hypercondensed notation as
 \[
-    S[\phi] = - \frac{1}{2} \phi^i K_{ij} \phi^j.
+    S[\phi] = - \frac{1}{2} \phi^i K_{ij} \phi^j,
 \]
-Denoting \(\mathrm{D}\phi = \frac{\mathrm{d}^n \phi}{(-i2\pi)^{\tfrac{n}{2}}}\), setting \(\hbar = 1\) for simplicity, and using the gaussian result in eq.(57), one calculates formally the path integral with sources
+general for any free theory. Denoting \(\mathrm{D}\phi = \frac{\mathrm{d}^n \phi}{(-i2\pi)^{\tfrac{n}{2}}}\), setting \(\hbar = 1\) for simplicity, and using the gaussian result in eq.(57), one calculates formally the path integral with sources
 \[
     Z[J] = \int \mathrm{D} \phi \, e^{\frac{i}{2} \phi^i K_{ij} \phi^j + i J_i \phi^i} = \det(K_{ij})^{-\frac{1}{2}} e^{-\frac{i}{2} J_i (K^{-1})^{ij} J_j},
 \]
@@ -516,3 +516,161 @@ obtaining
     \end{aligned}
 \]
 The first one is a consequence of the normalization, the second one reflects the symmetry \(\phi^i \to -\phi^i\), and the third one is known as the propagator, which we find proportional to the inverse of the kinetic matrix \(K_{ij}\).
+
+Continuing with the calculation of higher point functions, we see that all correlation functions with an odd number of points vanish, again a consequence of the symmetry \(\phi^i \to -\phi^i\). Those ones with an even number \(n\) factorize into a sum of \((n-1)!!\) terms, given by the product of the 2-point functions which connect any two points in all possible ways. This fact is known as the Wick’s theorem.
+
+\begin{theorem}[Wick’s theorem]
+    \dots
+\end{theorem}
+
+For example, the 4-point correlation function is given by
+\[
+    \langle \phi^{i_1} \phi^{i_2} \phi^{i_3} \phi^{i_4} \rangle = \langle \phi^1 \phi^2 \rangle \langle \phi^3 \phi^4 \rangle + \langle \phi^1 \phi^3 \rangle \langle \phi^2 \phi^4 \rangle + \langle \phi^1 \phi^4 \rangle \langle \phi^2 \phi^3 \rangle,
+\]
+that indeed contains the sum of \(3!!\) terms. This correlation function is not connected, as each term is the product of correlation functions of lower order (it disconnects into products of lower order correlation functions). This is true for all higher point correlation functions of the free theory. The generating functional of connected correlation functions \(W[J]\) is obtained from eq. (69) using the definition (64)
+\[
+    W[J] = \frac{1}{2} J_i G_{ij} J_j - \Lambda, \quad \Lambda = -\frac{i}{2} \ln(\det(K_{ij})) = -\frac{i}{2}\Tr (\ln(K_{ij})),
+\]
+where the constant \(\Lambda\) is an infinite constant that can be regularized and interpreted as the vacuum energy of the free theory. One verifies that it generates a 2-point correlation functions that is connected.\footnote{It also generates a 0-point function, given by \(-\Lambda\), that can be shown to be connected as well.}
+
+Let us also calculate the effective action. The minimum in \(J\) of eq. (66) is achieved for
+\[
+    \varphi^i = \frac{\delta W}{\delta J_i} = G^{ij} J_j \implies J_i = K_{ij} \varphi^j,
+\]
+so that the effective action reads
+\[
+    \Gamma[\varphi] = W[J] - J_i \varphi^i = -\frac{1}{2} \varphi^i K_{ij} \varphi^j + \Lambda,
+\]
+We see that for a free theory, the effective action \(\Gamma[\phi]\) reproduces the original action \(S[\phi]\) with an additive constant \(-\Lambda\), which could be interpreted as minus a vacuum energy, which is of quantum origin. The latter can be disregarded if gravitational interactions are neglected. In general, the effective action is considered as a classical action that contains the effects of quantization in its couplings (and thus, the effective actions should not be quantized again). Reinserting \(\hbar\) by a simple rescaling, we collect here the formulae for a free (gaussian) theory
+\[
+    \begin{aligned}
+        S[\phi]      & = - \frac{1}{2} \phi^i K_{ij} \phi^j,                                                                 \\
+        Z[J]         & = \det(K_{ij})^{-\frac{1}{2}} e^{-\frac{i}{2\hbar} J_i G^{ij} J_j},                                   \\
+        W[J]         & = \frac{1}{2} J_i G^{ij} J_j - \hbar\Lambda, \quad \Lambda = -\frac{i}{2} \ln(\det(K_{ij})),          \\
+        \Gamma[\phi] & = -\frac{1}{2} \varphi^i K_{ij} \varphi^j - \hbar\Lambda = S[\varphi] + \hbar [\text{ corrections }],
+    \end{aligned}
+\]
+with a propagator given by the two point correlation function
+\[
+    \langle \phi^{i} \phi^{j} \rangle = -i \hbar (K^{-1})^{ij} = -i \hbar G^{ij}.
+\]
+\subsubsection{Harmonic Oscillator}
+
+Let us work out in more explicit terms the case of a harmonic oscillator with unit mass and frequency \(\omega\). The action is
+\[
+    S[x] = \int_{-\infty}^{\infty} \d{t} \left(\frac{\dot{x}^2}{2} - \frac{\omega^2 x^2}{2}\right), \quad Z[J] = \int \mathrm{D} x \, e^{i S[x] + i \int \d{t} J(t) x(t)},
+\]
+where we have computed the path integral to obtain \(Z[J]\). We repeat the deduction without using the hypercondensed notation. We consider an infinite propagation time and a transition amplitude between the ground state, classically achieved for \(x=0\). The action in the exponent can be manipulated with an integration by parts without producing boundary terms (imposing that \(x(t)\) is in its classical vacuum at initial and final times gives a vanishing boundary term, another justification will be given later on when treating the euclidean version of the problem). Thus, the action takes the form we already computed
+\[
+    S[x] = -\frac{1}{2} \int_{-\infty}^{\infty} \d{t} \, x(t) \left(\frac{\mathrm{d}^2}{\mathrm{d} t^2} + \omega^2 \right) \delta(t-t^{\prime}) x(t) = \int \int \d{t} \d{t^{\prime}} \, x(t) K(t, t^{\prime}) x(t^{\prime}),
+\]
+where \(K(t, t^{\prime}) = \left(\frac{\mathrm{d}^2}{\mathrm{d} t^2} + \omega^2 \right) \delta(t - t^{\prime})\) is the differential “kinetic” operator of the harmonic oscillator. We can compute the two point correlation function (the propagator) by
+\[
+    \langle x(t) x(t^{\prime}) \rangle = \left. \frac{1}{Z} \left(i\right)^2 \frac{\delta}{\delta J(t^{\prime})} \frac{\delta}{\delta J(t)} Z[J] \right|_{J=0} = -i (K^{-1})(t, t^{\prime}) = -i G(t, t^{\prime}),
+\]
+where the inverse of \(K\) is recognized as the Green function of the differential operator, and it can be conveniently written in a Fourier transform
+\[
+    G(t,t^{\prime}) = \int_{-\infty}^{\infty} \frac{\mathrm{d}p}{2\pi} \, \frac{e^{-ip(t-t^{\prime})}}{-p^2 +\omega^2},
+\]
+which can be verified to satisfy the equation
+\[
+    \int \d{t^{\prime \prime}} K(t, t^{\prime \prime}) G(t^{\prime \prime}, t^{\prime}) = \delta(t - t^{\prime}).
+\]
+that in a hypercondensed notation would have been written as \(K_{ij} G^{jl} = \delta_i^l\). Adding the Feynman \(i\epsilon\) prescription\footnote{Mathematically, it is seen to arise from requiring that the path integral has a small damping factor \(e^{-\tfrac{i}{\hbar} \int \d{t} x^2(t)}\), obtained by the shift \(\omega^2 \to \omega^2 - i \epsilon\) with \(\epsilon \to 0^+\). Recall the comments made under eq. (57).} for specifying how to integrate around the poles \(p=\pm \omega\), one computes
+\[
+    G(t,t^{\prime}) = \int_{-\infty}^{\infty} \frac{\mathrm{d}p}{2\pi} \, \frac{e^{-ip(t-t^{\prime})}}{-p^2 +\omega^2 - i \epsilon} = -\frac{i}{2\omega} \left[ \theta(t-t^{\prime}) e^{-i\omega (t-t^{\prime})} + \theta(t^{\prime}-t) e^{i\omega (t-t^{\prime})} \right] = -\frac{i}{2\omega} e^{-i\omega \vert t-t^{\prime} \vert}.
+\]
+
+\subsubsection{Klein Gordon Field}
+
+The quantum field theory of a free Klein-Gordon scalar field can be viewed as a higher-dimensional analog of the harmonic oscillator. The action of a real scalar field \(\phi(x)\) is given by
+\[
+    S[\phi] = \int \mathrm{d}^4 x \left( -\frac{1}{2} \partial_\mu \phi \partial^\mu \phi - \frac{1}{2} m^2 \phi^2 \right),
+\]
+where \(m\) is the mass of the scalar particle. Integrating by parts and neglecting boundary terms, the action can be rewritten as
+\[
+    S[\phi] = -\frac{1}{2} \int \mathrm{d}^4 x \, \phi(x) \left( \Box + m^2 \right) \phi(x) = -\frac{1}{2} \int \mathrm{d}^4 x \mathrm{d}^4 y \, \phi(x) K(x,y) \phi(y),
+\]
+where \(K(x,y) = \left( \Box + m^2 \right) \delta^4(x-y)\) is the kinetic operator of the Klein-Gordon field, and \(\Box = \partial_\mu \partial^\mu\) is the d'Alembertian operator.
+
+We can compute the path integral with sources
+\[
+    Z[J] = \int \mathrm{D} \phi \, e^{i S[\phi] + i \int \mathrm{d}^4 x \, J(x) \phi(x)} = N e^{\frac{i}{2} \int \mathrm{d}^4 x \mathrm{d}^4 y \, J(x) G(x,y) J(y)},
+\]
+where \(N = \det(K_{ij})^{-\frac{1}{2}}\) is a normalization constant. The inverse of the kinetic operator \(K\) is the Green's function \(G(x,y)\) of the Klein-Gordon operator.
+
+We are in \((3+1)\) spacetime dimensions, but if we imagine to be in a \((0+1)\) spacetime dimension, meaning that there is only one time coordinate and no spatial coordinates, the Klein-Gordon field theory reduces to the harmonic oscillator treated previously. Indeed, in this case the action reduces to
+\[
+    S[\phi] = \int \mathrm{d}t \left( \frac{1}{2} \dot{\phi}^2 - \frac{1}{2} m^2 \phi^2 \right),
+\]
+which is the action of a harmonic oscillator with frequency \(\omega = m\).
+
+If we compute the exponential in the path integral, we obtain
+\[
+    \int \mathrm{d}^4 z \, K(x,z) G(z,y) = \delta^4(x-y),
+\]
+where we have indeed \(\left(\Box_x + m^2 \right) G(x-y) = \delta^4(x-y)\) as the usual equation for the Green's function of the Klein-Gordon operator.
+
+We can now compute the two-point correlation function (the propagator) by
+\[
+    \langle \phi(x) \phi(y) \rangle = \left. \frac{1}{Z} \left(i\right)^2 \frac{\delta}{\delta J(y)} \frac{\delta}{\delta J(x)} Z[J] \right|_{J=0} = -i G(x,y),
+\]
+where the Green's function can be conveniently written in a Fourier transform
+\[
+    G(x,y) = \int \frac{\mathrm{d}^4 p}{(2\pi)^4} \, \frac{e^{-ip_\mu (x^{\mu} - y^{\mu})}}{p^2 + m^2 - i \epsilon},
+\]
+where \(\mathrm{d}^4 p = \d{p_0}\mathrm{d}^3 \mathbf{p}\) and \(p^2 = p_\mu p^{\mu} = -(p_0)^2 + \mathbf{p}^2\). There are poles corresponding to the solutions of the mass shell condition, \(p_0 = \sqrt{\mathbf{p}^2 + m^2}\) (positive energies) and \(p_0 = -\sqrt{\mathbf{p}^2 + m^2}\) (negative energies). The Feynman \(i \epsilon\) prescription sends positive energies forward in time and negative energies backward in time. It corresponds to the physical interpretation of particles and antiparticles with positive energies and always propagating forward in time. Setting \(E_p = \sqrt{\mathbf{p}^2 + m^2}\) one finds
+\[
+    \begin{aligned}
+        \langle \phi(x) \phi(y) \rangle & =       \\
+                                        & = \dots
+    \end{aligned}
+\]
+
+\subsubsection{Harmonic Oscillator in Euclidean Time}
+
+The statistical partition function in the limit of vanishing temperature (\(\Theta \to  0\)), corresponding to an infinite euclidean propagation time (\(\beta = \frac{1}{k \Theta} \to  \infty\)), takes a simple form
+\[
+    Z_E = \Tr e^{-\beta \hat{H}} = \sum_{n=0}^{\infty} \bra{n} e^{-\beta \hat{H}} \ket{n} = e^{-\beta E_0} + \text{ subleading terms as } \beta \to \infty.
+\]
+This is true even in the presence of a source \(J\) if one assumes that the source is nonvanishing for a finite interval of time only: the remaining infinite time is sufficient to project the operator \(e^{-\beta \hat{H}}\) onto the ground state. This allows to rewrite the generating functional \(Z[J]\) in the euclidean case in a simpler way, justifying the dropping of boundary terms in the integration by parts in the classical action. The statistical partition function is obtained by using periodic boundary conditions, and for large \(\beta\) one gets the projection onto the ground state
+\[
+    Z_E[J] = \int \mathrm{D} x \, e^{-S_E[x] + \int_{-\tfrac{\beta}{2}}^{\tfrac{\beta}{2}} \d{\tau} J(\tau) x(\tau)} \xrightarrow{\beta \to  \infty} \lim_{\beta \to \infty} e^{- \beta E_0(J)},
+\]
+where the euclidean action is
+\[
+    S_E[x] = \int_{-\infty}^{\infty} \d{\tau} \left( \frac{1}{2} \left(\frac{\mathrm{d} x}{\mathrm{d} \tau}\right)^2 + \frac{1}{2} \omega^2 x^2 \right).
+\]
+where \(E_0(J)\) is the ground state energy in the presence of the source \(J\). We can now repeat the previous calculation in the present context. We integrate by parts without encountering boundary terms, as the paths are closed, and the path integral is strictly gaussian
+\[
+    Z_E[J] = \dots
+\]
+from which we get the Green's function in euclidean time, which can be computed as
+\[
+    G_E(\tau - \tau^{\prime}) = \int_{-\infty}^{\infty} \frac{\mathrm{d}p_E}{2\pi} \, \frac{e^{-ip_E(\tau - \tau^{\prime})}}{p_E^2 + \omega^2} = \frac{1}{2\omega} e^{-\omega \vert \tau - \tau^{\prime} \vert}.
+\]
+Using it for the computation of the two-point correlation function
+\[
+    \langle x(\tau) x(\tau^{\prime}) \rangle = G_E(\tau - \tau^{\prime}) = \int \frac{\mathrm{d}p_E}{2\pi} \, \frac{e^{-ip_E(\tau - \tau^{\prime})}}{p_E^2 + \omega^2}
+\]
+We now verify again the relation between quantum mechanics and statistical mechanics, realized by the analytic continuation in time, the Wick rotation. The inverse Wick rotation implies \(\tau = t_E \to i t_M = it\) and \(p_E \to -ip_M = -ip\), with the latter arising from the requirement that the correct Fourier transform is kept during the analytic deformation. Thus the two-point correlation function becomes
+\[
+    \langle x(\tau) x(\tau^{\prime}) \rangle \to \langle x(t) x(t^{\prime}) \rangle = -i G_M (t-t^{\prime}) = -i \int \frac{\mathrm{d}p_M}{2\pi} \, \frac{e^{-ip_M(t-t^{\prime})}}{-p_M^2 + \omega^2},
+\]
+which is the Feynman propagator of the harmonic oscillator computed previously
+\[
+    \frac{1}{2 \omega} e^{-\omega \vert \tau - \tau^{\prime} \vert} \to -\frac{i}{2\omega} e^{-i\omega \vert t - t^{\prime} \vert}.
+\]
+We recognize that the Feynman propagator is the unique analytical extension of the euclidean two-point function. All other Green functions, such as the retarded or advanced ones, correspond to different boundary conditions implemented with different prescriptions for performing the integration around the poles. They cannot be Wick rotated, as one would encounter poles in the analytic continuation.
+
+This is the end for free path integrals and bosonic theories. We can now proceed to interacting theories with perturbative expansions, and later on to fermionic theories.
+
+\section{Perturbative Expansion}
+
+\subsection{Vacuum Diagrams}
+
+\subsection{Other Correlators and Feynman Diagrams}
+
+
+
+\section{Path Integrals for Fermions}
