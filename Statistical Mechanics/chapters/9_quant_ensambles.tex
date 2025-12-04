@@ -562,4 +562,147 @@ so that we can rewrite the expressions for the particle density and pressure as
 
 \subsection{Classical Limit}
 
+We can now analyze the classical limit of the quantum gas, by stopping at the first order in the power series expansions derived above. This limit corresponds to the regime where quantum effects are negligible, and the behavior of the gas can be described by classical statistics. The classical limit is typically valid when the thermal wavelength \(\lambda_{T}\) is much smaller than the average interparticle distance, which occurs at high temperatures or low densities.
+
+\[
+    n = \frac{g}{\lambda_{T}^3} z \implies z = \frac{n \lambda_{T}^3}{g},
+\]
+which can be substituted back into the expressions for the pressure to obtain
+\[
+    p = \frac{g}{\beta \lambda_{T}^3} z = \frac{g}{\beta \lambda_{T}^3} \frac{n \lambda_{T}^3}{g} = \frac{n}{\beta} = n k_B T.
+\]
+We thus recovered the ideal gas law \(pV = Nk_B T\) in the classical limit, showing that at high temperatures or low densities
+\[
+    z \ll 1 \implies \text{ high } T \text{ or low } n,
+\]
+both bosonic and fermionic quantum gases behave like classical ideal gases.
+
 \paragraph{Semiclassical expansion.}
+If we now consider the next order in the power series expansions for the particle density and pressure, we can derive corrections\footnote{We are considering semiclassical limit, called like that beacause the statistic is almot classical, but we are in a regime where we cannot ignore contributions due to the quantum nature of the considered particles.} to the ideal gas law that account for quantum effects. Including the second term in the series, we have
+\[
+    \begin{aligned}
+        n_{B/F} & = \frac{g}{\lambda_{T}^3} \left( z \pm \frac{z^2}{2^{3/2}} \right),       \\
+        p_{B/F} & = \frac{g}{\beta \lambda_{T}^3} \left( z \pm \frac{z^2}{2^{5/2}} \right).
+    \end{aligned}
+\]
+Solving for \(z\) in terms of \(n\), we find
+\[
+    \frac{z^2}{2\sqrt{2}} \pm z - \frac{n \lambda_{T}^3}{g} = 0 \implies z = \sqrt{2} \left( \mp 1 \pm \sqrt{1 + \frac{2^{3/2} n \lambda_{T}^3}{g}}\right),
+\]
+we solved the second order equation: the first sign is due to Bosonic or fermionic nature, the second to the choice of solution of the quadratic equation. Expanding the square root for small \(n \lambda_{T}^3/g\), since \(z \ll 1\) implies small \(n\), we can use the Taylor expansion of the radical \(\sqrt{1+x} \sim 1 + \frac{x}{2} + \cdots\) for \(x \ll 1\), leading to
+\[
+    \begin{aligned}
+        z & \sim \sqrt{2} \left[ \mp 1 \pm \left( 1 \pm \frac{1}{\sqrt{2}}\frac{n \lambda_{T}^3}{g} - \frac{1}{4} \left(\frac{n \lambda_{T}^3}{g}\right)^2 \right) \right] \\
+          & = \frac{n \lambda_{T}^3}{g} \mp \frac{1}{2\sqrt{2}} \left( \frac{n \lambda_{T}^3}{g} \right)^2.
+    \end{aligned}
+\]
+If we now substitute this expression for \(z\) back into the pressure, and keep terms up to second order in \(n \lambda_{T}^3/g\), we find\TODO{check computtion}
+\[
+    \begin{aligned}
+        p & = \frac{g}{\beta \lambda_{T}^3} \left[ \frac{n \lambda_{T}^3}{g} \mp \frac{1}{2\sqrt{2}} \left( \frac{n \lambda_{T}^3}{g} \right)^2 \pm \frac{1}{2^{5/2}} \left( \frac{n \lambda_{T}^3}{g} \right)^2 \right] \\
+          & = n k_B T \left[ 1 \mp \frac{1}{4\sqrt{2}} \left(\frac{n \lambda_{T}^3}{g}\right)^2 \right].
+    \end{aligned}
+\]
+This expression represents the semiclassical expansion of the equation of state for a quantum gas, showing how quantum statistics modify the ideal gas law. The correction term \(\mp \frac{1}{4\sqrt{2}} \left(\frac{n \lambda_{T}^3}{g}\right)^2\) indicates that:
+\begin{itemize}
+    \item For bosons (upper sign), the pressure is reduced compared to the classical ideal gas, reflecting the tendency of bosons to cluster together in the same quantum state.
+    \item For fermions (lower sign), the pressure is increased due to the Pauli exclusion principle, which prevents multiple fermions from occupying the same quantum state, leading to a higher effective pressure.
+    \item These corrections become significant at low temperatures or high densities, where quantum effects dominate the behavior of the gas.
+\end{itemize}
+We get the idea of quantum gases being \textit{attractive} or \textit{repulsive} depending on their statistics, leading to different macroscopic behaviors compared to classical gases: it is not a true interaction between particles, we are looking at free gases, but an effective behavior due to the underlying quantum statistics.
+
+Thus the quantum corrections to the classical ideal gas law becomes small when:
+\begin{enumerate}
+    \item \(g\) is very large (high internal degeneracy): this reduces the effect of quantum statistics by providing more available states for the particles to occupy;\footnote{Fermions cannot occupy the same state, but if we have a very large degeneracy in the energy levels, then we can have a lot of fermions at the same energy, thus mimicking the Bosons behavior.}
+    \item the thermal wavelength \(\lambda_{T}\) is very small (high temperature);\footnote{We are speaking of "small" and "large" in relative terms: we intend that \(\lambda_{T}\) is small compared to the Plank constant and other characteristic lengths of the system.}
+    \item the particle density \(n\) is very small (low density, again leading to classical statistics).
+\end{enumerate}
+
+\subsection{Convergence of the Power Series}
+
+When we are at very low temperatures, near absolute zero, the fugacity \(z = e^{\beta \mu}\) can approach or exceed unity, especially for bosons where \(\mu\) can be close to zero or positive. In this regime, the power series expansions for the thermodynamic quantities may not converge, leading to divergences in the computed values. We have to keep the whole power series
+\[
+    \begin{aligned}
+        f_{\nu}(z) & = \sum_{l=1}^{\infty} (-1)^{l+1} \frac{z^{l}}{l^{\nu}} \quad \text{(Fermions)}, \\
+        g_{\nu}(z) & = \sum_{l=1}^{\infty} \frac{z^{l}}{l^{\nu}} \quad \text{(Bosons)},
+    \end{aligned}
+\]
+to obtain meaningful results.
+
+\paragraph{Absolute converge.}
+We can study the absolute convergence of these series, true for both bosons and fermions, by considering the sum of the absolute values of the terms:
+\[
+    \sum_{l=1}^{\infty} \left\vert \frac{z^{l}}{l^{\nu}} \right\vert = \sum_{l=1}^{\infty} \frac{\vert z \vert^{l}}{l^{\nu}} \iff \vert z \vert < 1.
+\]
+For \textbf{fermions} this condition is always satisfied since fermions have \(\mu < \infty \implies z = e^{\beta \mu} \geq 0\). Thus, the series converges absolutely for all physically relevant values of \(z\). The function
+\[
+    FIGURE-FERMIONS-POWER-SERIES
+\]
+well defined for all \(z \geq 0\), poitive and continuous and monotonically increasing. For \(z\) near 0 the series assumes a linear behavior, while for large \(z\) it grows more slowly.
+We are looking at the limit for small temperatures \(T \to 0\), such that \(\beta \to \infty\) and thus \(z = e^{\beta \mu} \to \infty\) if \(\mu > 0\):\footnote{Remember for the following computation that the discrete internal degeneracy is included in \(A\) or \(g(\epsilon)\).} recalling the expressions for the particle density and energy density
+\[
+    \begin{aligned}
+        n  = \frac{N}{V}       & = A \int_0^{\mu} \d{\epsilon} \epsilon^{1/2} \frac{1}{e^{\beta(\epsilon-\mu)} + 1} = \int_0^{\infty} \d{\epsilon}g(\epsilon)n_{FD}(\epsilon),          \\
+        \epsilon = \frac{E}{V} & = A \int_0^{\mu} \d{\epsilon} \epsilon^{3/2} \frac{1}{e^{\beta(\epsilon-\mu)} + 1} = \int_0^{\infty} \d{\epsilon}g(\epsilon)\epsilon n_{FD}(\epsilon),
+    \end{aligned}
+\]
+where it is crucial to know that the \textit{density of states} \(g(\epsilon)\) has unique definitions valid for the system under consideration (here the non-relativistic 3D quantum gas).
+Thus it is crucial to understand how \(n_{FD}\) behaves in this limit: we will plot this function to understand its behavior, for \(\beta \to \infty\)
+\[
+    \frac{1}{e^{\beta(\epsilon - \mu)} + 1} = \begin{dcases}
+        1,           & \epsilon < \mu; \\
+        \frac{1}{2}, & \epsilon = \mu; \\
+        0,           & \epsilon > \mu.
+    \end{dcases}
+\]
+This is the famous \textbf{Fermi-Dirac distribution at zero temperature}, which shows that all states with energy below the chemical potential \(\mu\) are fully occupied, while those above \(\mu\) are empty. The chemical potential at zero temperature is known as the \textbf{Fermi energy} \(E_F\), which defines the highest occupied energy level in the system at absolute zero.\footnote{When the temperature arises, we pass from the Heaviside step function to a smoother curve, which expresses the occupation of the levels above the Fermi energy.}
+\[
+    FIGURE-FD-DISTRIBUTION
+\]
+Thus, we can compute the integrals for \(n\) and \(\epsilon\) at zero temperature as
+\[
+    \begin{aligned}
+        n        & = \int_0^{\mu=\epsilon_F} g(\epsilon) \cdot 1 \, \mathrm{d} \epsilon = A \int_0^{\mu} \epsilon^{1/2} \mathrm{d} \epsilon = \frac{2}{3} A \epsilon_F^{3/2},          \\
+        \epsilon & = \int_0^{\mu=\epsilon_F} g(\epsilon) \epsilon \cdot 1 \, \mathrm{d} \epsilon = A \int_0^{\mu} \epsilon^{3/2} \mathrm{d} \epsilon = \frac{2}{5} A \epsilon_F^{5/2}.
+    \end{aligned}
+\]
+We can also find an explicit expression for the Fermi energy \(\epsilon_F\) in terms of the particle density \(n\):
+\[
+    \epsilon_F = \left( \frac{3n}{2A} \right)^{2/3},
+\]
+so that we can control the behavior of the system at zero temperature based on the density of particles.
+\[
+    FIGURE-OF-OCCUPATION-LEVELS
+\]
+We can study how metals behave under these conditions, since the conduction electrons in metals can be modeled as a Fermi gas. At low temperatures, the electrons fill up energy levels up to the Fermi energy, leading to unique electronic properties such as electrical conductivity and heat capacity that differ significantly from classical predictions. We can dope the metal to change the electron density \(n\), which in turn modifies the Fermi energy \(\epsilon_F\) and thus the electronic properties of the material.
+
+We can also compute the grand potential \(\Omega_F\) at zero temperature using the relation \(\Omega_F = - \frac{2}{3} E_F\):
+\[
+    \Omega_F = - \frac{2}{3} V \epsilon = - \frac{2}{3} V \cdot \frac{2}{5} A \epsilon_F^{5/2} = - \frac{4}{15} V A \epsilon_F^{5/2},
+\]
+and from this we can derive other thermodynamic quantities such as pressure
+\[
+    p = - \frac{\Omega}{V} = \frac{4}{15} A \epsilon_F^{5/2} = \frac{2}{5} n \epsilon_F > 0.
+\]
+For any perfect classical gas we have a zero pressure at zero temperature, while here we have a finite pressure due to the Pauli exclusion principle preventing all fermions from occupying the lowest energy state. This leads to a degeneracy pressure that supports the system against collapse, which is particularly important in astrophysical contexts such as white dwarf stars: the electron degeneracy pressure arising from the Fermi gas of electrons counteracts gravitational collapse, stabilizing the star.
+
+With an augment in temperature, the sharp occupation of energy levels at the Fermi energy smooths out, leading to thermal excitations around \(k_B T\) of electrons near the Fermi level, affecting the electronic properties of the material.
+We can also define a \textbf{Fermi temperature} \(T_F\) associated with the Fermi energy:
+\[
+    k_B T_F = \epsilon_F \implies T_F = \frac{\epsilon_F}{k_B},
+\]
+which provides a temperature scale below which quantum effects become significant for the fermi gas. At temperatures much lower than \(T_F\), the gas exhibits degenerate behavior, while at temperatures much higher than \(T_F\), it behaves more classically
+\[
+    T_F = \frac{1}{k_B}\left(\frac{6\pi^2}{g}\right)\frac{\hbar^2}{2m}n^{2/3}.
+\]
+We can derive an approximate value for a metal with \(n \sim 10^{22 / 23} \text{electron}/\text{cm}^3\), \(g=2\) (for spin degeneracy) and \(m\) equal to the electron mass:
+\[
+    T_F \sim 10^{4-5} K,
+\]
+so that at room temperature (\(\sim 300 K\)) the electron gas in metals can be treated as a degenerate Fermi gas, with quantum effects dominating its behavior.
+For stars like white dwarfs, where the electron density is extremely high (\(n \sim 10^{30} \text{electron}/\text{cm}^3\)), the Fermi temperature can reach values on the order of \(10^{11} K\) or higher (where the star temperature is much lower, around \(10^7\) Kelvin), indicating that the electron gas remains degenerate even at very high temperatures.
+
+
+
+
+For bosons, the series converges absolutely for \(\vert z \vert < 1\), which corresponds to \(\mu < 0\). However, as \(z\) approaches 1 (i.e., \(\mu\) approaches 0), the series diverges, indicating a breakdown of the power series expansion in this regime.
