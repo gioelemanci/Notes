@@ -1039,3 +1039,246 @@ If we try quantizing the Dirac field by imposing commutation relations we end up
 We thus have to change paradigm of quantization.
 
 \subsection{Quantizing with canonical anticommutation relations}
+
+If we recall what happened for \textbf{bosons} in Klein-Gordon theory, we imposed canonical \textbf{commutation} relations between the field and its conjugate momentum at equal times, leading to commutation relations for creation and annihilation operators
+\[
+    \ket{\mathbf{p},\,\mathbf{q}} = \hat{a}^{\dagger}_{\mathbf{p}} \hat{a}^{\dagger}_{\mathbf{q}} \ket{0} = \hat{a}^{\dagger}_{\mathbf{q}} \hat{a}^{\dagger}_{\mathbf{p}} \ket{0},
+\]
+since the creation operators commute
+\[
+    \left[\hat{a}^{\dagger}_{\mathbf{p}}, \hat{a}^{\dagger}_{\mathbf{q}}\right] = 0.
+\]
+This means that we can create multiple particles in the same state, leading to \textit{Bose-Einstein statistics}.
+
+We do not find this acceptable for \textbf{fermions}, since they obey the \textit{Pauli exclusion principle}, which states that no two fermions can occupy the same quantum state simultaneously. We need a minus sign when swapping two fermionic operators, thus we have to impose \textbf{canonical anticommutation relations} between the field and its conjugate momentum at equal times, leading to anticommutation relations for creation and annihilation operators:
+\[
+    \begin{aligned}
+        \{\hat{\psi}_{\alpha}(\mathbf{x}),\, \hat{\psi}_{\beta}(\mathbf{y})\} = \{\hat{\psi}_{\alpha}^{\dagger}(\mathbf{x}),\, \hat{\psi}_{\beta}^{\dagger}(\mathbf{y})\} = 0, \\
+        \{\psi_{\alpha}(\mathbf{x}),\, \hat{\psi}^{\dagger}_{\beta}(\mathbf{y})\} = \delta_{\alpha \beta} \delta^{(3)}(\mathbf{x} - \mathbf{y}).
+    \end{aligned}
+\]
+This leads to anticommutation relations for creation and annihilation operators:
+\[
+    \begin{aligned}
+        \{\hat{b}_{\mathbf{p}}^s,\, \hat{b}_{\mathbf{q}}^{r\, \dagger}\} & = (2 \pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q}) \delta^{s r}, \\
+        \{\hat{c}_{\mathbf{p}}^s,\, \hat{c}_{\mathbf{q}}^{r\, \dagger}\} & = (2 \pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q}) \delta^{s r},
+    \end{aligned}
+\]
+while all other anticommutators vanish.
+
+Now, as last time, we have to compute the commutator of the Hamiltonian operator
+with the creation operators to check if the energy excitations are positive and associated to positive norm states. Repeating the same computation as before, but using anticommutation relations instead of commutation relations, we find
+\[
+    \hat{H} = \sum_{s} \int \frac{\mathrm{d}^3 \mathbf{p}}{(2 \pi)^3} E_{\mathbf{p}} \left( \hat{b}_{\mathbf{p}}^{s\, \dagger} \hat{b}_{\mathbf{p}}^s - \hat{c}^{s\, \dagger}_{\mathbf{p}} \hat{c}^s_{\mathbf{p}} \right),
+\]
+where we can now reorder the operators in the c-type particle term introducing a minus sign from the anticommutation relations:
+\[
+    \hat{H} = \sum_{s} \int \frac{\mathrm{d}^3 \mathbf{p}}{(2 \pi)^3} E_{\mathbf{p}} \left( \hat{b}_{\mathbf{p}}^{s\, \dagger} \hat{b}_{\mathbf{p}}^s + \hat{c}^{s\, \dagger}_{\mathbf{p}} \hat{c}^s_{\mathbf{p}} - (2 \pi)^3 \delta^{(3)}(0) \right),
+\]
+where now both types of particles have positive energy excitations, if we interpret \(\hat{c}^{\dagger}_{\mathbf{p}}\) as the creation operators and thus the second term as the c-type particle number operator; in the end we have a divergent constant term which we can remove by normal ordering as before.\footnote{This constant term is related to the vacuum energy, which in KG theory came with a plus sign.}
+Thus we have finally obtained a consistent quantum theory for spin \(\tfrac12\) particles, by imposing anticommutation relations instead of commutation relations and a normal ordered Hamiltonian defined as
+\begin{equation}
+    \hat{H} = \sum_{s} \int \frac{\mathrm{d}^3 \mathbf{p}}{(2 \pi)^3} E_{\mathbf{p}} \left( \hat{b}_{\mathbf{p}}^{s\, \dagger} \hat{b}_{\mathbf{p}}^s + \hat{c}^{s\, \dagger}_{\mathbf{p}} \hat{c}^s_{\mathbf{p}} \right).
+    \label{eq:Dirac_hamiltonian_normal_ordered}
+\end{equation}
+
+We can verify explicitly that both b-type and c-type particles have positive energy excitations, looking at the vacuum state with no particles
+\[
+    \hat{b}^s_{\mathbf{p}} \ket{0} = 0, \quad \hat{c}^s_{\mathbf{p}} \ket{0} = 0, \quad \forall \mathbf{p},\, s,
+\]
+and by computing the commutator of the Hamiltonian with the creation operators, with the idea to apply it to one-particle states:
+\[
+    \begin{aligned}
+        \left[\hat{H} ,\, \hat{b}_{\mathbf{p}}^{s,\, \dagger} \right] = E_{\mathbf{p}} \hat{b}_{\mathbf{p}}^{s,\, \dagger}, \quad \left[\hat{H} ,\, \hat{c}_{\mathbf{p}}^{s,\, \dagger} \right] = E_{\mathbf{p}} \hat{c}_{\mathbf{p}}^{s,\, \dagger}, \\
+        \left[\hat{H},\, \hat{b}_{\mathbf{p}}^{s}\right] = - E_{\mathbf{p}} \hat{b}_{\mathbf{p}}^{s}, \quad \left[\hat{H},\, \hat{c}_{\mathbf{p}}^{s}\right] = - E_{\mathbf{p}} \hat{c}_{\mathbf{p}}^{s}.
+    \end{aligned}
+\]
+Now on \textbf{one-particle states} we have
+\[
+    \begin{aligned}
+        \ket{\mathbf{p}, s}_b = \hat{b}_{\mathbf{p}}^{s,\, \dagger} \ket{0}, \\
+        \ket{\mathbf{p} , s}_c = \hat{c}_{\mathbf{p}}^{s,\, \dagger} \ket{0},
+    \end{aligned}
+\]
+so that the norm of these states is positive:
+\[
+    \begin{aligned}
+        {}_b\bra{\mathbf{q}, r}\ket{\mathbf{p}, s}_b & = \bra{0} \hat{b}_{\mathbf{q}}^r \hat{b}_{\mathbf{p}}^{s,\, \dagger} \ket{0} = \bra{0} \{\hat{b}_{\mathbf{q}}^r,\, \hat{b}_{\mathbf{p}}^{s,\, \dagger}\} \ket{0} = (2 \pi)^3 \delta^{(3)}(0) \bra{0}\ket{0} > 0, \\
+        {}_c\bra{\mathbf{q}, r}\ket{\mathbf{p}, s}_c & = \bra{0} \hat{c}_{\mathbf{q}}^r \hat{c}_{\mathbf{p}}^{s,\, \dagger} \ket{0} = \bra{0} \{\hat{c}_{\mathbf{q}}^r,\, \hat{c}_{\mathbf{p}}^{s,\, \dagger}\} \ket{0} = (2 \pi)^3 \delta^{(3)}(0) \bra{0}\ket{0} > 0,
+    \end{aligned}
+\]
+wher the difference with respect to the commutation relation case is the anticommutator used to swap the operators, which does not introduce a minus sign as the commutator did.
+
+Finally, we can compute the action of the Hamiltonian on one-particle states:
+\[
+    \begin{aligned}
+        \hat{H} \left(\hat{b}^{s,\,\dagger}_{\mathbf{p}} \ket{0} \right) & = \left[\hat{H} ,\, \hat{b}^{s,\,\dagger}_{\mathbf{p}} \right] \ket{0} + \hat{b}^{s,\,\dagger}_{\mathbf{p}} \hat{H} \ket{0} = E_{\mathbf{p}} \left(\hat{b}^{s,\,\dagger}_{\mathbf{p}} \ket{0} \right), \\
+        \hat{H} \left(\hat{c}^{s,\,\dagger}_{\mathbf{p}} \ket{0} \right) & = \left[\hat{H} ,\, \hat{c}^{s,\,\dagger}_{\mathbf{p}} \right] \ket{0} + \hat{c}^{s,\,\dagger}_{\mathbf{p}} \hat{H} \ket{0} = E_{\mathbf{p}} \left(\hat{c}^{s,\,\dagger}_{\mathbf{p}} \ket{0} \right).
+    \end{aligned}
+\]
+Thus both b-type and c-type particles have positive norm states and positive energy excitations, solving all the problems we had before and leading to a consistent quantum theory for spin \(\tfrac12\) particles.
+
+The question we are now left is: what is the difference between \(b-\)type and \(c-\)type particles? They are both spin \(\tfrac12\) particles with mass \(m\) and positive energy excitations; they are degenerate eigenstates of the Hamiltonian, momentum and spin. The answer is that there has to be another conserved associated to a noether charge symmetry, which distinguishes this two types of particles: this charge is the electric charge, and \(b-\)type particles are associated to particles with charge \(+e\) (like electrons), while \(c-\)type particles are associated to antiparticles with charge \(-e\) (like positrons), as we will see in the next section.
+
+\subsection{Internal Global Symmetry}
+
+We are looking for a conserved charge which distinguishes between \(b-\)type and \(c-\)type particles. To find it, we can search for a global (i.e., spacetime-independent) and internal (i.e., acting on the fields but not on spacetime coordinates) symmetry of the Dirac Lagrangian. It is easy to see that the Dirac Lagrangian is invariant under the global phase transformation
+\[
+    \psi(x) \to \psi'(x) = e^{-i q \theta} \psi(x), \quad \overline{\psi}(x) \to \overline{\psi}'(x) = e^{i q \theta} \overline{\psi}(x),
+\]
+where \(q\) is a constant associated to the charge of the field and \(\theta\) is a constant parameter. This is a symmetry since the Lagrangian density
+\[
+    \mathcal{L} = \overline{\psi}(i \gamma^{\mu} \partial_{\mu} - m) \psi,
+\]
+depends on \(\psi\) and \(\overline{\psi}\) only in the combinations \(\overline{\psi} \psi\) and \(\overline{\psi} \gamma^{\mu} \partial_{\mu} \psi\), which are invariant under this transformation.
+\[
+    \mathcal{L} \to \mathcal{L}^{\prime} = \overline{\psi}'(i \gamma^{\mu} \partial_{\mu} - m) \psi' = e^{i q \theta} \overline{\psi}(i \gamma^{\mu} \partial_{\mu} - m) e^{-i q \theta} \psi = \overline{\psi}(i \gamma^{\mu} \partial_{\mu} - m) \psi = \mathcal{L}.
+\]
+This is a global \(\mathrm{U}(1)\) symmetry, thus associated to a conserved noether current and a one dimensional charge.
+\begin{remark}
+    If we were to consider a coordinate-dependent phase \(\theta(x)\) we would have a local \(\mathrm{U}(1)\) symmetry, which is the gauge symmetry of quantum electrodynamics (QED), as we will see in the next chapter and the starter point for introducing interactions between the Dirac field and the electromagnetic field. We thus need a global \(\mathrm{U}(1)\) symmetry to have a conserved charge distinguishing between particles and antiparticles, since the derivatives in the Lagrangian would break the local symmetry.
+\end{remark}
+Using noether's theorem we can compute the conserved current as
+\[
+    \begin{aligned}
+        J^{\mu} & = \dots                                        \\
+                & = \dots = q \overline{\psi} \gamma^{\mu} \psi,
+    \end{aligned}
+\]
+which is a conserved vector, and if we differentiate it we get
+\[
+    \begin{aligned}
+        \partial_{\mu} J^{\mu} & = q \left( (\partial_{\mu} \overline{\psi}) \gamma^{\mu} \psi + \overline{\psi} \gamma^{\mu} (\partial_{\mu} \psi) \right) \\
+                               & = q \left( - i \overline{\psi} m \psi + i \overline{\psi} m \psi \right) = 0,
+    \end{aligned}
+\]
+where if we use the equations of mortions
+\[
+    i gamma^{\mu} \partial_{\mu} \psi = m \psi, \quad \partial_{\mu} \overline{\psi} i \gamma^{\mu} = - m \overline{\psi},
+\]
+we see that the current is indeed conserved
+\[
+    \partial_{\mu} J^{\mu} = q \left( - i \overline{\psi} m \psi + i \overline{\psi} m \psi \right) = 0.
+\]
+The associated conserved charge is\TODO{compute it}
+\[
+    \begin{aligned}
+        \hat{Q} & = \int \mathrm{d}^3 \mathbf{x} J^0 = \dots                                                                                                                                               \\
+                & = q \int \mathrm{d}^3 \mathbf{x} \, \hat{\overline{\psi}}(x) \gamma^0 \hat{\psi}(x)                                                                                                      \\
+                & = q \int \mathrm{d}^3 \mathbf{x} \, \hat{\psi}^{\dagger}(x) \hat{\psi}(x)                                                                                                                \\
+                & = q \sum_{s} \int \frac{\mathrm{d}^3 p}{(2 \pi)^3} \left( \hat{b}_{\mathbf{p}}^{s\, \dagger} \hat{b}_{\mathbf{p}}^s - \hat{c}_{\mathbf{p}}^{s\, \dagger} \hat{c}_{\mathbf{p}}^s \right),
+    \end{aligned}
+\]
+where we have used the field expansion in terms of creation and annihilation operators and the inner product relations for the spinors to simplify the expression.
+Thus we can now compute the associated charge of one-particle states:\TODO{expand computation for both cases}
+\[
+    \begin{aligned}
+        \hat{Q} \left( \hat{b}_{\mathbf{p}}^{s\, \dagger} \ket{0} \right) & = q \sum_{r} \int \frac{\mathrm{d}^3 \mathbf{q}}{(2 \pi)^3} \left(\hat{b}_{\mathbf{q}}^{r\, \dagger} \hat{b}_{\mathbf{q}}^r - \hat{c}_{\mathbf{q}}^{r\, \dagger} \hat{c}_{\mathbf{q}}^r\right)\hat{b}_{\mathbf{p}}^{s\, \dagger} \ket{0} = q \left( \hat{b}_{\mathbf{p}}^{s\, \dagger} \ket{0} \right), \\
+        \hat{Q} \left( \hat{c}_{\mathbf{p}}^{s\, \dagger} \ket{0} \right) & = - q \left( \hat{c}_{\mathbf{p}}^{s\, \dagger} \ket{0} \right),
+    \end{aligned}
+\]
+so that b-type states are particles with charge \(+q\) while c-type states are antiparticles with charge \(-q\), so that we can summarize the results of our quantization procedure as follows:
+\begin{itemize}
+    \item \(\hat{b}^{s\, \dagger}_{\mathbf{p}}\) create \textbf{particles} with energy \(E_{\mathbf{p}}\), spin \(s\), momentum \(\mathbf{p}\) and charge \(+q\);
+    \item \(\hat{c}^{s\, \dagger}_{\mathbf{p}}\) create \textbf{antiparticles} with energy \(E_{\mathbf{p}}\), spin \(s\), momentum \(\mathbf{p}\) and charge \(-q\).
+\end{itemize}
+
+\paragraph{Spin-statistics relations.}
+We have seen that to quantize the Dirac field we had to impose anticommutation relations between the field and its conjugate momentum, leading to anticommutation relations for creation and annihilation operators. This is related to the \textit{spin-statistics theorem}, which states that particles with integer spin (bosons) obey Bose-Einstein statistics and thus commutation relations, while particles with half-integer spin (fermions) obey Fermi-Dirac statistics and thus anticommutation relations.
+
+We can see its effect by looking at two-particle states: for two fermions we have
+\[
+    \ket{\mathbf{p},\,s;\; \mathbf{q},\,r} = \hat{b}_{\mathbf{p}}^{s\, \dagger} \hat{b}_{\mathbf{q}}^{r\, \dagger} \ket{0} = - \hat{b}_{\mathbf{q}}^{r\, \dagger} \hat{b}_{\mathbf{p}}^{s\, \dagger} \ket{0} = - \ket{\mathbf{q},\,r;\; \mathbf{p},\,s},
+\]
+which is antisymmetric under the exchange of the two particles, exactly as required by the \textbf{Pauli exclusion principle} and described by Fermi-Dirac statistics. In particular, if we try to create two fermions in the same state we have indeed \(\ket{\mathbf{p},\,s;\; \mathbf{p},\,s} =- \ket{\mathbf{p},\,s;\; \mathbf{p},\,s} = 0\), showing that no two fermions can occupy the same quantum state simultaneously.
+
+In the beginning, when Dirac was thinking about his equation, he was not aware of this spin-statistics relation, and he tried to interpret the negative energy solutions of his equation as physical states, leading to an unstable vacuum. He then proposed the \textit{Dirac sea} idea, where all negative energy states are filled in the vacuum, and only holes in this sea (i.e., absence of negative energy electrons) can be interpreted as positrons, thus solving the negative energy problem. This creative idea was later abandoned in favor of the quantum field theory approach we have seen, where antiparticles arise naturally from the quantization procedure and the imposition of anticommutation relations for fermionic fields.
+
+\section{Propagators}
+
+If we now move to the Heisenberg picture, we know that the time evolution of operators is given by
+\[
+    \hat{\psi} (x), \quad x = (t, \mathbf{x}), \quad \partial_{0} \hat{\psi}(x) = i \left[\hat{H},\, \hat{\psi}(x)\right],
+\]
+which is solved by the time evolution operator
+\[
+    \hat{\psi}(x) = \sum_{s} \int \frac{\mathrm{d}^3 \mathbf{p}}{(2 \pi)^3} \frac{1}{2\sqrt{E_{\mathbf{p}}}} \left( \hat{b}_{\mathbf{p}}^s u^s(\mathbf{p}) e^{- i p \cdot x} + \hat{c}_{\mathbf{p}}^{s\, \dagger} v^s(\mathbf{p}) e^{i p \cdot x} \right),
+\]
+and
+\[
+    \hat{\psi}^{\dagger}(x) = \sum_{s} \int \frac{\mathrm{d}^3 \mathbf{p}}{(2 \pi)^3} \frac{1}{2\sqrt{E_{\mathbf{p}}}} \left( \hat{b}_{\mathbf{p}}^{s\, \dagger} u^{s\, \dagger}(\mathbf{p}) e^{i p \cdot x} + \hat{c}_{\mathbf{p}}^s v^{s\, \dagger}(\mathbf{p}) e^{- i p \cdot x} \right).
+\]
+
+Now to ensure that there is no measurable effect outside the light cone, we have to impose that the anticommutator of the field at spacelike separated points vanishes: we define the \textbf{fermionic propagator} as
+\[
+    \begin{aligned}
+        i S_{\alpha \beta}= \{\hat{\psi}_{\alpha}(x),\, \hat{\overline{\psi}}_{\beta}(y)\} \\
+        i S(x-y) = \{\hat{\psi}(x),\, \hat{\overline{\psi}}(y)\}.
+    \end{aligned}
+\]
+Now by substituting the field expansions into this expression and using the anticommutation relations for creation and annihilation operators, we find
+\[
+    \begin{aligned}
+        i S(x-y) & = \sum_{r,s} \int \frac{\mathrm{d}^3 \mathbf{p}\mathrm{d}^3 \mathbf{q}}{(2 \pi)^6} \frac{1}{2 E_{\mathbf{p}}E_{\mathbf{q}}} \left( \{\hat{b}_{\mathbf{p}}^s,\, \hat{b}_{\mathbf{q}}^{r,\,\dagger}\} + \dots\right) \\
+                 & = \dots
+    \end{aligned}
+\]
+where we have used the anticommutation relations to simplify the expression, and inner (outer?) products of spinors to get
+\[
+    iS(x-y) = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2 \pi)^3} \frac{1}{2 E_{\mathbf{p}}} \left( (\slashed{p} + m) e^{- i p \cdot (x-y)} + (\slashed{p} - m) e^{i p \cdot (x-y)} \right).
+\]
+
+Now recalling the scalar field correlators for KG theory
+\[
+    D(x-y) = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2 \pi)^3} \frac{1}{2 E_{\mathbf{p}}} \left( e^{- i p \cdot (x-y)} \right),
+\]
+if we differenciate it with respect to \(x^{\mu}\) we get
+\[
+    \partial_{\mu} D(x-y) = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2 \pi)^3} \frac{1}{2 E_{\mathbf{p}}}(- i p_{\mu})e^{- i p \cdot (x-y)},
+\]
+so that we can rewrite the fermionic propagator as
+\[
+    i S(x-y) = (i \gamma^{\mu} \partial_\mu^{(x)} + m) \left( D(x-y) - D(y-x) \right).
+\]
+This propagator satisfies the following properties:
+\begin{itemize}
+    \item For spacelike propagated points \((x-y)^2<0\):
+    \[
+        D(x-y) - D(y-x) = 0, \implies S(x-y) = 0,
+    \]
+    meaning that there is no measurable effect outside the light cone, preserving causality for the Dirac theory;
+    \item For bosons the last point was ensured by commutation relations
+    \[
+        \left[\hat{\varphi}(x), \hat{\varphi}(y)\right] = 0 \quad \text{for} \quad (x-y)^2 < 0,
+    \]
+    while for fermions it is ensured by anticommutation relations:
+    \[
+        \{\hat{\psi}_{\alpha}(x), \hat{\psi}_{\beta}(y)\} = 0 \quad \text{for} \quad (x-y)^2 < 0;
+    \]
+    \item There is a problem: we want observables to commute at spacelike separations, while fermionic fields anticommute. The solution is that observables are constructed as bilinear combinations of fermionic fields, like the Hamiltonian density or the current density, which do commute at spacelike separations, thus preserving causality: the hamiltonian for example
+    \[
+        \hat{H} = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2 \pi)^3} E_{\mathbf{p}} \left( \hat{b}_{\mathbf{p}}^{s\, \dagger} \hat{b}_{\mathbf{p}}^s + \hat{c}^{s\, \dagger}_{\mathbf{p}} \hat{c}^s_{\mathbf{p}} \right),
+    \]
+    where the two main terms are fermionic bilinears respecting anti-commutation relations, thus their product commutes at spacelike separations:
+    \[
+        \begin{aligned}
+            \hat{O}_1 = A_1 B_1, \quad \hat{O}_2 = A_2 B_2, \\
+            \hat{O}_1 \hat{O}_2 = A_1 B_1 A_2 B_2 = - A_1 A_2 B_1 B_2 = A_2 A_1 B_2 B_1 = \hat{O}_2 \hat{O}_1,
+        \end{aligned}
+    \]
+    if each of the operators \(A_i, B_i\) anticommute with each other, like our fermionic fields.
+\end{itemize}
+
+The last thing we can check is that the fermionic propagator satisfies the Dirac equation:
+\[
+    i \gamma^{\mu} \partial_{\mu}^{(x)} S(x-y) - m S(x-y) =0,
+\]
+since we can write the propagator in terms of the scalar propagator as
+\[
+    \begin{aligned}
+        \frac{1}{i}(i \gamma^{\mu} \partial_{\mu}^{(x)} - m)(i \gamma^{\mu} \partial_{\mu}^{(x)} + m) (D(x-y) - D(y-x)) &= \dots \\
+        &= \frac{-1}{i} (\partial_{\mu}^{(x)} \partial^{\mu\,(x)} + m^2) (D(x-y) - D(y-x)) \\
+        &= \frac{1}{i} \int \frac{\mathrm{d}^3 \mathbf{p}}{(2 \pi)^3} \frac{1}{2 E_{\mathbf{p}}} (p_{\mu}p^{\mu} - m^2) \left( e^{- i p \cdot (x-y)} - e^{i p \cdot (x-y)} \right) = 0,
+    \end{aligned}
+\]
+where we have used the KG equation satisfied by the scalar propagator.
