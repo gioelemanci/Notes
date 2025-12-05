@@ -336,22 +336,31 @@ so that we can rewrite the expressions for the particle density and pressure as
 
 \subsection{Classical Limit}
 
-We can now analyze the classical limit of the quantum gas, by stopping at the first order (\(l=0\)) in the power series expansions derived above: for the density we have
+We can now analyze the classical limit of the quantum gas, by stopping at the first order (\(l=0\)) in the power series expansions derived above: this is justified because in the classical limit the fugacity \(z\) is much smaller than 1 (\(z \ll 1\)), so higher-order terms in the series become negligible. Thus, for the density we have
 \[
     n = \frac{g}{\lambda_{T}^3} z \implies z = \frac{n \lambda_{T}^3}{g},
 \]
 which can be substituted back into the expressions for the pressure to obtain
 \[
-    p = \frac{g}{\beta \lambda_{T}^3} z = \frac{g}{\beta \lambda_{T}^3} \frac{n \lambda_{T}^3}{g} = \frac{n}{\beta} = n k_B T.
+    p = \frac{g}{\beta \lambda_{T}^3} z = \frac{g}{\beta \lambda_{T}^3} \frac{n \lambda_{T}^3}{g} = \frac{n}{\beta} = n k_B T,
 \]
+recovering the classical ideal gas law \(pV = N k_B T\).
 
-This limit corresponds to the regime where quantum effects are negligible, and the behavior of the gas can be described by classical statistics. The classical limit is typically valid when the thermal wavelength \(\lambda_{T}\) is much smaller than the average interparticle distance, which occurs at high temperatures or low densities.
-
-We thus recovered the ideal gas law \(pV = Nk_B T\) in the classical limit, showing that at high temperatures or low densities
+This limit corresponds to the regime where quantum effects are negligible, and the behavior of the gas can be described by classical statistics. The classical limit is typically valid when the thermal wavelength \(\lambda_{T} = \sqrt{\frac{2 \pi \hbar^2}{m k_B T}}\) is much smaller than the average interparticle distance, which occurs at \textbf{high temperatures or low densities}:
 \[
-    z \ll 1 \implies \text{ high } T \text{ or low } n,
+    z \ll 1 \implies \text{ high } T \text{ or low } n.
 \]
-both bosonic and fermionic quantum gases behave like classical ideal gases.
+In this regime, both bosonic and fermionic quantum gases behave like classical ideal gases, and the differences in their quantum statistics become irrelevant: we can show this result explicitly by looking at the average occupation numbers for bosons and fermions in the limit \(z \ll 1\):
+\[
+    \langle n_{\alpha} \rangle^{B/F}_{gc} = \frac{1}{e^{\beta (\epsilon_{\alpha} - \mu)} \mp 1} \sim e^{-\beta (\epsilon_{\alpha}-\mu)} \quad \text{for } z \ll 1,
+\]
+which is the Maxwell-Boltzmann distribution for classical particles.
+
+A final remark can be made about the expression of the chemical potential in the classical limit: since \(z = e^{\beta \mu} \ll 1\), we have \(\beta \mu \ll 0\) and thus we can recover
+\[
+    n = \frac{g}{\lambda_T^3} e^{\beta \mu} \implies \mu = - \frac{3}{2} k_B T \log \left( \frac{m k_B T}{2 \pi \hbar^2} \left(\frac{n}{g}\right)^{\tfrac{2}{3}} \right) \xrightarrow{T \to \infty} -\infty,
+\]
+which shows that in the classical limit the chemical potential diverges to negative infinity as the temperature increases.
 
 \paragraph{Semiclassical expansion.}
 If we now consider the next order in the power series expansions for the particle density and pressure, we can derive corrections\footnote{We are considering semiclassical limit, called like that beacause the statistic is almot classical, but we are in a regime where we cannot ignore contributions due to the quantum nature of the considered particles.} to the ideal gas law that account for quantum effects. Including the second term (\(l=1\)) in the series, we have
