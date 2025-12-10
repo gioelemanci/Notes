@@ -63,7 +63,7 @@ where the exact energy \(E_0\) of the ground state \(\ket{0}\) of the anharmonic
 
 When we take \(\beta \to \infty\), we are projecting onto the ground state, since we assume that the spectrum of the Hamiltonian is bounded from below. Thus, the euclidean time evolution operator \(e^{-\beta \hat{H}}\) suppresses all contributions from excited states exponentially fast as \(\beta\) increases. Then we apply the perturbative expansion in the interaction term (as we did in Minkowskian time in the previous section), which gives us an unnormalized average in the free theory. Now we can recognize that this average corresponds to the vacuum amplitude of the free theory multiplied by corrections due to the interactions.
 
-We can continue the computation for the interaction terms in the correlation function by considering separately the two terms (by setting each one to zero and effectively \textit{turning off} one interaction at a time). Let us look first at the case with \(g=0\) and focus on the first correction in \(\lambda\)
+We can continue the computation for the interaction terms in the correlation function by considering separately the two terms (by setting each one to zero and effectively \textit{turning off} one interaction at a time). Let us look first at the case with \(g=0\) and focus on the first correction in \(\lambda\) for the \textbf{quartic interaction}:
 \[
     \begin{aligned}
         Z_E[0] & = \langle 1 \rangle_U = \left\langle \sum_{n=0}^{\infty} \frac{1}{n!} S_{E,\,int}[x]^n \right\rangle_{U,0} = \langle 1 \rangle_{U,0} -\frac{\lambda}{4!} \int_{-\beta/2}^{\beta/2} \d{\tau} \langle x^4(\tau) \rangle_{U,0} + \cdots                 \\
@@ -93,7 +93,7 @@ so that we can read the correction to the ground state energy due to the quartic
     \Delta E_0 = \frac{1}{32} \frac{\lambda}{\omega^2}.
 \]
 
-Similarly, one may consider the case with \(g \neq 0\) and \(\lambda = 0\). The first non-vanishing correction arises from
+Similarly, one may consider the case with \(g \neq 0\) and \(\lambda = 0\). The first non-vanishing correction in the \textbf{cubic interaction} arises from:
 \[
     \begin{aligned}
         Z_E[0] & = \langle 1 \rangle_U = \left\langle \left( 1- S_{E,\,int} + \frac{1}{2}S_{E,\,int}^2 + \cdots \right) \right\rangle_{U,0}                                                                                                                                                  \\
@@ -105,22 +105,23 @@ The first correction vanishes because there is no way to contract three fields a
 \[
     DIAGRAMS \quad SUM
 \]
-The frist one has two vertices and three propagators connecting them (in \(3\times 2\times 1\) possible permutations), while the second one has two vertices connected by a single propagator (the two vertices can be chosen from any of the present, so \(3\times 3\) possibilities), with each vertex having a loop attached to it. We can check the combinatorial factors by counting the number of Wick contractions that give rise to each diagram: \(6+9 = 15\), which is indeed the number of ways to contract six fields in pairs.
+The first one has two vertices and three propagators connecting them (in \(3\times 2\times 1\) possible permutations), while the second one has two vertices connected by a single propagator (the two vertices can be chosen from any of the present, so \(3\times 3\) possibilities), with each vertex having a loop attached to it. We can check the combinatorial factors by counting the number of Wick contractions that give rise to each diagram: \(6+9 = 15\), which is indeed the number of ways to contract six fields in pairs.
 
 Thus we have found two types of diagrams: one is the \textbf{sunset diagram} \(\feynSunset\) where two vertices are connected by three propagators, while the other one is the \textbf{dumbbell diagram} \(\feynDumbbell\) where two vertices are connected by a single propagator and each vertex has a loop attached to it. The combinatorial factors arise from the number of Wick contractions that give rise to each diagram. We can compute their values as follows. For the sunset diagram, we have\footnote{We do not compute the limit for \(\beta \to \infty\) yet, since we are just interested in the value of the diagram itself. We will take the limit at the very end to extract the ground state energy correction after inserting these results into the expression for \(Z_E[0]\).}
 \[
     \begin{aligned}
         \feynSunset & = \int_{-\beta/2}^{\beta/2} \d{\tau} \int_{-\beta/2}^{\beta/2} \d{\tau^{\prime}} \, G_E(\tau,\tau^{\prime})^3 = \int_{-\beta/2}^{\beta/2} \d{\tau} \int_{-\beta/2}^{\beta/2} \d{\tau^{\prime}} \, \left( \frac{1}{2\omega} e^{-\omega \vert \tau - \tau^{\prime} \vert} \right)^3 \\
-                    & = \cdots                                                                                                                                                                                                                                                                          \\
-                    & = \frac{\beta}{8\omega^3}\frac{2}{3\omega} = \frac{\beta}{12\omega^4},
+                    & = \frac{1}{8\omega^3} \int_{-\beta/2}^{\beta/2} \d{\tau} \int_{-\infty}^{\infty} \d{\sigma} \, e^{-3\omega \sigma} = \frac{\beta}{8\omega^3} 2 \int_{0}^{\infty} \d{\sigma} \, e^{-3\omega \sigma}                                                                                \\
+                    & = \frac{\beta}{8\omega^3} 2 \left. \frac{e^{-3\omega \sigma}}{-3\omega} \right|_0^\infty = \frac{\beta}{8\omega^3}\frac{2}{3\omega} = \frac{\beta}{12\omega^4},
     \end{aligned}
 \]
 while for the dumbbell diagram, we have
 \[
     \begin{aligned}
-        \feynDumbbell & = \int_{-\beta/2}^{\beta/2} \d{\tau} \int_{-\beta/2}^{\beta/2} \d{\tau^{\prime}} \, G_E(\tau,\tau) G_E(\tau - \tau^{\prime}) G_E(0)                                                                                                                                         \\
-                      & = \cdots                                                                                                                                                                                                                                                                    \\
-                      & = \int_{-\beta/2}^{\beta/2} \d{\tau} \int_{-\beta/2}^{\beta/2} \d{\tau^{\prime}} \, \left( \frac{1}{2\omega} \right)^2 \left( \frac{1}{2\omega} e^{-\omega \vert \tau - \tau^{\prime} \vert} \right) = \frac{\beta}{8\omega^3}\frac{2}{\omega} = \frac{\beta^2}{4\omega^4}.
+        \feynDumbbell & = \int_{-\beta/2}^{\beta/2} \d{\tau} \int_{-\beta/2}^{\beta/2} \d{\tau^{\prime}} \, G_E(\tau-\tau) G_E(\tau - \tau^{\prime}) G_E(\tau^{\prime} - \tau^{\prime})                                      \\
+                      & = \int_{-\beta/2}^{\beta/2} \d{\tau} \int_{-\beta/2}^{\beta/2} \d{\tau^{\prime}} \, \left( \frac{1}{2\omega} \right)^2 \left( \frac{1}{2\omega} e^{-\omega \vert \tau - \tau^{\prime} \vert} \right) \\
+                      & = \frac{\beta}{4\omega^2} 2 \int_{0}^{\infty} \d{\sigma} \, \frac{1}{2\omega} e^{-\omega \sigma} = \frac{\beta}{4\omega^2} 2 \left. \frac{e^{-\omega \sigma}}{-\omega} \right|_0^\infty              \\
+                      & = \frac{\beta}{8\omega^3}\frac{2}{\omega} = \frac{\beta^2}{4\omega^4}.
     \end{aligned}
 \]
 Now, we can insert these results into the expression for \(Z_E[0]\) to obtain

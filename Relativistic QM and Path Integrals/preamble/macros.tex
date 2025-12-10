@@ -76,6 +76,34 @@
 \newcommand{\feynLine}{%
     \tikz[baseline=-0.6ex, scale=0.5, thick]{
         \draw (0,0) -- (1.5,0);
+        \filldraw (0,0) circle (2pt); \filldraw (1.5,0) circle (2pt);
+    }%
+}
+
+\newcommand{\feynHoriz}{%
+    \tikz[baseline=-0.6ex, scale=0.5, thick]{
+        \draw (0,0.4) -- (1,0.4);
+        \draw (0,-0.4) -- (1,-0.4);
+        \filldraw (0,0.4) circle (2pt); \filldraw (1,0.4) circle (2pt);
+        \filldraw (0,-0.4) circle (2pt); \filldraw (1,-0.4) circle (2pt);
+    }%
+}
+
+\newcommand{\feynVert}{%
+    \tikz[baseline=-0.6ex, scale=0.5, thick]{
+        \draw (0.2,0.4) -- (0.2,-0.4);
+        \draw (0.8,0.4) -- (0.8,-0.4);
+        \filldraw (0.2,0.4) circle (2pt); \filldraw (0.2,-0.4) circle (2pt);
+        \filldraw (0.8,0.4) circle (2pt); \filldraw (0.8,-0.4) circle (2pt);
+    }%
+}
+
+\newcommand{\feynCross}{%
+    \tikz[baseline=-0.6ex, scale=0.5, thick]{
+        \draw (0,0.4) -- (1,-0.4);
+        \draw (0,-0.4) -- (1,0.4);
+        \filldraw (0,0.4) circle (2pt); \filldraw (1,-0.4) circle (2pt);
+        \filldraw (0,-0.4) circle (2pt); \filldraw (1,0.4) circle (2pt);
     }%
 }
 
