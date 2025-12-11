@@ -10,18 +10,27 @@
 \newtheorem{definition}{Definition}[chapter]
 
 % === Custom remark/example/application ===
+
+% REMARK (con \itshape come nel tuo originale)
 \newenvironment{remark}[1][]
-{\begin{adjustwidth}{1.5em}{0pt}\noindent\textbf{Remark.}\ \itshape}
-        {\end{adjustwidth}}
+{\begin{adjustwidth}{1.5em}{0pt}\noindent\textbf{Remark%
+                        \def\temp{#1}\ifx\temp\empty.\else\ (#1).\fi}\ \itshape}
+                {\end{adjustwidth}}
 
+% EXAMPLE
 \newenvironment{example}[1][]
-{\begin{adjustwidth}{1.5em}{0pt}\noindent\textbf{Example.}\ }
-        {\end{adjustwidth}}
+{\begin{adjustwidth}{1.5em}{0pt}\noindent\textbf{Example%
+                        \def\temp{#1}\ifx\temp\empty.\else\ (#1).\fi}\ }
+                {\end{adjustwidth}}
 
+% APPLICATION
 \newenvironment{application}[1][]
-{\begin{adjustwidth}{1.5em}{0pt}\noindent\textbf{Application.}\ }
-        {\end{adjustwidth}}
+{\begin{adjustwidth}{1.5em}{0pt}\noindent\textbf{Application%
+                        \def\temp{#1}\ifx\temp\empty.\else\ (#1).\fi}\ }
+                {\end{adjustwidth}}
 
+% NOTATION
 \newenvironment{notation}[1][]
-{\begin{adjustwidth}{1.5em}{0pt}\noindent\textbf{Notation.}\ }
-        {\end{adjustwidth}}
+{\begin{adjustwidth}{1.5em}{0pt}\noindent\textbf{Notation%
+                        \def\temp{#1}\ifx\temp\empty.\else\ (#1).\fi}\ }
+                {\end{adjustwidth}}
