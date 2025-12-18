@@ -638,7 +638,11 @@ where we have used the Riemann zeta function \(\zeta(\nu) = \sum_{l=0}^{\infty} 
 \[
     T_{BEC} = \frac{2 \pi \hbar^2}{m k_B} \left( \frac{n}{g \zeta(3/2)} \right)^{2/3}.
 \]
-This expression shows that the critical temperature for \textbf{Bose-Einstein condensation} depends on the particle density \(n\), the mass of the bosons \(m\), and the internal degeneracy \(g\). Below this temperature, a macroscopic number of bosons occupy the ground state, leading to the phenomenon of Bose-Einstein condensation, which has been observed experimentally in systems such as ultracold atomic gases. This happens at temperatures comprised in the range of nanoKelvins to microKelvins, since the chemical potential remains equal to zero in this whole range of temperatures below \(T_{BEC}\).
+This expression shows that the critical temperature for \textbf{Bose-Einstein condensation} depends on the particle density \(n\), the mass of the bosons \(m\), and the internal degeneracy \(g\).
+
+\subsection{Bose-Einstein Condensation}
+
+Below this critical temperature, a macroscopic number of bosons occupy the ground state, leading to the phenomenon of Bose-Einstein condensation, which has been observed experimentally in systems such as ultracold atomic gases. This happens at temperatures comprised in the range of nanoKelvins to microKelvins, since the chemical potential remains equal to zero in this whole range of temperatures below \(T_{BEC}\).
 
 So the occupation number for temperatures below \(T_{BEC}\) can be expressed as
 \[
@@ -652,7 +656,7 @@ Particles cannot disappear as temperature decreases, so we have to conclude that
 \[
     \langle n_0 \rangle_{gc}^{B} = \frac{1}{e^{\beta(0 - \mu)} - 1} = \frac{1}{e^{-\beta \mu} - 1} = \frac{z}{1 - z} \xrightarrow{z \to 1} \infty,
 \]
-indicating that as \(\mu\) approaches 0 (i.e., as \(z\) approaches 1), the occupation number of the ground state diverges, leading to a macroscopic occupation of this state. But we can be more precise: the total number of particles \(N\) in the system can be expressed as the sum of particles in the ground state \(N_0\) and particles in excited states \(N_{exc}\): starting again from the number of states in the momentum space
+indicating that as \(\mu\) approaches 0 (i.e., as \(z\) approaches 1), the occupation number of the ground state diverges, leading to a macroscopic occupation of this state. But we can be more precise: the total number of particles \(N\) in the system can be fixed, so it cannot diverge statistically; we can express it as the sum of particles in the ground state \(N_0\) and particles in excited states \(N_{exc}\): starting again from the number of states in the momentum space
 \[
     N = \sum_{\mathbf{k}} n(\epsilon_{\mathbf{k}}), \quad \epsilon_{\mathbf{k}} = \frac{\hbar^2 \mathbf{k}}{2m}, \quad \mathbf{k} = \frac{2\pi}{L} (n_x,\, n_y,\, n_z),
 \]
@@ -664,26 +668,31 @@ This is the crucial point: since \(\langle n(0) \rangle_{gc}^{B}\Big\vert_{\mu=0
 \[
     N = N_0 + \sum_{\mathbf{k}} \epsilon_{\mathbf{k}},
 \]
-\(N_0\) being the number of particles in the ground state, and the sum being over all excited states. In the TD limit, the number of particles divided by the volume becomes
+\(N_0\) being the number of particles in the ground state, and the sum being over all excited states. In the TD limit, the number of particles divided by the volume becomes\footnote{Where the integral is again computed over all values of \(\epsilon\), since the ground state contribution has already been separated out formally and, as we said, the integral does not see the divergence practically.}
 \[
     n = n_0(T) + \frac{1}{V} \int_0^{\infty} \d{\epsilon} g(\epsilon) \langle n(\epsilon) \rangle_{gc}^{B},
 \]
-and if we now take the limit \(\mu \to 0\) (thus \(z \to 1\)) we find
+an equivalently, after substituting the expression for the density of states and the Bose-Einstein distribution, we find
 \[
-    n = n_0(T) + \frac{g}{\lambda_{T}^3} \zeta(3/2) = n_0(T) + n_{n}(T),
+    n = n_0(T) + \frac{g}{\lambda_{T}^3} g_{3/2}(z) = n_0(T) + n_n(T).
 \]
-since we call the number of particles in excited states \(n_{n}(T)\), the "\textbf{normal}" component of the gas.
+since we call the number of particles in excited states \(n_{n}(T)\), the "\textbf{normal}" component of the gas. If we now take the limit \(\mu \to 0\) (thus \(z \to 1\)) we find
+\[
+    n = n_0(T) + \frac{g}{\lambda_{T}^3} \zeta(3/2),
+\]
+where \(\zeta(3/2)\) is the Riemann zeta function, equal to \(g_{3/2}(1)\).
+
 If we compute the normal density for temperatures below \(T_{BEC}\), the number of particles in excited states is given by
 \[
     n_{n}(T < T_{BEC}) = \frac{g}{\lambda_{T}^3} \zeta(3/2) = \frac{g}{\lambda_{T_{BEC}}^3} \frac{n \lambda_T^3}{g} = n \left( \frac{T}{T_{BEC}} \right)^{3/2},
 \]
-indicating that not all particles can be accommodated in excited states, leading to a macroscopic occupation of the ground state:
+indicating that not all particles can be accommodated in excited states. We have made no assumptions on the nature and behaviour of \(n_0(T)\), but now that particle are disappearing from the exited states (\(\tfrac{T}{T_{BEC}}<1\)), we are lead to believe that a macroscopic occupation of the ground state is happening, so that the number of particles in the ground state becomes:
 \[
     n_0 = n - n_{n} = n \left[ 1 - \left( \frac{T}{T_{BEC}} \right)^{3/2} \right].
 \]
 This expression shows that as the temperature decreases below \(T_{BEC}\), the number of particles in the ground state \(N_0\) increases, reaching a maximum of \(N\) at absolute zero. This phenomenon is the hallmark of Bose-Einstein condensation, where a significant fraction of bosons occupy the lowest energy state, leading to unique macroscopic quantum phenomena such as superfluidity and coherence.
 
-------
+\subsubsection{Bose-Einstein Condensation as a Phase Transition}
 
 Thus our refined expression for the density of particles in a Bose gas becomes
 \[
@@ -691,16 +700,30 @@ Thus our refined expression for the density of particles in a Bose gas becomes
 \]
 Now we can compute the two components separately for the two regimes of temperature:
 \begin{itemize}
-    \item For \(T > T_{BEC}\), there is no condensation, so all particles are in excited states:
+    \item For \(T \geq T_{BEC}\), there is no condensation, so all particles are in excited states:
           \[
-              n_0(T) = 0, \quad n_{n}(T) = \frac{g}{\lambda_{T}^3} g_{3/2}(z).
+              T \geq T_{BEC} \begin{dcases}
+                  n_0(T)   & = 0,                                         \\
+                  n_{n}(T) & = \frac{g}{\lambda_{T}^3} g_{3/2}(z) = n(T).
+              \end{dcases}
+          \]
+          In particular, when \(T = T_{BEC}\), we have \(z = 1\) and thus
+          \[
+              n_{n}(T_{BEC}) = \frac{g}{\lambda_{T_{BEC}}^3} \zeta(3/2) = n(T_{BEC}).
           \]
     \item For \(T < T_{BEC}\), condensation occurs, so we have a macroscopic occupation of the ground state:
           \[
-              n_0(T) = n \left[ 1 - \left( \frac{T}{T_{BEC}} \right)^{3/2} \right], \quad n_{n}(T) = \frac{g}{\lambda_{T}^3} \zeta(3/2) = n \left( \frac{T}{T_{BEC}} \right)^{3/2}.
+              T < T_{BEC} \begin{dcases}
+                  n_0(T)   & = n \left[ 1 - \left( \frac{T}{T_{BEC}} \right)^{3/2} \right],                   \\
+                  n_{n}(T) & = \frac{g}{\lambda_{T}^3} \zeta(3/2) = n \left( \frac{T}{T_{BEC}} \right)^{3/2}.
+              \end{dcases}
           \]
-\end{itemize}
+\end{itemize}\TODO{insert plot of n0 and nn vs T for Bose gas.}
 Thus we can consider \(n_0(T)\) as an order parameter for the \textbf{Bose-Einstein condensation phase transition}, which is zero above \(T_{BEC}\) and non-zero below it, indicating the onset of macroscopic quantum coherence in the system. There will be a SSB of the gauge symmetry associated to the phase of the condensate wavefunction, leading to unique physical properties such as superfluidity and coherence.
+
+We will learn more about the implications of this phase transition by studying the thermodynamical quantities of the Bose gas in the two temperature regimes.
+
+\subsection{Thermodynamical Quantities}
 
 Now we can compute the pressure of the Bose gas and relate it to the energy through the grand potential \(\Omega_B\). Recalling the expression for the pressure
 \[
@@ -712,7 +735,14 @@ and since the grand potential is related to the pressure by \(\Omega = - pV\) an
 \]
 Notably, the energy expression does not explicitly depend on the condensate fraction \(n_0(T)\), since the ground state does not contribute to the energy in this idealized model. The energy is determined solely by the particles in excited states, which follow the Bose-Einstein distribution.
 
-We can now compute the energy per particle \(E/N\) in the two temperature regimes:
+We can now compute the energy per particle \(E/N\) in the two temperature regimes, considering that the total number of particles \(N\) is
+\[
+    \frac{N}{V} = n_n = \begin{dcases}
+        \frac{g}{\lambda_{T}^3} g_{3/2}(z), \quad & T > T_{BEC}, \\
+        \frac{g}{\lambda_{T}^3} \zeta(3/2), \quad & T < T_{BEC}.
+    \end{dcases}
+\]
+Thus we have
 \begin{itemize}
     \item For \(T > T_{BEC}\):
           \[
@@ -723,11 +753,7 @@ We can now compute the energy per particle \(E/N\) in the two temperature regime
               u = \frac{E}{N} = \frac{3}{2} k_B T \frac{\zeta(5/2)}{\zeta(3/2)} \left( \frac{T}{T_{BEC}} \right)^{3/2}.
           \]
 \end{itemize}
-Note that we have used the expression for the normal component \(n_{n}(T)\) to relate the energy to the total number of particles \(N\): for \(T < T_{BEC}\), only the normal component contributes to the energy
-\[
-    N_n(T) = N \left( \frac{T}{T_{BEC}} \right)^{3/2} = \frac{gV}{\lambda_{T}^3} \zeta(3/2),
-\]
-and we are computing the expression for \(u=\frac{E}{N}\frac{V}{V}\) accordingly.
+Note that we have used the expression for the normal component \(n_{n}(T)\) to relate the energy to the total number of particles \(N\): only the normal component contributes to the energy and we are computing the expression for \(u=\frac{E}{N}\frac{V}{V}\) accordingly.
 
 If we consider the expression for the specific heat at constant volume \(c_V\), we can derive it from the energy expression by differentiating with respect to temperature:
 \[
@@ -781,3 +807,178 @@ When Bose-Einstein condensation occurs below the critical temperature \(T_{BEC}\
     n_0 = \langle \hat{a}_0^{\dagger} \hat{a}_0 \rangle \neq 0 \implies \langle \hat{a}_0 \rangle \neq 0 \text{ for } T < T_{BEC}.
 \]
 This non-zero expectation value of the annihilation operator \(\hat{a}_0\) indicates that the ground state has a well-defined phase, breaking the global \(U(1)\) gauge symmetry of the hamiltonian. The system chooses a specific phase for the condensate wavefunction, leading to spontaneous symmetry breaking (SSB). This SSB has profound implications for the physical properties of the Bose-Einstein condensate, including the emergence of superfluidity and coherence.\QUESTION{CHECK EVERYTHING}
+
+
+
+\section{Further Details on BEC}
+
+We have to acknowledge that when studying the Bose-Einstein condensation as a phase transition, we have made some simplifications and assumptions that may not hold in all situations.
+
+For starter we have to distinguidh two regimes from the scale lengths involved:
+\begin{itemize}
+    \item The \textbf{microscopic scale}, characterized by the thermal wavelength \(\lambda_T\), which represents the typical de Broglie wavelength of particles at temperature \(T\):
+          \[
+              \lambda_T = \left( \frac{2\pi \hbar^2}{m k_B T} \right)^{1/2}.
+          \]
+          At low temperatures, \(\lambda_T\) becomes large, indicating that quantum effects become significant and particles exhibit wave-like behavior.
+    \item The \textbf{macroscopic scale}, characterized by the interparticle distance \(d\), which represents the average distance between particles in the gas:
+          \[
+              d = n^{-1/3},
+          \]
+          where \(n\) is the particle density.
+          At high temperatures, the wavelength \(\lambda_T\) is much smaller than the interparticle distance \(d\), indicating that particles behave classically and their wavefunctions are localized (like narrow deltas in space).
+\end{itemize}
+When the temperature decreases, \(\lambda_T\) increases and can become comparable to or larger than \(d\), leading to significant overlap of particle wavefunctions and the emergence of quantum coherence. This is the regime where Bose-Einstein condensation occurs, as particles can occupy the same quantum state and form a macroscopic condensate.
+
+\begin{example}[Superfluidity in liquid helium-4]
+    In 1938, Allen and Misener, and independently Kapitza, discovered that liquid helium-4 exhibits superfluidity below a critical temperature of approximately \(T_c 2.17 K\). This phenomenon is characterized by the ability of the liquid to flow without viscosity, allowing it to pass through narrow channels and over obstacles without resistance. The superfluid phase of helium-4 is a manifestation of Bose-Einstein condensation, where a significant fraction of helium atoms occupy the same quantum state, leading to macroscopic quantum coherence.
+
+    If we were to measure the specific heat capacity of liquid helium-4 as a function of temperature, we would observe a sharp peak at the critical temperature \(T_c\), known as the lambda point due to its characteristic shape. This peak indicates a superfluid phase transition, where the system undergoes a change in its thermodynamic properties. Below \(T_c\), the specific heat capacity decreases, reflecting the reduced number of available excitations in the superfluid phase.
+
+    We also need a really rarefied gas of helium-4 atoms to observe BEC directly, since in liquid helium-4 the interactions between atoms are strong and complicate the picture. In experiments with ultracold atomic gases, researchers have successfully created Bose-Einstein condensates of helium-4 atoms by cooling them to temperatures on the order of nanokelvins, allowing for the direct observation of BEC phenomena.
+\end{example}
+
+\begin{example}[BEC in ultracold atomic gases]
+    In 1995, Eric Cornell and Carl Wieman at JILA (University of Colorado) and Wolfgang Ketterle at MIT successfully created Bose-Einstein condensates (BEC) in ultracold atomic gases, marking a significant milestone in experimental physics. They used laser cooling and evaporative cooling techniques to cool a dilute gas of Rubidium-87 atoms (Cornell and Wieman) and Sodium-23 atoms (Ketterle) to temperatures on the order of nanokelvins (\(T_{BEC} \sim \SI{10}{\nano\kelvin} - \SI{1}{\micro\kelvin}\) ), allowing the atoms to occupy the same quantum state and form a macroscopic condensate.
+
+        [...]
+\end{example}
+
+\subsection{How to Reach NanoKelvins?}
+Achieving temperatures in the nanokelvin range requires sophisticated cooling techniques that go beyond traditional methods. Here are some of the key techniques used to reach such ultra-low temperatures:
+\begin{itemize}
+    \item \textbf{Laser cooling}: This technique uses the momentum of photons to slow down and cool atoms. By tuning the frequency of laser light slightly below an atomic transition, atoms moving towards the laser absorb photons and experience a recoil that slows them down. This process, known as Doppler cooling, can bring atomic gases down to microkelvin temperatures.
+
+          We would need to use multiple laser beams arranged in a configuration known as optical molasses to achieve effective cooling in three dimensions. The atoms are trapped in a region where the laser beams intersect, allowing for efficient cooling.
+
+          This technique is often the first step in cooling atoms before applying more advanced methods to reach even lower temperatures, since it would likely reach only microkelvin temperatures.
+
+    \item \textbf{Magnetic evaporation}: This technique involves trapping atoms in a magnetic field and selectively removing the most energetic atoms from the trap. By gradually lowering the depth of the magnetic trap, the hottest atoms escape, leaving behind a colder sample (like evaporation at room temperature with a cup of coffee). This process can be repeated multiple times, lowering further and further the magnetic trap depth to achieve temperatures in the nanokelvin range.
+\end{itemize}
+
+\subsection{How to Observe BEC?}
+
+When we are at high temperatures, the atomic cloud behaves like a classical gas, with atoms moving randomly and independently, as localized particles with a Maxwell-Boltzmann distribution of velocities. As we cool the gas down to temperatures near \(T_{BEC}\), we can observe the onset of Bose-Einstein condensation through several experimental signatures:
+\begin{itemize}
+    \item \textbf{Density distribution}: Above \(T_{BEC}\), the density distribution of the atomic cloud is relatively uniform, reflecting the classical behavior of the gas. As we approach \(T_{BEC}\), a sharp peak in the density distribution appears at the center of the trap, indicating the formation of a condensate. Below \(T_{BEC}\), this peak becomes more pronounced, with a significant fraction of atoms occupying the lowest energy state.
+
+    \item \textbf{Momentum distribution}: The momentum distribution of atoms can be measured using time-of-flight imaging. Above \(T_{BEC}\), the momentum distribution is broad and Gaussian-like, characteristic of a thermal gas. As we cool below \(T_{BEC}\), a narrow peak emerges in the momentum distribution, corresponding to the condensate fraction with low momentum: this is a direct signature of macroscopic occupation of the ground state.
+
+    \item \textbf{BEC release}: When the trap confining the atomic cloud is suddenly turned off, the condensate expands differently compared to the thermal component of the gas. The condensate exhibits a characteristic expansion pattern, often referred to as "inverted parabolic" expansion, which can be observed in time-of-flight images. This behavior is distinct from the isotropic expansion of the thermal cloud.
+\end{itemize}
+
+But there are other experimental phenomena that can be observed in a Bose-Einstein condensate, such as:
+\begin{itemize}
+    \item \textbf{Interference patterns}: When two condensates are allowed to overlap, they can produce interference patterns due to their coherent wavefunctions. This phenomenon is a direct demonstration of the macroscopic quantum coherence of the condensate. We said that the BEC PT is characterized by the SSB of the gauge symmetry associated to the phase of the condensate wavefunction: thus, if we have two condensates with different phases, when they overlap the difference in phase will lead to constructive and destructive interference patterns, which can be observed experimentally.
+
+    \item \textbf{Vortices}: In rotating Bose-Einstein condensates (realised with rotating magnetic fields), quantized vortices can form, which are topological defects characterized by a phase singularity in the condensate wavefunction. The observation of vortices provides evidence of superfluidity in the condensate. Practically we do not have a single classical fluid rotating, but a lattice of quantized vortices localized almost as a grid in the condensate.
+\end{itemize}
+
+\subsubsection{Cold Atoms in Artificial Lattice}
+
+By using \textbf{optical lattices} created by interfering laser beams, we can simulate periodic potentials for ultracold atoms. This allows us to study phenomena such as the superfluid to Mott insulator transition, where the interplay between kinetic energy and interaction energy leads to different quantum phases. In the superfluid phase, atoms can move freely across the lattice, while in the Mott insulator phase, atoms are localized at individual lattice sites due to strong interactions.
+
+Since the atoms can change minimum energy states by tunneling between lattice sites, we can control the tunneling rate by adjusting the depth of the optical lattice potential. This tunability allows us to explore different regimes of quantum behavior, from weakly interacting superfluids to strongly correlated Mott insulators.
+
+Atoms in optical lattices can also interact with each other through controlled interactions, since they can be made to collide at specific lattice sites. By tuning the interaction strength using Feshbach resonances, we can study the effects of interactions on the quantum phases of the system, leading to rich phase diagrams and novel quantum states.
+
+We can also explore topological phases by engineering specific lattice geometries and interactions. For example, by creating honeycomb or kagome lattices, we can realize systems that exhibit topologically protected edge states and non-trivial band structures. These systems can host exotic quasiparticles such as Majorana fermions and anyons, which have potential applications in quantum computing.
+
+We could also create lattices in higher dimensions (like \(4D\) lattices) using synthetic dimensions, where internal degrees of freedom of atoms (such as spin states) are treated as additional spatial dimensions. This allows us to explore higher-dimensional physics and topological phenomena that are not accessible in traditional three-dimensional systems: we could simulate quantum gravity models and higher-dimensional topological insulators.
+
+\subsection{Photons Gas}
+
+We are going to study now the case of a gas of photons, which are bosons with zero rest mass and two polarization states (thus \(g=2\)); they are ultrarelativistic particles, since they always move at the speed of light \(c\) in vacuum. The energy-momentum relation for photons is given by
+\[
+    \epsilon{\mathbf{p}} = c\vert \mathbf{p} \vert,
+\]
+where \(\mathbf{p}\) is the momentum of the photon.
+
+Photons are unique among bosons because they do not have a conserved particle number: they can be created and destroyed freely, for example through absorption and emission processes. This means that the chemical potential \(\mu\) for photons is always zero, leading to a fugacity:
+\[
+    \mu(T) = 0 \implies z = e^{\beta \mu} = 1, \quad \forall T.
+\]
+
+We can now compute the density of states for photons, starting from the general expression for the density of states in three dimensions: from the computation for the volume in phase space we have
+\[
+    \Sigma(\epsilon) = g \int_{0\leq c\vert \mathbf{p} \vert \leq \epsilon} \d{p} \frac{V}{(2\pi \hbar)^3} 4\pi p^2 = g \frac{V}{(2\pi \hbar)^3} \frac{4\pi}{3 c^3} \epsilon^3,
+\]
+which gives
+\[
+    g(\epsilon) \d{\epsilon} = g \frac{V}{(2\pi \hbar)^3} 4\pi p^2 \d{p},
+\]
+since it is a spherical volume in momentum space with radius \(p = \epsilon/c\). Differentiating with respect to energy, we find the density of states:
+\[
+    \omega(\epsilon) = \frac{\partial}{\partial \epsilon} \Sigma(\epsilon) = g \frac{V}{(2\pi \hbar)^3} \frac{4\pi}{c^3} \epsilon^2 = g(\epsilon).
+\]
+Using this density of states, we can compute the thermodynamic quantities for the photon gas. The average number of photons \(N\) in the system is given by
+\[
+    N = \int_0^{\infty} \d{\epsilon} g(\epsilon) \langle n(\epsilon) \rangle_{gc}^{B} = \int_0^{\infty} \d{\epsilon} g(\epsilon) \frac{1}{e^{\beta \epsilon} - 1}.
+\]
+Substituting the expression for the density of states, we have
+\[
+    N = g \frac{V}{(2\pi \hbar)^3} \frac{4\pi}{c^3} \int_0^{\infty} \d{\epsilon} \frac{\epsilon^2}{e^{\beta \epsilon} - 1}.
+\]
+For the energy \(E\) of the photon gas, we have
+\[
+    E = \int_0^{\infty} \d{\epsilon} g(\epsilon) \epsilon \langle n(\epsilon) \rangle_{gc}^{B} = g \frac{V}{(2\pi \hbar)^3} \frac{4\pi}{c^3} \int_0^{\infty} \d{\epsilon} \frac{\epsilon^3}{e^{\beta \epsilon} - 1}.
+\]
+For the grand potential \(\Omega\), we have
+\[
+    \Omega = - k_B T \int_0^{\infty} \d{\epsilon} g(\epsilon) \log\left( 1 - e^{-\beta \epsilon} \right) = - k_B T g \frac{V}{(2\pi \hbar)^3} \frac{4\pi}{c^3} \int_0^{\infty} \d{\epsilon} \epsilon^2 \log\left( 1 - e^{-\beta \epsilon} \right),
+\]
+so that the pressure \(p\) of the photon gas is given by
+\[
+    p = - \frac{\Omega}{V} = k_B T g \frac{1}{(2\pi \hbar)^3} \frac{4\pi}{c^3} \int_0^{\infty} \d{\epsilon} \epsilon^2 \log\left( 1 - e^{-\beta \epsilon} \right).
+\]
+Thus finally we can compute the equation of state for the photon gas. Notably, since photons are massless particles, they exhibit a relativistic equation of state. The pressure \(p\) and energy density \(u = E/V\) of the photon gas are related by
+\[
+    p = \frac{1}{3} u.
+\]
+This relation arises from the fact that photons are ultrarelativistic particles, and it reflects the isotropic nature of the radiation pressure exerted by the photon gas. In order to explixit the temperature dependence of the pressure and energy density, we can evaluate the integrals with a change of variable \(x = \beta \epsilon\):\TODO{check all axpressions of the section.}
+\[
+    N = g \frac{V}{(2\pi \hbar)^3} \frac{4\pi}{c^3} \left( k_B T \right)^3 \int_0^{\infty} \d{x} \frac{x^2}{e^{x} - 1},
+\]
+\[
+    E = g \frac{V}{(2\pi \hbar)^3} \frac{4\pi}{c^3} \left( k_B T \right)^4 \int_0^{x} \d{x} \frac{x^3}{e^{x} - 1},
+\]
+\[
+    p = k_B T g \frac{1}{(2\pi \hbar)^3} \frac{4\pi}{c^3} \left( k_B T \right)^3 \int_0^{\infty} \d{x} x^2 \log\left( 1 - e^{-x} \right).
+\]
+The integrals can be evaluated using the properties of the Riemann zeta function and the Gamma function, but we are not interested in the exact numerical factors here. The key point is that both the energy \(E\) and pressure \(p\) scale with the fourth power of temperature.
+
+\subsubsection{Spectral Energy Density}
+
+The \textbf{spectral energy density} \(E(\nu)\) of the photon gas (\(\epsilon = h \nu\)) describes how the energy is distributed among different photon energies (or frequencies) at a given temperature \(T\). It is defined as
+\[
+    E(\nu,T) \frac{1}{V} = \frac{8\pi}{(hc)^3} \int_0^{h\nu} \d{\epsilon} \frac{\epsilon^3}{e^{\beta \epsilon} - 1}.
+\]
+Differentiating with respect to frequency \(\nu\), we obtain the spectral energy density per unit frequency:
+\[
+    u(\nu, T) = \frac{\partial}{\partial \nu} \left( \frac{E(\nu)}{V} \right) = \frac{8\pi h }{c^3} \frac{\nu^3}{e^{\beta h \nu} - 1}.
+\]
+This expression is known as \textbf{Planck's law} of blackbody radiation, which describes the distribution of electromagnetic radiation emitted by a blackbody at temperature \(T\). It shows that the spectral energy density depends on both the frequency \(\nu\) and the temperature \(T\), with a characteristic peak that shifts to higher frequencies as the temperature increases (Wien's displacement law).
+
+We are interested in studying two particular limits of Planck's law:
+\begin{itemize}
+    \item \textbf{Rayleigh-Jeans limit} (\(h \nu \ll k_B T\)): In this low-frequency limit, we can approximate the exponential term in the denominator using a Taylor expansion:
+          \[
+              e^{\beta h \nu} - 1 \approx \beta h \nu.
+          \]
+          Substituting this approximation into Planck's law, we obtain
+          \[
+              u(\nu, T) \approx \frac{8\pi h }{c^3} \frac{\nu^3}{\beta h \nu} = \frac{8\pi k_B T}{c^3} \nu^2,
+          \]
+          which is known as the \textbf{Rayleigh-Jeans law}. This law predicts that the spectral energy density increases with the square of the frequency, leading to the so-called "ultraviolet catastrophe" at high frequencies.
+
+    \item \textbf{Wien's limit} (\(h \nu \gg k_B T\)): In this high-frequency limit, the exponential term in the denominator dominates, and we can approximate it as
+          \[
+              e^{\beta h \nu} - 1 \approx e^{\beta h \nu}.
+          \]
+          Substituting this approximation into Planck's law, we obtain
+          \[
+              u(\nu, T) \approx \frac{8\pi h }{c^3} \nu^3 e^{-\beta h \nu},
+          \]
+          which is known as \textbf{Wien's law}. This law predicts that the spectral energy density decreases exponentially with increasing frequency, reflecting the suppression of high-energy photons at low temperatures.
+\end{itemize}
+These two limits highlight the different behaviors of the spectral energy density in the low and high-frequency regimes, providing insights into the nature of blackbody radiation and the underlying quantum mechanics of photons.
