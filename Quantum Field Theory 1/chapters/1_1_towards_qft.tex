@@ -7,9 +7,9 @@ The concept of a \textbf{field} is central to modern physics, describing how phy
 \end{itemize}
 In this framework, particles interact locally through fields, rather than instantaneously over a distance.
 
-Photons, the quanta of the electromagnetic field, mediate electromagnetic interactions; they represent the field's excitations around its ground state, thus allowing for the exchange of energy and momentum between charged particles. This description seems to elect the field as the fundamental entity, with particles being secondary manifestations. However, matter particles, such as electrons and quarks, seem to be more fundamental, as they constitute the building blocks of matter. This duality raises the question: which is more fundamental, fields or particles?\footnote{If we were to choose particles as fundamental, we would face the challenge of explaining how they interact at a distance, and fields like the EM one would be described as classical limits of a collection of photons.}
+Photons, the quanta of the electromagnetic field, mediate electromagnetic interactions; they represent the field's excitations around its ground state, allowing for the exchange of energy and momentum between charged particles. This description seems to elect the field as the fundamental entity, with particles being secondary manifestations. However, matter particles, such as electrons and quarks, seem to be more fundamental, as they constitute the building blocks of matter. This duality raises the question: which is more fundamental, fields or particles?\footnote{If we were to choose particles as fundamental, we would face the challenge of explaining how they interact at a distance, and fields like the EM one would be described as classical limits of a collection of photons.}
 
-Quantum Field Theory provides a framework in which \textbf{fields are the fundamental quantities} and particles are viewed as excitations of underlying fields that permeate space and time, rather than as independent entities. Each type of particle corresponds to a specific field:
+Quantum Field Theory provides a framework in which \textbf{fields are the fundamental quantities} and particles are viewed as excitations of underlying fields that permeate space and time, rather than independent entities. Each type of particle corresponds to a specific field:
 \begin{itemize}
     \item The \textbf{EM field} gives rise to photons, which mediate electromagnetic interactions.
     \item The \textbf{electron field} (Dirac) gives rise to electrons and positrons.
@@ -32,7 +32,7 @@ The new framework of QFT has several important properties, which are granted by 
           The framework naturally incorporates processes where particles can be created or destroyed, since fields can describe systems with infinite degrees of freedom. Let us consider how coordinates describe a system in different contexts:
           \begin{itemize}
               \item \textbf{QM}: \((\mathbf{x},t) \to (\hat{\mathbf{x}}, \hat{t})\).\\
-                    The position and time of a particle are promoted to operators acting on a Hilbert space via \textit{canonical quantization}.\footnote{This process involves promoting classical fields to operator-valued distributions by imposing canonical commutation relations.} The number of particles is fixed, and creation/annihilation processes are not described.
+                    The position and time of a particle are promoted to operators acting on a Hilbert space via \textit{canonical quantization}.\footnote{This process involves promoting classical fields to operator-valued distributions by imposing canonical commutation relations.} The number of particles is fixed, and creation/annihilation processes cannot be described.
               \item \textbf{QFT}: \((\mathbf{x},t) \to \phi(\mathbf{x},t) \to \hat{\phi}(\mathbf{x},t)\).\\
                     The field configuration \(\phi(\mathbf{x},t)\) account for infinite degrees of freedom; it is promoted to an operator-valued distribution \(\hat{\phi}(\mathbf{x},t)\) acting on a Fock space, which can accommodate states with varying numbers of particles. Spacetime coordinates are interpreted as continuous labels for infinite field operators, not as operators themselves.
           \end{itemize}
@@ -49,11 +49,11 @@ The new framework of QFT has several important properties, which are granted by 
               \item \(\psi\) is antisymmetric under exchange \(\psi(\dots\, x_i\, \dots\, x_j\, \dots) = -\psi(\dots\, x_j\, \dots\, x_i\, \dots)\):\\
                     Fermions (half-integer spin) obey the \textbf{Pauli exclusion principle}, which prevents them from occupying the same quantum state.
           \end{itemize}
-          In QM this relations are imposed as an additional postulate, while in QFT it emerges naturally from the commutation relations of field operators. While quantizing a field, one has to define strictly spin-statistics relations, imposing commutation relations for bosonic fields and anticommutation relations for fermionic fields:\TODO{Check commutation and anticommutation telations.}
+          In QM this relations are imposed as an additional postulate, while in QFT it emerges naturally from the commutation relations of field operators. While quantizing a field, one has to define strictly spin-statistics relations, imposing commutation relations for bosonic fields and anticommutation relations for fermionic fields:\footnote{Here these relations seems arbitrary and disconnected, but we will see that the parallelism is strong: the cojugate Dirac field is proportional to the conjugate momenta of the Dirac field, so the only difference is the statistical relation among fields and momenta.}
           \[
               \begin{aligned}
-                   & \text{Bosons:} \quad [\hat{\phi}(\mathbf{x},t), \hat{\phi}(\mathbf{y},t)] = 0, \quad [\hat{\phi}(\mathbf{x},t), \hat{\pi}(\mathbf{y},t)] = i\delta^3(\mathbf{x}-\mathbf{y}),                                                              \\
-                   & \text{Fermions:} \quad \{\hat{\psi}_\alpha(\mathbf{x},t), \hat{\psi}_\beta(\mathbf{y},t)\} = 0, \quad \{\hat{\psi}_\alpha(\mathbf{x},t), \hat{\psi}^\dagger_\beta(\mathbf{y},t)\} = \delta_{\alpha\beta} \delta^3(\mathbf{x}-\mathbf{y}).
+                   & \text{Bosons:} \quad [\hat{\phi}(\mathbf{x},t), \hat{\phi}(\mathbf{y},t)] = 0, \quad [\hat{\phi}(\mathbf{x},t), \hat{\pi}(\mathbf{y},t)] = i\delta^{(3)}(\mathbf{x}-\mathbf{y}),                                                              \\
+                   & \text{Fermions:} \quad \{\hat{\psi}_\alpha(\mathbf{x},t), \hat{\psi}_\beta(\mathbf{y},t)\} = 0, \quad \{\hat{\psi}_\alpha(\mathbf{x},t), \hat{\psi}^\dagger_\beta(\mathbf{y},t)\} = \delta_{\alpha\beta} \delta^{(3)}(\mathbf{x}-\mathbf{y}).
               \end{aligned}
           \]
           This ensures \textbf{consistency}: \(E>0\) and no negative norm states for every particle; the correct statistics for particles emerge naturally from the field quantization process and the underlying symmetries of the theory.

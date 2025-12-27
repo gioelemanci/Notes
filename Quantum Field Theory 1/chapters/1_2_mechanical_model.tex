@@ -7,9 +7,9 @@ We consider a \textbf{meta-stable} system, meaning that its configuration does n
 For a small displacement \(y\) from equilibrium, the restoring force can be expanded in a Taylor series:
 \[
     F(y) = F(0) + \left.\frac{dF}{dy}\right|_{y=0} y + \dots
-    = -|\kappa|\, y + \mathcal{O}(y^2),
+    = -|k|\, y + \mathcal{O}(y^2),
 \]
-where we set \(F(0) = 0\) (no force at equilibrium) and require \(\left.\tfrac{dF}{dy}\right|_{y=0} = -|\kappa| < 0\) (restoring behavior). The linear term dominates for sufficiently small displacements, showing that any meta-stable system can be modeled, to first approximation, as a collection of coupled harmonic oscillators.
+where we set \(F(0) = 0\) (no force at equilibrium) and require \(\left.\tfrac{dF}{dy}\right|_{y=0} = -|k| < 0\) (restoring behavior). The linear term dominates for sufficiently small displacements, showing that any meta-stable system can be modeled, to first approximation, as a collection of coupled harmonic oscillators.
 
 The simplest realization is a chain of \(N\) identical atoms, each of mass \(m\), connected by springs with spring constant \(\kappa\) and arranged along a line with equilibrium spacing \(\Delta\). The total length of the chain is
 \[
@@ -443,7 +443,7 @@ so that the kinetic term can be written as
 \[
     \vert \dot{\tilde{y}}_{\sigma} \vert ^2 = \frac{1}{2}\left[ (\dot{\tilde{y}}_{\sigma}^{(\mathrm{R})})^2 + (\dot{\tilde{y}}_{\sigma}^{(\mathrm{I})})^2 \right].
 \]
-For the real normal modes (e.g. the special indices \(\sigma=\frac{N}{2},N\)) we introduce the usual ladder operators \(\hat a_r,\hat a_r^\dagger\) and have
+For the real normal modes we introduce the usual ladder operators \(\hat a_r,\hat a_r^\dagger\) and have\footnote{We have worked with the complex degrees of freedom since the Fourier transform, now we are reconducing the results to the real degrees of freedom, which are the double.}
 \[
     \hat{\tilde{y}}_{\sigma}^{(\mathrm{R})} = \sqrt{\frac{\hbar}{2 m \omega_{\sigma}}}\;(\hat a_{\sigma}^{(\mathrm{R})} + \hat a_{\sigma}^{\dagger(\mathrm{R})}),
     \qquad
@@ -548,8 +548,8 @@ We now consider the continuum limit of our discrete system. This is achieved by 
 In this limit, the discrete indices $j$ and $\sigma$ transition into continuous variables. As a result, quantities that were previously discrete—such as the wavelength $\lambda_{\sigma}$ and the wave number $\kappa_{\sigma}$—become continuous:
 \[
     \begin{aligned}
-        \kappa_{\sigma}  & = \frac{2\pi \sigma}{N \Delta} = \frac{2\pi \sigma}{L}, \quad \kappa_{\sigma} \in \left[\frac{2\pi}{L},\, \infty \right), \\
-        \lambda_{\sigma} & = \frac{N \Delta}{\sigma} = \frac{L}{\sigma}, \quad \lambda_{\sigma} \in (0,\, L].
+        \kappa_{\sigma}  & = \frac{2\pi \sigma}{N \Delta} = \frac{2\pi \sigma}{L}, \quad \kappa_{\sigma} \in [0,\,\infty), \\
+        \lambda_{\sigma} & = \frac{N \Delta}{\sigma} = \frac{L}{\sigma}, \quad \lambda_{\sigma} \in [0,\,\infty).
     \end{aligned}
 \]
 As $N \to \infty$ and $\Delta \to 0$, both $\kappa_{\sigma}$ and $\lambda_{\sigma}$ sweep out continuous ranges: $\kappa_{\sigma},\,\lambda_{\sigma} \in [0,\,\infty)$.
@@ -736,7 +736,7 @@ which represents the continuum limit of the discrete Fourier series
 \[
     y_j(t) = \frac{1}{\sqrt{N}} \sum_{\sigma=1}^{N} e^{i\kappa_\sigma (\Delta j)} \tilde{y}_\sigma(t),
     \qquad
-    \kappa_\sigma = \frac{2\pi}{\Delta N}\sigma,
+    \kappa_\sigma = \frac{2\pi\sigma}{\Delta N},
     \qquad
     (\Delta j) = x.
 \]
@@ -757,7 +757,7 @@ which leads to the following evolution equation for each Fourier mode:
 \]
 This is the equation of motion of a harmonic oscillator with frequency
 \[
-    \omega_\kappa = \sqrt{\kappa^2 + \frac{\kappa_\mu}{m}},
+    \omega_\kappa = \sqrt{\kappa^2 + \frac{\kappa_\mu}{m}} = \sqrt{\kappa^2 + \mu^2},
 \]
 so that in momentum space we have
 \[
@@ -850,10 +850,10 @@ where $\mathcal{H}_n$ denotes the Hilbert space of $n$-particle states.
 
 In this framework, the mode amplitudes become operators satisfying canonical commutation relations, and can be expressed as
 \[
-    \tilde{\psi}_\kappa = \frac{1}{\sqrt{2 \omega_{\kappa}}}
+    \hat{\tilde{\psi}}_\kappa = \frac{1}{\sqrt{2 \omega_{\kappa}}}
     \left( \hat{a}_{\kappa} + \hat{a}^\dagger_{\kappa} \right),
     \qquad
-    \tilde{\pi}_\kappa = -i \sqrt{\frac{\omega_{\kappa}}{2}}
+    \hat{\tilde{\pi}}_\kappa = -i \sqrt{\frac{\omega_{\kappa}}{2}}
     \left( \hat{a}_{\kappa} - \hat{a}^\dagger_{\kappa} \right),
 \]
 where $\hat{a}_{\kappa}$ and $\hat{a}^\dagger_{\kappa}$ are, respectively, the annihilation and creation operators for the mode labeled by $\kappa$.
@@ -908,7 +908,7 @@ thus counting the number of excitations in the mode of frequency $\omega_{\kappa
 
 The Hamiltonian of the quantized field can then be written as
 \[
-    \hat{\mathcal{H}}
+    \hat{H}
     = \int \! \d{\kappa}\, \omega_{\kappa}
     \left( \hat a_{\kappa}^\dagger \hat a_{\kappa} + \frac{1}{2} \right)
     = \int \! \d{\kappa}\, \omega_{\kappa}

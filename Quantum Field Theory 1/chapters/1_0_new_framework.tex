@@ -52,11 +52,11 @@ Special relativity, on the other hand, does not incorporate quantum principles:
 The first attempt to construct a relativistic quantum theory was to modify the Schrödinger equation by replacing the non-relativistic energy-momentum relation with the relativistic one. We are basically in a quantum framework:
 \begin{itemize}
     \item Observables are promoted to operators acting on a Hilbert space by imposing \textit{canonical commutation relations}:\\
-          $[\hat{\mathbf{x}}, \hat{\mathbf{p}}] = i\hbar \implies \hat{\mathbf{p}} = -i\hbar \frac{\mathrm{d}}{\mathrm{d}\mathbf{x}},\quad [\hat{t}, \hat{H}] = i\hbar \implies \hat{H} = i\hbar \frac{\mathrm{d}}{\mathrm{d}t}$.
-    \item Operators act on a Hilbert space $\mathcal{H}$, where its states represent physical states of the system, with a \textbf{fixed number of particles}.
+          $[\hat{\mathbf{x}}, \hat{p}] = i\hbar \implies \hat{p} = -i\hbar \frac{\mathrm{d}}{\mathrm{d}\mathbf{x}},\quad [\hat{t}, \hat{H}] = i\hbar \implies \hat{H} = i\hbar \frac{\mathrm{d}}{\mathrm{d}t}$.
+    \item Operators act on a Hilbert space $\mathcal{H}$, where its vectors represent physical states of the system, with a \textbf{fixed number of particles}.
     \item Eigenvectors of a complete set of commuting observables form a basis for the Hilbert space; the eigenvalues correspond to the possible measurement outcomes:\\
-          \(\hat{\mathbf{p}} \ket{p} = p \ket{p}, \quad \int \mathrm{d}p \ket{p}\bra{p} = 1\).
-    \item The time evolution of states is governed by the \textbf{generalized Schrödinger equation}: $-i\hbar \frac{\partial}{\partial t} \psi(\mathbf{x}, t) = \hat{H} \psi(\mathbf{x}, t) = \sqrt{\hat{\mathbf{p}}^2c^2 + m^2c^4} \psi(\mathbf{x}, t)$ .
+          \(\hat{p} \ket{p} = p \ket{p}, \quad \int \mathrm{d}p \ket{p}\bra{p} = 1\).
+    \item The time evolution of states is governed by the \textbf{generalized Schrödinger equation}: $-i\hbar \frac{\partial}{\partial t} \psi(\mathbf{x}, t) = \hat{H} \psi(\mathbf{x}, t) = \sqrt{\hat{p}^2c^2 + m^2c^4} \psi(\mathbf{x}, t)$ .
 \end{itemize}
 
 However, this approach leads to several issues: it cannot account for particle creation and annihilation, which are essential in relativistic contexts. Additionally, the theory struggles with maintaining causality and Lorentz invariance, and predicts an infinite number of negative energy states, leading to an unstable vacuum.
@@ -65,7 +65,7 @@ However, this approach leads to several issues: it cannot account for particle c
 
 A picture in which the number of particles is fixed cannot describe processes where particles are created or destroyed, such as in high-energy collisions (LHC or other particle colliders) or in nuclear decays.
 
-If we consider a particle with mass $m$ at rest, its energy is given by $E = mc^2$. If we now add an energy to the system, as the particle acquires momentum, its mass becomes negligible and the system is energetically favorable to create new particles. But in order to preserve physical quantities such as charge, lepton number, baryon number, etc., particles must be created in pairs.
+If we consider a particle with mass $m$ at rest, its energy is given by $E = mc^2$. If we now start injecting energy into the system, as the particle acquires momentum, its mass becomes negligible and the system is energetically favorable to create new particles. But in order to preserve physical quantities such as charge, lepton number, baryon number, etc., particles must be created in pairs.
 
 \paragraph{Example: particle in a box.} Consider a particle of mass $m$ confined in a three-dimensional box of length $L$. The \textit{Heisenberg uncertainty principle} states that the uncertainty in position $\Delta x$ and the uncertainty in momentum $\Delta p$ satisfy the relation $\Delta x \Delta p \geq \frac{\hbar}{2}$. For a particle confined in a box, we can estimate $\Delta x \sim L$, leading to an uncertainty in momentum of at least $\Delta p \sim \frac{2\hbar}{L}$. If we take the particle to the ultrarelativistic regime,\footnote{In the ultrarelativistic regime, the particle's kinetic energy is much greater than its rest mass energy: \(E^2 = p^2c^2 + m^2c^4 \approx p^2c^2\).} its energy can be approximated as \(E \approx pc\). Therefore, the uncertainty in energy will be:
 \[
@@ -87,7 +87,7 @@ To start, let's consider a free particle in the position eigenstate \(\ket{\math
 \[
     A_{\mathbf{x} \to \mathbf{y}}(t) = \bra{\mathbf{y}}e^{-\frac{i}{\hbar}Ht}\ket{\mathbf{x}}.
 \]
-We will show that this amplitude is non-zero even when the distance \(|\mathbf{y} - \mathbf{x}|\) is greater than \(ct\), which implies that the particle can be found outside the light cone, violating causality. This is true using QM as well as RQM, in the latter case the effect being less pronounced but still non-zero.
+We will show that this amplitude is non-zero even when the distance \(|\mathbf{y} - \mathbf{x}|\) is greater than \(ct\), which implies that the particle can be found outside the light cone, violating causality. This is true using QM as well as RQM, in the latter case the effect being less pronounced but still non-zero: the theory is refined, but still not right.
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.5\textwidth}
@@ -130,15 +130,15 @@ We will show that this amplitude is non-zero even when the distance \(|\mathbf{y
 
 \subsubsection{QM framework}
 
-In standard QM the expression for the hamiltonian of a free particle is \(H = \frac{\hat{\mathbf{p}}^2}{2m}\). The amplitude can be computed as follows:
+In standard QM the expression for the hamiltonian of a free particle is \(H = \frac{\hat{p}^2}{2m}\). The amplitude can be computed as follows:
 \[
-    A_{\mathbf{x} \to \mathbf{y}}(t) = \bra{\mathbf{y}}e^{-\frac{i}{\hbar} \frac{\hat{\mathbf{p}}^2}{2m} t}\ket{\mathbf{x}}.
+    A_{\mathbf{x} \to \mathbf{y}}(t) = \bra{\mathbf{y}}e^{-\frac{i}{\hbar} \frac{\hat{p}^2}{2m} t}\ket{\mathbf{x}}.
 \]
 Using the \textit{completeness relation} in the momentum basis \(\int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi\hbar)^3} \ket{\mathbf{p}}\bra{\mathbf{p}} = \mathbb{I}\), we have:
 \[
-    A_{\mathbf{x} \to \mathbf{y}}(t) = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi\hbar)^3} \bra{\mathbf{y}}\ket{\mathbf{p}}e^{-\frac{i}{\hbar} \frac{\hat{\mathbf{p}}^2}{2m} t}\bra{\mathbf{p}}\ket{\mathbf{x}},
+    A_{\mathbf{x} \to \mathbf{y}}(t) = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi\hbar)^3} \bra{\mathbf{y}}\ket{\mathbf{p}}e^{-\frac{i}{\hbar} \frac{\hat{p}^2}{2m} t}\bra{\mathbf{p}}\ket{\mathbf{x}},
 \]
-where \(\bra{\mathbf{p}}\ket{\mathbf{x}} = \Psi^*_{\mathbf{p}}(\mathbf{x}) = e^{-\frac{i}{\hbar}\mathbf{p}\cdot\mathbf{x}}\) is the wavefunction of the momentum eigenstate in the position representation, basically a \textit{plane wave}. Additionally, if we perform a Taylor expansion of the exponential operator, we get a polinomial expression for the momentum operator: using \(\hat{\mathbf{p}}^2 \ket{p} = p^2\ket{\mathbf{p}}\), we obtain a serie of powers of \(p\), which can be resummed back into an exponential function. Therefore, we have:
+where \(\bra{\mathbf{p}}\ket{\mathbf{x}} = \Psi^*_{\mathbf{p}}(\mathbf{x}) = e^{-\frac{i}{\hbar}\mathbf{p}\cdot\mathbf{x}}\) is the wavefunction of the momentum eigenstate in the position representation, basically a \textit{plane wave}. Additionally, if we perform a Taylor expansion of the exponential operator, we get a polinomial expression for the momentum operator: using \(\hat{p}^2 \ket{\mathbf{p}} = p^2\ket{\mathbf{p}}\), we obtain a serie of powers of \(p\), which can be resummed back into an exponential function. Therefore, we have:
 \[
     A_{\mathbf{x} \to \mathbf{y}}(t) = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi\hbar)^3} e^{\frac{i}{\hbar}\mathbf{p}\cdot\mathbf{y}} e^{-\frac{i}{\hbar} \frac{p^2}{2m} t} e^{-\frac{i}{\hbar}\mathbf{p}\cdot\mathbf{x}} = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi\hbar)^3} e^{-\frac{i}{\hbar} \frac{p^2}{2m} t} e^{\frac{i}{\hbar} \mathbf{p}\cdot(\mathbf{y}-\mathbf{x})}.
 \]
@@ -152,9 +152,9 @@ The next step is to see if the situation improves when we move to a relativistic
 
 \subsubsection{RQM framework} \label{sec:RQM_framework}
 
-In this framework, the hamiltonian of a free particle is given by \(H = \sqrt{\hat{\mathbf{p}}^2c^2 + m^2c^4}\). The amplitude can be computed as follows:
+In this framework, the hamiltonian of a free particle is given by \(H = \sqrt{\hat{p}^2c^2 + m^2c^4}\). The amplitude can be computed as follows:
 \[
-    A_{\mathbf{x} \to \mathbf{y}}(t) = \bra{\mathbf{y}}e^{-\frac{i}{\hbar} \sqrt{\hat{\mathbf{p}}^2c^2 + m^2c^4}\, t}\ket{\mathbf{x}}.
+    A_{\mathbf{x} \to \mathbf{y}}(t) = \bra{\mathbf{y}}e^{-\frac{i}{\hbar} \sqrt{\hat{p}^2c^2 + m^2c^4}\, t}\ket{\mathbf{x}}.
 \]
 Again, using the completeness relation and the eigenvalues relation along with taylor expansion for the momentum operator, we get to:
 \[
@@ -173,7 +173,7 @@ Now we can perform the integral using spherical coordinates in momentum space, w
 \]
 This integral is very complicated to solve analytically, needing a solution in form of \textit{Bessel functions}. However, the important point is that the amplitude is still non-zero for \(|\mathbf{y} - \mathbf{x}| = r > ct\), indicating that even in a relativistic quantum mechanics framework, there are still violations of causality; let us show then an approximated computation to highlight this.
 
-Thus we promote \(p\) to be a complex variable \(z\) and use the \textit{residue theorem} to solve the integral:
+Thus we promote \(p\) to be a complex variable \(z\) and use the \textit{residue theorem} to solve the integral; but before that, let us remind some properties of the complex root:
 \[
     z = \rho e^{i\phi} = x + iy, \quad \rho = |z| = \sqrt{x^2 + y^2}, \quad \phi = \arg(z) = \tan^{-1}\left(\frac{y}{x}\right).
 \]
@@ -206,7 +206,7 @@ Thus we promote \(p\) to be a complex variable \(z\) and use the \textit{residue
     \hfill
     \begin{minipage}{0.5\textwidth}
 
-        We have to consider the square root of a complex number $\sqrt{z}$, which is a multi-valued function:
+        We have to consider the square root of a complex number $\sqrt{z}$, which is a multi-valued function: after completing a full rotation around the origin in the complex plane (i.e., increasing the argument \(\phi\) by \(2\pi\)), the value of the square root changes sign:
         \[
             \sqrt{z_1} = \sqrt{\rho} e^{i\phi/2}, \quad \sqrt{z_2} = \sqrt{\rho} e^{i(\phi/2 + \pi)} = -\sqrt{z_1},
         \]
@@ -323,9 +323,9 @@ We can now take the limit \(L \to \infty\) and \(\epsilon \to 0\). The integrals
           \]
           where \(L_{C_{\epsilon}} = 2\pi \epsilon\) and \(p \in C_{\epsilon} \implies p = im + \epsilon e^{i\theta}\) for \(\theta \in [0, 2\pi]\):
           \[
-              \sup_{p \in C_{\epsilon}} \vert f(p) \vert = \frac{2\pi\epsilon}{(2\pi)^2 r} m e^{-mr} \sup_{\theta \in [0, 2\pi]} \left\vert e^{-it\sqrt{2im e^{i\theta}}} \right\vert \to 0 \quad \text{as } \epsilon \to 0.
+              L_{C_{\epsilon}}\sup_{p \in C_{\epsilon}} \vert f(p) \vert = \frac{2\pi\epsilon}{(2\pi)^2 r} m e^{-mr} \sup_{\theta \in [0, 2\pi]} \left\vert e^{-it\sqrt{2im \epsilon e^{i\theta}}} \right\vert \to 0 \quad \text{as } \epsilon \to 0.
           \]
-          Since \(e^{-it\sqrt{2im e^{i\theta_{\text{max}}}}}\) is bounded for all \(\theta \in [0, 2\pi]\), this integral goes to zero as \(\epsilon \to 0\).
+          Since \(e^{-it\sqrt{2im \epsilon e^{i\theta_{\text{max}}}}}\) is bounded for all \(\theta \in [0, 2\pi]\), this integral goes to zero as \(\epsilon \to 0\).
 \end{enumerate}
 We are thus left with an expression for the integrals on the real axis and the two sides of the branch cut:
 \[    \int_{-\infty}^{\infty} f(p) \mathrm{d}p = -( \int_{C_2} + \int_{C_3} ) f(p) \mathrm{d}p.
@@ -339,7 +339,7 @@ We are still considering the regime outside the light cone, \(r > t\). We can pa
 \]
 But we know that for \(y \geq m\) the integrand becomes a sum of positive or zero terms, thus the integral is non-zero:
 \[
-    y e^{-yr} 2\sinh(t\sqrt{y^2 - m^2}) \geq 0 \forall y \geq m \implies A_{\mathbf{x} \to \mathbf{y}} (t) \neq 0.
+    y e^{-yr} 2\sinh(t\sqrt{y^2 - m^2}) \geq 0 \quad \forall y \geq m \quad \implies \quad A_{\mathbf{x} \to \mathbf{y}} (t) \neq 0.
 \]
 Therefore, we have shown that even in a relativistic quantum mechanics framework, there is a non-zero probability of finding a particle outside the light cone, indicating a violation of causality. This violation is less pronounced than in non-relativistic quantum mechanics (since it is exponentially suppressed), but it still exists. This suggests that a more comprehensive framework is needed to fully reconcile quantum mechanics with the principles of special relativity, leading us to the development of quantum field theory.
 
