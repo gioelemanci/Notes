@@ -100,14 +100,15 @@ For finite transformations, one can write:
 where \(\bs{\theta} = \left( \theta_1,\,\theta_2,\,\theta_3 \right)\) are the rotation angles and \(\bs{\beta} = \left( \beta_1,\,\beta_2,\,\beta_3\right) \) the boost parameters. We can ultimately reconstruct the expression for \(\omega_{\mu\nu}\):
 \[
     \begin{aligned}
-        \omega_{ij} & = \epsilon_{ijk}\bs{\theta}^k, \\
-        \omega_{0i} & = \bs{\beta}_i.
+        \omega_{ij} & = \epsilon_{ijk}\theta^k, \\
+        \omega_{0i} & = \beta_i.
     \end{aligned}
 \]
 Together, they parametrize any proper orthochronous Lorentz transformation as a combination of a boost and a rotation:
 \[
     \Lambda = B(\bs{\beta}) \, R(\bs{\theta}).
 \]
+Thus we have six independent generators and six indipendent and continuous parameters to describe our Lie group, which topologically can be addressed to as \(\mathbb{R}_3 \times S_3 / \mathbb{Z}_2\), highlighting how the non compactness derive from the unbounded boosts subgroup.
 
 \subsection{Representations}
 
@@ -125,8 +126,7 @@ which satisfy independent \(\mathfrak{su}(2)\) algebras:
     [B_i, B_j] = i \epsilon_{ijk} B_k, \quad
     [A_i, B_j] = 0.
 \]
-
-This shows explicitly the algebra decompiìosition into a direct sum of two commuting algebras.
+This shows explicitly the \textbf{algebra decomposition into a direct sum of two commuting algebras}.
 A concrete realization of the Lorentz algebra generators can be constructed using \textbf{spinor spaces}.
 Consider spin-$\tfrac{1}{2}$ representations, and let \(\sigma_i\) denote the Pauli matrices.
 Define the combinations
@@ -136,7 +136,7 @@ Define the combinations
 \]
 which act on the four-dimensional space \(\mathbb{C}^2 \otimes \mathbb{C}^2\).
 
-In this language, the \textbf{left-handed} (LH) \textbf{spinors} transform under the \((\tfrac{1}{2},0)\) representation, corresponding to the action of \(\mathbf{A}\) on the first factor, while the \textbf{right-handed} (RH) \textbf{spinors} transform under the \((0,\tfrac{1}{2})\) representation, corresponding to the action of \(\mathbf{B}\) on the second factor.
+In this language, the \textbf{left-handed} (LH) \textbf{spinors} transform under the \((\tfrac{1}{2},0)\) representation, corresponding to the action of \(\bs{\sigma}\) (through \(\mathbf{A}\)) on the first factor, while the \textbf{right-handed} (RH) \textbf{spinors} transform under the \((0,\tfrac{1}{2})\) representation, corresponding to the action of \(\bs{\sigma}\) (through \(\mathbf{B}\)) on the second factor.
 
 The Dirac spinor arises as the direct sum \(\psi = \psi_L \oplus \psi_R \in \mathbb{C}^2 \oplus \mathbb{C}^2\), and higher-dimensional representations of the Lorentz group can be constructed by taking tensor products of these spinor spaces, yielding \((j_+, j_-)\) representations with arbitrary spins.
 
