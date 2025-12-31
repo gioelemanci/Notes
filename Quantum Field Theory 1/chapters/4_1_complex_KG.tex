@@ -3,9 +3,10 @@
 Since our final goal is to describe all particles and their interactions, we can start to study a more complex model: the quantization of a system with more than one field.
 
 The simplest generalization is the following: two real KG fields \(\psi_1\) and \(\psi_2\) with different masses \(m_1 \neq m_2\). We are assuming the fields to be free, non interacting, so we can write the Lagrangian as the sum of two independent KG Lagrangian:
-\[
+\begin{equation}
     \mathcal{L} = \sum_{i=1,2} \frac{1}{2}\partial_\mu \psi_i \partial^{\mu} \psi_i - \frac{m_i^2}{2}\psi_i^2.
-\]
+    \label{eq:KG_lagrangian_two_fields}
+\end{equation}
 Since the lagrangian is a sum of decoupled and independently Lagrangians, we can derive the KG equation as a system of two independent equations:
 \[
     \begin{dcases}
@@ -57,14 +58,15 @@ We can write the field in a vectorial representation as
     \end{pmatrix};
 \]
 then we can express the Lagrangian on this new field plane as:
-\[
-    \mathcal{L} = \frac{1}{2} (\partial_\mu \vec{\psi}^T(x)) (\partial^{\mu} \vec{\psi}(x)) - \frac{m_i^2}{2}\vec{\psi}^T(x)\vec{\psi}(x).
-\]
+\begin{equation}
+    \mathcal{L} = \frac{1}{2} (\partial_\mu \vec{\psi}^T(x)) (\partial^{\mu} \vec{\psi}(x)) - \frac{m^2}{2}\vec{\psi}^T(x)\vec{\psi}(x).
+    \label{eq:KG_lagrangian_two_fields_vector}
+\end{equation}
 Thus this Lagrangian goes to itself after a \(\mathrm{SO}(2)\) transformation:
 \[
     \mathcal{L} \xrightarrow{\mathrm{SO}(2)} \mathcal{L}^{\prime} = \mathcal{L},
 \]
-where we have to pay attention to consider a \textbf{global} \(\mathrm{SO}(2)\) transformation, thus rotating every point of the field space under the same transformation. \textbf{Local} transformations (such as \textit{gauge transformations}) change the Lagrangian, but if we add suitable interactions, we may result in canceling out the asymmetries of the Lagrangian making it invuriant even under local transformations.
+where we have to pay attention to consider a \textbf{global} \(\mathrm{SO}(2)\) transformation, thus rotating every point of the \textit{field space} \((\psi_1 - \psi_2)\) under the same transformation. \textbf{Local} transformations (such as \textit{gauge transformations}) change the Lagrangian, but if we add suitable interactions, we may result in canceling out the asymmetries of the Lagrangian making it invariant even under local transformations.
 
 Remaining in free theories, we aim to find the Noether current and consequently its charge. Let's consider a transformation \(R \in \mathrm{SO}(2)\), then \(R^T = R^{-1}\) and \(\det R = 1\):
 \[
@@ -107,7 +109,7 @@ Now we can compute the expression for the Noether current by recalling its defin
 \[
     \frac{\partial \mathcal{L}}{\partial(\partial_{\mu} \psi_1)} \delta \psi_1 + \frac{\partial \mathcal{L}}{\partial(\partial_{\mu} \psi_2)} \delta \psi_2 = K^{\mu} = 0,
 \]
-where we have set \(K^{\mu} = 0\) since the Lagrangian is exactely invariant under the transformation. Plugging in the variations of the fields we have just computed, we get:\footnote{Remember that \(\partial_\mu \vec{\psi}^T \partial^{\mu} \vec{\psi} = \partial_\mu \psi_1 \partial^{\mu} \psi_1 + \partial_\mu \psi_2 \partial^{\mu} \psi_2\), thus the derivative of the Lagrangian with respect to \(\partial_{\mu}\psi_1\) is just \(\partial^{\mu}\psi_1\) and similarly for \(\psi_2\), after a brief computation which starts lowering all the partial derivatives indices.}
+where we have set \(K^{\mu} = 0\) since the Lagrangian is exactely invariant under the transformation. Plugging in the variations of the fields we have just computed, we get:\footnote{Remember that \(\partial_\mu \vec{\psi}^T \partial^{\mu} \vec{\psi} = \partial_\mu \psi_1 \partial^{\mu} \psi_1 + \partial_\mu \psi_2 \partial^{\mu} \psi_2\), thus the derivative of the Lagrangian with respect to \(\partial_{\mu}\psi_1\) is just \(\partial^{\mu}\psi_1\) and similarly for \(\psi_2\), after a brief computation which starts lowering all the partial derivatives indices (notice how the \(1/2\) factor has been canceled out during the derivative).}
 \[
     J^{\mu} = (\partial^{\mu} \psi_1) (\theta \psi_2) + (\partial^{\mu} \psi_2)(-\theta \psi_1) = \theta \left[ (\partial^{\mu} \psi_1) \psi_2 - (\partial^{\mu} \psi_2) \psi_1 \right].
 \]
@@ -131,14 +133,15 @@ Now it is time to promote this quantity to an operator acting on the quantum fie
         \hat{\psi}_i & = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \frac{1}{\sqrt{2\omega_{\mathbf{p}}}} \left[ \hat{a}_{i,\,\mathbf{p}} e^{i \mathbf{p} \cdot \mathbf{x}} + \hat{a}^{\dagger}_{i,\,\mathbf{p}} e^{-i \mathbf{p} \cdot \mathbf{x}} \right].
     \end{aligned}
 \]
-computing a final expression for the charge operator, which has to be normal ordered:\footnote{We would require the index \(i\) on \(\omega_{\mathbf{p}}\) since in general the we are considering different energies associated to different fields, but for now this is not a problem.}
+computing a final expression for the charge operator, which has to be normal ordered:\footnote{We would require the index \(i\) on \(\omega_{\mathbf{p}}\) since in general the we are considering different energies associated to different fields, but for now this is not a problem (since \(m_1 = m_2 = m\)).}
 \[
     \begin{aligned}
-        \hat{\pi}_1 \hat{\psi}_2 & =  \frac{-i}{2}\int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \frac{\mathrm{d}^3 \mathbf{q}}{(2\pi)^3} \sqrt{\frac{\omega_{\mathbf{p}}}{\omega_{\mathbf{q}}}} \left[ e^{i (\mathbf{p} + \mathbf{q})\cdot \mathbf{x}} \left( \hat{a}_{1,\,\mathbf{p}} \hat{a}_{2,\,\mathbf{q}} \right) - e^{-i (\mathbf{p} + \mathbf{q})\cdot \mathbf{x}}\left( \hat{a}^{\dagger}_{1,\,\mathbf{p}} \hat{a}^{\dagger}_{2,\,\mathbf{q}}\right) \right. \\
-                                 & \left. + \left( \hat{a}_{1,\,\mathbf{p}} \hat{a}^{\dagger}_{2,\,\mathbf{q}} - \hat{a}^{\dagger}_{1,\,\mathbf{p}} \hat{a}_{2,\,\mathbf{q}}\right) \right] = \frac{-i}{2} \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \left[ \hat{a}_{1,\,\mathbf{p}} \hat{a}^{\dagger}_{2,\,\mathbf{p}} - \hat{a}^{\dagger}_{1,\,\mathbf{p}} \hat{a}_{2,\,\mathbf{p}} \right],                                                                    \\
+        \int \mathrm{d}^3 \mathbf{x} \, \hat{\pi}_1 \hat{\psi}_2 & =  \frac{-i}{2}\int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \frac{\mathrm{d}^3 \mathbf{q}}{(2\pi)^3} \sqrt{\frac{\omega_{\mathbf{p}}}{\omega_{\mathbf{q}}}} \left[ \delta^{(3)}(\mathbf{p} + \mathbf{q})\left( \hat{a}_{1,\,\mathbf{p}} \hat{a}_{2,\,\mathbf{q}} - \hat{a}^{\dagger}_{1,\,\mathbf{p}} \hat{a}^{\dagger}_{2,\,\mathbf{q}}\right) \right. \\
+                                                                 & \left. + \delta^{(3)}(\mathbf{p} - \mathbf{q})\left( \hat{a}_{1,\,\mathbf{p}} \hat{a}^{\dagger}_{2,\,\mathbf{q}} - \hat{a}^{\dagger}_{1,\,\mathbf{p}} \hat{a}_{2,\,\mathbf{q}}\right) \right]                                                                                                                                                            \\
+                                                                 & = \frac{-i}{2} \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \left[\hat{a}_{1,\,\mathbf{p}} \hat{a}_{2,\,-\mathbf{p}} - \hat{a}^{\dagger}_{1,\,\mathbf{p}} \hat{a}^{\dagger}_{2,\,-\mathbf{p}} + \hat{a}_{1,\,\mathbf{p}} \hat{a}^{\dagger}_{2,\,\mathbf{p}} - \hat{a}^{\dagger}_{1,\,\mathbf{p}} \hat{a}_{2,\,\mathbf{p}} \right],                      \\
     \end{aligned}
 \]
-where after an integration over \(\mathrm{d}^3 \mathbf{x}\) (in the charge expression) we found the delta function, which we can apply performing one of the momentum integrals, and we have used \(\omega_{\mathbf{p}} = \omega_{\mathbf{q}}\) since \(m_1 = m_2 = m\). Similarly we can compute the second term, which is identical if we swap the indices \(1 \leftrightarrow 2\) and subtracting it:\footnote{Note that \(\hat{a}_1\) and \(\hat{a}_2\) with or without daggers commute since they act on different fields.}
+where after an integration over \(\mathrm{d}^3 \mathbf{x}\) (in the charge expression) we found the delta function, which we can apply performing one of the momentum integrals, obtaining also \(\omega_{\mathbf{p}} = \omega_{\mathbf{q}} = \omega_{-\mathbf{p}}\) since \(m_1 = m_2 = m\). Similarly we can compute the second term, which is identical if we swap the indices \(1 \leftrightarrow 2\) and subtracting it:\footnote{Note that \(\hat{a}_1\) and \(\hat{a}_2\) with or without daggers commute since they act on different fields: the term \(\propto \delta^{(3)}(\mathbf{p}-\mathbf{q})\) doubles itself, while the term \(\propto \delta^{(3)}(\mathbf{p}+\mathbf{q})\) cancels out after making the change of variable \(\mathbf{p} \to -\mathbf{p}\) in the second integral.}
 \[
     \hat{Q} = -i \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \left[ \hat{a}^{\dagger}_{1,\,\mathbf{p}} \hat{a}_{2,\,\mathbf{p}} - \hat{a}^{\dagger}_{2,\,\mathbf{p}} \hat{a}_{1,\,\mathbf{p}} \right].
 \]
@@ -146,7 +149,7 @@ Note that there is an ambiguity: \(\hat{Q}\) is an hermitian operator (good, phy
 \[
     \ddt (c_1 \hat{Q} + c_2) = c_1 \ddt \hat{Q} = 0,
 \]
-so \(c_1\) controls \textit{units} in which \(Q\) is measured (not so crucial, like a renormalization factor, but influence the \(\hat{Q}\) eigenvalues); \(c_2\) instead is just a constant which can be removed by normal ordering (similar to what we did for the Hamiltonian and the vacuum energy).
+so \(c_1\) controls \textit{units} in which \(Q\) is measured (not so crucial, like a renormalization factor, but influence the \(\hat{Q}\) eigenvalues: we could set it to a generic \(q\) and use it as eigenvalue); \(c_2\) instead is just a constant which can be removed by normal ordering (similar to what we did for the Hamiltonian and the vacuum energy).
 
 \[
     \begin{aligned}
@@ -178,14 +181,14 @@ Let us now consider the state \(\ket{s}\) with charge \(q_s \longrightarrow \hat
 \]
 thus we recognize \(\hat{a}_{\pm,\,\mathbf{p}}^{\dagger}\) to be a \textit{ladder operator}\footnote{In the more general sense of an operator that let you go up and down in eigenstates referring to a particular eigenvalue.} for \(\hat{Q}\), since after its application onto \(\ket{s}\) eiqenvalue of \(\hat{Q}\), it went from the eigenspace of \(q_s\) to the eigenspace of \(q_s \pm 1\); they are ladder operators even for \(\hat{H}\) and \(\hat{P}\) (linear combinations of \(\hat{a}_{1,\,\mathbf{p}}^{\dagger}\) and \(\hat{a}_{2,\,\mathbf{p}}^{\dagger}\) are ladder operators for \(\hat{H}\) and \(\hat{P}\)).
 
-Our goal is now to find \textit{common eigenstates} of \(\hat{H}\) and \(\hat{P}\) and \(\hat{Q}\):
+Our goal is now to find \textit{common eigenstates} of \(\hat{H}\), \(\hat{P}\) and \(\hat{Q}\):
 \[
     \begin{aligned}
         \hat{Q} \ket{0} & = 0, \text{ from normal ordering,}                              \\
         \ket{s_n^{\pm}} & = \prod_{i=1}^n \hat{a}_{\pm,\,\mathbf{p}_i}^{\dagger} \ket{0},
     \end{aligned}
 \]
-so we have \(n\) particle states with positive (\(\ket{s_n^{+}}\)) or negative charge (\(\ket{s_n^{-}}\)) \(\pm nq\):\footnote{The computations for these secolar equations are tedious and not instructive.}
+so we have \(n\) particle states with positive (\(\ket{s_n^{+}}\)) or negative charge (\(\ket{s_n^{-}}\)), for a total charge of either \(\pm nq\):\footnote{The computations for these secolar equations are tedious and not instructive.}
 \[
     \begin{aligned}
         \hat{H} \ket{s_n^{\pm}} & = \left( \sum_{i=1}^n \omega_{\mathbf{p}_i} \right) \ket{s_n^{\pm}}, \\
@@ -208,7 +211,7 @@ Note that a real KG field can only describe a \(Q=0\) particle
 \[
     Q = \int \mathrm{d}^3 \mathbf{x} \, [\dot{\psi_1} \psi_2 - \dot{\psi_2} \psi_1] = 0, \text{ for } \psi_1 = \psi_2 = \psi,
 \]
-if \(\psi_1=\psi_2=\psi\), we need at least 2 degrees of freedom if we wnat to have a more complete description of a picture with particles and antiparticles with nonzero electric charge: \textbf{complex KG field}.
+if \(\psi_1=\psi_2=\psi\), we need at least 2 degrees of freedom if we want to get a more complete description of a picture with particles and antiparticles with nonzero electric charge: \textbf{complex KG field}.
 
 \subsection{Complex Klein Gordon Field}
 
@@ -220,38 +223,38 @@ with
 \[
     \psi(x) = \frac{1}{\sqrt{2}}(\phi_1(x)+i \phi_2(x)), \quad \psi^*(x) = \frac{1}{\sqrt{2}}(\phi_1(x)-i \phi_2(x));
 \]
-this is the \textbf{complex Klein Gordon field}, which can be seen as two real KG fields \(\phi_1\) and \(\phi_2\) combined into a single complex field. Obviously the equations of motion derived from this Lagrangian are the same KG equations for both \(\phi_1\) and \(\phi_2\), and one could prove that substituting back \(\phi_1\) and \(\phi_2\) into the Lagrangian we would recover the previous expression. \TODO{add q term in front of the charge operator by imposing the exponential of the U(1) transformation to be i q theta.}
+this is the \textbf{complex Klein Gordon field}, which can be seen as two real KG fields \(\phi_1\) and \(\phi_2\) combined into a single complex field. Obviously the equations of motion derived from this Lagrangian are the same KG equations for both \(\phi_1\) and \(\phi_2\), and one could prove that substituting back \(\phi_1\) and \(\phi_2\) into the Lagrangian we would recover the previous expression.
 
-In this form, it is easy to recognize that Lagrangian is invariant under a global \(\mathrm{U}(1)\) transformation:
+In this form, it is easy to recognize that Lagrangian is invariant under a global \(\mathrm{U}(1)\) transformation:\footnote{Note that the factor \(q\) in the exponential transformation is inserted only to get the correct charge normalization in the end.}
 \[
-    \psi(x) \xrightarrow[\mathrm{U}(1)]{\text{global}} \psi^{\prime}(x) = e^{i \theta} \psi(x),
+    \psi(x) \xrightarrow[\mathrm{U}(1)]{\text{global}} \psi^{\prime}(x) = e^{i q\theta} \psi(x),
 \]
-where it's important that \(\theta \neq \theta(x)\) so that the Lagrangian remains invariant. In fact, under this transformation we notice how \(\partial^{\mu} \theta= 0\) is needed to recover the invariance:
+where it's important that \(\theta \neq \theta(x)\) so that the Lagrangian remains invariant (remember that \(\mathcal{L}^{\prime} = \mathcal{L} \implies K^{\mu} = 0\) when computing the Noether current). In fact, under this transformation we notice how \(\partial^{\mu} \theta= 0\) is needed to recover the invariance:
 \[
-    \partial_\mu \psi(x) \xrightarrow[\mathrm{U}(1)]{\text{global}} \partial_\mu \psi^{\prime}(x) = e^{i \theta} \partial_\mu \psi(x) + i (\partial_\mu \theta) \psi(x) = e^{i \theta} \partial_\mu \psi(x),
+    \partial_\mu \psi(x) \xrightarrow[\mathrm{U}(1)]{\text{global}} \partial_\mu \psi^{\prime}(x) = e^{i q \theta} \partial_\mu \psi(x) + i q (\partial_\mu \theta) \psi(x) = e^{i q \theta} \partial_\mu \psi(x),
 \]
 hence \(\mathcal{L} \xrightarrow{\mathrm{U}(1)} \mathcal{L} ^{\prime} =\mathcal{L}\) and we can now consider the infinitesimal transformation:
 \[
-    \psi(x) \to \psi^{\prime}(x) = (1 + i \theta) \psi(x) \implies \delta \psi(x) = i \theta \psi(x);
+    \psi(x) \to \psi^{\prime}(x) = (1 + i q \theta) \psi(x) \implies \delta \psi(x) = i q \theta \psi(x);
 \]
 similarly for \(\psi^*(x)\); thus we can compute the infinitesimal variations of the fields:
 \[
     \begin{dcases}
-        \delta \psi(x)   = i \theta \psi(x); \\
-        \delta \psi^*(x) = -i \theta \psi^*(x).
+        \delta \psi(x)   = i q \theta \psi(x); \\
+        \delta \psi^*(x) = -i q \theta \psi^*(x).
     \end{dcases}
 \]
 Now we can compute the Noether current associated to this symmetry:
 \[
     \begin{aligned}
-        J^{\mu} & = \frac{\partial \mathcal{L}}{\partial (\partial_{\mu} \psi)} \delta \psi + \frac{\partial \mathcal{L}}{\partial (\partial_{\mu} \psi^*)} \delta \psi^* = i \theta [(\partial^{\mu} \psi^*) \psi - (\partial^{\mu} \psi) \psi^*],
+        J^{\mu} & = \frac{\partial \mathcal{L}}{\partial (\partial_{\mu} \psi)} \delta \psi + \frac{\partial \mathcal{L}}{\partial (\partial_{\mu} \psi^*)} \delta \psi^* = i q \theta [(\partial^{\mu} \psi^*) \psi - (\partial^{\mu} \psi) \psi^*],
     \end{aligned}
 \]
 where, as we expected, the current is very similar to the one we found for the two real KG fields, just rewritten in terms of \(\psi\) and \(\psi^*\), and if we were to consider a real KG field (\(\psi=\psi^*\)) then we would have obtained zero current.
 
 Finally, for the total charge (which is conserved) we can compute:
 \[
-    Q = \int \mathrm{d}^3 \mathbf{x} \, J^0 = i \int \mathrm{d}^3 \mathbf{x} \, [(\partial^{0} \psi^*) \psi - (\partial^{0} \psi) \psi^*] = i \int \mathrm{d}^3 \mathbf{x} \, [\pi^* \psi - \pi \psi^*].
+    Q = \int \mathrm{d}^3 \mathbf{x} \, J^0 = i q \int \mathrm{d}^3 \mathbf{x} \, [(\partial^{0} \psi^*) \psi - (\partial^{0} \psi) \psi^*] = i q \int \mathrm{d}^3 \mathbf{x} \, [\pi^* \psi - \pi \psi^*].
 \]
 As we did before, we can promote this quantity to an operator acting on the quantum fields, by substituting the classical fields with the corresponding expressions in terms of ladder operators:
 \[
@@ -262,15 +265,15 @@ As we did before, we can promote this quantity to an operator acting on the quan
 \]
 and since the new \(\hat{a}_{\pm, \mathbf{p}}\) are ladder operators, they should satisfy the usual commutation relations among themselves, thus we can compute the final expression for the charge operator in the same way as before, obtaining (after normal ordering):
 \[
-    \hat{Q} = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \left[ \hat{a}^{\dagger}_{+,\,\mathbf{p}} \hat{a}_{+,\,\mathbf{p}} - \hat{a}^{\dagger}_{-,\,\mathbf{p}} \hat{a}_{-,\,\mathbf{p}} \right].
+    \hat{Q} = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} q \left[ \hat{a}^{\dagger}_{+,\,\mathbf{p}} \hat{a}_{+,\,\mathbf{p}} - \hat{a}^{\dagger}_{-,\,\mathbf{p}} \hat{a}_{-,\,\mathbf{p}} \right].
 \]
 This expression is very intuitive: the charge operator counts the number of particles created by \(\hat{a}^{\dagger}_{+,\,\mathbf{p}}\) (particles with positive charge) minus the number of particles created by \(\hat{a}^{\dagger}_{-,\,\mathbf{p}}\) (particles with negative charge, i.e. antiparticles):
 \[
-    \hat{Q} = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \left[ \hat{N}_{+,\,\mathbf{p}} - \hat{N}_{-,\,\mathbf{p}} \right] = \hat{N}_{+} - \hat{N}_{-}.
+    \hat{Q} = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} q \left[ \hat{N}_{+,\,\mathbf{p}} - \hat{N}_{-,\,\mathbf{p}} \right] = q \left( \hat{N}_{+} - \hat{N}_{-} \right).
 \]
 Since we are considering a free theory, \(\hat{Q}\), \(\hat{N}_+\), and \(\hat{N}_-\) are separately conserved quantities, meaning they commute with the Hamiltonian and do not change with time. In interacting theories, however, only the total charge \(\hat{Q}\) remains conserved, while the individual particle numbers \(\hat{N}_+\) and \(\hat{N}_-\) may vary due to particle-antiparticle creation and annihilation processes: interactions can create or destroy particle-antiparticle pairs, but the net charge remains constant.
 
-\section{Heisenberg Picture}
+\section{Heisenberg Picture and Propagators}
 
 Is our quantum theory Lorentz invariant? Does it preserve causality?
 These questions arise because when we quantized the KG field, we imposed commutation relations at equal times:
@@ -315,10 +318,10 @@ When two events are separated by a spacelike interval (outside each other's ligh
 
 \(\hat{\psi}(t, \mathbf{x})\) and \(\hat{\psi}(t, \mathbf{y})\) are certainly spacelike separated if \(\mathbf{x} \neq \mathbf{y}\) at equal times, since they are describing events that occur at different spatial locations simultaneously.
 
-We want now to see how the field operators evolve in time in the Heisenberg picture:\footnote{Note that in the commutator we are using Heisenberg oprators, even if we do not know their expression yet; we can since the relations we will use are all well defined and applied at equal times, there will be no problems. The expression of the Hamiltonian comes from the Schrödinger picture Legendre transform in equation \eqref{eq:KG_Hamiltonian_operator}, and then promoted to the Heisenberg picture.}\QUESTION{Why partial derivative wrt time? Shouldn't it be total derivative? (I wrote total, prof notes say partial.)}
+\paragraph{KG in Heisemberg picture.} We want now to see how the field operators evolve in time in the Heisenberg picture:\footnote{Note that in the commutator we are using Heisenberg oprators, even if we do not know their expression yet; we can since the relations we will use are all well defined and applied at equal times, there will be no problems. The expression of the Hamiltonian comes from the Schrödinger picture Legendre transform of equation \eqref{eq:hamiltonian_density_legendre} (after quantization), and then promoted to the Heisenberg picture.}\QUESTION{Why partial derivative wrt time? Shouldn't it be total derivative? (I wrote total, prof notes say partial.)}
 \[
     \begin{aligned}
-        \ddt \hat{\psi} (\mathbf{x}, t) & = \frac{i}{2} \left[\hat{H}(t),\,\hat{\psi}(\mathbf{x}, t) \right] = i \left[\int \mathrm{d}^3 \mathbf{y} \, \left( \hat{\pi}^2(\mathbf{y},t) + \vert \nabla_{\mathbf{y}}  \hat{\psi}(\mathbf{y},t) \vert^2 + m^2 \hat{\psi}^2(\mathbf{y},t) \right),\,\hat{\psi}(\mathbf{x}, t)\right]                               \\
+        \ddt \hat{\psi} (\mathbf{x}, t) & = i \left[\hat{H}(t),\,\hat{\psi}(\mathbf{x}, t) \right] = \frac{i}{2} \left[\int \mathrm{d}^3 \mathbf{y} \, \left( \hat{\pi}^2(\mathbf{y},t) + \vert \nabla_{\mathbf{y}}  \hat{\psi}(\mathbf{y},t) \vert^2 + m^2 \hat{\psi}^2(\mathbf{y},t) \right),\,\hat{\psi}(\mathbf{x}, t)\right]                               \\
                                         & = \frac{i}{2} \int \mathrm{d}^3 \mathbf{y} \, \left\{ \left[ \hat{\pi}^2(\mathbf{y},t),\,\hat{\psi}(\mathbf{x}, t) \right] + \left[ \vert \nabla_{\mathbf{y}} \hat{\psi}(\mathbf{y},t) \vert^2,\,\hat{\psi}(\mathbf{x},t)\right] + m^2 \left[ \hat{\psi}^2(\mathbf{y},t),\,\hat{\psi}(\mathbf{x}, t) \right] \right\} \\
                                         & \qquad \left[ \hat{\pi}^2(\mathbf{y},t),\,\hat{\psi}(\mathbf{x}, t) \right] = 2\hat{\pi}(\mathbf{y},t) [\hat{\pi}(\mathbf{y},t),\,\hat{\psi}(\mathbf{x}, t)] = -2i \delta^{(3)}(\mathbf{x}-\mathbf{y}) \hat{\pi}(\mathbf{y},t),                                                                                       \\
                                         & \qquad \left[ \vert \nabla_{\mathbf{y}} \hat{\psi}(\mathbf{y},t) \vert^2,\,\hat{\psi}(\mathbf{x},t)\right] = 2 \nabla_{\mathbf{y}}\hat{\psi}(\mathbf{y},t) \nabla_{\mathbf{y}}\left[\hat{\psi}(\mathbf{y},t) ,\,\hat{\psi}(\mathbf{x},t)\right] = 0,                                                                  \\
@@ -329,13 +332,13 @@ We want now to see how the field operators evolve in time in the Heisenberg pict
 where we have used the commutator of a product expression \([AB,\,C] = A[B,\,C]+[A,\,C]B\) and we were able to take the spatial derivative out of the commutator since it was cating on functions of \(\mathbf{y}\) and not of \(\mathbf{x}\). We found that \(\ddt \hat{\psi} (\mathbf{x}, t) = \hat{\pi}(\mathbf{x}, t)\) as expected, and similarly we can compute the time derivative of \(\hat{\pi}(\mathbf{x}, t)\):
 \[
     \begin{aligned}
-        \ddt \hat{\pi} (\mathbf{x}, t) & = \frac{i}{2} [\hat{H}(t),\,\hat{\pi}(\mathbf{x}, t)] = i \left[\int \mathrm{d}^3 \mathbf{y} \, \left( \hat{\pi}^2(\mathbf{y},t) + \vert \nabla_{\mathbf{y}}  \hat{\psi}(\mathbf{y},t) \vert^2 + m^2 \hat{\psi}^2(\mathbf{y},t) \right),\,\hat{\pi}(\mathbf{x}, t)\right]                                                                               \\
+        \ddt \hat{\pi} (\mathbf{x}, t) & = i [\hat{H}(t),\,\hat{\pi}(\mathbf{x}, t)] = \frac{i}{2} \left[\int \mathrm{d}^3 \mathbf{y} \, \left( \hat{\pi}^2(\mathbf{y},t) + \vert \nabla_{\mathbf{y}}  \hat{\psi}(\mathbf{y},t) \vert^2 + m^2 \hat{\psi}^2(\mathbf{y},t) \right),\,\hat{\pi}(\mathbf{x}, t)\right]                                                                               \\
                                        & = \frac{i}{2} \int \mathrm{d}^3 \mathbf{y} \, \left\{ \left[ \hat{\pi}^2(\mathbf{y},t),\,\hat{\pi}(\mathbf{x}, t) \right] + \left[ \vert \nabla_{\mathbf{y}} \hat{\psi}(\mathbf{y},t) \vert^2,\,\hat{\pi}(\mathbf{x},t)\right] + m^2 \left[ \hat{\psi}^2(\mathbf{y},t),\,\hat{\pi}(\mathbf{x}, t) \right] \right\}                                      \\
                                        & \qquad \left[ \hat{\pi}^2(\mathbf{y},t),\,\hat{\pi}(\mathbf{x}, t) \right] = 2\hat{\pi}(\mathbf{y},t)\left[ \hat{\pi}(\mathbf{y},t),\,\hat{\pi}(\mathbf{x}, t) \right] = 0,                                                                                                                                                                             \\
                                        & \qquad \left[ \vert \nabla_{\mathbf{y}} \hat{\psi}(\mathbf{y},t) \vert^2,\,\hat{\pi}(\mathbf{x},t)\right] = 2 \nabla_{\mathbf{y}}\hat{\psi}(\mathbf{y},t) \nabla_{\mathbf{y}}\left[\hat{\psi}(\mathbf{y},t) ,\,\hat{\pi}(\mathbf{x},t)\right] = 2i \nabla_{\mathbf{y}}\hat{\psi}(\mathbf{y},t) \nabla_{\mathbf{y}} \delta^{(3)}(\mathbf{x}-\mathbf{y}), \\
                                        & \qquad \left[ \hat{\psi}^2(\mathbf{y},t),\,\hat{\pi}(\mathbf{x}, t) \right] = 2 \hat{\psi}(\mathbf{y},t)\left[ \hat{\psi}(\mathbf{y},t),\,\hat{\pi}(\mathbf{x}, t) \right] = 2i\hat{\psi}(\mathbf{y},t)\delta^{(3)}(\mathbf{x}-\mathbf{y}),                                                                                                             \\
                                        & = \frac{i}{2} \int \mathrm{d}^3 \mathbf{y} \, \left\{ 2i \nabla_{\mathbf{y}}\hat{\psi}(\mathbf{y},t) \nabla_{\mathbf{y}} \delta^{(3)}(\mathbf{x}-\mathbf{y}) + 2i m^2 \hat{\psi}(\mathbf{y},t)\delta^{(3)}(\mathbf{x}-\mathbf{y}) \right\}                                                                                                              \\
-                                       & = - \int \mathrm{d}^3 \mathbf{y} \, \left\{ - \nabla_{\mathbf{y}}^2 \hat{\psi}(\mathbf{y},t) + m^2 \hat{\psi}(\mathbf{y},t) \right\} \delta^{(3)}(\mathbf{x}-\mathbf{y}) = \nabla_{\mathbf{y}}^2 \hat{\psi}(\mathbf{x},t) - m^2 \hat{\psi}(\mathbf{x},t),                                                                                               \\
+                                       & = - \int \mathrm{d}^3 \mathbf{y} \, \left\{ - \nabla_{\mathbf{y}}^2 \hat{\psi}(\mathbf{y},t) + m^2 \hat{\psi}(\mathbf{y},t) \right\} \delta^{(3)}(\mathbf{x}-\mathbf{y}) = \nabla_{\mathbf{x}}^2 \hat{\psi}(\mathbf{x},t) - m^2 \hat{\psi}(\mathbf{x},t),                                                                                               \\
     \end{aligned}
 \]
 where we find \(\ddt \hat{\pi} (\mathbf{x}, t) = (\nabla^2 - m^2) \hat{\psi}(\mathbf{x}, t)\). Combining these two results, we find that the field operator \(\hat{\psi}(\mathbf{x}, t)\) satisfies the Klein-Gordon equation in the Heisenberg picture:
@@ -344,7 +347,7 @@ where we find \(\ddt \hat{\pi} (\mathbf{x}, t) = (\nabla^2 - m^2) \hat{\psi}(\ma
 \]
 Thus the field operators in the Heisenberg picture evolve according to the same equations of motion as the classical fields, ensuring consistency between the quantum and classical descriptions.
 
-Let us now write the field operator in the Heisenberg picture explicitly, by Fourier expanding it in terms of creation and annihilation operators: starting from the Schrödinger picture expression
+\paragraph{Ladder operators in Heisemberg picture.} Let us now write the field operator in the Heisenberg picture explicitly, by Fourier expanding it in terms of creation and annihilation operators: starting from the Schrödinger picture expression
 \[
     \hat{\psi} (\mathbf{x}) = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \frac{1}{\sqrt{2\omega_{\mathbf{p}}}} \left[ \hat{a}_{\mathbf{p}} e^{i \mathbf{p} \cdot \mathbf{x}} + \hat{a}^{\dagger}_{\mathbf{p}} e^{-i \mathbf{p} \cdot \mathbf{x}} \right],
 \]
@@ -390,7 +393,7 @@ Thus, substituting these expressions, the field operator in the Heisenberg pictu
     \hat{\psi} (\mathbf{x}, t) = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \frac{1}{\sqrt{2\omega_{\mathbf{p}}}} \left[ \hat{a}_{\mathbf{p}} e^{-i \omega_{\mathbf{p}} t} e^{i \mathbf{p} \cdot \mathbf{x}} + \hat{a}^{\dagger}_{\mathbf{p}} e^{i \omega_{\mathbf{p}} t} e^{-i \mathbf{p} \cdot \mathbf{x}} \right].
 \]
 
-But is this lorentz invariant? Yes, and we can exploit this by showing the contraction of the lorentz scalar \(p_{\mu}x^{\mu}\):
+But is this lorentz invariant? Yes, since we can notice how the measure can be treated as done in section \ref{sec:KG_lorentz_invariance} without complications and the contraction of the lorentz scalar \(p_{\mu}x^{\mu}\) can be exploited to make the invariance explicit:
 \[
     p_\mu x^{\mu} = p_0 x^0 - \mathbf{p} \cdot \mathbf{x} = \omega_{\mathbf{p}} t - \mathbf{p} \cdot \mathbf{x},
 \]
@@ -408,8 +411,7 @@ This expression is manifestly Lorentz invariant, as it depends only on the scala
 
 We are getting closer to a manifestly Lorentz invariant KG theory, but we still have to check if causality is preserved. The Heisemberg picture equal-time commutation relations ensure that operators at spacelike-separated points commute, preserving causality. However, we need to verify this explicitly for our field operators in generic time and space coordinates: we have to understand how observables at different spacetime points relate to each other with arbitrary time commutation relations.
 
-
-
+We already know that at equal times the commutator is zero for different points:
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.5\textwidth}
@@ -444,11 +446,10 @@ We are getting closer to a manifestly Lorentz invariant KG theory, but we still 
     \end{minipage}
     \hfill
     \begin{minipage}{0.45\textwidth}
-        We already know that at equal times the commutator is zero for different spatial points:
         \[
             \left[\hat{O}_1(\mathbf{x}, t),\, \hat{O}_2(\mathbf{z}, t)\right] = 0, \quad \mathbf{x} \neq \mathbf{z},
         \]
-        since it must be a spacelike separation \((x_\mu - z_\mu)(x^{\mu}-z^{\mu}) = 0\): a measurement at \(\mathbf{x}\) cannot influence a measurement at \(\mathbf{z}\) if they are not causally connected.
+        since it is a spacelike separation \((x_\mu - z_\mu)(x^{\mu}-z^{\mu}) < 0\): a measurement at \(\mathbf{x}\) cannot influence a measurement at \(\mathbf{z}\) if they are not causally connected.
 
         If we recall the Heisenberg uncertainty principle, we know that two observables \(\hat{O}_1\) and \(\hat{O}_2\) can be measured simultaneously with arbitrary precision if they commute:
         \[
@@ -484,7 +485,7 @@ thus integrating over \(\mathbf{q}\) we get the final expression for the KG prop
 \end{equation}
 Now we can check the three considerations:
 \begin{enumerate}
-    \item \textbf{Lorentz invariance}: the exponentials \(e^{\pm i p_{\mu} (x^{\mu}-y^{\mu})}\) are manifestly Lorentz invariant since they depend on the contraction of two four-vectors; the measure \(\mathrm{d}^3 \mathbf{p}/(2\pi)^3 2\omega_{\mathbf{p}}\) is Lorentz invariant, as we have previously shown at the very end of section \ref{sec:KG_particle_states}; thus the whole expression is Lorentz invariant. This means that if we compute \(\Delta(x-y)\) in a reference frame where \(x\) and \(y\) are simultaneous, the result will hold for any other spacetime events which is related to \(y\) by a Lorentz transformation. But since we cannot relate events inside and outside the light cone with a Lorentz transformation, we can chack that the commutator vanishes for only one value of \(y\) outside of \(x\) light-cone, then it will be true for events throughout the whole region.
+    \item \textbf{Lorentz invariance}: the exponentials \(e^{\pm i p_{\mu} (x^{\mu}-y^{\mu})}\) are manifestly Lorentz invariant since they depend on the contraction of two four-vectors; the measure \(\mathrm{d}^3 \mathbf{p}/(2\pi)^3 2\omega_{\mathbf{p}}\) is Lorentz invariant, as we have previously shown in section \ref{sec:KG_lorentz_invariance}; thus the whole expression is Lorentz invariant. This means that if we compute \(\Delta(x-y)\) in a reference frame where \(x\) and \(y\) are simultaneous, the result will hold for any other spacetime events which is related to \(y\) by a Lorentz transformation. But since we cannot relate events inside and outside the light cone with a Lorentz transformation, we can chack that the commutator vanishes for only one value of \(y\) outside of \(x\) light-cone, then it will be true for events throughout the whole region.
     \item \textbf{Timelike separation}: \(\Delta(x-y) \neq 0\). Let us consider the case where \(x\) and \(y\) are separated only in time, i.e. \(\mathbf{x} = \mathbf{y}\) and \(t_x \neq t_y\), thus \((x-y)^2 > 0\). We want to prove, in the easiest case where \(x = (t,\, \mathbf{0})\) and \(y=(0, \mathbf{0})\), that the commutator do not vanish:
           \[
               \Delta(x-y) = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \frac{1}{2\omega_{\mathbf{p}}} \left( e^{-i \omega_{\mathbf{p}} t} - e^{i \omega_{\mathbf{p}} t} \right).
@@ -501,7 +502,7 @@ Now we can check the three considerations:
           \[
               \Delta(x-y) = \frac{1}{4\pi^2} \int_m^{\infty} \mathrm{d}E_{\mathbf{p}} \sqrt{E^2_{\mathbf{p}} - m^2} \left( e^{-i E_{\mathbf{p}} t} - e^{i E_{\mathbf{p}} t} \right).
           \]
-          The solution of this integral can be computed through \textit{Bessel functions}, and the final result is:
+          The solution of this integral can be computed through \textit{Bessel functions}, such that the two contributions can be computed separately:
           \[
               \Delta(x-y) = \frac{1}{4\pi^2} \int \mathrm{d}E_{\mathbf{p}} \sqrt{E^2_{\mathbf{p}} - m^2} e^{-i E_{\mathbf{p}} t} = \frac{m}{8\pi t} \left(Y_1(mt) + i J_1(mt)\right)
           \]
@@ -533,7 +534,7 @@ Now we can check the three considerations:
 
 We have proven that KG theory mathematically preserve causality (remember that in RQMPI we looked at how there was a non zero probability of finding a particle propagating at \(v>c\)), let's check this instance phisically: the probability of finding a particle at \(v>c\) should be null.
 
-\section{Klein Gordon Correlators}
+\subsection{Klein Gordon Correlators}
 
 Let us consider  particle at a spectime point \(y = (t,\,\mathbf{y})\); how do we describe it in QFT? It is an exhited state of the vacuum \(\ket{0}\), i.e. there is some kind of exhitation localized in our quantum field at the point \(y\), like a localized and quantized wave; we recreate it with a creation operator, like \(\hat a_{\mathbf{p}} \ket{0}\), but if we create a particle with definite momentum we could not possibly now its position, so we imagine a linear combination of all possible creation operators with all possible momenta: we apply the \textbf{field operator} on the vacuum
 \[
@@ -609,9 +610,9 @@ with \(E_{\mathbf{p}} = \sqrt{\vert \mathbf{p} \vert^2 + m^2}\). Notice how the 
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.5\textwidth}
-        We have then to compute the integrals on the imaginary axis, with \(\vert \mathbf{p} \vert = i y\) (and so \(\vert \mathbf{p} \vert \mathrm{d} \vert \mathbf{p} \vert = -y \mathrm{d} y\)) such that
+        We have then to compute the integrals on the imaginary axis, with \(\vert \mathbf{p} \vert = i y\) (such that \(\vert \mathbf{p} \vert \mathrm{d} \vert \mathbf{p} \vert = -y \mathrm{d} y\) and \(\sqrt{-y^2 + m^2} = \sqrt{-1}\sqrt{y^2 - m^2} = i \sqrt{y^2 - m^2}\)), since all the other integrals on the path are null, such that
         \[
-            D(x-y) = -\frac{1}{2 (2\pi)^2 r} \int_{m}^{\infty} \mathrm{d}y \, \frac{y e^{-yr}}{\sqrt{y^{2}-m^2}}.
+            D(x-y) = \frac{1}{2 (2\pi)^2 r} \int_{m}^{\infty} \mathrm{d}y \, \frac{y e^{-yr}}{\sqrt{y^{2}-m^2}}.
         \]
         Now this integral is all real without problems, but is it zero?
     \end{minipage}
@@ -654,7 +655,7 @@ with \(E_{\mathbf{p}} = \sqrt{\vert \mathbf{p} \vert^2 + m^2}\). Notice how the 
     \end{minipage}
 \end{figure}
 
-No, the exact solution is given in terms of \textit{modified Bessel functions}, and in the limit for \(r \sim \infty\) then \(D(x-y) \sim e^{-mr} \neq 0\); but we can arrive at the same solution with approximated considerations: all the terms inside the integral are positive, so the integral cannot be zero; furthermore, the exponential term \(e^{-yr}\) suppresses the contributions for large \(y\), so the main contribution comes from \(y \sim m\), but they are nonetheless different from zero, so the whole integral is different from zero.
+No, the exact solution is given in terms of \textit{modified Bessel functions}, and in the limit for \(r \sim \infty\) then \(D(x-y) \sim e^{-mr} \neq 0\); but we can arrive at the same solution with approximated considerations: all the terms inside the integral are positive, so the integral cannot be zero; furthermore, the exponential term \(e^{-yr}\) suppresses the contributions for large \(y\), so the main contribution comes from \(y \sim m\), but they are nonetheless different from zero, so the whole integral is non zero.
 
 This seems similar to what we obtained in RQM, but it is not: if we indeed consider the previous result
 \[

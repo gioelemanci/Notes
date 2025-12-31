@@ -145,7 +145,7 @@ There are several popular choices for gauge fixing in electromagnetism, each wit
           and the vector potential \(\mathbf{A}\) describes the two transverse polarization states of the photon: since we have imposed \(\nabla \cdot \mathbf{A} = 0\), only the components of \(\mathbf{A}\) perpendicular to the direction of propagation remain as physical degrees of freedom.
 \end{enumerate}
 
-\section{Gauge Fixing of the Electromagnetic Field}
+\section{Gauge Fixing of the Electromagnetic Field}\label{sec:gauge_fixing_em_field}
 
 Before starting the quantization procedure, we need to find the conjugate momenta associated with the fields \(A^{\mu}\): we will use it to find the expression for the Hamiltonian (via Legendre transform) and impose the canonical commutation relations.
 
@@ -254,7 +254,7 @@ We can then express the operators \(\hat{\xi}_{\mu}(\mathbf{p})\) and \(\hat{\xi
 \[
     \hat{\xi}_{\mu}(\mathbf{p}) = \sum_{\lambda=0}^{3} \epsilon_{\mu}^{(\lambda)}(\mathbf{p}) a^{(\lambda)}_{\mathbf{p}}, \quad \hat{\xi}_{\mu}^{\dagger}(\mathbf{p}) = \sum_{\lambda=0}^{3} \epsilon_{\mu}^{(\lambda)}(\mathbf{p}) a^{(\lambda)\,\dagger}_{\mathbf{p}}.
 \]
-We can now write the final expression for the quantized electromagnetic field and its conjugate momenta:\footnote{In the expression for the conjugate momenta, we have a term \((+i)\) changing sign with respect to the scalar field case, due to the different definition of \(\pi^{\mu}\) in terms of the fields \(A^{\mu}\): for KG we had \(\pi = \partial_0 \phi\), while here we have \(\pi^{\mu} = - \dot{A}^{\mu} + \dots\), so that in the end this sign changes.}
+We can now write the final expression for the quantized electromagnetic field and its conjugate momenta:\footnote{In the expression for the conjugate momenta, we have a term \((+i)\) changing sign with respect to the scalar field case, due to the different definition of \(\pi^{\mu}\) in terms of the fields \(A^{\mu}\): after using equation \eqref{eq:conjugate_momentum}, for KG we had \(\pi = \partial_0 \phi\), while here we have \(\pi^{\mu} = - \dot{A}^{\mu} + \dots\), so that in the end this sign changes.}
 \begin{equation}
     \begin{dcases}
         \hat{A}_\mu(\mathbf{x})   & = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \frac{1}{\sqrt{2 E_{\mathbf{p}}}} \sum_{\lambda=0}^{3} \epsilon_{\mu}^{(\lambda)}(\mathbf{p}) \left( a^{(\lambda)}_{\mathbf{p}} e^{i \mathbf{p} \cdot \mathbf{x}} + a^{(\lambda)\,\dagger}_{\mathbf{p}} e^{-i \mathbf{p} \cdot \mathbf{x}} \right),   \\
@@ -589,12 +589,15 @@ leading to the hamiltonian:
 \]
 where we used \(\pi^{\mu}\dot{A}_\mu = \pi_{\mu}\dot{A}^\mu = - \pi_{\mu}\pi^{\mu}\). Let us compute terms separately: starting from the spatial derivative of the fields and substituting the field expansion \eqref{eq:field_expansion_ladder_em}
 \[
-    \partial_i \hat{A}_{\mu}(\mathbf{x}) = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \frac{-i \mathbf{p}}{\sqrt{2 \vert \mathbf{p} \vert}} \sum_{\lambda=0}^{3} \epsilon_{\mu}^{(\lambda)}(\mathbf{p}) \left( \hat{a}^{(\lambda)}_{\mathbf{p}} e^{i p^j x^j} - \hat{a}^{(\lambda)\,\dagger}_{\mathbf{p}} e^{-i p^j x^j} \right),
+    \begin{aligned}
+        \partial_i \hat{A}_{\mu}(\mathbf{x}) & = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \frac{-i p_i}{\sqrt{2 \vert \mathbf{p} \vert}} \sum_{\lambda=0}^{3} \epsilon_{\mu}^{(\lambda)}(\mathbf{p}) \left( \hat{a}^{(\lambda)}_{\mathbf{p}} e^{i p^j x^j} - \hat{a}^{(\lambda)\,\dagger}_{\mathbf{p}} e^{-i p^j x^j} \right),                                    \\
+        \partial^i \hat{A}^{\mu}(\mathbf{x}) & = \int \frac{\mathrm{d}^3 \mathbf{q}}{(2\pi)^3} \frac{-i q^i}{\sqrt{2 \vert \mathbf{q} \vert}} \sum_{\lambda^{\prime}=0}^{3} \epsilon^{\mu\,(\lambda^{\prime})}(\mathbf{q}) \left( \hat{a}^{(\lambda^{\prime})}_{\mathbf{q}} e^{i q^j x^j} - \hat{a}^{(\lambda^{\prime})\,\dagger}_{\mathbf{q}} e^{-i q^j x^j} \right), \\
+    \end{aligned}
 \]
-since \(\partial_i e^{i p^j x^j} = \frac{\partial}{\partial x^i} e^{i p^j x^j} = i p^i e^{i p^j x^j} = -i p_i e^{i p^j x^j}\).\footnote{When computing the contraction \(\partial_i \hat{A}_{\mu}\partial^i \hat{A}^{\mu}\), we have to pay attention to the other derivative, since \(\partial^i e^{i p^j x^j} = \frac{\partial}{\partial x_i} e^{i p^j x^j} = i p^i \eta_{ij} e^{i p^j x^j} = i p_i e^{i p^j x^j}\); thus in the product we have a minus sign.} Thus, after integrating in \(\mathrm{d}^3 \mathbf{x}\) and \(\mathrm{d}^3 \mathbf{q}\) in order to resolve the delta functions, we find
+since \(\partial_i e^{i p^j x^j} = \frac{\partial}{\partial x^i} e^{i p^j x^j} = i p^i e^{i p^j x^j} = -i p_i e^{i p^j x^j}\).\footnote{When computing the contraction \(\partial_i \hat{A}_{\mu}\partial^i \hat{A}^{\mu}\), we have to pay attention to the other derivative, since \(\partial^i e^{i p^j x^j} = \frac{\partial}{\partial x_i} e^{i p^j x^j} = i p^i \eta_{ij} e^{i p^j x^j} = i p_i e^{i p^j x^j} = -i p^i\); then when contracting \((-i p_i) (-i p^i)\) we need to change sign since \(\vert \mathbf{p} \vert^2 = p^i p^i = - p_i p^i\).} Thus, after integrating in \(\mathrm{d}^3 \mathbf{x}\) (which generates \(\delta(\mathbf{p}+ \mathbf{q})\) and \(\delta(\mathbf{p}-\mathbf{q})\)) and \(\mathrm{d}^3 \mathbf{q}\) (which is responsible for the minus signs in the first two terms of the next equation) in order to resolve the delta functions, we find
 \[
     \begin{aligned}
-        \frac{1}{2} \int \mathrm{d}^3 \mathbf{x} \, \partial_i A_{\mu} \partial^i A^{\mu} & = \frac{1}{4} \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \vert \mathbf{p} \vert \sum_{\lambda \lambda^{\prime}} \eta_{\lambda \lambda^{\prime}} \left[ \hat{a}^{(\lambda)}_{\mathbf{p}} \hat{a}^{(\lambda^{\prime})}_{-\mathbf{p}} + \hat{a}^{(\lambda)\,\dagger}_{\mathbf{p}} \hat{a}^{(\lambda^{\prime})\,\dagger}_{-\mathbf{p}} - \left( \hat{a}^{(\lambda)}_{\mathbf{p}} \hat{a}^{(\lambda^{\prime})\,\dagger}_{\mathbf{p}} + \hat{a}^{(\lambda)\,\dagger}_{\mathbf{p}} \hat{a}^{(\lambda^{\prime})}_{\mathbf{p}} \right) \right], \\
+        \frac{1}{2} \int \mathrm{d}^3 \mathbf{x} \, \partial_i A_{\mu} \partial^i A^{\mu} & = \frac{1}{4} \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \vert \mathbf{p} \vert \sum_{\lambda \lambda^{\prime}} \eta_{\lambda \lambda^{\prime}} \left[ - \hat{a}^{(\lambda)}_{\mathbf{p}} \hat{a}^{(\lambda^{\prime})}_{-\mathbf{p}} - \hat{a}^{(\lambda)\,\dagger}_{\mathbf{p}} \hat{a}^{(\lambda^{\prime})\,\dagger}_{-\mathbf{p}} - \left( \hat{a}^{(\lambda)}_{\mathbf{p}} \hat{a}^{(\lambda^{\prime})\,\dagger}_{\mathbf{p}} + \hat{a}^{(\lambda)\,\dagger}_{\mathbf{p}} \hat{a}^{(\lambda^{\prime})}_{\mathbf{p}} \right) \right], \\
         -\frac{1}{2} \int \mathrm{d}^3 \mathbf{x} \, \pi_{\mu} \pi^{\mu}                  & = \frac{1}{4} \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \vert \mathbf{p} \vert \sum_{\lambda \lambda^{\prime}} \eta_{\lambda \lambda^{\prime}} \left[ \hat{a}^{(\lambda)}_{\mathbf{p}} \hat{a}^{(\lambda^{\prime})}_{-\mathbf{p}} + \hat{a}^{(\lambda)\,\dagger}_{\mathbf{p}} \hat{a}^{(\lambda^{\prime})\,\dagger}_{-\mathbf{p}} - \left( \hat{a}^{(\lambda)}_{\mathbf{p}} \hat{a}^{(\lambda^{\prime})\,\dagger}_{\mathbf{p}} + \hat{a}^{(\lambda)\,\dagger}_{\mathbf{p}} \hat{a}^{(\lambda^{\prime})}_{\mathbf{p}} \right) \right],
     \end{aligned}
 \]
@@ -602,7 +605,7 @@ where we used the orthogonality relation for the polarization vectors:
 \[
     \epsilon_{\mu}^{(\lambda)}(\mathbf{p}) \epsilon^{(\lambda^{\prime})\,\mu}(\mathbf{p}) = \eta_{\lambda \lambda^{\prime}}.
 \]
-Summing these two contributions, we find that the terms with two creation or two annihilation operators cancel out since the opposite sign in the momentum leads to ... (?).\QUESTION{Why do they cancel out?} Thus, after normal ordering the expression (we will not us the explicit notation), we find
+Summing these two contributions, we find that the terms with two creation or two annihilation operators cancel out, leaving only the mixed terms. Thus, after normal ordering the expression (we will not use the explicit notation for brevity), we find
 \[
     \begin{aligned}
         H & = - \frac{1}{2} \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} E_{\mathbf{p}} \sum_{\lambda \lambda^{\prime}} \eta_{\lambda \lambda^{\prime}} \left( \hat{a}^{(\lambda^{\prime})\,\dagger}_{\mathbf{p}} \hat{a}^{(\lambda)}_{\mathbf{p}} + \hat{a}^{(\lambda)\,\dagger}_{\mathbf{p}} \hat{a}^{(\lambda^{\prime})}_{\mathbf{p}} \right) \\
