@@ -40,9 +40,9 @@ we get the system of equations
 \]
 It's a system of two coupled equations for the two chiral components of the spinor. We can solve for one component in terms of the other; for example, solving for \(u_R(\mathbf{p})\) from the second equation and plugging it into the first, we get
 \[
-    (p^{\mu} \sigma_{\mu})(p^{\nu} \bar{\sigma}_{\nu}) = (p_0 + p_i \sigma^i)(p_0 - p_j \sigma^j) = p_0^2 - - p_i p_j \sigma^i \sigma^j = p_0^2 - \mathbf{p}^2 = m^2,
+    (p^{\mu} \sigma_{\mu})(p^{\nu} \bar{\sigma}_{\nu}) = (p_0 - p_i \sigma^i)(p_0 + p_j \sigma^j) = p_0^2 - p_i p_j \sigma^i \sigma^j = p_0^2 - \mathbf{p}^2 = m^2,
 \]
-where we have used the clifford algebra of the Pauli matrices \(\sigma^i \sigma^j = \delta^{ij} + i \epsilon^{ijk} \sigma^k\)\footnote{The term proportional to \(\epsilon^{ijk}\sigma^k\) goes to zero due to antisymmetry when contracted with symmetric indices.} and the relativistic dispersion relation \(p_0^2 - \mathbf{p}^2 = m^2\). Thus we can write
+where we have used the algebra of the Pauli matrices \(\sigma^i \sigma^j = \delta^{ij} + i \epsilon^{ijk} \sigma^k\)\footnote{The term proportional to \(\epsilon^{ijk}\sigma^k\) goes to zero due to antisymmetry when contracted with symmetric indices.} and we have found the relativistic dispersion relation \(p_0^2 - \mathbf{p}^2 = m^2\). Thus we can write
 \[
     \begin{aligned}
         u_L(\mathbf{p})                              & = A (p^{\mu} \sigma_{\mu}) \chi,                                                               \\
@@ -53,11 +53,11 @@ where we have used the clifford algebra of the Pauli matrices \(\sigma^i \sigma^
 and getting for \(u_L(\mathbf{p})\):
 \[
     \begin{aligned}
-        u_L(\mathbf{p}) = (p_\mu \sigma^\mu) u_R(\mathbf{p}) \frac{1}{m} & = (p_\mu \sigma^\mu) (m A \chi) \frac{1}{m} = A (p_\mu \sigma^\mu) \chi, \\
-        \implies u_L(\mathbf{p})                                         & = A (p_\mu \sigma^\mu) \chi,
+        u_L(\mathbf{p}) = (p^\mu \sigma_\mu) u_R(\mathbf{p}) \frac{1}{m} & = (p^\mu \sigma_\mu) (m A \chi) \frac{1}{m} = A (p^\mu \sigma_\mu) \chi, \\
+        \implies u_L(\mathbf{p})                                         & = A (p^\mu \sigma_\mu) \chi,
     \end{aligned}
 \]
-where \(\chi\) is an arbitrary two-component spinors and \(A\) a normalization constant (thus the second equation is automatically satisfied). Thus the general solution for \(u(\mathbf{p})\) can be written as
+where \(\chi\) is an arbitrary two-component spinors and \(A\) a normalization constant (thus the first equation is automatically satisfied). Thus the general solution for \(u(\mathbf{p})\) can be written as
 \[
     u(\mathbf{p}) = A \begin{pmatrix}
         (p^{\mu} \sigma_{\mu}) \chi \\
@@ -170,20 +170,20 @@ Thus \(u(\mathbf{p})\) are positive energy solutions while \(v(\mathbf{p})\) are
 
     Now recalling the Lorentz transformation for spinors
     \[
-        \psi^{\prime \, \alpha}(x^{\prime}) = S(\Lambda)^{\alpha}_{\ \beta} \psi^{\beta}(x), \quad S(\Lambda)^{\alpha}_{\ \beta} = (e^{-\frac{i}{2} \omega_{\mu \nu} S^{\mu \nu}})^{\alpha}_{\ \beta},
+        \psi^{\prime \, \alpha}(x^{\prime}) = S(\Lambda)^{\alpha}_{\ \beta} \psi^{\beta}(x), \quad S(\Lambda)^{\alpha}_{\ \beta} = (e^{-\frac{i}{2} \omega_{\mu \nu} \Sigma^{\mu \nu}})^{\alpha}_{\ \beta},
     \]
     where the algebra generators of the Lorentz transformation are
     \[
-        S^{\mu \nu} = \frac{i}{4} [\gamma^{\mu},\, \gamma^{\nu}]
+        S^{\mu \nu} = \frac{1}{4} [\gamma^{\mu},\, \gamma^{\nu}] = i \Sigma^{\mu \nu},
     \]
     with parameters \(\omega_{\mu \nu}\) depending on the boost/rotation we are performing. For a pure spatial rotation we have
     \[
-        S^{ij} = -\frac{i}{2} \begin{pmatrix}
+        S^{ij} = -\frac{i}{2} \epsilon_{ijk} \begin{pmatrix}
             \sigma^k & 0        \\
             0        & \sigma^k
-        \end{pmatrix}, \quad (i \neq j)
+        \end{pmatrix}, \quad (i \neq j),
     \]
-    where \(k\) is the axis of rotation, and the three parameters
+    after computing the commutator and exploiting the Pauli matrices algebra; here \(k\) is the axis of rotation, and the three parameters of the rotation
     \[
         \omega_{ij} = - \epsilon_{ijk} \theta^k, \quad (i \neq j)
     \]
@@ -246,7 +246,7 @@ Thus \(u(\mathbf{p})\) are positive energy solutions while \(v(\mathbf{p})\) are
 \begin{example}[Massless limit and chirality]
     Now consider a particle with spin up along the \(z\)-axis moving with momentum \(\mathbf{p} = (0,\,0,\,p_z)= (0,\,0,\,p)\) along the \(z\)-axis
     \[
-        p^{\mu} = (E_{\mathbf{p}},\,0,\,0,\,p_z), \quad E_{\mathbf{p}} = \sqrt{p_z^2 + m^2} = E.
+        p^{\mu} = (E_{\mathbf{p}},\,0,\,0,\,p), \quad E_{\mathbf{p}} = \sqrt{p^2 + m^2} = E.
     \]
     We have the positiv frequency solution as
     \[
@@ -259,32 +259,32 @@ Thus \(u(\mathbf{p})\) are positive energy solutions while \(v(\mathbf{p})\) are
     \[
         \psi(x) = \begin{pmatrix}
             \begin{pmatrix}
-                \sqrt{E + p} & 0            \\
-                0            & \sqrt{E - p}
-            \end{pmatrix}\begin{pmatrix}
-                             1 \\
-                             0
-                         \end{pmatrix} \\
-            \begin{pmatrix}
                 \sqrt{E - p} & 0            \\
                 0            & \sqrt{E + p}
             \end{pmatrix}\begin{pmatrix}
                              1 \\
                              0
+                         \end{pmatrix} \\
+            \begin{pmatrix}
+                \sqrt{E + p} & 0            \\
+                0            & \sqrt{E - p}
+            \end{pmatrix}\begin{pmatrix}
+                             1 \\
+                             0
                          \end{pmatrix}
         \end{pmatrix} e^{-i (E t - p z)} = \begin{pmatrix}
-            \sqrt{E + p} \\
-            0            \\
             \sqrt{E - p} \\
+            0            \\
+            \sqrt{E + p} \\
             0
         \end{pmatrix} e^{-i (E t - p z)}.
     \]
     where we have a right handed helicity state since both momentum and spin are aligned along the \(z\)-axis, but both chiral components since for massive particles chirality and helicity do not coincide. Now we can consider the massless limit \(m \to 0\), so that \(E = p\) and we get that the left chiral component vanishes
     \[
-        \psi(x) = \begin{pmatrix}
-            \sqrt{2 p} \\
-            0          \\
-            0          \\
+        \psi(x) = \sqrt{2 p} \begin{pmatrix}
+            0 \\
+            0 \\
+            1 \\
             0
         \end{pmatrix} e^{-i p (t - z)},
     \]

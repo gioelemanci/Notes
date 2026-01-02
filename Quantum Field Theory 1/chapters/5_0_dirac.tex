@@ -2,18 +2,24 @@
 
 From now on, we aim to describe particles with spin different from zero. The simplest case is spin \(\tfrac12\) fermions, which are described by the Dirac equation. The starting point will be the Lagrangian, then we will show the most general solution to the equations of motion and finally proceed to quantize the system and promote the observables to operators on the Fock Space.
 
-The lagrangian has to be Lorentz invariant, so we recall that the Lorentz group admits a \(4D\) spinor representation, which for dirac translates into
+The lagrangian has to be Lorentz invariant, so we recall that the Lorentz group admits a \(4D\) spinor representation, which for Dirac translates into
 \[
     \psi_D \to \psi_D^{\prime} = e^{-\tfrac{i}{2}\omega_{\mu \nu} \Sigma^{\mu \nu}} \psi_D,
 \]
-the \textbf{Dirac spinor}, where \(\Sigma_{\mu \nu} = \frac{1}{4} \gamma^{\mu \nu}\) are the \(4\times 4\) antisymmetric generators of the Lorentz group in the Dirac representation,\footnote{\(\Sigma^{\mu \nu}\) has only six independent components, corresponding to the six generators of the Lorentz group: it is antisymmetric in \(\mu\) and \(\nu\) and traceless, thus \((4 \times 4 - 4) / 2 = 6\).}\QUESTION{is it traceless?} since
-\[
-    \gamma^{\mu \nu} = [\gamma^{\mu},\, \gamma^{\nu}] = \gamma^{\mu} \gamma^{\nu} - \gamma^{\nu} \gamma^{\mu},
-\]
-respecting the clifford algebra \( \{ \gamma^{\mu}, \gamma^{\nu} \} = 2 \eta^{\mu \nu} \mathbb{I}_4\) of \(4\times 4\) complex matrices.
+the \textbf{Dirac spinor}, where the \(4\times 4\) antisymmetric generators of the Lorentz group in the Dirac representation\footnote{\(\Sigma^{\mu \nu}\) has only six independent components, corresponding to the six generators of the Lorentz group: it is antisymmetric in \(\mu\) and \(\nu\) and traceless, thus \((4 \times 4 - 4) / 2 = 6\).} are given by
+\begin{equation}
+    \Sigma_{\mu \nu} = \frac{i}{4} \gamma^{\mu \nu}, \quad \gamma^{\mu \nu} = [\gamma^{\mu},\, \gamma^{\nu}] = \gamma^{\mu} \gamma^{\nu} - \gamma^{\nu} \gamma^{\mu},
+    \label{eq:Dirac_generators}
+\end{equation}
+where \(\gamma^{\mu}\) are the \textbf{Dirac gamma matrices}, respecting the clifford algebra
+\begin{equation}
+    \{ \gamma^{\mu}, \gamma^{\nu} \} = 2 \eta^{\mu \nu} \mathbb{I}_4,
+    \label{eq:clifford_algebra}
+\end{equation}
+of \(4\times 4\) complex matrices.
 
 We adopt the \textbf{Weyl representation} (or chiral representation) of Dirac matrices, which assumes the form
-\[
+\begin{equation}
     \gamma^0 = \begin{pmatrix}
         0            & \mathbb{I}_2 \\
         \mathbb{I}_2 & 0
@@ -21,9 +27,10 @@ We adopt the \textbf{Weyl representation} (or chiral representation) of Dirac ma
         0         & \sigma^i \\
         -\sigma^i & 0
     \end{pmatrix},
-\]
+    \label{eq:Weyl_representation_gamma_matrices}
+\end{equation}
 where \(\sigma^i\) are the Pauli matrices
-\[
+\begin{equation}
     \sigma^1 = \begin{pmatrix}
         0 & 1 \\
         1 & 0
@@ -34,52 +41,55 @@ where \(\sigma^i\) are the Pauli matrices
         1 & 0  \\
         0 & -1
     \end{pmatrix}.
-\]
+    \label{eq:Pauli_matrices}
+\end{equation}
 
 The generators of Lorentz transformations in the Dirac representation can be written as
 \[
     S^{\mu \nu} = - i \Sigma^{\mu \nu} = \frac{1}{4} \gamma^{\mu \nu}, \quad \psi_D^{\prime} = e^{\frac{1}{2} \omega_{\mu \nu} S^{\mu \nu}} \psi_D.
 \]
 If we introduce now the \textbf{spinorial indices}, we can write the transformation law as:
-\[
+\begin{equation}
     \psi_D^{\alpha}(x) \to \psi_D^{\prime \alpha}(x^{\prime}) = S^{\alpha}_{\ \beta}(\Lambda) \psi_D^{\beta}(x) = \left(e^{\frac{1}{2} \omega_{\mu \nu} S^{\mu \nu}}\right)^{\alpha}_{\ \beta} \psi_D^{\beta}(x),
-\]
+    \label{eq:Dirac_spinor_transformation}
+\end{equation}
 where \(\Lambda\) is the Lorentz transformation, which also acted on the coordinates (they got transformed along with the Dirac spinor). From now on we will drop the subscript \(D\) for Dirac spinors, since we will only deal with them.
 
 \section{Action and Lagrangian}
 
-Now the idea is to derive an action for the system, thus we need a Lorentz invariant Lagrangian dependent upon \(\psi\), remembering that \(\psi\) has four complex components, so eight real dof, and
+Now the idea is to derive a Lorentz invariant Lagrangian dependent upon the Dirac spinor \(\psi\), remembering that \(\psi\) has four complex components, so eight real degrees of freedom, and
 \[
     \psi^{\dagger}(x) = (\psi^*)^T(x).
 \]
-The lagrangian must be a Lorentz scalar, so we need to find building blocks which are lorentz scalars, vectors, tensors\dots built from the spinor \(\psi\) and its derivatives. The first attempt will be to consider the \textbf{spinor bilinear}
-\[
-    \psi^{\dagger} \psi
-\]
-as a building block; it's going to be a real number, but we have to check if it is Lorentz invariant.
+The lagrangian must be a Lorentz scalar, so we need to find building blocks which are lorentz scalars, vectors, tensors (whih will be contracted into scalars since the legrangian has to be one) built from the spinor \(\psi\) and its derivatives. We will consider different \textbf{spinor bilinears}, i.e. quantities built from two spinors, since a single spinor cannot build a Lorentz scalar alone.
 
 \subsection{Building Block for the Mass Term}
 
-We are considering the spinor bilinear as a candidate for a Lorentz scalar, thus we have to check its transformation properties under Lorentz transformations. We know that
+The simplest bilinear we can consider as a candidate for the mass term building block is
+\begin{equation}
+    \psi^{\dagger}(x) \psi(x),
+    \label{eq:first_scalar_spinor_bilinear}
+\end{equation}
+which is going to be a real number, but we have to check its transformation properties under Lorentz transformations to prove wether it is a Lorentz scalar.\footnote{By parallelism with the KG lagrangian we know that the mass term is made of Lorentz scalars built with fields, while the kinetic term (as we will soon see) should be made of two Lorentz vectors contracted into a scalar.} We know that
 \[
-    \psi \to  \psi^{\prime} = S \psi, \quad \psi^{\dagger} \to  \psi^{\dagger \prime} = \psi^{\dagger} S^{\dagger},
+    \psi \to  \psi^{\prime} = S \psi, \quad \psi^{\dagger} \to  \psi^{\prime \dagger} = \psi^{\dagger} S^{\dagger},
 \]
 hence their product
 \[
-    \psi^{\dagger} \psi \to \psi^{\dagger \prime} \psi^{\prime} = \psi^{\dagger} S^{\dagger} S \psi,
+    \psi^{\dagger} \psi \to \psi^{\prime \dagger} \psi^{\prime} = \psi^{\dagger} S^{\dagger} S \psi,
 \]
 which could be Lorentz scalar if and only if \(S^{\dagger} = S^{-1}\), which is not the case, since the Dirac representation is not unitary:
 \[
-    S^{\dagger} S \neq \mathbb{I}_4 \implies \psi^{\dagger \prime} \psi^{\prime} \neq \psi^{\dagger} \psi,
+    S^{\dagger} S \neq \mathbb{I}_4 \implies \psi^{\prime \dagger} \psi^{\prime} \neq \psi^{\dagger} \psi,
 \]
-and therefore the spinor bilinear is not a good building block for our Lagrangian. Let's check why \(S^{\dagger} \neq S^{-1}\):
+and therefore the spinor bilinear is not a good building block for our Lagrangian. Let's check explicitly why this representation \(S^{\dagger} \neq S^{-1}\) is not unitary:
 \[
     S = e^{\tfrac{1}{2} \omega_{\mu \nu} S^{\mu \nu}} \quad \implies \begin{dcases}
         S^{-1}      & = e^{-\tfrac{1}{2} \omega_{\mu \nu} S^{\mu \nu}};           \\
         S^{\dagger} & = e^{\tfrac{1}{2}\omega_{\mu \nu} (S^{\mu \nu})^{\dagger}}.
     \end{dcases} \\
 \]
-Thus for the representation to be unitary, we are requiring the generators \(S^{\mu \nu}\) to be \textit{anti-hermitian}, i.e.
+Thus for the representation to be unitary, we are requiring the generators \(S^{\mu \nu}\) to be \textit{anti-hermitian}
 \[
     (S^{\mu \nu})^{\dagger} = - S^{\mu \nu} \implies (-i \Sigma^{\mu \nu})^{\dagger} = - (-i \Sigma^{\mu \nu});
 \]
@@ -95,7 +105,7 @@ which would be equal to \(- S^{\mu \nu}\) only if
 \[
     (S^{\mu \nu})^{\dagger} = - \frac{1}{4} \left[(\gamma^{\mu})^{\dagger},\, (\gamma^{\nu})^{\dagger}\right] = - \frac{1}{4} \left[\gamma^{\mu},\, \gamma^{\nu}\right] = - S^{\mu \nu}.
 \]
-Thus \((\gamma^{\mu})^{\dagger} = \pm \gamma^{\mu}\) \(\iff\) the gamma matrices are hermitian or anti-hermitian; we can check from the Clifford algebra that this is not possible for all \(\mu\):
+Thus \((\gamma^{\mu})^{\dagger} = \pm \gamma^{\mu}\) \(\iff\) the gamma matrices are hermitian or anti-hermitian; we can check from the Clifford algebra \eqref{eq:clifford_algebra} that this is not possible for all \(\mu\):
 \[
     \{\gamma^{\mu} ,\, \gamma^{\nu}\} = 2 \eta^{\mu \nu} \mathbb{I}_4 \implies (\gamma^0)^2 = \mathbb{I}_4 \quad (\gamma^i)^2 = -\mathbb{I}_4,
 \]
@@ -103,13 +113,15 @@ where we have computed the anticommutator for \(\mu = \nu = 0\) and \(\mu = \nu 
 \[
     (\gamma^0)^2 v = \lambda_0^2 v = v, \quad (\gamma^i)^2 v = \lambda_i^2 v = -v,
 \]
-thus \(\gamma^0\) has real eigenvalues \(\lambda_0 = \pm 1\), while \(\gamma^i\) have imaginary eigenvalues \(\lambda_i = \pm i\); hence \(\gamma^0\) is hermitian, while \(\gamma^i\) are anti-hermitian. Therefore not all gamma matrices are hermitian or anti-hermitian, so the generators \(S^{\mu \nu}\) are not hermitian, and the Dirac representation is not unitary:
+thus \(\gamma^0\) has real eigenvalues \(\lambda_0 = \pm 1\), while \(\gamma^i\) have imaginary eigenvalues \(\lambda_i = \pm i\); hence \(\gamma^0\) is hermitian, while \(\gamma^i\) are anti-hermitian. Therefore the gamma matrices are not all hermitian or anti-hermitian, so the generators \(S^{\mu \nu}\) are not hermitian, and the Dirac representation is not unitary:
 \[
     (\gamma^0)^\dagger = \gamma^0, \quad (\gamma^i)^{\dagger} = - \gamma^i \implies (S^{\mu \nu})^{\dagger} \neq - S^{\mu \nu} \implies S^{\dagger} \neq S^{-1}.
 \]
 We then need to find another building block for our Lagrangian.
 
-We can start from the following consideration: \((\gamma^{\mu})^{\dagger} = \gamma^0 \gamma^{\mu} \gamma^0\) \(\forall \mu\). Lets check it:
+------
+
+We can start from the following gamma matrices property: \((\gamma^{\mu})^{\dagger} = \gamma^0 \gamma^{\mu} \gamma^0\) for all \(\mu\). Lets check it:
 \[
     \begin{aligned}
         \mu = 0) \quad & (\gamma^0)^\dagger = \gamma^0 \gamma^0 \gamma^0 = \gamma^0 = (\gamma^0)^\dagger,   \\
@@ -124,11 +136,7 @@ where in the first case we used the idempotency of \(\gamma^0\) and its hermitia
                                 & = \gamma^0 \left(\frac{1}{4} [\gamma^{\nu},\, \gamma^{\mu}] \right) \gamma^0 = - \gamma^0 \left(\frac{1}{4} [\gamma^{\mu},\, \gamma^{\nu}] \right) \gamma^0 = - \gamma^0 S^{\mu \nu} \gamma^0,
     \end{aligned}
 \]
-where we have expanded the commutator and simplified the \((\gamma^0)^2\). So the right relation seems to be
-\[
-    (S^{\mu \nu})^{\dagger} = \gamma^0 S^{\mu \nu} \gamma^0.
-\]
-Since we are looking for the scalar building block for the lagrangian, we are lead to follow this result and compute \(S^{\dagger}\):
+where we have expanded the commutator and simplified the \((\gamma^0)^2\). Since we are looking for the scalar building block for the lagrangian, we are lead to follow this result and compute \(S^{\dagger}\):
 \[
     S^{\dagger} = e^{\frac{1}{2}\omega_{\mu \nu}(S^{\mu \nu})^{\dagger}} = e^{-\frac{1}{2}\omega_{\mu \nu} \gamma^0 S^{\mu \nu} \gamma^0}.
 \]
@@ -138,7 +146,7 @@ Let's factor \(\gamma^0\) out again, Taylor expanding the exponential:
         S^{\dagger} & \sim \mathbb{I}_{4} - \frac{1}{2}\omega_{\mu \nu} \gamma^0 S^{\mu \nu} \gamma^0  + \frac{1}{4}\omega_{\mu \nu}\omega_{\rho \sigma} \gamma^0 S^{\mu \nu} \gamma^0\gamma^0 S^{\rho \sigma} \gamma^0 - \frac{1}{8}\cdots \\
                     & = \gamma^0 \gamma^0 - \frac{1}{2}\omega_{\mu \nu} \gamma^0 S^{\mu \nu} \gamma^0  + \frac{1}{4}\omega_{\mu \nu}\omega_{\rho \sigma} \gamma^0 S^{\mu \nu} \mathbb{I}_4 S^{\rho \sigma} \gamma^0 - \frac{1}{8}\cdots     \\
                     & = \gamma^0 \left(\mathbb{I}_{4} - \frac{1}{2}\omega_{\mu \nu} S^{\mu \nu} + \frac{1}{4}\omega_{\mu \nu}\omega_{\rho \sigma} S^{\mu \nu} S^{\rho \sigma} - \frac{1}{8}\cdots \right) \gamma^0                          \\
-                    & = \gamma^0 e^{\frac{1}{2}\omega_{\mu \nu}S^{\mu \nu}} \gamma^0 = \gamma^0 S^{\mu \nu} \gamma^0.
+                    & = \gamma^0 e^{-\frac{1}{2}\omega_{\mu \nu}S^{\mu \nu}} \gamma^0 = \gamma^0 S^{\mu \nu} \gamma^0.
     \end{aligned}
 \]
 Now we have definitive proof that the right expression for \(S^{\dagger}\) is
@@ -148,18 +156,25 @@ Now we have definitive proof that the right expression for \(S^{\dagger}\) is
 since we already knew that \(S^{-1} = e^{-\frac{1}{2}\omega_{\mu \nu} S^{\mu \nu}}\).
 
 Thus finally we have insight on how to build a lorentz scalar from spinors: instead of \(\psi^{\dagger} \psi\) we can consider the following bilinear
-\[
+\begin{equation}
     \overline{\psi}(x)\psi(x),
-\]
+    \label{eq:second_scalar_spinor_bilinear}
+\end{equation}
 built using the \textbf{adjoint Dirac Spinor} \(\overline{\psi}(x) = \psi^{\dagger} \gamma^0\). Let's check its transformation properties:
 \[
     \begin{aligned}
-        \overline{\psi}(x) \psi(x) & \to \overline{\psi}^{\prime}(x^{\prime}) \psi^{\prime}(x^{\prime}) = \psi^{\dagger \prime}(x^{\prime}) \gamma^0 \psi^{\prime}(x^{\prime}) = \psi^{\dagger}(x) S^{\dagger} \gamma^0 S \psi(x) \\
+        \overline{\psi}(x) \psi(x) & \to \overline{\psi}^{\prime}(x^{\prime}) \psi^{\prime}(x^{\prime}) = \psi^{\prime \dagger}(x^{\prime}) \gamma^0 \psi^{\prime}(x^{\prime}) = \psi^{\dagger}(x) S^{\dagger} \gamma^0 S \psi(x) \\
                                    & = \psi^{\dagger}(x) \gamma^0 S^{-1} \gamma^0 \gamma^0 S \psi(x) = \psi^{\dagger}(x) \gamma^0 S^{-1} S \psi(x)                                                                                \\
                                    & = \psi^{\dagger}(x) \gamma^0 \psi(x) = \overline{\psi}(x) \psi(x).
     \end{aligned}
 \]
-it is indeed lorentz invariant. Thus \(\overline{\psi} \psi\) is the lorentz scalar we will use to build our lagrangian, in particular for the mass term, where there is no derivative involved:
+which is lorentz invariant indeed. Thus we could write the transormation of the adjoint spinor as
+\begin{equation}
+    \overline{\psi} \to \overline{\psi}^{\prime} = \psi^{\dagger} S^{\dagger} \gamma^0 = \psi^\dagger \gamma^0 S^{-1}= \overline{\psi} S^{-1}.
+    \label{eq:adjoint_spinor_transformation}
+\end{equation}
+
+Thus \(\overline{\psi} \psi\) is the lorentz scalar we will use to build our lagrangian, in particular for the mass term, where there is no derivative involved:
 \[
     \mathcal{L}_{mass} = - m \overline{\psi}(x) \psi(x).
 \]
@@ -173,9 +188,10 @@ we have indeed found the analog of the last term: \(m \overline{\psi}(x)\psi(x)\
 \subsection{Building Block for the Kinetic Term}
 
 Considering the following spinor bilinear
-\[
-    \overline{\psi}(x) \gamma^{\mu} \psi(x)
-\]
+\begin{equation}
+    \overline{\psi}(x) \gamma^{\mu} \psi(x),
+    \label{eq:vector_spinor_bilinear}
+\end{equation}
 which is a vector of four components, we have to understand if that is a Lorentz vector or not, So that
 \[
     \overline{\psi}^{\prime} \gamma^{\mu} \psi^{\prime} = \Lambda^{\mu}_{\ \nu} \overline{\psi}\gamma^{\nu} \psi.
@@ -184,19 +200,19 @@ If this is true, we can contract that \(\mu\) indices in order to obtain a loren
 \[
     \overline{\psi} \gamma^{\mu}\partial_{\mu}\psi.
 \]
-So that if we verify that \(\overline{\psi} \gamma^{\mu} \psi\) transforms as a lorentz vector, we can use it to build the kinetic term of the lagrangian. Let's check how it transforms:
+So, summarizing, if we verify that \(\overline{\psi} \gamma^{\mu} \psi\) transforms as a lorentz vector, we can use it to build the kinetic term of the lagrangian. Let's check how it transforms:
 \[
     \overline{\psi} \gamma^{\mu} \psi \to \overline{\psi}^{\prime} \gamma^{\mu} \psi^{\prime} = \overline{\psi} S^{-1}\gamma^{\mu} S \psi,
 \]
-where we have used the results of the previous section to write \(\overline{\psi}^{\prime} = (S \psi)^{\dagger} \gamma^0 = \overline{\psi} S^{-1}\). Thus if we now use the infinitesimal form of the lorentz transformation in the foundamental representation of the Lorentz group \(\mathrm{SO}(1,3)\)
+where we have used the results of the previous section to write the expression for the adjoint Dirac spinor transformation of eq. \eqref{eq:adjoint_spinor_transformation}. Thus if we now use the infinitesimal form of the Lorentz transformation in the foundamental representation of the Lorentz group \(\mathrm{SO}(1,3)\)
 \[
     \Lambda = e^{-\frac{i}{2} \omega_{\mu \nu} M^{\mu \nu}},
 \]
-and in parallel
+and in parallel its spinorial representation
 \[
     S = e^{-\frac{i}{2} \omega_{\mu \nu} \Sigma^{\mu \nu}},
 \]
-we are studying the \(4\times 4\) matrices realizing the Lorentz transformation, the first from the foundamental representation \(\mathrm{SO}(1,3)\), the second from the Dirac representation; also \(\Sigma^{\mu \nu}\) and \(M^{\mu \nu}\) are generators of lorentz transformation in the Dirac and foundamental representation.
+we are studying the \(4\times 4\) matrices realizing the Lorentz transformation, in two different representations; also \(\Sigma^{\mu \nu}\) and \(M^{\mu \nu}\) are generators of lorentz transformation in the Dirac and foundamental representation.
 
 We can even make the parallel substitution of \(S^{\mu \nu} = i \Sigma^{\mu \nu}\) in the foundamental representation, so that
 \[
@@ -252,12 +268,13 @@ which is identical to
     \end{aligned}
 \]
 So we finally proved the identity
-\[
+\begin{equation}
     S^{-1} \gamma^{\mu} S = \Lambda^{\mu}_{\ \nu} \gamma^{\nu},
-\]
+    \label{eq:gamma_matrix_transformation_spin-foundamental}
+\end{equation}
 which implies that the Dirac bilinear \(\overline{\psi} \gamma^\mu \psi\) transforms as a Lorentz four vector, since
 \[
-    \overline{\psi} \gamma^{\mu} \psi \to \overline{\psi}^{\prime} \gamma^{\mu} \psi^{\prime} = \overline{\psi} S^{-1} \gamma^{\mu} S \psi = \Lambda^{\mu}_{\ \nu} \overline{\psi} \gamma^{\mu} \psi.
+    \overline{\psi} \gamma^{\mu} \psi \to \overline{\psi}^{\prime} \gamma^{\mu} \psi^{\prime} = \overline{\psi} S^{-1} \gamma^{\mu} S \psi = \Lambda^{\mu}_{\ \nu} \overline{\psi} \gamma^{\nu} \psi.
 \]
 
 We can now obtain other Lorentz scalars, vectors or tensors by contracting this four vector with other objects transforming in the vectorial representation of the Lorentz group, for example \(\partial_{\mu}\) or a gauge field \(A_{\mu}\):
@@ -267,11 +284,14 @@ We can now obtain other Lorentz scalars, vectors or tensors by contracting this 
     \item \(\overline{\psi} \gamma^{\mu \nu} \psi\), where there is a Lorentz tensor, i.e. \(\overline{\psi}^{\prime} \gamma^{\mu \nu} \psi^{\prime} = \Lambda^{\mu}_{\ \rho} \Lambda^{\nu}_{\sigma} \overline{\psi} \gamma^{\rho \sigma} \psi\) (every index transforming accordingly with a Lorentz transformation).
 \end{itemize}
 We can introduce the \textbf{slash notation} for indicating an object contracted with a gamma matrix:
-\[
+\begin{equation}
     \slashed{A} = \gamma^{\mu} A_{\mu}.
-\]
+    \label{eq:slash_notation}
+\end{equation}
 
-We can finally write an expression for the manifestly Lorentz invariant Dirac Lagrangian:
+\subsection{Dirac Lagrangian}
+
+We can finally write an expression for the manifestly Lorentz invariant Dirac lagrangian:
 \begin{equation}
     \mathcal{L} = \overline{\psi} i \gamma^{\mu} \partial_{\mu} \psi - m \overline{\psi} \psi = \overline{\psi} \left(i \gamma^{\mu} \partial_{\mu} - m\right) \psi.
     \label{eq:Lorentz_invariant_Dirac_Lagrangian}
@@ -286,13 +306,11 @@ It is worth to notice some features of this lagrangian:
           for hermitianity of \(\gamma^0\). Instead for the kinetic term we have
           \[
               \begin{aligned}
-                  (\overline{\psi} \gamma^{\mu} \partial_{\mu} \psi)^{\dagger} & = (\partial_{\mu} \psi)^{\dagger} (\gamma^{\mu})^{\dagger} \overline{\psi}^{\dagger}                                                 \\
-                                                                               & = (\partial_{\mu} \psi)^{\dagger} (\gamma^{\mu})^{\dagger}\gamma^0 \psi = (\partial_{\mu} \psi)^{\dagger} \gamma^0 \gamma^{\mu} \psi \\
-                                                                               & = \partial_{\mu} (\psi^{\dagger} \gamma^0 \gamma^{\mu} \psi) - \psi^{\dagger} \gamma^0 \gamma^{\mu} \partial_{\mu} \psi              \\
-                                                                               & = - \psi^{\dagger} \gamma^0 \gamma^{\mu} \partial_{\mu} \psi= - \overline{\psi} \gamma^{\mu} \partial_{\mu} \psi.
+                  (\overline{\psi} \gamma^{\mu} \partial_{\mu} \psi)^{\dagger} & = (\partial_{\mu} \psi)^{\dagger} (\gamma^{\mu})^{\dagger} \overline{\psi}^{\dagger} = (\partial_{\mu} \psi)^{\dagger} (\gamma^{\mu})^{\dagger}\gamma^0 \psi = (\partial_{\mu} \psi)^{\dagger} \gamma^0 \gamma^{\mu} \psi                 \\
+                                                                               & = \partial_{\mu} (\psi^{\dagger} \gamma^0 \gamma^{\mu} \psi) - \psi^{\dagger} \gamma^0 \gamma^{\mu} \partial_{\mu} \psi = - \psi^{\dagger} \gamma^0 \gamma^{\mu} \partial_{\mu} \psi= - \overline{\psi} \gamma^{\mu} \partial_{\mu} \psi.
               \end{aligned}
           \]
-          where we have used the usual trick of integrating by parts and then neglecting the boundary term computed at infinite times and distances, since this lagrangian is integrated to obtain the action. As we can see the kinetic term is anti-hermitian, so multiplying it by \(i\) we get a hermitian expression, ensuring the lagrangian to be real.
+          where we have used the usual trick of integrating by parts and then neglecting the boundary term computed at infinite times and distances, since this lagrangian is integrated to obtain the action. As we have shown, the kinetic term is anti-hermitian, so multiplying it by \(i\) we get a hermitian expression, ensuring the lagrangian to be real.
     \item Since the action is dimensionless, we can deduce the mass dimension of the field \(\psi\):
           \[
               \begin{aligned}
@@ -302,7 +320,7 @@ It is worth to notice some features of this lagrangian:
           \]
           So this field has a different mass dimention from KG scalar field, which had: \([\psi]=1\).
     \item KG Lagrangian contains two derivatives \(\partial_\mu \psi \partial^{\mu} \psi\) in the kinetic term, while Dirac's only one \(\overline{\psi} i \gamma^{\mu} \partial_{\mu} \psi\): The KG lagrangian was of the second order, while Dirac's of the first; it changes the order of the equations of motion.
-    \item Upon quantization the Dirac theory will describe particles/antiparticles (for whose we needed a complex field for the charge dof, which is our case) with spin \(\tfrac12\) and mass \(m\); in principle we have four complex dof, which are LH/RH and spin up/down (doubled because we need 4 real dof for the particle description and 4 real dof for the antiparticle one).
+    \item Upon quantization the Dirac theory will describe particles/antiparticles (for whose description we needed a complex field for the charge dof, which is our case) with spin \(\tfrac12\) and mass \(m\); in principle we have four complex dof, which are LH/RH and spin up/down (doubled because we need 4 real dof for the particle description and 4 real dof for the antiparticle one).
 \end{itemize}
 
 \section{Dirac Equation}
@@ -315,7 +333,7 @@ where \(\overline{\psi} = \psi^{\dagger} \gamma^0\) is the Dirac conjugate. We c
 \[
     \frac{\partial \mathcal{L}}{\partial \psi} = \partial_{\mu} \left(\frac{\partial \mathcal{L}}{\partial (\partial_{\mu} \psi)}\right), \quad \frac{\partial \mathcal{L}}{\partial \overline{\psi}} = \partial_{\mu} \left(\frac{\partial \mathcal{L}}{\partial (\partial_{\mu} \overline{\psi})}\right);
 \]
-in the second equation we have to notice that \(\frac{\partial}{\partial \overline{\psi}} \mathcal{L} = 0\), since \(\partial (\partial_\mu \overline{\psi}) = 0 \) and so \( \frac{\partial}{\partial (\partial_\mu \overline{\psi})} \mathcal{L} = 0 \) too. This implies that if we differentiate the lagrangian with respect to \(\overline{\psi}\) we get
+in the second equation we have to notice that \(\frac{\partial}{\partial \overline{\psi}} \mathcal{L} = 0\), since \( \frac{\partial}{\partial (\partial_\mu \overline{\psi})} \mathcal{L} = 0 \). This implies that if we differentiate the lagrangian with respect to \(\overline{\psi}\) we get
 \[
     \frac{\partial \mathcal{L}}{\partial \overline{\psi}} = \left(i \gamma^{\mu} \partial_{\mu} - m\right) \psi = 0,
 \]
@@ -324,7 +342,7 @@ which is the \textbf{Dirac equation}:
     \left(i \gamma^{\mu} \partial_{\mu} - m\right) \psi = 0,
     \label{eq:Dirac_equation}
 \end{equation}
-where the arrow on the derivatives tells us it is to be applied to the left. This is a first order partial differential equation for the spinor field \(\psi(x)\).
+which is a first order partial differential equation for the spinor field \(\psi(x)\).
 
 We can also derive the equation of motion by considering the derivatives with respect to \(\psi\), in order to get the conjugate equation:
 \[
@@ -336,14 +354,15 @@ so that the Euler-Lagrange equation gives
 \]
 which is the \textbf{conjugate Dirac equation}:
 \begin{equation}
-    \overline{\psi} ( - i \overleftarrow{\partial}_{\mu} \gamma^{\mu} - m) = 0.
+    \overline{\psi} ( - i \overleftarrow{\partial}_{\mu} \gamma^{\mu} - m) = 0,
     \label{eq:conjugate_Dirac_equation}
 \end{equation}
+where the arrow on the derivatives tells us it is to be applied to the left.
 
 We can build such an equation of motion just thanks to the presence of \(\gamma^{\mu}\) which grants lorentz invariance. Dirac equation is a \textbf{first order differential equation}, while for KG we could only get a second order one. Furthermore KG is a scalar equation, while Dirac is a spinor equation (vectorial in spinor space, with 4 components).
 The presence of gamma matrices in Dirac equation is crucial: they ensure lorentz invariance with their transformation properties, and they allow to have a first order equation, since they contract with the derivative index \(\mu\) in \(\partial_\mu \psi\).
 
-\textbf{Lorentz invariance} determines the form of Dirac equation: if we want to describe a scalar particle, we need a second order equation (KG), while if we want to describe a spin \(\tfrac12\) particle (spinor) we need a first order equation (Dirac).
+\textbf{Lorentz invariance} determines the form of Dirac equation: if we want to describe a scalar particle, we need a second order equation (KG), while if we want to describe a spin \(\tfrac12\) particle (spinor) a first order equation (Dirac) is sufficient.
 
 Notice that dirac equation mixes components of the spinor, since \(\gamma^{\mu}\) are \(4\times 4\) matrices:
 \[
@@ -394,7 +413,7 @@ In general it becomes a system of four coupled first order differential equation
     i \partial_t \psi_3 + i \partial_x \psi_4 - i \partial_y \psi_4 + i \partial_z \psi_3 - m \psi_1 = 0.
 \]
 
-However each component \(\psi_{\alpha}(x)\) satosfy the KG equation, since in effect each components describe a dof of a relativistic particle with mass \(m\): if we multiply Dirac equation by \((i \gamma^{\mu} \partial_{\mu} + m)\) from the left (it is still valid since zero multiplied by anything remains zero), we get
+However each component \(\psi_{\alpha}(x)\) satosfy the KG equation, since in effect each components describe a degree of freedom of a relativistic scalar particle with mass \(m\): if we multiply Dirac equation by \((i \gamma^{\mu} \partial_{\mu} + m)\) from the left (it is still valid since zero multiplied by anything remains zero), we get
 \[
     \begin{aligned}
         (i \gamma^{\mu} \partial_{\mu} + m)(i \gamma^{\nu} \partial_{\nu} - m) \psi(x) = 0,                       \\
@@ -404,7 +423,11 @@ However each component \(\psi_{\alpha}(x)\) satosfy the KG equation, since in ef
         \implies (\Box + m^2) \psi(x) = 0.
     \end{aligned}
 \]
-In terms of matrices we have used the \textbf{clifford algebra} to simplify the product of gamma matrices. So each component of the dirac spinor satisfies the KG equation, thus
+In terms of matrices we have used the \textbf{clifford algebra} to simplify the product of gamma matrices, since we can insert the anticommutator for symmetry of \(\partial_\mu \partial_\nu\):
+\[
+    \gamma^{\mu} \gamma^{\nu} \partial_{\mu} \partial_{\nu} = \frac{1}{2} \gamma^{\mu} \gamma^{\nu} \left\{\partial_{\mu}, \partial_{\nu}\right\} = \frac{1}{2} \{\gamma^{\mu},\, \gamma^{\nu}\} \partial_{\mu} \partial_{\nu} = \eta^{\mu \nu} \partial_{\mu} \partial_{\nu},
+\]
+just renaming indces. Thus each component of the Dirac spinor satisfies the KG equation:
 \[
     (\Box + m^2) \psi_{\alpha} (x) = 0 \quad \forall \alpha = 1,\,2,\,3,\,4.
 \]
@@ -426,14 +449,15 @@ We can write the Dirac spinor as a combination of two weyl spinors:
 \]
 
 \paragraph{Chirality operator.} In order to project out the two chiral components from a Dirac spinor we can introduce the chirality operator
-\[
+\begin{equation}
     \gamma^5 = i \gamma^0 \gamma^1 \gamma^2 \gamma^3 = \begin{pmatrix}
         -\mathbb{I}_2 & 0            \\
         0             & \mathbb{I}_2
     \end{pmatrix}, \quad (\gamma^5)^2 = \mathbb{I}_4,
-\]
+    \label{eq:chirality_operator}
+\end{equation}
 using which we can define projectors able to select the desired chiral component from the Dirac spinor:
-\[
+\begin{equation}
     \begin{aligned}
         \mathbb{P}_L \psi = \frac{1 - \gamma^5}{2} \psi = \psi_L = \begin{pmatrix}
                                                                        \psi_L^{(w)} \\
@@ -444,7 +468,8 @@ using which we can define projectors able to select the desired chiral component
                                                                        \psi_R^{(w)}
                                                                    \end{pmatrix}.
     \end{aligned}
-\]
+    \label{eq:chiral_projectors}
+\end{equation}
 Thus the dirac spinor is the sum of the two chiral components \(\psi_D = \psi_L + \psi_R\) and the projectors satisfy the usual properties:
 \[
     \begin{dcases}
@@ -474,7 +499,7 @@ To understand better, let's write the Dirac lagrangian
 \[
     \mathcal{L} = \overline{\psi} \left(i \gamma^{\mu} \partial_{\mu} - m\right) \psi,
 \]
-in terms of chiral components (which is very useful for \textit{statistical field theory} and the \textit{standard model}, also for understanding the \textit{massless limit}):
+in terms of chiral components (which is very useful for \textit{statistical field theory} and the \textit{standard model}, also for understanding the \textit{massless limit}): we will exploit the vector and axial vector currents, defined as \(\overline{\psi} \gamma^{\mu} \psi\) and \(\overline{\psi} \gamma^{\mu} \gamma^5 \psi\) respectively, but we will need only the first one to rewrite the kinetic term; then we will use the properties of the chirality operator to rewrite the mass term. Let's proceed step by step:
 \begin{enumerate}
     \item Starting from the \textbf{vector current} which is contracted with the derivative in the kinetic term:
           \[
@@ -487,13 +512,13 @@ in terms of chiral components (which is very useful for \textit{statistical fiel
           \[
               \overline{\psi} \gamma^{\mu} \psi = \psi^{\dagger} \left(\frac{1 - \gamma^5}{2}\right) \gamma^0 \gamma^{\mu} \left(\frac{1 - \gamma^5}{2}\right) \psi + \psi^{\dagger} \left(\frac{1 + \gamma^5}{2}\right) \gamma^0 \gamma^{\mu} \left(\frac{1 + \gamma^5}{2}\right) \psi.
           \]
-          Now exploiting hermitianity of the gamma matrices we can rewrite the projectors acting on \(\psi^{\dagger}\) as \(\psi^{\dagger} \mathbb{P}_{R/L} = \left(\mathbb{P}_{R/L} \psi\right)^{\dagger}\) to finally get (after reapplying \(\gamma^0\) matrices for the definition of \(\overline{\psi}\)):
+          Now exploiting hermitianity of the gamma matrices we can rewrite the projectors acting on \(\psi^{\dagger}\) as \(\psi^{\dagger} \mathbb{P}_{R/L} = \left(\mathbb{P}_{R/L} \psi\right)^{\dagger}\) to finally get (after reapplying \(\gamma^0\) matrices to get \(\overline{\psi}\)):
           \[
               \overline{\psi} \gamma^{\mu} \psi = \overline{\psi}_L \gamma^{\mu} \psi_L + \overline{\psi}_R \gamma^{\mu} \psi_R.
           \]
-          This found vector current does not mix chiral components, its parity invariant; this is not good for electroweak interactions and interpretation of \(\mathrm{SU}(2)_L\) interactions: electroweak currents violate parity, this vector current is invariant.
+          This found vector current does not mix chiral components, it is parity invariant and we will use this to rewrite the lagrangian. However, this current is not good for electroweak interactions and interpretations of \(\mathrm{SU}(2)_L\) interactions: electroweak currents violate parity, this vector current is invariant under its action.
 
-    \item Moving on, we can try to insert a \(\gamma^5\) in the vector current: in this way maybe we can get a parity violation
+    \item Moving on, we can try to insert a \(\gamma^5\) in the vector current: in this way maybe we can get a parity violation and obtain a better candidate for weak interactions. So we consider
           \[
               \overline{\psi} \gamma^{\mu} \gamma^{5} \psi = \psi^{\dagger} \gamma^0 \gamma^{\mu} \gamma^5 \left(\psi_L + \psi_R\right) = \psi^{\dagger} \gamma^0 \gamma^{\mu} \gamma^5 \left(\mathbb{P}_L^2 + \mathbb{P}_R^2\right) \psi.
           \]
@@ -505,26 +530,27 @@ in terms of chiral components (which is very useful for \textit{statistical fiel
 
     \item Now we can combine the two previous currents to get the \textbf{V-A current}:
           \[
-              \frac{1}{2} (V-A) = \overline{\psi} \gamma^{\mu} \frac{1 - \gamma^5}{2} \psi = \overline{\psi}_L \gamma^{\mu} \psi_L,
+              \frac{1}{2} (V-A) = \overline{\psi} \gamma^{\mu} \frac{1 - \gamma^5}{2} \psi = \overline{\psi}_L \gamma^{\mu} \psi_L.
           \]
-          V-A current violates parity, and make explicit the fact that only LH components enter the interaction: it is a good candidate for EW interactions.
+          V-A current violates parity maximally, since it involves only left-handed components, and it makes explicit the fact that only LH components enter the interaction: it is a good candidate for EW interactions.
 
     \item Expanding the \textbf{mass term} instead:
           \[
               \begin{aligned}
-                  \overline{\psi} \psi & = \psi^{\dagger} \gamma^0 (P_R^2 + P_L^2) \psi = \psi^{\dagger} \gamma^0 \left(\frac{1 + \gamma^5}{2}\right) \psi_L + \psi^{\dagger} \gamma^0 \left( \frac{1 - \gamma^5}{2} \right) \psi_R \\
-                                       & = \overline{\psi} \left(\frac{1 + \gamma^5}{2}\right) \psi + \overline{\psi} \left(\frac{1 - \gamma^5}{2}\right) \psi = \overline{\psi}_R \psi_R + \overline{\psi}_L \psi_L,
+                  \overline{\psi} \psi & = \psi^{\dagger} \gamma^0 (P_R^2 + P_L^2) \psi = \psi^{\dagger} \gamma^0 \left(\frac{1 + \gamma^5}{2}\right)^2 \psi_L + \psi^{\dagger} \gamma^0 \left( \frac{1 - \gamma^5}{2} \right)^2 \psi_R                \\
+                                       & = \psi^{\dagger}\left(\frac{1 - \gamma^5}{2}\right) \gamma^0 \left(\frac{1 + \gamma^5}{2}\right) \psi + \psi^{\dagger}\left(\frac{1 + \gamma^5}{2}\right) \gamma^0  \left(\frac{1 - \gamma^5}{2}\right) \psi,
               \end{aligned}
           \]
-          where now we can use the identity \(\gamma^0 \mathbb{P}_{L/R} = \mathbb{P}_{R/L} \gamma^0\) to find that the mass term mixes chiral components:
+          where we have used the identity \(\gamma^0 \mathbb{P}_{L/R} = \mathbb{P}_{R/L} \gamma^0\) to find that the mass term mixes chiral components:
           \[
               \overline{\psi} \psi = \overline{\psi}^{\dagger}_L \gamma^0 \psi_R + \overline{\psi}^{\dagger}_R \gamma^0 \psi_L = \overline{\psi}_L \psi_R + \overline{\psi}_R \psi_L.
           \]
 \end{enumerate}
 Now we have everything to write the Dirac lagrangian in terms of chiral components:
-\[
+\begin{equation}
     \mathcal{L} = \overline{\psi}_L i \gamma^{\mu} \partial_{\mu} \psi_L + \overline{\psi}_R i \gamma^{\mu} \partial_{\mu} \psi_R - m \left(\overline{\psi}_L \psi_R + \overline{\psi}_R \psi_L\right).
-\]
+    \label{eq:dirac_lagrangian_chiral_components}
+\end{equation}
 We can see that \textit{in the massless limit the two chiral components decouple}, and we get two independent Weyl equations for each chiral component: this is important, since kinetic terms evolves independently the two chiral components, while the mass term allow us to perform a boost and mix the two chiralities: since the particle is massive there will be frames where the particle is RH and others where it is seen as LH.
 
 If you take an electron whith both the chiral components, only the LH component will interact weakly, while the RH will not; but since the electron is massive you can always boost to a frame where the electron appears as RH, so both components are needed to describe a massive fermion. When we see only the RH component, the electron will not seem to interact weakly.
@@ -581,7 +607,7 @@ so that we can see the last two equations as
         (\hat{H} + \hat{\mathbf{S}} \cdot \hat{\mathbf{p}}) \psi_L^{(w)} = 0. \\
     \end{dcases}
 \]
-Now, dropping the hat notation for operators (so that we can use it to indicate versors), we find clearly that the weyl components are eigenstate of the \textbf{helicity}: for massless particles indeed \(E = \vert \mathbf{p} \vert\) so that
+Now, dropping momentaneously the hat notation for operators (so that we can use it to indicate versors), we find clearly that the weyl components are eigenstate of the \textbf{helicity}: for massless particles indeed \(E = \vert \mathbf{p} \vert\) so that
 \[
     \begin{dcases}
         \vert \mathbf{p} \vert \psi_R^{(w)} = \mathbf{S} \cdot \mathbf{p} \, \psi_R^{(w)}, \\
@@ -592,9 +618,10 @@ Now, dropping the hat notation for operators (so that we can use it to indicate 
     \end{dcases}
 \]
 where the helicity operator is defined as
-\[
-    \mathbf{S} \cdot \hat{\mathbf{p}}.
-\]
+\begin{equation}
+    h = \frac{\mathbf{S} \cdot \mathbf{p}}{\vert \mathbf{p} \vert} = \mathbf{S} \cdot \hat{\mathbf{p}}.
+    \label{eq:helicity_operator}
+\end{equation}
 Since the eigenvalues are \(\pm 1\), we can affirm that in the massless limit chirality and helicity coincide: they have same eigenstates and eigenvalues.
 
 If the neutrinos were massless, only the LH component would exist, since only that interacts weakly; but since neutrinos have a small mass, both chiral components exist, even if the RH component has never been observed (it interacts only gravitationally, so it is very difficult to detect it).
