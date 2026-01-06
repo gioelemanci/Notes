@@ -1,13 +1,100 @@
 \section{Notation and Conventions} \label{app:notation}
-\lipsum[1]
 
+In this Appendix, we summarize the conventions, notation, and definitions used throughout these notes. Unless stated otherwise, we adhere to the conventions commonly used in standard Quantum Field Theory texts (e.g., Peskin \& Schroeder).
+
+\TODO{Check for consistency with other chapters and modify}
+
+\subsection*{Units and Dimensions}
+We employ \textbf{natural units}, defined by setting the reduced Planck constant and the speed of light in vacuum to unity:
+\begin{equation}
+    \hbar = c = 1 \,.
+\end{equation}
+Consequently, quantities that are usually measured in different units become dimensionally related. All physical quantities can be expressed in terms of powers of mass (or energy). Denoting the mass dimension of a quantity $X$ as $[X]$, we have:
 \begin{itemize}
-    \item minkowski mostly minus
-    \item vector high indices
-    \item contraction rules? (higher lower contracted indices, spatial indices ecc)
-    \item epsilon symbol as shymbol, not tensor
-    \item natural units and mass dimensions
-    \item slash notation (think about where to put it)
-    \item operators (ladder, fields etc, interpretations)
-    \item proerties of gamma matrices and othe operators (hermiticity, commutation relations ecc)
+    \item $[L] = [T] = -1$ (Length and Time have inverse mass dimension \([M]^{-1}\)).
+    \item $[E] = [p] = [m] = 1$ (Energy, momentum, and mass have mass dimension 1 \([M]^1\)).
+\end{itemize}
+The action $S$ is dimensionless ($[S]=0$) in natural units (since $\hbar=1$). This fact is used to determine the canonical dimensions of field operators. For example, in $d=4$ spacetime dimensions:
+\begin{itemize}
+    \item Scalar field $[\phi] = 1$.
+    \item Spinor field $[\psi] = 3/2$.
+    \item Vector field $[A_\mu] = 1$.
+\end{itemize}
+
+\subsection*{Spacetime and Metric}
+We work in 4-dimensional Minkowski spacetime. The coordinates are denoted by a four-vector $x^\mu$:
+\begin{equation}
+    x^\mu = (x^0, x^1, x^2, x^3) = (t, \mathbf{x}) \,,
+\end{equation}
+where Greek indices $\mu, \nu, \dots$ run over $\{0, 1, 2, 3\}$. Latin indices $i, j, \dots$ run over spatial dimensions $\{1, 2, 3\}$.
+
+We utilize the \textbf{"mostly minus"} metric signature $(+, -, -, -)$. The metric tensor is:
+\begin{equation}
+    \eta_{\mu\nu} = \eta^{\mu\nu} = \text{diag}(1, -1, -1, -1) \,.
+\end{equation}
+Scalar products of four-vectors are defined as:
+\begin{equation}
+    a \cdot b = \eta_{\mu\nu} a^\mu b^\nu = a^\mu b_\mu = a^0 b^0 - \mathbf{a} \cdot \mathbf{b} \,,
+\end{equation}
+where boldface letters denote 3-vectors. Note that $p \cdot x = Et - \mathbf{p}\cdot\mathbf{x}$.
+
+\subsection*{Tensor Indices and Contraction}
+\begin{itemize}
+    \item \textbf{Contravariant vectors} (upper indices) usually represent coordinate differentials $dx^\mu$ or momenta $p^\mu = (E, \mathbf{p})$.
+    \item \textbf{Covariant vectors} (lower indices) are obtained by contracting with the metric: $x_\mu = \eta_{\mu\nu} x^\nu = (t, -\mathbf{x})$. Note the sign flip in the spatial components.
+    \item \textbf{Einstein Summation Convention:} Repeated indices (one upper and one lower) are implicitly summed over. For example, $\partial_\mu A^\mu \equiv \sum_{\mu=0}^3 \partial_\mu A^\mu$.
+    \item Differential operators are defined as $\partial_\mu \equiv \frac{\partial}{\partial x^\mu} = (\partial_t, \nabla)$ and $\partial^\mu \equiv \frac{\partial}{\partial x_\mu} = (\partial_t, -\nabla)$. Thus, the d'Alembertian is $\square = \partial_\mu \partial^\mu = \partial_t^2 - \nabla^2$.
+\end{itemize}
+
+\subsection*{The Levi-Civita Symbol}
+We treat the totally antisymmetric Levi-Civita object $\epsilon^{\mu\nu\rho\sigma}$ as a symbol (tensor density) rather than a strictly geometrical tensor, defined by the convention:
+\begin{equation}
+    \epsilon^{0123} = +1 \,.
+\end{equation}
+Even permutations of $(0123)$ are $+1$, odd permutations are $-1$, and any repeated index results in $0$.
+Due to the metric signature with three minus signs, the version with lower indices has the opposite sign:
+\begin{equation}
+    \epsilon_{0123} = \eta_{0\alpha}\eta_{1\beta}\eta_{2\gamma}\eta_{3\delta} \epsilon^{\alpha\beta\gamma\delta} = (1)(-1)(-1)(-1) \epsilon^{0123} = -1 \,.
+\end{equation}
+
+\subsection*{Dirac Algebra and Gamma Matrices}
+The Dirac matrices $\gamma^\mu$ satisfy the Clifford algebra anticommutation relations:
+\begin{equation}
+    \{ \gamma^\mu, \gamma^\nu \} \equiv \gamma^\mu \gamma^\nu + \gamma^\nu \gamma^\mu = 2\eta^{\mu\nu} \mathbf{1}_{4\times 4} \,.
+\end{equation}
+\textbf{Hermiticity properties:}
+\begin{equation}
+    (\gamma^0)^\dagger = \gamma^0 \,, \quad (\gamma^i)^\dagger = -\gamma^i \,.
+\end{equation}
+These can be summarized compactly as $(\gamma^\mu)^\dagger = \gamma^0 \gamma^\mu \gamma^0$.
+
+\textbf{Chirality matrix:}
+We define $\gamma^5$ (or $\gamma_5$) as:
+\begin{equation}
+    \gamma^5 \equiv i \gamma^0 \gamma^1 \gamma^2 \gamma^3 \,.
+\end{equation}
+Properties: $\{\gamma^5, \gamma^\mu\} = 0$, $(\gamma^5)^\dagger = \gamma^5$, and $(\gamma^5)^2 = \mathbf{1}$.
+
+\textbf{Feynman Slash Notation:}
+Any contraction of a four-vector with the gamma matrices is denoted by a slash:
+\begin{equation}
+    \slashed{a} \equiv \gamma^\mu a_\mu = \gamma^0 a_0 - \boldsymbol{\gamma} \cdot \mathbf{a} \,.
+\end{equation}
+Common identities include $\slashed{p}\slashed{p} = p^2$ and $\text{Tr}[\slashed{a}\slashed{b}] = 4 a\cdot b$.
+
+\subsection*{Operators and Fields}
+We adopt the interaction picture or Heisenberg picture depending on the context. For free fields, the expansions are given in terms of ladder operators.
+\begin{itemize}
+    \item \textbf{Ladder Operators:}
+          \begin{itemize}
+              \item $a_{\mathbf{p}}^\dagger, b_{\mathbf{p}}^\dagger, d_{\mathbf{p}}^\dagger$: Creation operators. They create a particle with momentum $\mathbf{p}$ when acting on the vacuum $|0\rangle$.
+              \item $a_{\mathbf{p}}, b_{\mathbf{p}}, d_{\mathbf{p}}$: Annihilation operators. $a_{\mathbf{p}} |0\rangle = 0$.
+          \end{itemize}
+    \item \textbf{Commutation Relations:} For bosons, $[a_{\mathbf{p}}, a_{\mathbf{q}}^\dagger] = (2\pi)^3 2E_{\mathbf{p}} \delta^{(3)}(\mathbf{p}-\mathbf{q})$. For fermions, $\{b_{\mathbf{p}}, b_{\mathbf{q}}^\dagger\} = (2\pi)^3 2E_{\mathbf{p}} \delta^{(3)}(\mathbf{p}-\mathbf{q})$. Note the relativistic normalization factor $2E_{\mathbf{p}}$.
+    \item \textbf{Field Interpretation:}
+          A complex scalar field $\phi(x)$ contains annihilation operators for particles ($a$) and creation operators for antiparticles ($b^\dagger$):
+          \begin{equation}
+              \phi(x) \sim \int d\tilde{p} \, (a_{\mathbf{p}} e^{-ipx} + b_{\mathbf{p}}^\dagger e^{ipx}) \,.
+          \end{equation}
+          Thus, $\phi(x)$ annihilates a particle or creates an antiparticle at $x$. Conversely, $\phi^\dagger(x)$ creates a particle or annihilates an antiparticle.
 \end{itemize}

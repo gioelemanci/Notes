@@ -23,21 +23,27 @@ It can be shown that the field strength tensor \(F^{\mu \nu}\) respects the \tex
     \partial_{[\lambda}F_{\mu\nu]} \equiv
     \partial_\lambda F_{\mu\nu} +
     \partial_\mu F_{\nu\lambda} +
-    \partial_\nu F_{\lambda\mu} = 0
+    \partial_\nu F_{\lambda\mu} = 0.
 \]
 The electric and magnetic fields can be expressed in terms of the potentials as
 \[
     \mathbf{E} = -\nabla \phi - \frac{\partial \mathbf{A}}{\partial t}, \quad \mathbf{B} = \nabla \times \mathbf{A},
 \]
 as the spatial and temporal components of the field strength tensor:
-\[
-    F = \begin{pmatrix}
+\begin{equation}
+    F_{\mu \nu} = \begin{pmatrix}
         0    & E_x  & E_y  & E_z  \\
         -E_x & 0    & -B_z & B_y  \\
         -E_y & B_z  & 0    & -B_x \\
         -E_z & -B_y & B_x  & 0
+    \end{pmatrix}, \quad F^{\mu \nu} = \begin{pmatrix}
+        0   & -E^x & -E^y & -E^z \\
+        E^x & 0    & -B^z & B^y  \\
+        E^y & B^z  & 0    & -B^x \\
+        E^z & -B^y & B^x  & 0
     \end{pmatrix}.
-\]
+    \label{eq:field_strength_tensor_components_explicit}
+\end{equation}
 Finally we can see how the Maxwell equations are encapsulated in this formalism, since they arise from the equations of motion and the Bianchi identity:
 \[
     \begin{dcases}
@@ -51,11 +57,11 @@ Finally we can see how the Maxwell equations are encapsulated in this formalism,
 \]
 where the first two equations come from \(\partial_\mu F^{\mu \nu} = 0\) and need further terms when sources are present, while the last two come from the Bianchi identity, after recognizing the definitions of the electric and magnetic fields, and are true even in the presence of sources.
 
-If we now expand the lagrangian density in terms of the potentials, we can exploit the fact that not every component of the vector potential \(A^{\mu}\) is physical, since the EM field is known to have only two physical degrees of freedom (the two polarization states of the photon). Thus the lagrangian density can be rewritten as\TODO{not so clear, expand computation}
+If we now expand the lagrangian density in terms of the potentials, we can exploit the fact that not every component of the vector potential \(A^{\mu}\) is physical, since the EM field is known to have only two physical degrees of freedom (the two polarization states of the photon). Thus the lagrangian density can be rewritten as\TODO{not clear, expand computation}
 \[
-    \mathcal{L} = -\frac{1}{4} F_{\mu \nu} F^{\mu \nu} = -\frac{1}{2} \left( F_{0i}F^{0i} + F_{ij}F^{ij} \right).
+    \mathcal{L} = -\frac{1}{4} F_{\mu \nu} F^{\mu \nu} = -\frac{1}{2} F_{0i}F^{0i} - \frac{1}{4} F_{ij}F^{ij}.
 \]
-Thus we understand that the lagrangian density depends only on the spatial components of the vector potential \(A^i\) and their time derivatives, while the time component \(A^0\) does not have a kinetic term (no dependence on \(\frac{1}{2}(\partial_0 A^0)^2\))
+Thus we understand that the lagrangian density depends only on the spatial components of the vector potential \(A^i\) and their time derivatives, while the time component \(A^0\) does not have a kinetic term (no dependence on \(\frac{1}{2}(\partial_0 A^0)^2\)):
 \[
     \mathcal{L} \supset \sum_{i} \frac{1}{2}(\dot{A}^{i})^2, \quad \text{ but } \quad \mathcal{L} \not\supset \frac{1}{2}(\dot{A}^{0})^2.
 \]
@@ -110,7 +116,7 @@ There are several popular choices for gauge fixing in electromagnetism, each wit
           This gauge is Lorentz invariant, making it convenient for relativistic calculations. In this gauge, the independent degrees of freedom are reduced down to two, corresponding to the two physical polarization states of the photon.
           But \(A^{\mu} \) does not necessarily satisfy the wave equation:
           \[
-              \partial_\mu A^\nu(x) = f(x) \neq 0,
+              \partial_\mu A^\mu(x) = f(x) \neq 0,
           \]
           but we can always perform a gauge transformation to ensure that it does: if there exists a function \(\alpha(x)\) such that \(\Box \alpha(x) = - f(x)\), then the gauge transformed field
           \[
@@ -151,7 +157,7 @@ Before starting the quantization procedure, we need to find the conjugate moment
 
 From the lagrangian density
 \[
-    \mathcal{L} = -\frac{1}{2} \left( F_{0i}F^{0i} + F_{ij}F^{ij} \right),
+    \mathcal{L} = -\frac{1}{2} \left( F_{0i}F^{0i} + \frac{1}{2}F_{ij}F^{ij} \right),
 \]
 the \textbf{conjugate momenta} are defined as
 \[
@@ -171,8 +177,8 @@ Thus we have \(\pi = (0, \mathbf{E})\) and the Hamiltonian density of the system
 since \(\pi^0 = 0\). Recalling the expressions for \(\pi^i\) and \(\mathcal{L}\), we get
 \[
     \begin{aligned}
-        \pi^{i} \partial_0 A_{i} & = E^{i} \partial_0 A_{i} = E^{i} \left( F_{0i} + \partial_i A_0 \right) = E^{i} F_{0i} + E^{i} \partial_i A_0,                                                                                                                 \\
-        \mathcal{L}              & = -\frac{1}{2} \left( F_{0i}F^{0i} + F_{ij}F^{ij} \right) = -\frac{1}{2} \left( -\vert \mathbf{E} \vert^2 + \vert \mathbf{B} \vert^2 \right) = \frac{1}{2} \left( \vert \mathbf{E} \vert^2 - \vert \mathbf{B} \vert^2 \right),
+        \pi^{i} \partial_0 A_{i} & = E^{i} \partial_0 A_{i} = E^{i} \left( F_{0i} + \partial_i A_0 \right) = E^{i} F_{0i} + E^{i} \partial_i A_0,                                                                                                                            \\
+        \mathcal{L}              & = -\frac{1}{2} \left( F_{0i}F^{0i} + \frac{1}{2}F_{ij}F^{ij} \right) = -\frac{1}{2} \left( -\vert \mathbf{E} \vert^2 + \vert \mathbf{B} \vert^2 \right) = \frac{1}{2} \left( \vert \mathbf{E} \vert^2 - \vert \mathbf{B} \vert^2 \right),
     \end{aligned}
 \]
 we get to an hamiltonian density of
@@ -227,13 +233,14 @@ different from the previous case where \(\pi^0 = 0\), since now the Lagrangian h
 \section{Quantization of the Electromagnetic Field}
 
 Sticking to the Feynman gauge, we can finally proceed to the quantization for the electromagnetic field. The classical fields \(A_{\mu}(x)\) and \(\pi^{\mu}(x)\) are going to be promoted to operators acting on a Hilbert space. We impose the \textbf{canonical commutation relations} at equal times:\footnote{Since we know that integer spin particles are bosons and the correct spin-statistics relations are imposed via commutation.}
-\[
+\begin{equation}
     \begin{aligned}
-        \left[A_{\mu}(\mathbf{x}, t), \pi^{\nu}(\mathbf{y}, t)\right]   & = i \delta_{\mu}^{\ \nu} \delta^{(3)}(\mathbf{x} - \mathbf{y}), \\
-        \left[A_{\mu}(\mathbf{x}, t), A_{\nu}(\mathbf{y}, t)\right]     & = 0,                                                            \\
-        \left[\pi^{\mu}(\mathbf{x}, t), \pi^{\nu}(\mathbf{y}, t)\right] & = 0.
+        \left[\hat{A}_{\mu}(\mathbf{x}, t), \hat{\pi}^{\nu}(\mathbf{y}, t)\right]   & = i \delta_{\mu}^{\ \nu} \delta^{(3)}(\mathbf{x} - \mathbf{y}), \\
+        \left[\hat{A}_{\mu}(\mathbf{x}, t), \hat{A}_{\nu}(\mathbf{y}, t)\right]     & = 0,                                                            \\
+        \left[\hat{\pi}^{\mu}(\mathbf{x}, t), \hat{\pi}^{\nu}(\mathbf{y}, t)\right] & = 0.
     \end{aligned}
-\]
+    \label{eq:canonical_commutation_relations_em_field}
+\end{equation}
 This relations will ensure the correct quantization of the electromagnetic field, with symmetric multiparticle states corresponding to the bosonic nature of photons, while the use of anticommutation relations would lead to inconsistencies with the spin-statistics theorem.
 
 The general solution to the equations of motion \(\Box A^{\mu} = 0\) can be expressed as a Fourier expansion in terms of plane waves whose coefficients should operate as creation and annihilation operators for photons. We can write:
@@ -243,24 +250,26 @@ The general solution to the equations of motion \(\Box A^{\mu} = 0\) can be expr
 where \(p^{\mu} = (E_{\mathbf{p}}, \mathbf{p})\) with \(E_{\mathbf{p}} = \vert \mathbf{p} \vert\) for massless particles.
 
 The operators \(\hat{\xi}_{\mu}(\mathbf{p})\) and \(\hat{\xi}_{\mu}^{\dagger}(\mathbf{p})\) will be identified as annihilation and creation operators for photons with momentum \(\mathbf{p}\) and polarization indexed by \(\mu\). To explicitly see this, we can decompose these operators in terms of a \textbf{polarization basis}: we introduce polarization vectors \(\epsilon_{\mu}^{(\lambda)}(\mathbf{p})\) with \(\lambda = 0, 1, 2, 3\) labeling the four possible polarization states of the photon
+\begin{equation}
+    \epsilon_\mu^{(\lambda)}(\mathbf{p}), \quad \lambda = 0, 1, 2, 3, \quad \begin{dcases}
+        \epsilon^{(\lambda)}_{\mu}(\mathbf{p}) \epsilon^{(\lambda') \mu}(\mathbf{p})                                   & = \eta^{\lambda \lambda'}, \\
+        \epsilon_{\mu}^{(\lambda)}(\mathbf{p}) \epsilon_{\nu}^{(\lambda^{\prime})}(\mathbf{p}) \eta_{\lambda \lambda'} & = \eta_{\mu \nu}.
+    \end{dcases}
+    \label{eq:polarization_basis_and_ON_relations}
+\end{equation}
+which satisfy the orthonormality with respect to the Minkowski metric \(\eta_{\mu \nu}\). Lambda \(\lambda = 0\) corresponds to the timelike polarization, \(\lambda = 1, 2\) correspond to the two transverse polarizations, while \(\lambda = 3\) corresponds to the longitudinal polarization: it labels the only non zero component of the polarization vector.
+
+We can then express the operators \(\hat{\xi}_{\mu}(\mathbf{p})\) and \(\hat{\xi}_{\mu}^{\dagger}(\mathbf{p})\) in terms of creation and annihilation operators \(\hat{a}^{(\lambda)}_{\mathbf{p}}\) and \(\hat{a}^{(\lambda)\,\dagger}_{\mathbf{p}}\) for photons with definite polarization:
 \[
-    \epsilon_\mu^{(\lambda)}(\mathbf{p}), \quad \lambda = 0, 1, 2, 3,
-\]
-which satisfy the orthonormality with respect to the Minkowski metric \(\eta_{\mu \nu}\):
-\[
-    \epsilon^{(\lambda)}_{\mu}(\mathbf{p}) \epsilon^{(\lambda') \mu}(\mathbf{p}) = \eta^{\lambda \lambda'}, \quad \epsilon_{\mu}^{(\lambda)}(\mathbf{p}) \epsilon_{\nu}^{(\lambda^{\prime})}(\mathbf{p}) \eta_{\lambda \lambda'} = \eta_{\mu \nu}.
-\]
-We can then express the operators \(\hat{\xi}_{\mu}(\mathbf{p})\) and \(\hat{\xi}_{\mu}^{\dagger}(\mathbf{p})\) in terms of creation and annihilation operators \(a^{(\lambda)}_{\mathbf{p}}\) and \(a^{(\lambda)\,\dagger}_{\mathbf{p}}\) for photons with definite polarization:
-\[
-    \hat{\xi}_{\mu}(\mathbf{p}) = \sum_{\lambda=0}^{3} \epsilon_{\mu}^{(\lambda)}(\mathbf{p}) a^{(\lambda)}_{\mathbf{p}}, \quad \hat{\xi}_{\mu}^{\dagger}(\mathbf{p}) = \sum_{\lambda=0}^{3} \epsilon_{\mu}^{(\lambda)}(\mathbf{p}) a^{(\lambda)\,\dagger}_{\mathbf{p}}.
+    \hat{\xi}_{\mu}(\mathbf{p}) = \sum_{\lambda=0}^{3} \epsilon_{\mu}^{(\lambda)}(\mathbf{p}) \hat{a}^{(\lambda)}_{\mathbf{p}}, \quad \hat{\xi}_{\mu}^{\dagger}(\mathbf{p}) = \sum_{\lambda=0}^{3} \epsilon_{\mu}^{(\lambda)}(\mathbf{p}) \hat{a}^{(\lambda)\,\dagger}_{\mathbf{p}}.
 \]
 We can now write the final expression for the quantized electromagnetic field and its conjugate momenta:\footnote{In the expression for the conjugate momenta, we have a term \((+i)\) changing sign with respect to the scalar field case, due to the different definition of \(\pi^{\mu}\) in terms of the fields \(A^{\mu}\): after using equation \eqref{eq:conjugate_momentum}, for KG we had \(\pi = \partial_0 \phi\), while here we have \(\pi^{\mu} = - \dot{A}^{\mu} + \dots\), so that in the end this sign changes.}
 \begin{equation}
     \begin{dcases}
-        \hat{A}_\mu(\mathbf{x})   & = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \frac{1}{\sqrt{2 E_{\mathbf{p}}}} \sum_{\lambda=0}^{3} \epsilon_{\mu}^{(\lambda)}(\mathbf{p}) \left( a^{(\lambda)}_{\mathbf{p}} e^{i \mathbf{p} \cdot \mathbf{x}} + a^{(\lambda)\,\dagger}_{\mathbf{p}} e^{-i \mathbf{p} \cdot \mathbf{x}} \right),   \\
-        \hat{\pi}^\mu(\mathbf{x}) & = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} (+i) \sqrt{\frac{E_{\mathbf{p}}}{2}} \sum_{\lambda=0}^{3} \epsilon^{\mu\,(\lambda)}(\mathbf{p}) \left( a^{(\lambda)}_{\mathbf{p}} e^{i \mathbf{p} \cdot \mathbf{x}} - a^{(\lambda)\,\dagger}_{\mathbf{p}} e^{-i \mathbf{p} \cdot \mathbf{x}} \right).
+        \hat{A}_\mu(\mathbf{x})   & = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \frac{1}{\sqrt{2 E_{\mathbf{p}}}} \sum_{\lambda=0}^{3} \epsilon_{\mu}^{(\lambda)}(\mathbf{p}) \left( \hat{a}^{(\lambda)}_{\mathbf{p}} e^{i \mathbf{p} \cdot \mathbf{x}} + \hat{a}^{(\lambda)\,\dagger}_{\mathbf{p}} e^{-i \mathbf{p} \cdot \mathbf{x}} \right),   \\
+        \hat{\pi}^\mu(\mathbf{x}) & = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} (+i) \sqrt{\frac{E_{\mathbf{p}}}{2}} \sum_{\lambda=0}^{3} \epsilon^{\mu\,(\lambda)}(\mathbf{p}) \left( \hat{a}^{(\lambda)}_{\mathbf{p}} e^{i \mathbf{p} \cdot \mathbf{x}} - \hat{a}^{(\lambda)\,\dagger}_{\mathbf{p}} e^{-i \mathbf{p} \cdot \mathbf{x}} \right).
     \end{dcases}
-    \label{eq:field_expansion_ladder_em}
+    \label{eq:field_momenta_expansion_ladder_em}
 \end{equation}
 We have the four vector polarization depending on the four momentum \(p^{\mu} = \left(\vert \mathbf{p} \vert, \mathbf{p} \right)\), but we know that the photon has only two physical polarization states. This discrepancy arises because we have not yet fully fixed the gauge: the presence of unphysical polarization states (longitudinal and timelike) is a consequence of the gauge redundancy in the electromagnetic field. To make contact with the two physical polarization states of the photon, we choose \(\epsilon^{(1)}_{\mu}\) and \(\epsilon^{(2)}_{\mu}\) as the two transverse polarization vectors
 \[
@@ -292,7 +301,7 @@ thus they are perpendicular to the direction of the momentum, while \(\epsilon^{
     \]
     since the transverse polarization vectors have zero time and longitudinal components. We need to choose the transverse polarization vectors to be orthogonal to each other and normalized:
     \[
-        \epsilon^{(1)}_{\mu} \epsilon^{(2)\,\mu} = 0 = \epsilon^{(1)}_1 \epsilon^{(2)}_1 + \epsilon^{(1)}_2 \epsilon^{(2)}_2 = 0,
+        \epsilon^{(1)}_{\mu} \epsilon^{(2)\,\mu} = 0 = \epsilon^{(1)}_1 \epsilon^{(2)\,1} + \epsilon^{(1)}_2 \epsilon^{(2)\,2} = 0,
     \]
     so now it is justified the initial choice of \(\epsilon^{(1)}_{\mu} = (0, 1, 0, 0)\) and \(\epsilon^{(2)}_{\mu} = (0, 0, 1, 0)\),\footnote{We could have chosen the opposite identification, it would have been the same.} which clearly satisfies the orthonormality conditions with respect to the Minkowski metric. To clarify, we can write
     \[
@@ -314,28 +323,28 @@ thus they are perpendicular to the direction of the momentum, while \(\epsilon^{
 The creation and annihilation operators \(a^{(\lambda)}_{\mathbf{p}}\) and \(a^{(\lambda)\,\dagger}_{\mathbf{p}}\) satisfy the commutation relations\TODO{expliciit derivation of commutation relations.}
 \[
     \begin{aligned}
-        \left[a^{(\lambda)}_{\mathbf{p}}, a^{(\lambda')\,\dagger}_{\mathbf{q}}\right] & = - \eta^{\lambda \lambda'} (2\pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q}),                   \\
-        \left[a^{(\lambda)}_{\mathbf{p}}, a^{(\lambda')}_{\mathbf{q}}\right]          & = \left[a^{(\lambda)\,\dagger}_{\mathbf{p}}, a^{(\lambda')\,\dagger}_{\mathbf{q}}\right] = 0,
+        \left[\hat{a}^{(\lambda)}_{\mathbf{p}}, \hat{a}^{(\lambda')\,\dagger}_{\mathbf{q}}\right] & = - \eta^{\lambda \lambda'} (2\pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q}),                               \\
+        \left[\hat{a}^{(\lambda)}_{\mathbf{p}}, \hat{a}^{(\lambda')}_{\mathbf{q}}\right]          & = \left[\hat{a}^{(\lambda)\,\dagger}_{\mathbf{p}}, \hat{a}^{(\lambda')\,\dagger}_{\mathbf{q}}\right] = 0,
     \end{aligned}
 \]
-which can be derived from the canonical commutation relations for the fields \(A_{\mu}\) and \(\pi^{\mu}\). Note the minus sign in the first commutation relation, which arises from the Minkowski metric \(\eta^{\lambda \lambda'}\) and reflects the presence of unphysical polarization states.
+which can be derived from the canonical commutation relations for the fields \(\hat{A}_{\mu}\) and \(\hat{\pi}^{\mu}\). Note the minus sign in the first commutation relation, which arises from the Minkowski metric \(\eta^{\lambda \lambda'}\) and reflects the presence of unphysical polarization states.
 
-If we indeed check the norm of the states created by the creation operators acting on the vacuum \(\ket{0}\), defined by \(a^{(\lambda)}_{\mathbf{p}} \ket{0} = 0\) for all \(\lambda\) and \(\mathbf{p}\), we find that for spacelike polarizations \(\lambda = 1, 2, 3\) we have positive norm states:
+If we indeed check the norm of the states created by the creation operators acting on the vacuum \(\ket{0}\), defined by \(\hat{a}^{(\lambda)}_{\mathbf{p}} \ket{0} = 0\) for all \(\lambda\) and \(\mathbf{p}\), we find that for spacelike polarizations \(\lambda = 1, 2, 3\) we have positive norm states:
 \[
     \begin{aligned}
-        \braket{\mathbf{p}, \lambda \vert \mathbf{q}, \lambda'} & = \bra{0} a^{(\lambda)}_{\mathbf{p}} a^{(\lambda')\,\dagger}_{\mathbf{q}} \ket{0} = -\eta^{\lambda \lambda'} (2\pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q}), \\
-                                                                & \implies \braket{\mathbf{p}, \lambda \vert \mathbf{p}, \lambda} = + (2\pi)^3 \delta^{(3)}(0) > 0, \quad \text{for } \lambda = 1, 2, 3,
+        \bra{\mathbf{p}, \lambda} \ket{\mathbf{q}, \lambda'} & = \bra{0} \hat{a}^{(\lambda)}_{\mathbf{p}} \hat{a}^{(\lambda')\,\dagger}_{\mathbf{q}} \ket{0} = -\eta^{\lambda \lambda'} (2\pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q}), \\
+                                                             & \implies \bra{\mathbf{p}, \lambda} \ket{\mathbf{p}, \lambda} = + (2\pi)^3 \delta^{(3)}(0) > 0, \quad \text{for } \lambda = 1, 2, 3,
     \end{aligned}
 \]
 while for the timelike polarization \(\lambda = 0\) we have negative norm states:
 \[
-    \braket{\mathbf{p}, 0 \vert \mathbf{q}, 0} = \bra{0} a^{(0)}_{\mathbf{p}} a^{(0)\,\dagger}_{\mathbf{q}} \ket{0} = -\eta^{00} (2\pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q}) = - (2\pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q}) <0.
+    \bra{\mathbf{p}, 0} \ket{\mathbf{q}, 0} = \bra{0} \hat{a}^{(0)}_{\mathbf{p}} \hat{a}^{(0)\,\dagger}_{\mathbf{q}} \ket{0} = -\eta^{00} (2\pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q}) = - (2\pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q}) <0.
 \]
 This comes from the commutator relations
 \[
     \begin{aligned}
-        \left[a^{(0)}_{\mathbf{p}}, a^{(0)\,\dagger}_{\mathbf{q}}\right] & = - \eta^{00} (2\pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q}) = - (2\pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q}),                    \\
-        \left[a^{(i)}_{\mathbf{p}}, a^{(i)\,\dagger}_{\mathbf{q}}\right] & = - \eta^{ii} (2\pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q}) = + (2\pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q}), \quad i = 1, 2, 3,
+        \left[\hat{a}^{(0)}_{\mathbf{p}}, \hat{a}^{(0)\,\dagger}_{\mathbf{q}}\right] & = - \eta^{00} (2\pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q}) = - (2\pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q}),                    \\
+        \left[\hat{a}^{(i)}_{\mathbf{p}}, \hat{a}^{(i)\,\dagger}_{\mathbf{q}}\right] & = - \eta^{ii} (2\pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q}) = + (2\pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q}), \quad i = 1, 2, 3,
     \end{aligned}
 \]
 which in turn arise from the switching of the operators in the calculation of the norm.
@@ -385,7 +394,7 @@ since it should lead us towards Lorentz invariant solution while removing the ne
           \[
               (\partial_\mu \hat{A}^{\mu}) \ket{\psi} = 0.
           \]
-          This approach is less restrictive, but it still does not fully work in the recognition of physical and unphysical polarization states, since the vacuum state \(\ket{0}\) would be recognized as unphysical: in Heisemberg picture indeed
+          This approach is less restrictive, but it still does not fully work in the recognition of physical and unphysical polarization states, since the vacuum state \(\ket{0}\) would be recognized as unphysical: in Heisemberg picture (as done in \eqref{eq:ladder_operators_heisenberg}), we have indeed
           \[
               \hat{A}_\mu(x) = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \frac{1}{\sqrt{2 E_{\mathbf{p}}}} \sum_{\lambda=0}^{3} \epsilon_{\mu}^{(\lambda)}(\mathbf{p}) \left( a^{(\lambda)}_{\mathbf{p}} e^{i p_\mu x^{\mu}} + a^{(\lambda)\,\dagger}_{\mathbf{p}} e^{-i p_\mu x^{\mu}} \right) = \hat{A}_\mu^{+}(x) + \hat{A}_\mu^{-}(x),
           \]
@@ -401,11 +410,7 @@ since it should lead us towards Lorentz invariant solution while removing the ne
           \end{equation}
           for physical states \(\ket{\psi}\). This condition effectively eliminates the unphysical polarization states from the theory, while still allowing for a consistent quantization of the electromagnetic field. The physical states are then defined as those that satisfy this condition, leading to a well-defined physical subspace of the full Hilbert space.
 
-          We could note that the negative frequency part \(\partial_\mu \hat{A}^{\mu -}\) functioning on physical states only when applied to the left:
-          \[
-              \bra{\psi} \partial_\mu \hat{A}^{\mu -} = 0,
-          \]
-          so that if we look at the matrix element of the operator \(\partial_\mu \hat{A}^{\mu}\) between two physical states \(\ket{\psi}\) and \(\ket{\phi}\), we have:
+          We could note that the negative frequency part \(\partial_\mu \hat{A}^{\mu -}\) functioning on physical states only when applied to the left, so that if we look at the matrix element of the operator \(\partial_\mu \hat{A}^{\mu}\) between two physical states \(\ket{\psi}\) and \(\ket{\phi}\), we have:
           \[
               \bra{\phi} \partial_\mu \hat{A}^{\mu} \ket{\psi} = \bra{\phi} \partial_\mu \hat{A}^{\mu +} \ket{\psi} + \bra{\phi} \partial_\mu \hat{A}^{\mu -} \ket{\psi} = 0 + 0 = 0.
           \]
@@ -419,19 +424,19 @@ We can check that starting from
 \[
     \partial^{\mu} \hat{A}_{\mu}^{+} \ket{\psi} = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \frac{1}{\sqrt{2 E_{\mathbf{p}}}} \sum_{\lambda=0}^{3} \left( -i \epsilon_{\mu}^{(\lambda)}(\mathbf{p}) p^{\mu} \right) a^{(\lambda)}_{\mathbf{p}} e^{-i p_\mu x^{\mu}} \ket{\psi} = 0,
 \]
-since one can notice how the contraction \(\epsilon_{\mu}^{(\lambda)}(\mathbf{p}) p^{\mu}\) vanishes for the transverse polarizations \(\lambda = 1, 2\), orthogonal to the momentum \(p^{\mu}\): choosing the momentum along the z-axis as before, we have
+since one can notice how the contraction \(\epsilon_{\mu}^{(\lambda)}(\mathbf{p}) p^{\mu}\) vanishes for the transverse polarizations \(\lambda = 1, 2\), orthogonal to the momentum \(p^{\mu}\): choosing the momentum along the z-axis as before \(p^{\mu} = \left(E,\,0,\,0,\,E\right)\), we have
 \[
     \epsilon^{(1)}_{\mu} p^{\mu} = 0, \quad \epsilon^{(2)}_{\mu} p^{\mu} = 0,
 \]
-so that only the the condition becomes
+so that the only condition becomes
 \[
     \partial^{\mu} \hat{A}_{\mu}^{+} \ket{\psi} = 0 \iff \left( \epsilon_{\mu}^{(0)}(\mathbf{p}) p^{\mu} \hat{a}^{(0)}_{\mathbf{p}} + \epsilon_{\mu}^{(3)}(\mathbf{p}) p^{\mu} \hat{a}^{(3)}_{\mathbf{p}} \right) \ket{\psi} = 0.
 \]
 This implies a relation between the creation and annihilation operators for the unphysical polarization states
 \[
-    E \left( \epsilon_{\mu}^{(0)}(\mathbf{p}) \hat{a}^{(0)}_{\mathbf{p}} + \epsilon_{\mu}^{(3)}(\mathbf{p}) \hat{a}^{(3)}_{\mathbf{p}} \right) \ket{\psi} = 0,
+    E \left( \epsilon_{0}^{(0)}(\mathbf{p}) \hat{a}^{(0)}_{\mathbf{p}} + \epsilon_{3}^{(3)}(\mathbf{p}) \hat{a}^{(3)}_{\mathbf{p}} \right) \ket{\psi} = 0,
 \]
-which leads to a series of implications useful to understand the nature of physical states:
+which leads to a series of implications useful to understand the nature of physical states:\footnote{Remember that \(\epsilon^{(\lambda)}_{i}\), with \(i = 1,\,2,\,3\), are spacelike components, so they have a minus sign when the index is low (or equivalently we can have high index in the polarization and low index in the momentum, but the minus sign is always present).}
 \begin{equation}
     \begin{dcases}
         \left( \hat{a}^{(0)}_{\mathbf{p}} - \hat{a}^{(3)}_{\mathbf{p}} \right) \ket{\psi} = 0,                               \\
@@ -486,7 +491,7 @@ We can now check explicitly that states with only transverse photons are physica
                                                                                            & = - 2 (2\pi)^3 \delta^{(3)}(\mathbf{p} - \mathbf{q}) \neq 0,
     \end{aligned}
 \]
-so that we can now compute the action of \(\hat{b}^{(-)}_{\mathbf{p}}\) on states with:
+with all other commutators null. Now we can compute the action of \(\hat{b}^{(-)}_{\mathbf{p}}\) on states with:
 \begin{enumerate}
     \item \textbf{only transverse photons}, created by \(\hat{a}^{(1/2)\,\dagger}_{\mathbf{q}}\):
           \[
@@ -587,11 +592,11 @@ leading to the hamiltonian:
 \[
     H = \int \mathrm{d}^3 \mathbf{x} \left( \pi^{\mu} \partial_0 A_{\mu} - \mathcal{L} \right) = \frac{1}{2} \int \mathrm{d}^3 \mathbf{x} \left( \partial_i A_{\mu} \partial^i A^{\mu} - \pi_\mu \pi^{\mu} \right),
 \]
-where we used \(\pi^{\mu}\dot{A}_\mu = \pi_{\mu}\dot{A}^\mu = - \pi_{\mu}\pi^{\mu}\). Let us compute terms separately: starting from the spatial derivative of the fields and substituting the field expansion \eqref{eq:field_expansion_ladder_em}
+where we used \(\pi^{\mu}\dot{A}_\mu = \pi_{\mu}\dot{A}^\mu = - \pi_{\mu}\pi^{\mu}\). Let us compute terms separately: starting from the spatial derivative of the fields and substituting the field expansion of \eqref{eq:field_momenta_expansion_ladder_em}, we have
 \[
     \begin{aligned}
-        \partial_i \hat{A}_{\mu}(\mathbf{x}) & = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \frac{-i p_i}{\sqrt{2 \vert \mathbf{p} \vert}} \sum_{\lambda=0}^{3} \epsilon_{\mu}^{(\lambda)}(\mathbf{p}) \left( \hat{a}^{(\lambda)}_{\mathbf{p}} e^{i p^j x^j} - \hat{a}^{(\lambda)\,\dagger}_{\mathbf{p}} e^{-i p^j x^j} \right),                                    \\
-        \partial^i \hat{A}^{\mu}(\mathbf{x}) & = \int \frac{\mathrm{d}^3 \mathbf{q}}{(2\pi)^3} \frac{-i q^i}{\sqrt{2 \vert \mathbf{q} \vert}} \sum_{\lambda^{\prime}=0}^{3} \epsilon^{\mu\,(\lambda^{\prime})}(\mathbf{q}) \left( \hat{a}^{(\lambda^{\prime})}_{\mathbf{q}} e^{i q^j x^j} - \hat{a}^{(\lambda^{\prime})\,\dagger}_{\mathbf{q}} e^{-i q^j x^j} \right), \\
+        \partial_i \hat{A}_{\mu}(\mathbf{x}) & = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \frac{-i p_i}{\sqrt{2 \vert \mathbf{p} \vert}} \sum_{\lambda=0}^{3} \epsilon_{\mu}^{(\lambda)}(\mathbf{p}) \left( \hat{a}^{(\lambda)}_{\mathbf{p}} e^{-i\omega t} e^{i p^j x^j} - \hat{a}^{(\lambda)\,\dagger}_{\mathbf{p}} e^{i\omega t} e^{-i p^j x^j} \right),                                    \\
+        \partial^i \hat{A}^{\mu}(\mathbf{x}) & = \int \frac{\mathrm{d}^3 \mathbf{q}}{(2\pi)^3} \frac{-i q^i}{\sqrt{2 \vert \mathbf{q} \vert}} \sum_{\lambda^{\prime}=0}^{3} \epsilon^{\mu\,(\lambda^{\prime})}(\mathbf{q}) \left( \hat{a}^{(\lambda^{\prime})}_{\mathbf{q}} e^{-i\omega t} e^{i q^j x^j} - \hat{a}^{(\lambda^{\prime})\,\dagger}_{\mathbf{q}} e^{i\omega t} e^{-i q^j x^j} \right), \\
     \end{aligned}
 \]
 since \(\partial_i e^{i p^j x^j} = \frac{\partial}{\partial x^i} e^{i p^j x^j} = i p^i e^{i p^j x^j} = -i p_i e^{i p^j x^j}\).\footnote{When computing the contraction \(\partial_i \hat{A}_{\mu}\partial^i \hat{A}^{\mu}\), we have to pay attention to the other derivative, since \(\partial^i e^{i p^j x^j} = \frac{\partial}{\partial x_i} e^{i p^j x^j} = i p^i \eta_{ij} e^{i p^j x^j} = i p_i e^{i p^j x^j} = -i p^i\); then when contracting \((-i p_i) (-i p^i)\) we need to change sign since \(\vert \mathbf{p} \vert^2 = p^i p^i = - p_i p^i\).} Thus, after integrating in \(\mathrm{d}^3 \mathbf{x}\) (which generates \(\delta(\mathbf{p}+ \mathbf{q})\) and \(\delta(\mathbf{p}-\mathbf{q})\)) and \(\mathrm{d}^3 \mathbf{q}\) (which is responsible for the minus signs in the first two terms of the next equation) in order to resolve the delta functions, we find

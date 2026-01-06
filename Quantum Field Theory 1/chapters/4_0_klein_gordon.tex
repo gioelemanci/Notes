@@ -115,7 +115,7 @@ Recall that for a single harmonic oscillator with mass \(m=1\) and frequency \(\
 \]
 where \(\hat{a}, \hat{a}^\dagger\) are the annihilation and creation operators, obeying \([\,\hat{a}, \hat{a}^\dagger\,] = 1\).
 
-We can generalize this construction to the field operators. A general solution to the Klein-Gordon equation (satisfying reality of the field) can be written as
+We can generalize this construction to the field operators: since we have seen in the mechanical model of a quantum field (section \ref{sec:mechanical_model}) that in the Fourier space the KG equation is equivalent to a system of decoupled harmonic oscillators, we can perform a Fourier transform of the field and use the ladder operators (which create and annihilate excitations of the quantum harmonic oscillator) as Fourier coefficient. A general solution to the Klein-Gordon equation (satisfying reality of the field) can be written as
 \[
     \hat{\psi}(\mathbf{x}) = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \frac{1}{\sqrt{2 \omega_{\mathbf{p}}}} \Big[ \hat{a}_{\mathbf{p}} e^{i \mathbf{p}\cdot \mathbf{x}} + \hat{a}_{\mathbf{p}}^\dagger e^{-i \mathbf{p}\cdot \mathbf{x}} \Big],
 \]
@@ -162,15 +162,15 @@ For the other commutators we do not have to report the full computation, we need
     \begin{aligned}
         [\,\hat{\psi}(\mathbf{x}),\hat{\psi}(\mathbf{y})\,] & = \int \frac{\mathrm{d}^3 \mathbf{p}\mathrm{d}^3 \mathbf{q}}{(2\pi)^6} \, \frac{1}{2\sqrt{\omega_{\mathbf{q}}\omega_{\mathbf{p}}}} \left[ \,\hat{a}_{\mathbf{p}} e^{i \mathbf{p}\cdot \mathbf{x}} + \hat{a}_{\mathbf{p}}^\dagger e^{-i \mathbf{p}\cdot \mathbf{x}}\, , \,\hat{a}_{\mathbf{q}} e^{i \mathbf{q}\cdot \mathbf{y}} + \hat{a}_{\mathbf{q}}^\dagger e^{-i \mathbf{q}\cdot \mathbf{y}} \, \right] \\
                                                             & = \int \frac{\mathrm{d}^3 \mathbf{p}\mathrm{d}^3 \mathbf{q}}{(2\pi)^6} \, \frac{1}{2\sqrt{\omega_{\mathbf{q}}\omega_{\mathbf{p}}}} \left[ [\,\hat{a}_{\mathbf{p}}, \hat{a}_{\mathbf{q}}^\dagger\,] e^{i (\mathbf{p} \cdot \mathbf{x} - \mathbf{q} \cdot \mathbf{y})} + [\,\hat{a}^\dagger_{\mathbf{p}}, \hat{a}_{\mathbf{q}}\,] e^{-i (\mathbf{p} \cdot \mathbf{x} - \mathbf{q} \cdot \mathbf{y})}\right]  \\
-                                                            & = \frac{1}{2} \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \, \frac{1}{\omega_{\mathbf{p}}} \left( e^{i \mathbf{p} \cdot (\mathbf{x} - \mathbf{y})} - e^{-i \mathbf{p} \cdot (\mathbf{x} - \mathbf{y})}\right) \propto \delta^{(3)}(\mathbf{x} - \mathbf{y}) - \delta^{(3)}(\mathbf{y} - \mathbf{x}) = 0;
+                                                            & = \frac{1}{2} \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \, \frac{1}{\omega_{\mathbf{p}}} \left( e^{i \mathbf{p} \cdot (\mathbf{x} - \mathbf{y})} - e^{-i \mathbf{p} \cdot (\mathbf{x} - \mathbf{y})}\right) = 0,
     \end{aligned}
 \]
-similarly:
+since in the second integral we can change the integration variable \(\mathbf{p} \to -\mathbf{p}\): \(\omega_{\mathbf{p}}\) is an even function and the subtraction among the exponantials remains given the reordering of the integration limits. Similarly:
 \[
     \begin{aligned}
         [\,\hat{\pi}(\mathbf{x}),\hat{\pi}(\mathbf{y})\,] & = \int \frac{\mathrm{d}^3 \mathbf{p}\mathrm{d}^3 \mathbf{q}}{(2\pi)^6} \, \frac{(-i)^2}{2}\sqrt{\omega_{\mathbf{q}}\omega_{\mathbf{p}}} \left[ \,\hat{a}_{\mathbf{p}} e^{i \mathbf{p}\cdot \mathbf{x}} - \hat{a}_{\mathbf{p}}^\dagger e^{-i \mathbf{p}\cdot \mathbf{x}}\, , \,\hat{a}_{\mathbf{q}} e^{i \mathbf{q}\cdot \mathbf{y}} - \hat{a}_{\mathbf{q}}^\dagger e^{-i \mathbf{q}\cdot \mathbf{y}} \, \right] \\
                                                           & = \int \frac{\mathrm{d}^3 \mathbf{p}\mathrm{d}^3 \mathbf{q}}{(2\pi)^6} \, \frac{(-1)}{2}\sqrt{\omega_{\mathbf{q}}\omega_{\mathbf{p}}} \left[ - [\,\hat{a}_{\mathbf{p}}, \hat{a}_{\mathbf{q}}^\dagger\,] e^{i (\mathbf{p} \cdot \mathbf{x} - \mathbf{q} \cdot \mathbf{y})} - [\,\hat{a}^\dagger_{\mathbf{p}}, \hat{a}_{\mathbf{q}}\,] e^{-i (\mathbf{p} \cdot \mathbf{x} - \mathbf{q} \cdot \mathbf{y})}\right]  \\
-                                                          & = \frac{1}{2} \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \, \omega_{\mathbf{p}} \left( e^{i \mathbf{p} \cdot (\mathbf{x} - \mathbf{y})} - e^{-i \mathbf{p} \cdot (\mathbf{x} - \mathbf{y})}\right) \propto \delta^{(3)}(\mathbf{x} - \mathbf{y}) - \delta^{(3)}(\mathbf{y} - \mathbf{x}) = 0.
+                                                          & = \frac{1}{2} \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \, \omega_{\mathbf{p}} \left( e^{i \mathbf{p} \cdot (\mathbf{x} - \mathbf{y})} - e^{-i \mathbf{p} \cdot (\mathbf{x} - \mathbf{y})}\right) = 0.
     \end{aligned}
 \]
 
@@ -260,7 +260,7 @@ This quantity still diverges to infinity because of the \textbf{Ultraviolet dive
 \]
 
 \paragraph{Normal Ordering.}
-We've established that the system's absolute energy value is problematic. Since we are typically interested only in \textit{relative energy values} (such as differences between energy levels or energies measured relative to the vacuum), the simplest physical choice is to define the vacuum energy as zero: \(E_0 = 0\). We achieve this formally by introducing the **Normal Ordering** of an operator $\hat{O}$:
+We've established that the system's absolute energy value is problematic. Since we are typically interested only in \textit{relative energy values} (such as differences between energy levels or energies measured relative to the vacuum), the simplest physical choice is to define the vacuum energy as zero: \(E_0 = 0\). We achieve this formally by introducing the \textbf{Normal Ordering} of an operator $\hat{O}$:
 \[
     :\hat{O}: = \hat{O} - \bra{0}\hat{O}\ket{0}.
 \]
@@ -288,9 +288,7 @@ If we compute the second, factorized expression, we find:
                  & = \frac{\omega}{4}\left(\hat{a} + \hat{a}^{\dagger} - \hat{a} + \hat{a}^{\dagger}\right)\left(\hat{a} + \hat{a}^{\dagger} + \hat{a} - \hat{a}^{\dagger}\right) = \frac{\omega}{4}(2\hat{a}^{\dagger})(2\hat{a}) = \omega \hat{a}^{\dagger}\hat{a} = \omega \hat{N},
     \end{aligned}
 \]
-where the vacuum energy term is naturally absent.
-
-This demonstrates the core rule of normal ordering: in any product of creation and annihilation operators, all annihilation operators ($\hat{a}$) must be placed to the right of all creation operators ($\hat{a}^{\dagger}$).
+where the vacuum energy term is naturally absent. This demonstrates the core rule of normal ordering: in any product of creation and annihilation operators, all annihilation operators ($\hat{a}$) must be placed to the right of all creation operators ($\hat{a}^{\dagger}$).
 
 Applying normal ordering to the full Klein-Gordon Hamiltonian we found previously:
 \[
@@ -350,7 +348,7 @@ The corresponding quantum operator, after substituting the field expansions and 
 \]
 where we can notice how the first term vanishes due to symmetry considerations (integral of an odd function). Thus, the final expression for the momentum operator is (after removing the divergence via normal ordering):
 \[
-    \hat{\mathbf{P}}^i = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} p^i \hat{a}^{\dagger}_{\mathbf{p}} \hat{a}_{\mathbf{p}} \quad \text{or, more compactly} \quad \hat{\mathbf{P}} = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \mathbf{p}\, \hat{a}^{\dagger}_{\mathbf{p}} \hat{a}_{\mathbf{p}}.
+    \hat{P}^i = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} p^i \hat{a}^{\dagger}_{\mathbf{p}} \hat{a}_{\mathbf{p}} \quad \text{or, more compactly} \quad \hat{\mathbf{P}} = \int \frac{\mathrm{d}^3 \mathbf{p}}{(2\pi)^3} \mathbf{p}\, \hat{a}^{\dagger}_{\mathbf{p}} \hat{a}_{\mathbf{p}}.
 \]
 We verify that the state $\ket{\mathbf{p}}$ is an eigenstate of $\hat{\mathbf{P}}$ with eigenvalue $\mathbf{p}$:
 \[

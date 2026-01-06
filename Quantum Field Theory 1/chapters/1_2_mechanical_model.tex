@@ -1,4 +1,4 @@
-\section{Mechanical Model of a Quantum Field}
+\section{Mechanical Model of a Quantum Field} \label{sec:mechanical_model}
 
 To build intuition for quantum fields, it is useful to begin with a simple mechanical system: a chain of coupled elastic strings. This model arises as the \textit{continuum limit} of a one-dimensional lattice of \(N\) atoms, and already captures many of the essential features of field theories.
 
@@ -435,9 +435,11 @@ We are now ready to quantize our \textit{mechanical string} with Lagrangian:
 \[
     L = m \sum_{\sigma=1}^{\frac{N}{2}-1} \left( \vert \dot{\tilde{y}}_{\sigma} \vert ^2 + \omega_{\sigma}^2 \vert \tilde{y}_{\sigma} \vert^2 \right) + \frac{m}{2} \left( \dot{\tilde{y}}_{\frac{N}{2}}^2 + \dot{\tilde{y}}_{N}^2 + \omega_{\frac{N}{2}}^2 \tilde{y}_{\frac{N}{2}}^2 \right),
 \]
+since it is describing a system of decoupled harmonic oscillators, we can imagine to define the ladder operators for each Fourier mode independently, and describe the whole system as a set of excitations (particles) of different harmonic oscillators, thus phonons at different frequencies.
+
 It is useful to stress that each complex mode can be decomposed into its real and imaginary parts. In particular,
 \[
-    \tilde{y}_{\sigma} = \frac{1}{\sqrt{2}}(\Re \tilde{y}_{\sigma} + \Im \tilde{y}_{\sigma}) = \frac{\tilde{y}_{\sigma}^{(\mathrm{R})}+\tilde{y}_{\sigma}^{(\mathrm{I})}}{\sqrt{2}},
+    \tilde{y}_{\sigma} = \frac{1}{\sqrt{2}}(\Re \tilde{y}_{\sigma} + i \Im \tilde{y}_{\sigma}) = \frac{\tilde{y}_{\sigma}^{(\mathrm{R})}+ i \tilde{y}_{\sigma}^{(\mathrm{I})}}{\sqrt{2}},
 \]
 so that the kinetic term can be written as
 \[
@@ -858,7 +860,7 @@ In this framework, the mode amplitudes become operators satisfying canonical com
 \]
 where $\hat{a}_{\kappa}$ and $\hat{a}^\dagger_{\kappa}$ are, respectively, the annihilation and creation operators for the mode labeled by $\kappa$.
 
-A generic state of the Fock space can then be written as
+A generic basis element of the Fock space can then be written as
 \[
     (\hat a_{\kappa_1}^\dagger)^{n_1}
     (\hat a_{\kappa_2}^\dagger)^{n_2}

@@ -89,9 +89,9 @@ To classify these states further, we consider the second Casimir operator
 \[
     C_2 = W^\mu W_\mu,
 \]
-where \(W^\mu\) is the Pauli-Lubanski vector:
+where \(W_\mu\) is the Pauli-Lubanski vector:
 \[
-    W^\mu = +\frac{1}{2} \epsilon^{\mu\nu\rho\sigma} M_{\nu\rho} P_\sigma.
+    W_\mu = +\frac{1}{2} \epsilon_{\mu\nu\rho\sigma} M^{\nu\rho} P^\sigma.
 \]
 Its eigenvalues are associated with intrinsic spin degrees of freedom of the particle.
 
@@ -111,8 +111,8 @@ commute with \(P^\mu\), so the little group is isomorphic to \(SO(3)\), the grou
 The Pauli-Lubanski vector components in the rest frame are
 \[
     \begin{aligned}
-        W_0 & = -\frac{1}{2} \epsilon_{0\nu\rho\sigma} P^\nu M^{\rho\sigma} = -\frac{1}{2} \epsilon_{00\rho\sigma} m M^{\rho\sigma} = 0, \\
-        W_i & = -\frac{1}{2} \epsilon_{i\nu\rho\sigma} P^\nu M^{\rho\sigma} = -\frac{1}{2} \epsilon_{i0jk} m M^{jk} = m J_i,
+        W_0 & = \frac{1}{2} \epsilon_{0\nu\rho\sigma} P^\nu M^{\rho\sigma} = \frac{1}{2} \epsilon_{00\rho\sigma} m M^{\rho\sigma} = 0,                              \\
+        W_i & = \frac{1}{2} \epsilon_{i\nu\rho\sigma} P^\nu M^{\rho\sigma} = \frac{1}{2} \epsilon_{i0jk} m M^{jk} = - \frac{m}{2} \epsilon_{0ijk} M^{jk} = - m J_i,
     \end{aligned}
 \]
 where the antisymmetry of the Levi-Civita tensor ensures that terms with repeated indices vanish. We thus recover the familiar rotation generators \(J_i\), so we can hypothesize that \(W_\mu\) generates transformations which leave \(p^\mu\) invariant:
@@ -184,12 +184,12 @@ To see how this arises, we can exploit the fact that the Pauli--Lubanski vector 
 and similarly
 \[
     \begin{aligned}
-        W_1 & = -E \left( J_1 - K_2 \right), \\
-        W_2 & = -E \left( J_2 + K_1 \right), \\
+        W_1 & = -E \left( J_1 + K_2 \right), \\
+        W_2 & = -E \left( J_2 - K_1 \right), \\
         W_3 & = -E J_3 = - W_0.
     \end{aligned}
 \]
-Thus, three independent combinations of the Lorentz generators appear naturally: \(J_3\), \(J_1 - K_2\), and \(J_2 + K_1\). The first corresponds to rotations around the direction of propagation, while the other two mix boosts and rotations in such a way that they act as “translations” in the plane orthogonal to the momentum.
+Thus, three independent combinations of the Lorentz generators appear naturally: \(J_3\), \(J_1 + K_2\), and \(J_2 - K_1\). The first corresponds to rotations around the direction of propagation, while the other two mix boosts and rotations in such a way that they act as “translations” in the plane orthogonal to the momentum.
 
 We can confirm that these generators indeed satisfy the commutation relations of the \(\mathrm{ISO}(2)\) algebra:
 \[

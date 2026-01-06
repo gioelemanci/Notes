@@ -307,14 +307,14 @@ We can now take the limit \(L \to \infty\) and \(\epsilon \to 0\). The integrals
           \[
               e^{ipr} e^{-it\sqrt{p^2 + m^2}} = e^{i \overline{\theta}} e^{-\Im(p)r} e^{t \Im(\sqrt{p^2 + m^2})} \to 0,
           \]
-          as \(\vert p \vert \to \infty\) while mantaining \(r>t\).
+          as \(\vert p \vert \to \infty\) while mantaining \(r>t\): after regrouping the real parts (which are multiplied by a \(i\) making the exponantial oscillate) in \(\overline{\theta}\), we can se how the second exponential dominate the third when \(r \gg t\).
 
     \item \textbf{Integral on the left arc at infinity vanishes}, \(\lim_{\vert p \vert  \to \infty} \int_{C_4} f(p)\,dp = 0\):\\
           since:
           \[
               e^{ipr} e^{-it\sqrt{p^2 + m^2}} = e^{i \left[\Re(p)r - t\Re(\sqrt{p^2 + m^2}) \right]} e^{- \left[\Im(p)r + \left\vert \Im(\sqrt{p^2 + m^2}) \right\vert t \right]} \to 0,
           \]
-          because we are on the left side of the branch cut, which imposes \(\Im(\sqrt{p^2 + m^2}) = - \vert \Im(\sqrt{p^2 + m^2}) \vert < 0\), thus the integral goes to zero as \(\vert p \vert \to \infty\).
+          because we are on the left side of the branch cut, which imposes \(\Im(\sqrt{p^2 + m^2}) = - \vert \Im(\sqrt{p^2 + m^2}) \vert < 0\), thus the integral goes to zero as \(\vert p \vert \to \infty\) (since again the real parts oscillate).
 
     \item \textbf{Integral on infinitesimal circle vanishes}, \(\lim_{\epsilon \to 0} \int_{C_{\epsilon}} f(p)\,dp = 0\):\\
           From the Darboux inequality, we have:

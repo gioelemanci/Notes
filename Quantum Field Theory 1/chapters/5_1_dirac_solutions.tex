@@ -40,7 +40,7 @@ we get the system of equations
 \]
 It's a system of two coupled equations for the two chiral components of the spinor. We can solve for one component in terms of the other; for example, solving for \(u_R(\mathbf{p})\) from the second equation and plugging it into the first, we get
 \[
-    (p^{\mu} \sigma_{\mu})(p^{\nu} \bar{\sigma}_{\nu}) = (p_0 - p_i \sigma^i)(p_0 + p_j \sigma^j) = p_0^2 - p_i p_j \sigma^i \sigma^j = p_0^2 - \mathbf{p}^2 = m^2,
+    (p^{\mu} \sigma_{\mu})(p^{\nu} \bar{\sigma}_{\nu}) = (p_0 + p_i \sigma^i)(p_0 - p_j \sigma^j) = p_0^2 - p_i p_j \sigma^i \sigma^j = p_0^2 - \mathbf{p}^2 = m^2,
 \]
 where we have used the algebra of the Pauli matrices \(\sigma^i \sigma^j = \delta^{ij} + i \epsilon^{ijk} \sigma^k\)\footnote{The term proportional to \(\epsilon^{ijk}\sigma^k\) goes to zero due to antisymmetry when contracted with symmetric indices.} and we have found the relativistic dispersion relation \(p_0^2 - \mathbf{p}^2 = m^2\). Thus we can write
 \[
@@ -255,7 +255,7 @@ Thus \(u(\mathbf{p})\) are positive energy solutions while \(v(\mathbf{p})\) are
             \sqrt{p^{\mu} \bar{\sigma}_{\mu}} \xi_+
         \end{pmatrix}e^{-i p_{\mu} x^{\mu}},
     \]
-    where computing the square roots we get
+    where computing the square roots we get\footnote{Pay attention that \(p = \vert \mathbf{p} \vert\), thus we have to explicit the minus sign in the spatial part of the four-momentum when contracting with \(\bar{\sigma}^{\mu}\) or \(\sigma^{\mu}\).}
     \[
         \psi(x) = \begin{pmatrix}
             \begin{pmatrix}
