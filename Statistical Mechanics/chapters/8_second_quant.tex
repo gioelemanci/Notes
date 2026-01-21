@@ -80,19 +80,19 @@ Similar to the bosonic case, we define the number operator \( \hat{N} \) for fer
 which counts the number of fermions in a given quantum state.
 \begin{figure}[H]
     \begin{minipage}{0.35\textwidth}
-        The action of the creation and annihilation operators on the number states \( \ket{n} \) (where \( n = 0 \) or \( 1 \) due to the Pauli exclusion principle) is given by:
-        \[    \begin{aligned}
-                \hat{N} \ket{n} = n \ket{n},                          \\
-                \hat{a} \ket{1} = \ket{0}, \quad \hat{a} \ket{0} = 0, \\
-                \hat{a}^\dagger \ket{0} = \ket{1}, \quad \hat{a}^\dagger \ket{1} = 0,
-            \end{aligned}
-        \]
+        The action of the creation and annihilation operators on the number states \( \ket{n} \) (where \( n = 0 \) or \( 1 \) due to the Pauli exclusion principle, eigenstates of the number operator) is given by:
     \end{minipage}
     \hfill
     \begin{minipage}{0.6\textwidth}
         \includegraphics[width=\textwidth]{img/fermions_ladder.png}
     \end{minipage}
 \end{figure}
+\[    \begin{aligned}
+        \hat{N} \ket{n} = n \ket{n},                          \\
+        \hat{a} \ket{1} = \ket{0}, \quad \hat{a} \ket{0} = 0, \\
+        \hat{a}^\dagger \ket{0} = \ket{1}, \quad \hat{a}^\dagger \ket{1} = 0,
+    \end{aligned}
+\]
 since a fermionic state can either be unoccupied (\( n = 0 \)) or occupied by a single fermion (\( n = 1 \)): from the null anticommutation relations among creation operators we have
 \[
     \{\hat{a}^\dagger, \hat{a}^\dagger\} = 0 \implies (\hat{a}^\dagger)^2 = 0,
@@ -150,7 +150,7 @@ If we describe a system of identical particles, the \( N \)-particle Hilbert spa
 \]
 where \( n_k \) represents the occupation number of the \( k \)-th quantum state and \(\mathcal{H} = \mathcal{H}_A \oplus_{\bot} \mathcal{H}_S \). These results are a direct consequence of the \textbf{canonical commutation and anticommutation relations} satisfied by the creation and annihilation operators, and they are encoded in the structure of the Fock space itself.
 
-If we denote the occupation number basis states in Fock space as \( \{\ket{n_1,\, n_2,\, \ldots \, n_k,\, \ldots}\}_{n_1, n_2, \ldots} \), where \( n_k \) is the number of particles in the \( k \)-th single-particle state, we can define a couple of creation and annihilation operators \(\hat{a}_n^{\dagger}\) \(\hat{a}_n\) for each single-particle state \( n \) (which in the single particle Hilbert space corresponds to the \( n \)-th vector of the basis \(\{\ket{e_n}\}_n\)). As we said, these operators induce the statistical nature of the particles, so they satisfy either the commutation relations \eqref{eq:commutation_relations_bosons} for bosons or the anticommutation relations \eqref{eq:anticommutation_relations_fermions} for fermions:
+If we denote the occupation number basis states in Fock space as \( \{\ket{n_1,\, n_2,\, \ldots \, n_k,\, \ldots}\}_{n_1, n_2, \ldots} \), where \( n_k \) is the number of particles in the \( k \)-th single-particle state, we can define a couple of creation and annihilation operators \(\hat{a}_n^{\dagger}\) and \(\hat{a}_n\) for each single-particle state \( n \) (which in the single particle Hilbert space corresponds to the \( n \)-th vector of the basis \(\{\ket{e_n}\}_n\)). As we said, these operators induce the statistical nature of the particles, so they satisfy either the commutation relations \eqref{eq:commutation_relations_bosons} for bosons or the anticommutation relations \eqref{eq:anticommutation_relations_fermions} for fermions:
 \[
     \begin{dcases}
         \text{Bosons:}   & [\hat{a}_m, \hat{a}_n^\dagger] = \delta_{mn} \mathbb{I}, \quad [\hat{a}_m, \hat{a}_n] = [\hat{a}_m^\dagger, \hat{a}_n^\dagger] = 0,       \\
@@ -233,19 +233,353 @@ To build a generic state \(\ket{f}\) in Fock space, we can take linear combinati
 \[
     \ket{f} = \sum_{n_1, n_2, \ldots} f(n_1, n_2, \ldots) \ket{n_1, n_2, \ldots},
 \]
-where \( f(n_1, n_2, \ldots) \) are complex coefficients that determine the contribution of each occupation number state to the overall state \( \ket{f} \). But since any state in Fock space can be constructed by applying creation operators to the vacuum state, we can also express \( \ket{f} \) as:
+where \( f(n_1, n_2, \ldots) \) are complex coefficients that determine the contribution of each occupation number state to the overall state \( \ket{f} \). But since any state in Fock space can be constructed by applying creation operators to the vacuum state, we can also express \( \ket{f} \) as:\QUESTION{wtf is this state?}
 \[
     \ket{f} = \sum_{N=0}^{\infty} \sum_{k_1, k_2, \ldots, k_N} f(k_1, k_2, \ldots, k_N) \hat{a}_{k_1}^\dagger \hat{a}_{k_2}^\dagger \ldots \hat{a}_{k_N}^\dagger \ket{0}.
 \]
 
+
+
 \section{Field Operators}
+In the context of second quantization, field operators provide a way to describe particle fields in a continuous manner, rather than focusing on individual particles. These operators are constructed from the creation and annihilation operators defined in the Fock space framework.
+
+Let us consider a Fock state built from a single-particle Hilbert space \(\mathcal{H} = \mathcal{L}^2(\mathbb{R}^d)\) with an orthonormal basis \(\{\ket{e_n}\}_n\). Each of these basis states corresponds to a specific quantum state of a single particle, such as a momentum eigenstate, which can be constructed as:
+\[
+    \ket{e_n (\mathbf{k}_n)} = \ket{e_n} = \hat{a}_n^\dagger \ket{0}.
+\]
+Thus we could think of a generic Fock state as:
+\[
+    \ket{f} = \sum_{n} f_n \ket{e_n} = \sum_{n} f_n \hat{a}_n^\dagger \ket{0} = \hat{\psi}^\dagger(f) \ket{0},
+\]
+where we have defined the \textbf{field creation operator} \( \hat{\psi}^\dagger(f) \) as:
+\begin{equation}
+    \hat{\psi}^\dagger(f) = \sum_{n} f_n \hat{a}_n^\dagger.
+    \label{eq:field_creation_operator}
+\end{equation}
+and similarly the \textbf{field annihilation operator} \( \hat{\psi}(f) \) as:
+\begin{equation}
+    \hat{\psi}(f) = \sum_{n} f_n^* \hat{a}_n.
+    \label{eq:field_annihilation_operator}
+\end{equation}
+As we will see, these field operators play a crucial role in describing many-particle systems in a continuous manner, allowing us to express observables and interactions in terms of fields rather than individual particles. They also satisfy commutation or anticommutation relations depending on whether we are dealing with bosons or fermions:
+\[
+    \left[\hat{\psi}(f),\,\hat{\psi}^\dagger(g)\right]_{\mp} = \left[\sum_{n} f_n^* \hat{a}_n,\, \sum_{m} g_m \hat{a}_m^\dagger \right]_{\mp} = \sum_{n,m} f_n^* g_m \left[\hat{a}_n,\, \hat{a}_m^\dagger\right]_{\mp} = \sum_{n} f_n^* g_n = \langle f | g \rangle,
+\]
+where the \( - \) sign corresponds to bosons (commutator) and the \( + \) sign corresponds to fermions (anticommutator). The other commutators or anticommutators vanish:
+\[
+    \left[\hat{\psi}(f),\,\hat{\psi}(g)\right]_{\mp} = 0, \quad \left[\hat{\psi}^\dagger(f),\,\hat{\psi}^\dagger(g)\right]_{\mp} = 0.
+\]
+
+If we choose the basis states \( \{\ket{e_n}\}_n \) to be position eigenstates, we can express the field operators in terms of plane waves or localized states:
+\[
+    \left\{ \ket{e_n} = u_n(\mathbf{x}) \right\}_{n=1}^{\infty},
+\]
+such that the \textbf{plane waves basis vectors} are given by:
+\[
+    u_{\mathbf{k}}(\mathbf{x}) = e^{i \mathbf{k} \cdot \mathbf{x}},
+\]
+where \( \mathbf{k} \) is the wavevector associated with the momentum of the particle. Note that these functions form a complete orthonormal set in \(\mathcal{L}^2(\mathbb{R}^d)\), but for now we are ignoring normalization factors for simplicity.
+
+The \textbf{field operators} \( \hat{\psi}(\mathbf{x}) \) and its conjugate \( \hat{\psi}^\dagger(\mathbf{x}) \)\footnote{They are different from the field creation and annihilation operators defined earlier, as they depend on the continuous position variable \(\mathbf{x}\) and conceptually represent the annihilation and creation of a particle at a specific point in space.} can be thus expressed in terms of these basis functions as a Fourier expansion, where the Fourier coefficients are the annihilation and creation operators for the momentum eigenstates:
+\begin{equation}
+    \hat{\psi}(\mathbf{x}) = \sum_{n} u_n(\mathbf{x}) \hat{a}_{n} = \sum_{\mathbf{k}_n} e^{i \mathbf{k}_n \cdot \mathbf{x}} \hat{a}_{\mathbf{k}_n}, \quad \hat{\psi}^\dagger(\mathbf{x}) = \sum_{n} u_n^*(\mathbf{x}) \hat{a}_{n}^\dagger = \sum_{\mathbf{k}_n} e^{- i \mathbf{k}_n \cdot \mathbf{x}} \hat{a}_{\mathbf{k}_n}^\dagger,
+    \label{eq:field_operators_position_space}
+\end{equation}
+giving us a way to describe the field operators in real space: the localized exhitations of the particle field at position \( \mathbf{x} \) are given by a superposition of plane waves with different momenta, weighted by the corresponding creation and annihilation operators.
+
+We can now express the previously defined field creation and annihilation operators \( \hat{\psi}^\dagger(f) \) and \( \hat{\psi}(f) \) in terms of the position-space field operators:
+\[
+    \begin{aligned}
+        \hat{\psi}^\dagger(f) & = \sum_{n} f_n \hat{a}_{n}^\dagger = \int \mathrm{d}^d \mathbf{x} \, \hat{\psi}^\dagger(\mathbf{x}) f(\mathbf{x}), \\
+        \hat{\psi}(f)         & = \sum_{n} f_n^* \hat{a}_{n} = \int \mathrm{d}^d \mathbf{x} \, \hat{\psi}(\mathbf{x}) f^*(\mathbf{x}),
+    \end{aligned}
+\]
+where \( f(\mathbf{x}) = \sum_{n} f_n u_n(\mathbf{x}) \) is a test function that describes the spatial profile of the particle field. We can obtain this results by substituting the expressions for \( \hat{\psi}(\mathbf{x}) \) and \( \hat{\psi}^\dagger(\mathbf{x}) \) from equation \eqref{eq:field_operators_position_space} into the integrals and using the orthonormality of the basis functions \( u_n(\mathbf{x}) \):
+\[
+    \begin{aligned}
+        \hat{\psi}^\dagger(f) & = \int \mathrm{d}^d \mathbf{x} \, \hat{\psi}^\dagger(\mathbf{x}) f(\mathbf{x})                                                              \\
+                              & = \int \mathrm{d}^d \mathbf{x} \, \left( \sum_{n} u_n^*(\mathbf{x}) \hat{a}_{n}^\dagger \right) \left( \sum_{m} f_m u_m(\mathbf{x}) \right) \\
+                              & = \sum_{n,m} f_m \hat{a}_{n}^\dagger \int \mathrm{d}^d \mathbf{x} \, u_n^*(\mathbf{x}) u_m(\mathbf{x}) = \sum_{n} f_n \hat{a}_{n}^\dagger,
+    \end{aligned}
+\]
+and similarly for \( \hat{\psi}(f) \). We can now see that the field operators \( \hat{\psi}(\mathbf{x}) \) and \( \hat{\psi}^\dagger(\mathbf{x}) \) serve as the building blocks for constructing the field creation and annihilation operators \( \hat{\psi}(f) \) and \( \hat{\psi}^\dagger(f) \) through integration over space.
+
+Now that we have defined the field operators in position space, we can also express their commutation or anticommutation relations:
+\[
+    \left[\hat{\psi}(\mathbf{x}),\,\hat{\psi}^\dagger(\mathbf{y})\right]_{\mp} = \delta(\mathbf{x} - \mathbf{y}), \quad \left[\hat{\psi}(\mathbf{x}),\,\hat{\psi}(\mathbf{y})\right]_{\mp} = 0, \quad \left[\hat{\psi}^\dagger(\mathbf{x}),\,\hat{\psi}^\dagger(\mathbf{y})\right]_{\mp} = 0,
+\]
+where the \( - \) sign corresponds to bosons (commutator) and the \( + \) sign corresponds to fermions (anticommutator).
+We can derive the only non-vanishing relation as follows:
+\[
+    \begin{aligned}
+        \left[ \hat{\psi}(\mathbf{x}), \hat{\psi}^\dagger(\mathbf{y}) \right]_{\mp} & = \sum_{n,m} u_n(\mathbf{x}) u_m^*(\mathbf{y}) \left[ \hat{a}_n, \hat{a}_m^\dagger \right]_{\mp}        \\
+                                                                                    & = \sum_{n,m} u_n(\mathbf{x}) u_m^*(\mathbf{y}) \delta_{nm} = \sum_{n} u_n(\mathbf{x}) u_n^*(\mathbf{y}) \\
+                                                                                    & = e^{i \mathbf{k}_n \cdot (\mathbf{x} - \mathbf{y})} = \delta(\mathbf{x} - \mathbf{y}),
+    \end{aligned}
+\]
+but we can obtaoin the delta function even from another request:
+\[
+    \begin{aligned}
+        \left[\hat{\psi}(f),\,\hat{\psi}^\dagger(g)\right]_{\mp} & = \int \mathrm{d}^d \mathbf{x} \int \mathrm{d}^d \mathbf{y} \, f^*(\mathbf{x}) g(\mathbf{y}) \left[\hat{\psi}(\mathbf{x}), \hat{\psi}^\dagger(\mathbf{y})\right]_{\mp} \\
+                                                                 & = \left\langle f | g \right\rangle = \int \mathrm{d}^d \mathbf{x} \, f^*(\mathbf{x}) g(\mathbf{x}),
+    \end{aligned}
+\]
+thus to satisfy both we need \(\left[\hat{\psi}(\mathbf{x}), \hat{\psi}^\dagger(\mathbf{y})\right]_{\mp} = \delta(\mathbf{x} - \mathbf{y})\). These relations reflect the local nature of the field operators, indicating that the creation and annihilation of particles at different points in space are independent processes.
+
+\begin{remark}
+    Note that the field operators \( \hat{\psi}(\mathbf{x}) \) and \( \hat{\psi}^\dagger(\mathbf{x}) \) can be interpreted as operator-valued distributions rather than ordinary operators, due to their dependence on continuous position variables. This means that they are not well-defined at individual points in space, but rather when integrated against suitable test functions \( f(\mathbf{x}) \) and \( g(\mathbf{x}) \).
+
+    Furthermore they do not depend upon the choice of basis \(\{u_n(\mathbf{x})\}_n\) used to express them, as long as the basis is complete and orthonormal in \(\mathcal{L}^2(\mathbb{R}^d)\):
+    \[
+        \hat{\psi}^\dagger(\mathbf{x}) = \sum_{n} u_n^*(\mathbf{x}) \hat{a}_{n}^\dagger = \sum_{m} v_m^*(\mathbf{x}) \hat{b}_{m}^\dagger.
+    \]
+\end{remark}
+
+\subsubsection{Canonical Commutation Relation Algebra}
+
+The field operators \( \hat{\psi}(\mathbf{x}) \) and \( \hat{\psi}^\dagger(\mathbf{x}) \) satisfy the canonical commutation or anticommutation relations, which form the basis of the algebraic structure of quantum fields. These relations are the same as those satisfied by the creation and annihilation operators in the single-particle Hilbert space, but they are now expressed in terms of continuous position variables.
+
+For the single-particle Hilbert space \(\mathcal{H} = \mathcal{L}^2(\mathbb{R}^d)\), with orthonormal complete basis
+\[
+    \left\{ \ket{e_n} \right\}_n \quad \iff \quad \left\{ \hat{a}_n,\, \hat{a}_n^\dagger \right\}_n,
+\]
+the canonical commutation or anticommutation relations for the ladder operators are given by:
+\[
+    \begin{dcases}
+        \left[\hat{a}_m, \hat{a}_n^\dagger\right]_{\mp} = \mathbb{I} \delta_{mn}, \\
+        \left[\hat{a}_m, \hat{a}_n\right]_{mp} = 0,                               \\
+        \left[\hat{a}_m^\dagger, \hat{a}_n^\dagger\right]_{mp} = 0.               \\
+    \end{dcases}
+\]
+
+We can now build the Fock space \(\mathcal{F}(\mathcal{H})\) from the single-particle Hilbert space \(\mathcal{H}\) as:
+\[
+    \mathcal{F}(\mathcal{H}) = \bigoplus_{N=0}^{\infty} \mathcal{H}^{(N)}_{S/A},
+\]
+where \(\mathcal{H}^{(N)}_{S/A}\) is the symmetric (for bosons) or antisymmetric (for fermions) tensor product of \( N \) copies of the single-particle Hilbert space. Thus we can have any particle number state \(\ket{n_1, n_2, \ldots}\) in Fock space, built from the vacuum state \(\ket{0}\) as:
+\[
+    \ket{n_1, n_2, \ldots} = \mathcal{N} \prod_k (\hat{a}_k^{\dagger})^{n_k}\ket{0},
+\]
+where \(\mathcal{N}\) is a normalization factor and \( n_k \) is the occupation number of the \( k \)-th single-particle state (how many particles occupy that same state, how many single particle Hilbert spaces we have to tensor multiply to obtain a state with that occupation).
+
+We know that the occupation numbers \( n_k \) can take any non-negative integer value for bosons, while for fermions they can only be 0 or 1 due to the Pauli exclusion principle:
+\[
+    \begin{dcases}
+        \text{Bosons:}   & n_k = 0, 1, 2, \ldots \\
+        \text{Fermions:} & n_k = 0, 1,
+    \end{dcases}
+\]
+where the total number of particles \( N \) in the system is given by the sum of the occupation numbers. If we are in a system with a fixed number of particles \( N \), we can restrict ourselves to the \( N \)-particle subspace \( \mathcal{H}^{(N)}_{S/A} \) of Fock space: we would be working in the \textbf{canonical ensemble}. However, Fock space allows us to consider states with varying numbers of particles, which is particularly useful in quantum field theory and many-body physics, where particle number is not necessarily conserved, thus we work in the \textbf{grand canonical ensemble}.
+
+Let us now study how to represent observables in Fock space using the field operators defined earlier.
 
 \section{Observable Operators}
 
-\section{Examples}
+Observables in quantum mechanics are represented by Hermitian operators acting on the Hilbert space of the system. In the context of Fock space, we can express these observables in terms of the field operators \( \hat{\psi}(\mathbf{x}) \) and \( \hat{\psi}^\dagger(\mathbf{x}) \). These operators allow us to describe physical quantities such as particle number, energy, and momentum in a many-particle system.
 
-\subsection{Density Operator}
+Let us start from the single-particle operator. Given a \textbf{single-particle observable} represented by a Hermitian operator \( \hat{O}^{(1)} \) acting on the single-particle Hilbert space \( \mathcal{H} = \mathcal{L}^2(\mathbb{R}^d) \), we can express a \textbf{operator on the Fock space} as:
+\begin{equation}
+    \hat{O} = \sum_{j=1}^N \hat{O}^{(1)}(\mathbf{x}_j,\,\mathbf{p}_j),
+    \label{eq:fock_operator_sum_single_particle}
+\end{equation}
+where \( \mathbf{x}_j, \, \mathbf{p}_j \in \mathbb{R}^d \) are the position and momentum operators for the \( j \)-th particle, and \( N \) is the total number of particles in the system. An handy example of such operator is the free Hamiltonian of a system of non-interacting particles:
+\[
+    \hat{H} = \sum_{j=1}^N H^{(1)}(\mathbf{x}_j,\,\mathbf{p}_j) = \sum_{j=1}^N \left(\frac{\mathbf{p}_j^2}{2m} + V(\mathbf{x}_j)\right),
+\]
+where \( H^{(1)}(\mathbf{x}_j,\,\mathbf{p}_j) \) is the single-particle Hamiltonian for the \( j \)-th particle, consisting of the kinetic energy term \( \frac{\mathbf{p}_j^2}{2m} \) and the potential energy term \( V(\mathbf{x}_j) \) (depending solely on position of the current particle).
+To move onto the Fock space representation, we have to keep in mind that the generic state in Fock space can be expressed as a superposition of occupation number states and has to be properly symmetrized or antisymmetrized depending on whether we are dealing with bosons or fermions.
 
-\subsection{Number Operator}
+Let us consider the single-particle observable \( \hat{O}^{(1)} \) in the Fock space with plane wave basis states \( \{u_n(\mathbf{k}_n)\}_n \). We can decompose the operator \( \hat{O}^{(1)} \) in this basis as:
+\[
+    \hat{O}^{(1)}(\mathbf{x}_j,\,\mathbf{p}_j) u_{\mathbf{k}}(\mathbf{x}) = \epsilon(\mathbf{k}) u_{\mathbf{k}}(\mathbf{x}),
+\]
+where \( \epsilon(\mathbf{k}) \in \mathbb{R} \) is the real eigenvalue associated with the eigenstate \( u_{\mathbf{k}}(\mathbf{x}) \): the single-particle operator has to be Hermitian. Thus, we can express a generic state in Fock space as:
+\[
+    \psi_{n_1, n_2, \ldots, n_N}(\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_N) = \mathcal{N} \left(\hat{S} / \hat{A}\right) u_{\alpha_1}(\mathbf{x}_1) u_{\alpha_2}(\mathbf{x}_2) \ldots u_{\alpha_N}(\mathbf{x}_N) \in \mathcal{H}^{(N)}_{S/A},
+\]
+where \( \hat{S} / \hat{A} \) indicates the symmetrization or antisymmetrization operator for bosons or fermions respectively. Let us now see how an operator on the Fock space \( \hat{O} \) acts on this state as a sum of single-particle operators:
+\[
+    \begin{aligned}
+        \hat{O} \psi_{n_1, n_2, \ldots, n_N}(\mathbf{x}_1, \ldots, \mathbf{x}_j, \ldots, \mathbf{x}_N) & = \sum_{j=1}^N \hat{O}^{(1)}(\mathbf{x}_j,\,\mathbf{p}_j) \psi_{n_1, n_2, \ldots, n_N}(\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_N)                                                 \\
+                                                                                                       & = \mathcal{N} \sum_{j=1}^N \left(\hat{S} / \hat{A}\right) u_{\alpha_1}(\mathbf{x}_1) \ldots \epsilon(\mathbf{k}_{\alpha_j}) u_{\alpha_j}(\mathbf{x}_j) \ldots u_{\alpha_N}(\mathbf{x}_N) \\
+                                                                                                       & = \left( \sum_{j=1}^N \epsilon(\mathbf{k}_{\alpha_j}) \right) \psi_{n_1, n_2, \ldots, n_N}(\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_N).
+    \end{aligned}
+\]
+This shows that the action of an operator \( \hat{O} \) on the many-particle state \( \psi_{n_1, n_2, \ldots, n_N} \) results in a sum of the eigenvalues \( \epsilon(\mathbf{k}_{\alpha_j}) \) of each single-particle operator, corresponding to each occupied single-particle state:
+\[
+    \sum_{j=1}^N \epsilon(\mathbf{k}_{\alpha_j}) = \sum_{k} n_k \epsilon(\mathbf{k}_k),
+\]
+where \( n_k \) is the occupation number of the \( k \)-th single-particle state with eigenvalue \( \epsilon(\mathbf{k}_k) \). Thus, we can express the single-particle operator \( \hat{O} \) in Fock space as:
+\begin{equation}
+    \hat{O} = \sum_{k} \epsilon(\mathbf{k}_k) \hat{a}_k^\dagger \hat{a}_k = \sum_{k} \epsilon(\mathbf{k}_k) \hat{n}_k,
+    \label{eq:general_fock_operator}
+\end{equation}
+where \( \hat{a}_k^\dagger \hat{a}_k \) is the number operator \( \hat{n}_k \) for the \( k \)-th single-particle state, counting the number of particles occupying that state:
+\[
+    \hat{n}_k \ket{n_1, n_2, \ldots} = \hat{a}_k^\dagger \hat{a}_k \ket{n_1, n_2, \ldots} = n_k \ket{n_1, n_2, \ldots}.
+\]
+
+If we work in a basis in which the single-particle operator \( \hat{O}^{(1)} \) is not diagonal, for istance
+\[
+    \left\{v_{\beta}(\mathbf{x})\right\}_{\beta} \quad \iff \quad \hat{b}_{\beta},\, \hat{b}_{\beta}^\dagger,
+\]
+the Fock space representation of the operator \( \hat{O} \) would be constructed using the \textbf{field operators}, which can be expressed in terms of the creation and annihilation operators in the new basis:
+\[
+    \hat{\psi}^{\prime}(\mathbf{x}) = \sum_{\beta} v_{\beta}(\mathbf{x}) \hat{b}_{\beta}, \quad \hat{\psi}^{\prime \dagger}(\mathbf{x}) = \sum_{\beta} v_{\beta}^*(\mathbf{x}) \hat{b}_{\beta}^\dagger.
+\]
+We can show that any operator \( \hat{O} \) can be expressed in terms of the field operators in a general basis independent form as:
+\[
+    \begin{aligned}
+        \int \mathrm{d}^d \mathbf{x} \, \hat{\psi}^{\prime \dagger}(\mathbf{x}) \hat{O}^{(1)}(\mathbf{x},\,\mathbf{p}) \hat{\psi}^{\prime}(\mathbf{x}) & = \int \mathrm{d}^d \mathbf{x} \, \left( \sum_{\beta} v_{\beta}^*(\mathbf{x}) \hat{b}_{\beta}^\dagger \right) \hat{O}^{(1)}(\mathbf{x},\,\mathbf{p}) \left( \sum_{\gamma} v_{\gamma}(\mathbf{x}) \hat{b}_{\gamma} \right) \\
+                                                                                                                                                       & = \sum_{\beta, \gamma} \hat{b}_{\beta}^\dagger \hat{b}_{\gamma} \int \mathrm{d}^d \mathbf{x} \, v_{\beta}^*(\mathbf{x}) \hat{O}^{(1)}(\mathbf{x},\,\mathbf{p}) v_{\gamma}(\mathbf{x})                                     \\
+                                                                                                                                                       & = \sum_{\beta, \gamma} \xi_{\beta \gamma} \hat{b}_{\beta}^\dagger \hat{b}_{\gamma},
+    \end{aligned}
+\]
+while, if we choose the basis in which the single-particle observable \( \hat{O}^{(1)} \) is diagonal (\(\hat{a}\) ), we would recover equation \eqref{eq:general_fock_operator}:
+\[
+    \begin{aligned}
+        \int \mathrm{d}^d \mathbf{x} \, \hat{\psi}^{\dagger}(\mathbf{x}) \hat{O}^{(1)}(\mathbf{x},\,\mathbf{p}) \hat{\psi}(\mathbf{x}) & = \int \mathrm{d}^d \mathbf{x} \, \left( \sum_{n} u_{n}^*(\mathbf{x}) \hat{a}_{n}^\dagger \right) \hat{O}^{(1)}(\mathbf{x},\,\mathbf{p}) \left( \sum_{m} u_{m}(\mathbf{x}) \hat{a}_{m} \right) \\
+                                                                                                                                       & = \sum_{n, m} \hat{a}_{n}^\dagger \hat{a}_{m} \int \mathrm{d}^d \mathbf{x} \, u_{n}^*(\mathbf{x}) \hat{O}^{(1)}(\mathbf{x},\,\mathbf{p}) u_{m}(\mathbf{x})                                     \\
+                                                                                                                                       & = \sum_{n} \epsilon_n \hat{a}_{n}^\dagger \hat{a}_{n},
+    \end{aligned}
+\]
+thus confirming the basis independence of the field operator representation of the single-particle operator
+\[
+    \sum_{\alpha, \beta} \xi_{\alpha \beta} \hat{b}_{\alpha}^\dagger \hat{b}_{\beta} \iff \sum_{n} \epsilon_n \hat{a}_{n}^\dagger \hat{a}_{n},
+\]
+with coefficients given by the matrix elements of the single-particle operator in the respective bases:
+\[
+    \xi_{\alpha \beta} = \int \mathrm{d}^d \mathbf{x} \, v_{\alpha}^*(\mathbf{x}) \hat{O}^{(1)}(\mathbf{x},\,\mathbf{p}) v_{\beta}(\mathbf{x}), \quad \epsilon_n = \int \mathrm{d}^d \mathbf{x} \, u_{n}^*(\mathbf{x}) \hat{O}^{(1)}(\mathbf{x},\,\mathbf{p}) u_{n}(\mathbf{x}).
+\]
+Thus, we can express the single-particle operator \( \hat{O} \) in Fock space in a basis-independent form using the field operators as:
+\begin{equation}
+    \hat{O} = \int \mathrm{d}^d \mathbf{x} \, \hat{\psi}^\dagger(\mathbf{x}) \hat{O}^{(1)}(\mathbf{x},\,\mathbf{p}) \hat{\psi}(\mathbf{x}).
+    \label{eq:fock_operator_int_field_operators}
+\end{equation}
+
+Resuming these results, we have shown that an operator acting on single-particle states can be lifted to an operator acting on Fock space by summing over all particles, and that this operator can be expressed in terms of creation and annihilation operators or field operators:
+\begin{itemize}
+    \item \(\hat{O} = \sum_{n} \epsilon_n \hat{a}_{n}^\dagger \hat{a}_{n}\) in the diagonal basis \(u_n(\mathbf{x}) \iff \hat{a}_n, \hat{a}_n^\dagger\), with \(\epsilon_n = \bra{u_n} \hat{O}^{(1)} \ket{u_n}\) the eigenvalues of the single-particle operator;
+    \item \(\hat{O} = \sum_{\alpha, \beta} \xi_{\alpha \beta} \hat{b}_{\alpha}^\dagger \hat{b}_{\beta}\) in a generic basis \(v_{\beta}(\mathbf{x}) \iff \hat{b}_{\beta}, \hat{b}_{\beta}^\dagger\), with \(\xi_{\alpha \beta} = \bra{v_{\alpha}} \hat{O}^{(1)} \ket{v_{\beta}}\) the matrix elements of the single-particle operator;
+    \item \(\hat{O} = \int \mathrm{d}^d \mathbf{x} \, \hat{\psi}^\dagger(\mathbf{x}) \hat{O}^{(1)}(\mathbf{x},\,\mathbf{p}) \hat{\psi}(\mathbf{x})\) in terms of the field operators, independent of the choice of basis.
+\end{itemize}
+
+\subsection{Density and Number Operators}
+
+Let us now consider the \textbf{density operator} \( \hat{\rho}(\mathbf{x}) \), which represents the particle density at a given position in space. In Fock space, the density operator can be expressed in terms of a sum of single-particle delta functions:
+\begin{equation}
+    \hat{\rho}(\mathbf{x}) = \sum_{j=1}^N \delta(\mathbf{x} - \mathbf{x}_j),
+    \label{eq:fock_density_operator}
+\end{equation}
+where \( \mathbf{x}_j \) is the eigenvalue of the position operator for the \( j \)-th particle. Looking at the action of the single-particle operators \(\hat{\rho}_j = \delta(\mathbf{x} - \mathbf{x}_j)\) , the delta functions, on a field operator, we can see that it picks out its contribution at the position \( \mathbf{x}_j \):
+\[
+    \psi(\mathbf{x}) \to \hat{\rho}_j \psi(\mathbf{x}) = \int \mathrm{d}^d \mathbf{y} \, \delta(\mathbf{y} - \mathbf{x}_j) \psi(\mathbf{y}) = \psi(\mathbf{x}_j).
+\]
+Thus, we can express the density operator \( \hat{\rho}(\mathbf{x}) \) in terms of the field operators as:
+\begin{equation}
+    \hat{\rho}(\mathbf{x}) = \hat{\psi}^\dagger(\mathbf{x}) \hat{\psi}(\mathbf{x}) = \sum_{m,n} u_m^*(\mathbf{x}) u_n(\mathbf{x}) \hat{a}_m^\dagger \hat{a}_n,
+    \label{eq:density_operator_field_operators}
+\end{equation}
+which counts the number of particles at position \( \mathbf{x} \) by creating and annihilating a particle at that point. This expression is consistent with the previous definition of a Fock operator in \eqref{eq:fock_operator_int_field_operators}, as one can easily compute:
+\[
+    \begin{aligned}
+        \hat{\rho}(\mathbf{x}) & = \int \mathrm{d}^d \mathbf{y} \, \hat{\psi}^\dagger(\mathbf{y}) \hat{\rho}(\mathbf{x}) \hat{\psi}(\mathbf{y}) = \int \mathrm{d}^d \mathbf{y} \, \hat{\psi}^\dagger(\mathbf{y}) \delta(\mathbf{y} - \mathbf{x}) \hat{\psi}(\mathbf{y}) \\
+                               & = \hat{\psi}^\dagger(\mathbf{x}) \hat{\psi}(\mathbf{x}) = \sum_{m,n} u_m^*(\mathbf{x}) u_n(\mathbf{x}) \hat{a}_m^\dagger \hat{a}_n.
+    \end{aligned}
+\]
+which matches the definition in \eqref{eq:density_operator_field_operators} (the last equality follows from the definition of the field operators as expansion in ladder operators). If we recognize that the term \( u_m^*(\mathbf{x}) u_n(\mathbf{x}) \) is an outer product of the basis functions evaluated at position \( \mathbf{x} \), we can see that the density operator \( \hat{\rho}(\mathbf{x}) \) effectively sums over all possible single-particle states, weighted by their contributions at that position.
+
+For what concerns the \textbf{number operator} \( \hat{N} \), which counts the total number of particles in the system, we can express it as the integral of the density operator over all space:
+\begin{equation}
+    \hat{N} = \int \mathrm{d}^d \mathbf{x} \, \hat{\rho}(\mathbf{x}) = \int \mathrm{d}^d \mathbf{x} \, \hat{\psi}^\dagger(\mathbf{x}) \hat{\psi}(\mathbf{x}) = \sum_{k} \hat{a}_k^\dagger \hat{a}_k = \sum_{k} \hat{n}_k,
+    \label{eq:number_operator}
+\end{equation}
+where we have used the expression for the density operator in terms of the field operators. The number operator \( \hat{N} \) thus counts the total number of particles by summing over the occupation numbers of all single-particle states.
+
+The last equality in equation \eqref{eq:number_operator} can be derived by substituting the expansion of the field operators in terms of the ladder operators into the integral:
+\[    \begin{aligned}
+        \hat{N} & = \int \mathrm{d}^d \mathbf{x} \, \left( \sum_{m} u_m^*(\mathbf{x}) \hat{a}_m^\dagger \right) \left( \sum_{n} u_n(\mathbf{x}) \hat{a}_n \right)                         \\
+                & = \sum_{m,n} \hat{a}_m^\dagger \hat{a}_n \int \mathrm{d}^d \mathbf{x} \, u_m^*(\mathbf{x}) u_n(\mathbf{x}) = \sum_{n} \hat{a}_n^\dagger \hat{a}_n = \sum_{n} \hat{n}_n,
+    \end{aligned}
+\]
+where we have used the orthonormality of the basis functions \( u_n(\mathbf{x}) \) to evaluate the integral.
 
 \subsection{Free Hamiltonian}
+
+Let us now consider the \textbf{free Hamiltonian} \( \hat{H} \) of a system of non-interacting particles. The free Hamiltonian describes the kinetic energy of the particles and can be expressed in terms of the momentum operator \( \hat{\mathbf{p}} \) as:
+\begin{equation}
+    \hat{H} = \sum_{j=1}^N \frac{\hat{\mathbf{p}}_j^2}{2m},
+    \label{eq:free_hamiltonian_fock_space}
+\end{equation}
+where \( m \) is the mass of the particles and \( \hat{\mathbf{p}}_j \) is the momentum operator for the \( j \)-th particle.
+
+If we work in the basis of unnormalized plane wave states \( u_{\mathbf{k}}(\mathbf{x}) = e^{i \mathbf{k} \cdot \mathbf{x}} \), which are eigenstates of the momentum operator with eigenvalues \( \hbar \mathbf{k} \), we can express the diagonalized free Hamiltonian in Fock space as:
+\[
+    - \frac{\hbar^2 \nabla^2}{2m} u_{\mathbf{k}_n}(\mathbf{x}) = \epsilon_{\mathbf{k}_n} u_{\mathbf{k}_n}(\mathbf{x}),
+\]
+where we can compute the energy eigenvalue associated with the plane wave state \( u_{\mathbf{k}_n}(\mathbf{x}) \) as
+\[
+    - \frac{\hbar^2 \nabla^2}{2m} e^{i \mathbf{k}_n \cdot \mathbf{x}} = \frac{\hbar^2 \mathbf{k}_n^2}{2m} e^{i \mathbf{k}_n \cdot \mathbf{x}} \quad \implies \quad \epsilon_{\mathbf{k}_n} = \frac{\hbar^2 \mathbf{k}_n^2}{2m}.
+\]
+
+\paragraph{Periodic Boundary Conditions.}
+As we have anticipated earlier, the plane wave states \( u_{\mathbf{k}}(\mathbf{x}) = e^{i \mathbf{k} \cdot \mathbf{x}} \) are not normalizable in infinite space, as they extend infinitely in all directions. To address this issue, we can impose \textbf{periodic boundary conditions} on a finite volume \( V = L^d \) of space, effectively confining the particles to a box of side length \( L \) in \( d \) dimensions. This allows us to discretize the allowed wavevectors \( \mathbf{k} \) and normalize the plane wave states. We can impose in each spatial dimension (for example in three dimensions):
+\[
+    \begin{dcases}
+        u_{\mathbf{k}}(x, y, z) = u_{\mathbf{k}}(x + L, y, z), \\
+        u_{\mathbf{k}}(x, y, z) = u_{\mathbf{k}}(x, y + L, z), \\
+        u_{\mathbf{k}}(x, y, z) = u_{\mathbf{k}}(x, y, z + L),
+    \end{dcases}
+\]
+which leads to the quantization of the wavevectors as:
+\[
+    e^{k_x x} e^{i k_x L} = e^{i k_x x} \quad \implies \quad k_x = \frac{2 \pi n_x}{L}, \quad n_x \in \mathbb{Z},
+\]
+and similarly for the other dimensions. Thus, the allowed wavevectors in three dimensions become:
+\[
+    \mathbf{k} = \frac{2 \pi}{L}\left( n_x,\, n_y,\, n_z \right), \quad n_x, n_y, n_z \in \mathbb{Z}.
+\]
+With these periodic boundary conditions, we can normalize the plane wave states over the finite volume \( V \) as:
+\[
+    \Vert u_{\mathbf{k}}(\mathbf{x}) \Vert^2_2 = \int_V \mathrm{d}^3 \mathbf{x} \, |u_{\mathbf{k}}(\mathbf{x})|^2 = |\mathcal{C}|^2 \int_V \mathrm{d}^3 \mathbf{x} \, 1 \implies \mathcal{C} = \frac{1}{\sqrt{V}},
+\]
+ensuring that they satisfy the orthonormality condition:
+\[
+    \int_V \mathrm{d}^d \mathbf{x} \, u_{\mathbf{k}}^*(\mathbf{x}) u_{\mathbf{k}'}(\mathbf{x}) = \delta_{\mathbf{k}, \mathbf{k}'}.
+\]
+Thus the normalized plane wave states in a finite volume with periodic boundary conditions are given by:
+\[
+    u_{\mathbf{k}}(\mathbf{x}) = \frac{1}{\sqrt{V}} e^{i \mathbf{k} \cdot \mathbf{x}}, \quad \mathbf{k} = \frac{2 \pi}{L}\left( n_x,\, n_y,\, n_z \right), \quad n_x, n_y, n_z \in \mathbb{Z}.
+\]
+
+Using these normalized plane wave states as our basis functions \( u_n(\mathbf{x}) \), we can express the free Hamiltonian in Fock space using equation \eqref{eq:general_fock_operator} as:
+\begin{equation}
+    \hat{H} = \sum_{\mathbf{k}} \epsilon_{\mathbf{k}} \hat{a}_{\mathbf{k}}^\dagger \hat{a}_{\mathbf{k}} = \frac{\hbar^2}{2m} \sum_{\mathbf{k}} \mathbf{k}^2 \hat{a}_{\mathbf{k}}^\dagger \hat{a}_{\mathbf{k}},
+    \label{eq:free_hamiltonian_fock_space_final}
+\end{equation}
+where the sum runs over all allowed wavevectors \( \mathbf{k} \) in the finite volume with periodic boundary conditions. This is the standard form of the free Hamiltonian in second quantization, describing a quantum non relativistic perfect gas, where the bosonic or fermionic nature of the particles is encoded in the commutation or anticommutation relations of the ladder operators \( \hat{a}_{\mathbf{k}} \) and \( \hat{a}_{\mathbf{k}}^\dagger \).
+
+\paragraph{Other hamiltonian systems.}
+If we were to consider a system of photons, this expression would still hold, but we would have to take into account that \textbf{photons} are massless particles, thus the energy eigenvalues would be given by
+\[
+    \epsilon_{\mathbf{k}} = c \vert \mathbf{p} \vert = \hbar c |\mathbf{k}|,
+\]
+where \( c \) is the speed of light. This relation is known as the \textbf{dispersion relation} for photons, reflecting the fact that their energy is directly proportional to their momentum magnitude. There exist other dispersion relations for different types of particles or quasi-particles, depending on their mass and the nature of their interactions: the \textbf{phonons}, for example, have the following dispersion relation
+\[
+    \epsilon_{\mathbf{k}} = v |\sin(\mathbf{k})|.
+\]
+Phonons are quantized modes of vibrations in a crystal lattice (quantum particles of sound or lattice vibrations), and their dispersion relation reflects the collective excitations of the lattice structure. Here, \( v \) represents the speed of sound in the material, and the sine function captures the periodic nature of the lattice vibrations.
+
+\paragraph{Hints on energy transitions.}
+We are considering in general a system where matter is  conserved: it can be transformed into energy and vice versa, as the relativistic equation states, but particles cannot be created or destroyed. However in transitions between different energy states, particles absorbe or emit energy quanta (photons) to move from one energy level to another. In these processes, the number of particles remains constant, but their energy changes due to the absorption or emission of photons, thus the number of photons changes. We could describe this transition as
+\[
+    \ket{1,0,0,\ldots} \to \ket{0,1,0,\ldots} \implies \hat{a}_2^\dagger \hat{a}_1 \ket{1,0,0,\ldots} = \ket{0,1,0,\ldots},
+\]
+where we are not considering the photon states explicitly, but we could do it by adding another set of ladder operators for the photons, for example \( \hat{A}_q, \hat{A}_q^\dagger \) for the photon mode with wavevector \( q \):
+\[
+    \begin{aligned}
+        \ket{1,0,0,\ldots}_{\text{mat}} \otimes \ket{n_1,\ldots}_{\text{phot}} \;                                               & \to &  & \ket{0,1,0,\ldots}_{\text{mat}} \otimes \ket{n_1 - 1,\ldots}_{\text{phot}}  \\
+        \implies \hat{a}_2^\dagger \hat{a}_1 \hat{A}_q \ket{1,0,0,\ldots}_{\text{mat}} \otimes \ket{n_1,\ldots}_{\text{phot}}\; & =   &  & \ket{0,1,0,\ldots}_{\text{mat}} \otimes \ket{n_1 - 1,\ldots}_{\text{phot}}.
+    \end{aligned}
+\]
+The notation here is a bit sloppy, but the idea is that we can describe the matter and photon states separately, and use the appropriate ladder operators to describe the transitions between different energy levels and photon states.
