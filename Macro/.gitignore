@@ -19,6 +19,5 @@ out/
 
 # Generated bibliography or temporary files
 *.bcf
-*.pdf
 *.dvi
 *.ps
